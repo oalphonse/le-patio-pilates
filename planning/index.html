@@ -55,6 +55,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
 
 /* Grille (ordinateur) */
 .week{background:var(--cream)}
+.week{scroll-margin-top:87px}
 .week .wrap{display:grid;gap:20px;padding-block:72px 40px}
 .legend{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--brown)}
 .legend .today{display:inline-flex;align-items:center;gap:8px}
@@ -74,6 +75,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
 .sat-col{grid-column:7;border:1.5px solid var(--olive-l);border-radius:10px;display:grid;place-content:center;text-align:center;padding:10px;gap:6px}
 .sat-col b{font-weight:400;font-size:22px;color:var(--olive)}
 .sat-col small{font-size:12px;color:var(--muted)}
+.interet{margin-top:10px;justify-self:center;border:0;border-radius:999px;background:var(--olive);color:var(--paper);font:500 14px var(--font);padding:11px 18px;cursor:pointer;transition:transform .15s,background .15s}
+.interet:hover{transform:translateY(-1px)}
+.interet:disabled{background:var(--sand);color:var(--olive-d);cursor:default;transform:none}
+.interet-msg{font-size:12px;color:var(--muted);min-height:1em}
 
 /* Liste par jour (téléphone) */
 .daylist{display:none}
@@ -140,9 +145,9 @@ footer a{text-decoration:none}
 <header class="site-header">
   <div class="wrap">
     <a href="../" class="logo"><img src="../logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="500" height="500"></a>
-    <nav class="nav" id="menu" aria-label="Navigation principale"><a href="../#cours-d-essai">Cours d'essai</a><a href="../#le-studio">Le studio</a><a href="../#les-cours">Les cours</a><a href="../premiere-seance/">Première séance</a><a href="../planning/" aria-current="page">Planning</a><a href="../#infos-pratiques">Infos pratiques</a><a href="../#questions-frequentes">FAQ</a><a href="../tarifs/">Tarifs</a></nav>
+    <nav class="nav" id="menu" aria-label="Navigation principale"><a href="../premiere-seance/">Première séance</a><a href="../#le-studio">Le studio</a><a href="../#les-cours">Les cours</a><a href="../planning/" aria-current="page">Planning</a><a href="../#infos-pratiques">Infos pratiques</a><a href="../#questions-frequentes">FAQ</a><a href="../tarifs/">Tarifs</a></nav>
     <div class="head-r">
-      <a href="../#cours-d-essai" class="btn btn-light">Réserver</a>
+      <a href="#creneaux" class="btn btn-light">Réserver</a>
       <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
     </div>
   </div>
@@ -165,7 +170,7 @@ footer a{text-decoration:none}
     </div>
   </section>
 
-  <section class="week" aria-label="Planning de la semaine">
+  <section class="week" id="creneaux" aria-label="Planning de la semaine">
     <div class="wrap">
       <div class="legend">
         <span>Cliquez sur un créneau pour réserver votre séance.</span>
@@ -193,7 +198,7 @@ footer a{text-decoration:none}
       <h2>Un créneau vous tente ?</h2>
       <p>Cours d'essai : deux séances pour 35 € · 43 avenue Félix Louat, Senlis</p>
       <div class="cta-row">
-        <a href="../#cours-d-essai" class="btn btn-light">Réserver mon cours d'essai</a>
+        <a href="#creneaux" class="btn btn-light">Réserver mon cours d'essai</a>
         <a href="../tarifs/" class="btn btn-line">Voir les tarifs</a>
       </div>
     </div>
@@ -210,6 +215,37 @@ const GROUPS=[["Matin",["8h30","9h45"]],["Midi",["11h45","13h00"]],["Soir",["16h
 const BOOK="../#cours-d-essai";
 const todayIdx=(new Date().getDay()+6)%7; // 0 = lundi
 
+/* Bouton « Ça m'intéresse » du samedi : 1 clic par adresse IP, compté par le serveur */
+const API='../api/interet-samedi';
+let interetEtat=null; // null | 'ok' | 'deja'
+try{ if(localStorage.getItem('interet-samedi')) interetEtat='ok'; }catch(e){}
+function boutonInteret(){
+  return `<button type="button" class="interet" data-interet>Ça m'intéresse</button><span class="interet-msg" data-interet-msg aria-live="polite"></span>`;
+}
+function majInteret(msg){
+  document.querySelectorAll('[data-interet]').forEach(b=>{
+    if(interetEtat){b.disabled=true;b.textContent='C\'est noté ✓';}
+  });
+  document.querySelectorAll('[data-interet-msg]').forEach(m=>{
+    m.textContent = msg || (interetEtat ? 'Merci, on vous tient au courant.' : '');
+  });
+}
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-interet]'); if(!b||interetEtat) return;
+  b.disabled=true;
+  try{
+    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+    if(!r.ok) throw new Error(r.status);
+    const d=await r.json();
+    interetEtat=d.deja?'deja':'ok';
+    try{localStorage.setItem('interet-samedi','1')}catch(err){}
+    majInteret(d.deja?'Votre intérêt était déjà noté, merci !':'Merci, on vous tient au courant.');
+  }catch(err){
+    b.disabled=false;
+    majInteret('Impossible d\'enregistrer pour le moment, réessayez plus tard.');
+  }
+});
+
 /* Grille ordinateur */
 (function(){
   let h='<div></div>'+DAYS.map((d,i)=>`<div class="day${i===5?' sat':''}${i===todayIdx?' is-today':''}">${d.toUpperCase()}</div>`).join('');
@@ -222,8 +258,9 @@ const todayIdx=(new Date().getDay()+6)%7; // 0 = lundi
       row++;
     });
   });
-  h+=`<div class="sat-col" style="grid-row:2/${row}"><b>Bientôt</b><small>Créneaux du samedi<br>annoncés prochainement</small></div>`;
+  h+=`<div class="sat-col" style="grid-row:2/${row}"><b>Bientôt</b><small>Créneaux du samedi<br>annoncés prochainement</small>${boutonInteret()}</div>`;
   document.getElementById('pgrid').innerHTML=h;
+  majInteret();
   if(todayIdx<5) document.getElementById('today-legend').hidden=false;
 })();
 
@@ -233,7 +270,7 @@ const todayIdx=(new Date().getDay()+6)%7; // 0 = lundi
   let current=todayIdx<6?todayIdx:0;
   function render(){
     tabs.innerHTML=DAYS.map((d,i)=>`<button role="tab" type="button" id="tab-${i}" aria-selected="${i===current}">${d}</button>`).join('');
-    if(current===5){panel.innerHTML='<div class="soon-day"><b>Bientôt</b><br>Les créneaux du samedi seront annoncés prochainement.</div>';return;}
+    if(current===5){panel.innerHTML=`<div class="soon-day"><b>Bientôt</b><br>Les créneaux du samedi seront annoncés prochainement.<br>${boutonInteret()}</div>`;majInteret();return;}
     panel.innerHTML=GROUPS.map(([name,times])=>`<div class="group"><h3>${name}</h3>${times.map(t=>`<a class="row" href="${BOOK}"><span><b>${t}</b><small>Reformer · 1 h · tous niveaux</small></span><span>Réserver →</span></a>`).join('')}</div>`).join('');
   }
   tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;current=+b.id.split('-')[1];render();});

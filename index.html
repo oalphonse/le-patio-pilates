@@ -72,6 +72,8 @@ section{scroll-margin-top:96px}
 .offer-card .eyebrow{color:var(--olive);font-size:10.5px}
 .offer-card h3{font-size:23px;line-height:1.2}
 .offer-card p{font-size:13.5px;color:var(--brown)}
+.offer-card .offer-price{font-size:40px;font-weight:300;line-height:1;color:var(--ink);margin-top:4px}
+.offer-card .offer-note{margin-top:-4px}
 
 /* Comment ça marche (ajouté) */
 .steps{background:var(--paper);border-bottom:1px solid var(--sand)}
@@ -386,11 +388,10 @@ body.annot #annot-panel{display:block}
   <div class="wrap">
     <a href="#haut-de-page" class="logo" data-tag="hors" data-label="Logo" data-st="svg"><img src="logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="500" height="500"></a>
     <nav class="nav" aria-label="Navigation principale" data-tag="planning" data-st="svg">
-      <a href="#cours-d-essai">Cours d'essai</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="premiere-seance/">Première séance</a><a href="planning/">Planning</a><a href="#infos-pratiques">Infos pratiques</a><a href="#questions-frequentes">FAQ</a><a href="tarifs/">Tarifs</a>
+      <a href="premiere-seance/">Première séance</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="planning/">Planning</a><a href="#infos-pratiques">Infos pratiques</a><a href="#questions-frequentes">FAQ</a><a href="tarifs/">Tarifs</a>
     </nav>
     <div class="head-cta">
-      <a href="https://backoffice.bsport.io" class="account" data-tag="compte" data-st="ajout">Mon compte</a>
-      <a href="#cours-d-essai" class="btn btn-light" data-tag="header pilule" data-st="svg">Réserver</a>
+      <a href="planning/" class="btn btn-light" data-tag="header pilule" data-st="svg">Réserver</a>
       <button class="burger" aria-expanded="false" aria-controls="menu" id="burger">Menu</button>
     </div>
   </div>
@@ -405,7 +406,7 @@ body.annot #annot-panel{display:block}
       <div class="eyebrow">Studio de Pilates Reformer à Senlis</div>
       <h1 data-tag="titre italique" data-st="svg" data-note="Mot en italique ajouté">Prenez le temps<br>de <em>bien</em> bouger.</h1>
       <div class="hero-btns" data-tag="deuxboutons repete" data-st="svg">
-        <a href="#cours-d-essai" class="btn btn-light">Réserver mon essai</a>
+        <a href="planning/" class="btn btn-light">Réserver mon essai</a>
         <a href="premiere-seance/" class="btn btn-ghost">Première fois ? Commencez ici</a>
       </div>
       <div class="reassure" data-tag="rassure" data-st="ajout">
@@ -413,9 +414,9 @@ body.annot #annot-panel{display:block}
       </div>
     </div>
     <aside class="offer-card" data-tag="essai prix" data-st="svg">
-      <div class="eyebrow">Ouverture le 1er février</div>
-      <h3>Cours d'essai :<br>une séance achetée,<br>une séance offerte.</h3>
-      <p>35 € · réservation sur bsport</p>
+      <h3>Une séance achetée,<br>une séance offerte.</h3>
+      <p class="offer-price">35 €</p>
+      <p class="offer-note"><em>Pour la séance d'essai</em></p>
     </aside>
   </div>
 </section>
@@ -431,7 +432,7 @@ body.annot #annot-panel{display:block}
       <div><b id="cd-m">--</b><small>MINUTES</small></div>
       <div><b id="cd-s">--</b><small>SECONDES</small></div>
     </div>
-    <a href="#cours-d-essai" class="btn btn-light" data-tag="repete" data-st="svg">Pré-réserver ma première séance</a>
+    <a href="planning/" class="btn btn-light" data-tag="repete" data-st="svg">Pré-réserver ma première séance</a>
   </div>
 </section>
 
@@ -450,7 +451,7 @@ body.annot #annot-panel{display:block}
         <li>Six élèves au plus, accompagnés de bout en bout</li>
         <li>0 € de frais d'inscription</li>
       </ul>
-      <a href="https://backoffice.bsport.io" class="btn btn-olive">Réserver mon cours d'essai</a>
+      <a href="planning/" class="btn btn-olive">Réserver mon cours d'essai</a>
       <small>Réservation en ligne sur bsport, en quelques secondes.</small>
     </div>
   </div>
@@ -661,7 +662,7 @@ body.annot #annot-panel{display:block}
     <img src="photos-le-patio/reserver-cours-pilates-senlis.jpg" alt="" loading="lazy">
     <h2>Votre première séance vous attend.</h2>
     <p>Ouverture le 1er février · 43 avenue Félix Louat, Senlis</p>
-    <a href="#cours-d-essai" class="btn btn-light">Réserver mon cours d'essai</a>
+    <a href="planning/" class="btn btn-light">Réserver mon cours d'essai</a>
   </div>
 </section>
 
@@ -716,7 +717,7 @@ body.annot #annot-panel{display:block}
 <!-- Barre mobile fixe : ajoutée (bouton répété, comme KX Pilates) -->
 <div class="mobile-bar" data-tag="repete essai" data-st="ajout">
   <span>Cours d'essai<br><b>2 séances pour 35 €</b></span>
-  <a href="#cours-d-essai" class="btn btn-olive">Réserver mon essai</a>
+  <a href="planning/" class="btn btn-olive">Réserver mon essai</a>
 </div>
 
 <!-- ===== Détourage ===== -->

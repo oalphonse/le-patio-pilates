@@ -3,3 +3,6 @@
 
 # Réglages locaux de Claude Code
 .claude/
+
+# Données du compteur (empreintes d IP, sel secret)
+donnees/
