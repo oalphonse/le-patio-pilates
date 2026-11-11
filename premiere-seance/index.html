@@ -110,6 +110,17 @@ footer a{text-decoration:none}
   .mini-plan{left:12px;right:12px;bottom:12px;padding:10px;gap:5px}
   .mini-plan span{font-size:12px}
 }
+
+/* Menu (identique à l'accueil) */
+.nav{display:flex;gap:30px;font-size:15px}
+.nav a{text-decoration:none;opacity:.92;white-space:nowrap}
+.nav a:hover,.nav a[aria-current="page"]{opacity:1;text-decoration:underline;text-underline-offset:6px}
+.burger{display:none;background:none;border:0;color:var(--paper);font:500 15px var(--font);cursor:pointer}
+@media (max-width:1180px){
+  .nav{display:none}
+  .burger{display:block}
+  .site-header.open .nav{display:flex;flex-direction:column;gap:14px;position:absolute;top:100%;left:0;right:0;background:var(--olive);padding:20px 24px 28px}
+}
 </style>
 </head>
 <body>
@@ -117,9 +128,10 @@ footer a{text-decoration:none}
 <header class="site-header">
   <div class="wrap">
     <a href="../" class="logo"><img src="../logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="500" height="500"></a>
+    <nav class="nav" id="menu" aria-label="Navigation principale"><a href="../#cours-d-essai">Cours d'essai</a><a href="../#le-studio">Le studio</a><a href="../#les-cours">Les cours</a><a href="../premiere-seance/" aria-current="page">Première séance</a><a href="../planning/">Planning</a><a href="../#infos-pratiques">Infos pratiques</a><a href="../#questions-frequentes">FAQ</a><a href="../tarifs/">Tarifs</a></nav>
     <div class="head-r">
-      <a href="../" class="back">← Retour à l'accueil</a>
       <a href="../#cours-d-essai" class="btn btn-light">Réserver</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
     </div>
   </div>
 </header>
@@ -152,7 +164,7 @@ footer a{text-decoration:none}
         <div class="num" aria-hidden="true">1</div>
         <h2>Choisissez un créneau</h2>
         <p>Dans le planning, du lundi au vendredi, de 8h30 à 19h.</p>
-        <a href="../#planning" class="btn btn-line">Voir le planning</a>
+        <a href="../planning/" class="btn btn-line">Voir le planning</a>
       </div>
     </div>
   </section>
@@ -210,5 +222,8 @@ footer a{text-decoration:none}
 <footer>
   <div class="wrap"><span>© Le Patio Pilates Club · Senlis</span><a href="../">Retour à l'accueil</a></div>
 </footer>
+<script>
+document.getElementById('burger').addEventListener('click',e=>{const h=document.querySelector('.site-header');const o=h.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o);});
+</script>
 </body>
 </html>

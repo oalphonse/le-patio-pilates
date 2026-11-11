@@ -141,52 +141,16 @@ section{scroll-margin-top:96px}
 .acc details[open] summary::after{transform:rotate(180deg)}
 .acc details p{margin-top:10px;color:var(--brown);max-width:470px}
 
-/* Planning */
-.planning{background:var(--sand)}
-.planning .wrap{display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;gap:16px;padding-block:112px 100px}
-.grid-wrap{width:100%;min-width:0;overflow-x:auto;margin-top:24px}
+/* Raccourcis planning / tarifs */
 .wrap > *{min-width:0}
 html,body{overflow-x:clip}
-.pgrid{display:grid;grid-template-columns:110px repeat(6,minmax(140px,1fr));gap:8px 12px;min-width:980px}
-.pgrid .day{font-size:11px;font-weight:600;letter-spacing:.06em;text-align:center;color:var(--olive)}
-.pgrid .day.sat{color:var(--muted)}
-.pgrid .moment{align-self:center;font-size:20px;color:var(--olive)}
-.slot{background:var(--paper);border-radius:10px;text-align:center;padding:9px 6px 8px;line-height:1.2;text-decoration:none}
-.slot b{display:block;font-weight:400;font-size:23px}
-.slot small{font-size:11.5px;color:var(--muted)}
-.slot:hover{outline:1.5px solid var(--olive)}
-.gap{height:10px;grid-column:1/-1}
-.sat-col{grid-column:7;border:1.5px solid var(--olive-l);border-radius:10px;display:grid;place-content:center;text-align:center;padding:10px;gap:6px}
-.sat-col b{font-weight:400;font-size:22px;color:var(--olive)}
-.sat-col small{font-size:12px;color:var(--muted)}
-.plan-note{font-size:14.5px;color:var(--brown);margin-top:16px}
-
-/* Tarifs */
-.tarifs{background:var(--olive-d);color:var(--paper)}
-.tarifs .wrap{display:grid;gap:28px;padding-block:112px 112px;justify-items:center}
-.t-grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:start}
-.card{border-radius:var(--r);padding:44px 40px;display:grid;gap:10px;text-align:center;align-content:center;min-height:330px}
-.card.dark{background:var(--olive);color:var(--paper)}
-.card.light{background:var(--paper);color:var(--ink)}
-.card .eyebrow{font-size:11.5px;color:inherit;opacity:.85}
-.card.light .eyebrow{color:var(--olive);opacity:1}
-.price{font-size:clamp(36px,3.4vw,50px);font-weight:300;line-height:1.1;white-space:nowrap}
-.card p{font-size:15px;line-height:1.4}
-.card.dark p{color:var(--sand)}
-.card.featured{margin-top:-36px;position:relative;padding-top:56px;text-align:left}
-.badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--olive-d);color:var(--paper);font-size:11px;font-weight:600;letter-spacing:.04em;padding:6px 16px;border-radius:999px;white-space:nowrap}
-.card.featured h3{font-size:28px;text-align:center;margin-bottom:10px}
-.ftable{display:grid;gap:14px;font-size:16px}
-.ftable div{display:flex;justify-content:space-between;gap:12px}
-.ftable span:first-child{color:var(--brown)}
-.ftable span:last-child{font-weight:500;font-variant-numeric:tabular-nums}
-.card .small{font-size:12.5px;color:var(--muted);margin-top:8px}
-.sub-pill{justify-self:center;background:var(--sand);color:var(--olive-d);font-size:13px;font-weight:500;padding:7px 16px;border-radius:999px;margin-top:6px}
-.card.incl{text-align:left;align-content:center}
-.card.incl ul{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px;font-size:16px}
-.card.incl li::before{content:"✓  "}
-.card.incl .small{color:var(--tan-2)}
-.parrain{font-size:15px;color:var(--tan-2);text-align:center}
+.raccourcis{background:var(--sand)}
+.raccourcis .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-block:88px}
+.racc{background:var(--paper);border:1.5px solid transparent;border-radius:var(--r);padding:36px 40px;display:grid;gap:12px;text-decoration:none;transition:border-color .15s,transform .15s}
+.racc:hover{border-color:var(--olive);transform:translateY(-2px)}
+.racc h3{font-size:clamp(24px,2.4vw,30px);line-height:1.2}
+.racc p{color:var(--brown);font-size:15px}
+.racc span{color:var(--olive);font-weight:500;margin-top:6px}
 
 /* Studio */
 .studio{background:var(--olive);color:var(--paper)}
@@ -378,8 +342,7 @@ body.annot #annot-panel{display:block}
   .phone{justify-self:center}
   .cours .wrap{padding-block:80px}
   .cours .ph{aspect-ratio:4/3}
-  .t-grid{grid-template-columns:1fr;max-width:520px}
-  .card.featured{margin-top:0}
+  .raccourcis .wrap{grid-template-columns:1fr;padding-block:56px}
   .studio-imgs{justify-content:flex-start}
   .att-grid{grid-template-columns:1fr 1fr}
   .prof-card{grid-template-columns:1fr;gap:28px;padding:40px 28px;justify-items:start}
@@ -416,14 +379,14 @@ body.annot #annot-panel{display:block}
 
 <!-- Bandeau d'annonce : ajouté (3/10) -->
 <div class="announce" data-tag="bandeau essai" data-st="ajout">
-  Ouverture le 1er février à Senlis · Cours d'essai : une séance achetée, une séance offerte · <a href="#tarifs">Voir l'offre</a>
+  Ouverture le 1er février à Senlis · Cours d'essai : une séance achetée, une séance offerte · <a href="#cours-d-essai">Voir l'offre</a>
 </div>
 
 <header class="site-header" id="haut-de-page">
   <div class="wrap">
     <a href="#haut-de-page" class="logo" data-tag="hors" data-label="Logo" data-st="svg"><img src="logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="500" height="500"></a>
     <nav class="nav" aria-label="Navigation principale" data-tag="planning" data-st="svg">
-      <a href="#cours-d-essai">Cours d'essai</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="premiere-seance/">Première séance</a><a href="#planning">Planning</a><a href="#infos-pratiques">Infos pratiques</a><a href="#questions-frequentes">FAQ</a><a href="#tarifs">Tarifs</a>
+      <a href="#cours-d-essai">Cours d'essai</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="premiere-seance/">Première séance</a><a href="planning/">Planning</a><a href="#infos-pratiques">Infos pratiques</a><a href="#questions-frequentes">FAQ</a><a href="tarifs/">Tarifs</a>
     </nav>
     <div class="head-cta">
       <a href="https://backoffice.bsport.io" class="account" data-tag="compte" data-st="ajout">Mon compte</a>
@@ -569,13 +532,21 @@ body.annot #annot-panel{display:block}
   </div>
 </section>
 
-<!-- PLANNING -->
-<section class="planning" data-pos="50" id="planning" data-tag="planning" data-st="svg">
+<!-- PLANNING ET TARIFS (pages dédiées) -->
+<section class="raccourcis" data-pos="50" aria-label="Planning et tarifs">
   <div class="wrap">
-    <div class="eyebrow">Planning</div>
-    <h2 class="h2" style="text-align:center">Sept créneaux par jour, du lundi au vendredi.</h2>
-    <div class="grid-wrap"><div class="pgrid" id="pgrid"></div></div>
-    <p class="plan-note">Tous les créneaux : Reformer, 1 h, tous niveaux. Réservation en ligne sur bsport.</p>
+    <a class="racc" href="planning/" data-tag="planning" data-st="svg">
+      <div class="eyebrow">Planning</div>
+      <h3>Sept créneaux par jour, du lundi au vendredi.</h3>
+      <p>De 8h30 à 20h · Reformer, 1 h, tous niveaux</p>
+      <span>Voir le planning →</span>
+    </a>
+    <a class="racc" href="tarifs/" data-tag="prix" data-st="svg">
+      <div class="eyebrow">Tarifs</div>
+      <h3>Séance, forfait ou abonnement : à vous de choisir.</h3>
+      <p>Dès 27 € la séance · cours d'essai : deux séances pour 35 €</p>
+      <span>Voir les tarifs →</span>
+    </a>
   </div>
 </section>
 
@@ -628,38 +599,6 @@ body.annot #annot-panel{display:block}
       <details><summary>Enceinte, blessée ou en convalescence : puis-je pratiquer ?</summary><p>Parlez-en à votre médecin, puis prévenez-nous avant le cours. Les exercices peuvent être adaptés.</p></details>
       <details><summary>Comment accéder au studio et où me garer ?</summary><p>Six places sécurisées dans l'enceinte et un parking public juste à côté. Les codes d'accès vous sont envoyés à la réservation.</p></details>
     </div>
-  </div>
-</section>
-
-<!-- TARIFS -->
-<section class="tarifs" data-pos="66" id="tarifs" data-tag="prix" data-st="svg">
-  <div class="wrap">
-    <div class="eyebrow" style="color:var(--tan-2)">Tarifs</div>
-    <h2 class="h2" style="text-align:center">Séance, forfait ou abonnement : à vous de choisir.</h2>
-    <div class="t-grid" style="margin-top:44px">
-      <div class="card dark"><div class="eyebrow">À la séance</div><div class="price">35 €</div><p>Un cours Reformer d'une heure.<br>Valable 2 semaines.</p></div>
-      <div class="card light featured">
-        <span class="badge">JUSQU'À 27 € LA SÉANCE</span>
-        <h3>Forfaits de séances</h3>
-        <div class="ftable">
-          <div><span>5 séances</span><span>165 € · 33 €/séance</span></div>
-          <div><span>10 séances</span><span>320 € · 32 €/séance</span></div>
-          <div><span>20 séances</span><span>600 € · 30 €/séance</span></div>
-          <div><span>30 séances</span><span>810 € · 27 €/séance</span></div>
-        </div>
-        <p class="small">Validité : 3 mois (5 séances), 6 mois (10 séances), 1 an (20 et 30 séances).</p>
-      </div>
-      <div class="card dark" data-tag="essai" data-st="svg"><div class="eyebrow">Cours d'essai</div><div class="price">35 €</div><p>Une séance achetée, une offerte.<br>Valables 3 semaines.</p></div>
-      <div class="card light"><div class="eyebrow">Abonnement · 5 séances / mois</div><div class="price">150 € / mois</div><p style="color:var(--brown)">soit 30 € la séance · engagement 6 mois</p><span class="sub-pill">ou 810 € payés en une fois pour 6 mois (−10 %)</span></div>
-      <div class="card light"><div class="eyebrow">Abonnement · 10 séances / mois</div><div class="price">280 € / mois</div><p style="color:var(--brown)">soit 28 € la séance · engagement 6 mois</p><span class="sub-pill">ou 1 512 € payés en une fois pour 6 mois (−10 %)</span></div>
-      <div class="card dark incl">
-        <div class="eyebrow" style="opacity:1">Inclus avec l'abonnement</div>
-        <ul><li>Accès prioritaire à la réservation</li><li>Barrière du parking qui s'ouvre seule, par lecture de plaque</li><li>1 mois de gel par an</li></ul>
-        <p class="small">Gel à demander au moins 1 semaine avant le mois concerné ; un mois en cours ne peut pas être gelé. Frais de résiliation : 50 % d'une mensualité, soit 75 € (5 séances) ou 140 € (10 séances).</p>
-      </div>
-    </div>
-    <p class="parrain" data-tag="hors" data-label="Parrainage" data-st="svg">Parrainage : 15 € de crédit pour le parrain · 5 € de remise sur l'essai et 10 € sur le premier forfait pour le filleul.</p>
-    <a href="#planning" class="btn btn-light" data-tag="repete" data-st="svg">Réserver une séance</a>
   </div>
 </section>
 
@@ -769,7 +708,7 @@ body.annot #annot-panel{display:block}
     <div data-tag="reseaux" data-st="svg"><h4>Nous suivre</h4><a href="https://www.instagram.com/lepatio.pilatesclub">◎ @lepatio.pilatesclub</a><a href="#">ⓕ Le Patio - Pilates Club</a></div>
     <div><h4>Réserver</h4><p>Tous les cours se réservent<br>en ligne sur bsport.</p><a href="#" data-tag="cadeau" data-st="ajout" style="margin-top:8px;color:var(--paper)">Offrir une carte cadeau →</a></div>
     <div><h4>Informations</h4><a href="#questions-frequentes">FAQ</a><a href="#">Mentions légales</a><a href="#">Conditions générales de vente</a><a href="#">Politique de confidentialité</a></div>
-    <div><h4>Navigation</h4><a href="#cours-d-essai">Cours d'essai</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="#planning">Planning</a><a href="#tarifs">Tarifs</a></div>
+    <div><h4>Navigation</h4><a href="#cours-d-essai">Cours d'essai</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="planning/">Planning</a><a href="tarifs/">Tarifs</a></div>
   </div>
   <div class="wrap copy">© Le Patio Pilates Club · Senlis</div>
 </footer>
@@ -798,24 +737,6 @@ body.annot #annot-panel{display:block}
 <button id="annot-toggle" type="button" aria-pressed="false"><span class="sw"></span><span id="annot-label">Afficher le détourage</span></button>
 
 <script>
-/* Planning */
-(function(){
-  const days=["LUNDI","MARDI","MERCREDI","JEUDI","VENDREDI","SAMEDI"];
-  const groups=[["Matin",["8h30","9h45"]],["Midi",["11h45","13h00"]],["Soir",["16h30","17h45","19h00"]]];
-  let h='<div></div>'+days.map((d,i)=>`<div class="day${i===5?' sat':''}">${d}</div>`).join('');
-  let row=2;const startRow=2;
-  groups.forEach(([name,times],gi)=>{
-    if(gi>0){h+=`<div class="gap" style="grid-row:${row}"></div>`;row++;}
-    times.forEach((t,ti)=>{
-      h+= ti===0?`<div class="moment" style="grid-row:${row}/span ${times.length};grid-column:1">${name}</div>`:'';
-      for(let d=0;d<5;d++) h+=`<a href="#cours-d-essai" class="slot" style="grid-row:${row};grid-column:${d+2}"><b>${t}</b><small>Reformer · 1 h</small></a>`;
-      row++;
-    });
-  });
-  h+=`<div class="sat-col" style="grid-row:${startRow}/${row}"><b>Bientôt</b><small>Créneaux du samedi<br>annoncés prochainement</small></div>`;
-  document.getElementById('pgrid').innerHTML=h;
-})();
-
 /* Compte à rebours jusqu'au 1er février 9h */
 (function(){
   const now=new Date();let y=now.getFullYear();
