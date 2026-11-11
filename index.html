@@ -128,7 +128,6 @@ section{scroll-margin-top:96px}
 .offre-box small{font-size:13px;color:var(--muted)}
 
 /* Chiffres */
-.separateur{height:4px;background:var(--olive)}
 
 /* Cours */
 .cours .wrap{display:grid;grid-template-columns:520px 1fr;gap:96px;align-items:center;padding-block:120px}
@@ -190,15 +189,17 @@ html,body{overflow-x:clip}
 .parrain{font-size:15px;color:var(--tan-2);text-align:center}
 
 /* Studio */
-.studio .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-block:120px 80px}
+.studio{background:var(--olive);color:var(--paper)}
+.studio .eyebrow{color:var(--tan-2)}
+.studio .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-block:100px}
 .studio-txt{display:grid;gap:22px;max-width:470px}
-.studio-txt p{color:var(--brown);font-size:17px}
+.studio-txt p{color:var(--sand);font-size:17px}
 .studio-imgs{display:flex;gap:20px;align-items:flex-end;justify-content:flex-end}
 .oval{width:min(330px,58%);aspect-ratio:330/460;border-radius:999px 999px 999px 999px / 240px 240px 240px 240px;flex:none}
 .small-ph{width:min(240px,40%);aspect-ratio:240/320;flex:none}
 
 /* Attentions */
-.att .wrap{display:grid;gap:44px;padding-block:40px 80px}
+.att .wrap{display:grid;gap:44px;padding-block:96px 80px}
 .att h2{text-align:center}
 .att-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .att-item{display:grid;gap:10px;align-content:start}
@@ -422,7 +423,7 @@ body.annot #annot-panel{display:block}
   <div class="wrap">
     <a href="#haut-de-page" class="logo" data-tag="hors" data-label="Logo" data-st="svg"><img src="logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="500" height="500"></a>
     <nav class="nav" aria-label="Navigation principale" data-tag="planning" data-st="svg">
-      <a href="#cours-d-essai">Cours d'essai</a><a href="#le-studio">Le studio</a><a href="premiere-seance/">Première séance</a><a href="#les-cours">Les cours</a><a href="#planning">Planning</a><a href="#infos-pratiques">Infos pratiques</a><a href="#questions-frequentes">FAQ</a><a href="#tarifs">Tarifs</a>
+      <a href="#cours-d-essai">Cours d'essai</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="premiere-seance/">Première séance</a><a href="#planning">Planning</a><a href="#infos-pratiques">Infos pratiques</a><a href="#questions-frequentes">FAQ</a><a href="#tarifs">Tarifs</a>
     </nav>
     <div class="head-cta">
       <a href="https://backoffice.bsport.io" class="account" data-tag="compte" data-st="ajout">Mon compte</a>
@@ -442,7 +443,7 @@ body.annot #annot-panel{display:block}
       <h1 data-tag="titre italique" data-st="svg" data-note="Mot en italique ajouté">Prenez le temps<br>de <em>bien</em> bouger.</h1>
       <div class="hero-btns" data-tag="deuxboutons repete" data-st="svg">
         <a href="#cours-d-essai" class="btn btn-light">Réserver mon essai</a>
-        <a href="#premiere-seance" class="btn btn-ghost">Première fois ? Commencez ici</a>
+        <a href="premiere-seance/" class="btn btn-ghost">Première fois ? Commencez ici</a>
       </div>
       <div class="reassure" data-tag="rassure" data-st="ajout">
         <span>Aucune expérience nécessaire</span><span>Sans engagement</span><span>Chaussettes en vente sur place</span>
@@ -492,8 +493,6 @@ body.annot #annot-panel{display:block}
   </div>
 </section>
 
-<!-- SÉPARATION -->
-<div class="separateur" role="presentation"></div>
 
 <!-- STUDIO -->
 <section class="studio" data-pos="35" id="le-studio">
@@ -524,17 +523,6 @@ body.annot #annot-panel{display:block}
   </div>
 </section>
 
-<!-- PREMIÈRE SÉANCE : étapes (4/10) + Première fois (7/10), ajouté -->
-<section class="steps" id="premiere-seance" data-pos="42" aria-label="Première séance" data-tag="etapes premiere" data-st="ajout">
-  <div class="wrap">
-    <div class="steps-head"><div class="eyebrow">Première fois</div><h2>Nouveau au Reformer ? Commencez ici.</h2></div>
-    <div class="step"><i>1</i><div><b>Choisissez un créneau</b><span>Dans le planning, du lundi au vendredi, de 8h30 à 19h.</span></div></div>
-    <div class="step"><i>2</i><div><b>Réservez l'essai sur bsport</b><span>35 € pour deux séances. Les codes d'accès vous sont envoyés.</span></div></div>
-    <div class="step"><i>3</i><div><b>Arrivez 5 minutes avant</b><span>Tenue souple et chaussettes antidérapantes. On s'occupe du reste.</span></div></div>
-    <a class="steps-more" href="premiere-seance/">Tout savoir sur votre première séance →</a>
-  </div>
-</section>
-
 <!-- COURS -->
 <section class="cours" data-pos="45" id="les-cours">
   <div class="wrap">
@@ -553,6 +541,17 @@ body.annot #annot-panel{display:block}
         </details>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PREMIÈRE SÉANCE : étapes (4/10) + Première fois (7/10), ajouté -->
+<section class="steps" id="premiere-seance" data-pos="42" aria-label="Première séance" data-tag="etapes premiere" data-st="ajout">
+  <div class="wrap">
+    <div class="steps-head"><div class="eyebrow">Première fois</div><h2>Nouveau au Reformer ? Commencez ici.</h2></div>
+    <div class="step"><i>1</i><div><b>Choisissez un créneau</b><span>Dans le planning, du lundi au vendredi, de 8h30 à 19h.</span></div></div>
+    <div class="step"><i>2</i><div><b>Réservez l'essai sur bsport</b><span>35 € pour deux séances. Les codes d'accès vous sont envoyés.</span></div></div>
+    <div class="step"><i>3</i><div><b>Arrivez 5 minutes avant</b><span>Tenue souple et chaussettes antidérapantes. On s'occupe du reste.</span></div></div>
+    <a class="steps-more" href="premiere-seance/">Tout savoir sur votre première séance →</a>
   </div>
 </section>
 
