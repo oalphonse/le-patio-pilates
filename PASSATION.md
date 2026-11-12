@@ -79,6 +79,10 @@ Les 10 studios de référence (approche « offre de découverte ») sont : Club 
 2. **Photos interactives** : clic pour voir en grand (lightbox) et léger mouvement au survol, sur toutes les cartes photo.
 3. **Carte « Planning »** (accueil, section Planning et tarifs) : grande icône de calendrier à droite.
 
+## À faire le 13/11
+
+- **Remplacer le logo du popup « Coming soon »** (accueil, `<dialog id="popup-ouverture">`) par un nouveau logo, que le studio fournira. Le popup utilise aujourd'hui `logo/logo-le-patio-pilates-club.png` (balise `<img class="popup-logo">`, taille réglée par `.popup-logo` : 180 × 180 px), qui sert aussi dans le pied de page : ne remplacer que celui du popup, sauf avis contraire. Nommer le nouveau fichier en français avec des tirets (ex. `logo/logo-le-patio-popup.png`).
+
 ## Autres points ouverts
 
 - Dossier `versions/` (anciennes copies v1/v2) : redondant avec git, peut être supprimé.
