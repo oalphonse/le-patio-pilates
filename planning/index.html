@@ -171,81 +171,92 @@ footer a{text-decoration:none}
 .logo{width:auto;height:auto;overflow:visible;position:static;line-height:0}
 .logo img{position:static;height:66px;width:auto;max-width:none}
 @media (max-width:640px){.logo img{height:52px}}
+
+/* Mobile et tablette : zones tactiles ≥ 44 px. Sans effet au-dessus de 980 px. */
+@media (max-width:980px){footer a{padding-block:12px;margin-block:-12px}}
+@media (max-width:760px){.tabs button,.daylist .interet{min-height:44px}}
+@media (max-width:980px){.good a{padding-block:13px;margin-block:-13px}}
 </style>
+<link rel="stylesheet" href="../commun/entete.css">
 </head>
 <body>
 
 <header class="site-header">
-  <div class="wrap">
-    <a href="../" class="logo"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
-    <nav class="nav" id="menu" aria-label="Navigation principale"><a href="../premiere-seance/">Première séance</a><a href="../#le-studio">Le studio</a><a href="../#les-cours">Les cours</a><a href="../planning/" aria-current="page">Planning</a><a href="../#infos-pratiques">Infos pratiques</a><a href="../#questions-frequentes">FAQ</a><a href="../tarifs/">Tarifs</a><a href="../contact/">Contact</a></nav>
-    <div class="head-r">
-      <a href="#creneaux" class="btn btn-light">Réserver</a>
-      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  <div class="wrap entete">
+    <div class="head-gauche">
+      <div class="menu-zone">
+        <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-num="B02"><span class="menu-ico" aria-hidden="true"></span><span class="menu-txt">Menu</span></button>
+        <nav class="menu-panel" id="menu" aria-label="Menu"><a href="../#les-cours" data-num="L01">Les cours</a><a href="../#le-studio" data-num="L02">Le studio</a><a href="../#infos-pratiques" data-num="L06">Infos pratiques</a><a href="../#questions-frequentes" data-num="L07">FAQ</a><a href="../contact/" data-num="L08">Contact</a></nav>
+      </div>
+      <nav class="nav-rapide" aria-label="Accès rapide"><a href="../tarifs/" data-num="L03">Tarifs</a><a href="../planning/" aria-current="page" data-num="L04">Planning</a><a href="../premiere-seance/" data-num="L05">Première séance</a></nav>
+    </div>
+    <a href="../" class="logo" data-num="I01"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
+    <div class="head-droite">
+      <a href="#creneaux" class="btn btn-light" data-num="B01">Réserver</a>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="intro">
+  <section class="intro" data-num="S01">
     <div class="wrap">
       <div>
-        <div class="eyebrow">Planning des cours</div>
-        <h1>Sept créneaux par jour, du lundi au vendredi.</h1>
-        <p>Tous les créneaux : Reformer, 1 h, tous niveaux. Réservation en ligne sur bsport.</p>
+        <div class="eyebrow" data-num="T01">Planning des cours</div>
+        <h1 data-num="T02">Sept créneaux par jour, du lundi au vendredi.</h1>
+        <p data-num="T03">Tous les créneaux : Reformer, 1 h, tous niveaux. Réservation en ligne sur bsport.</p>
       </div>
       <div class="facts">
-        <div class="fact"><b>8h30 – 20h</b><span>du lundi au vendredi</span></div>
-        <div class="fact"><b>1 h</b><span>par cours, tous niveaux</span></div>
-        <div class="fact"><b>6 places</b><span>par cours, pas une de plus</span></div>
-        <div class="fact"><b>Samedi</b><span>créneaux bientôt annoncés</span></div>
+        <div class="fact" data-num="C01"><b data-num="T04">8h30 – 20h</b><span data-num="T05">du lundi au vendredi</span></div>
+        <div class="fact" data-num="C02"><b data-num="T06">1 h</b><span data-num="T07">par cours, tous niveaux</span></div>
+        <div class="fact" data-num="C03"><b data-num="T08">6 places</b><span data-num="T09">par cours, pas une de plus</span></div>
+        <div class="fact" data-num="C04"><b data-num="T10">Samedi</b><span data-num="T11">créneaux bientôt annoncés</span></div>
       </div>
     </div>
   </section>
 
-  <section class="week" id="creneaux" aria-label="Planning de la semaine">
+  <section class="week" id="creneaux" aria-label="Planning de la semaine" data-num="S02">
     <div class="wrap">
       <div class="legend">
-        <span>Cliquez sur un créneau pour réserver votre séance.</span>
-        <span class="today" id="today-legend" hidden><i></i>Aujourd'hui</span>
+        <span data-num="T12">Cliquez sur un créneau pour réserver votre séance.</span>
+        <span class="today" id="today-legend" hidden data-num="T13"><i></i>Aujourd'hui</span>
       </div>
-      <div class="grid-wrap"><div class="pgrid" id="pgrid"></div></div>
+      <div class="grid-wrap"><div class="pgrid" id="pgrid" data-num="C05"></div></div>
 
-      <div class="daylist">
+      <div class="daylist" data-num="C50">
         <div class="tabs" role="tablist" aria-label="Jours de la semaine" id="tabs"></div>
         <div class="daypanel" role="tabpanel" id="daypanel" aria-live="polite"></div>
       </div>
     </div>
   </section>
 
-  <section class="good" aria-label="Bon à savoir">
+  <section class="good" aria-label="Bon à savoir" data-num="S03">
     <div class="wrap">
-      <div><b>Arrivez 5 minutes avant</b><p>Le temps de vous installer et de régler votre Reformer.</p></div>
-      <div><b>Réservez et annulez sur bsport</b><p>Depuis le site ou l'application, en quelques secondes.</p></div>
-      <div><b>Première fois ?</b><p>Tous les créneaux sont ouverts aux débutants. <a href="../premiere-seance/">Comment se passe la première séance →</a></p></div>
+      <div data-num="C51"><b data-num="T30">Arrivez 5 minutes avant</b><p data-num="T31">Le temps de vous installer et de régler votre Reformer.</p></div>
+      <div data-num="C52"><b data-num="T32">Réservez et annulez sur bsport</b><p data-num="T33">Depuis le site ou l'application, en quelques secondes.</p></div>
+      <div data-num="C53"><b data-num="T34">Première fois ?</b><p data-num="T35">Tous les créneaux sont ouverts aux débutants. <a href="../premiere-seance/" data-num="L09">Comment se passe la première séance →</a></p></div>
     </div>
   </section>
 
   <!-- APPLICATION (copie de l'accueil) -->
-  <section class="app" aria-label="Application">
+  <section class="app" aria-label="Application" data-num="S04">
     <div class="wrap">
       <div class="app-txt">
-        <div class="eyebrow">L'application Le Patio</div>
-        <h2 class="h2">Votre studio,<br>dans votre poche.</h2>
-        <p>Téléchargez l'application Le Patio pour réserver vos cours où que vous soyez, en quelques secondes.</p>
-        <ul class="checks">
+        <div class="eyebrow" data-num="T36">L'application Le Patio</div>
+        <h2 class="h2" data-num="T37">Votre studio,<br>dans votre poche.</h2>
+        <p data-num="T38">Téléchargez l'application Le Patio pour réserver vos cours où que vous soyez, en quelques secondes.</p>
+        <ul class="checks" data-num="T39">
           <li>Réservez et annulez vos cours en quelques secondes</li>
           <li>Consultez le planning à jour en temps réel</li>
           <li>Suivez vos séances et le solde de votre forfait</li>
           <li>Recevez un rappel avant chacun de vos cours</li>
         </ul>
         <div class="stores">
-          <a class="store" href="#"><small>Télécharger dans</small><b>l'App Store</b></a>
-          <a class="store" href="#"><small>Disponible sur</small><b>Google Play</b></a>
+          <a class="store" href="#" data-num="B11"><small>Télécharger dans</small><b>l'App Store</b></a>
+          <a class="store" href="#" data-num="B12"><small>Disponible sur</small><b>Google Play</b></a>
         </div>
-        <p class="app-note">Application en préparation, disponible prochainement sur iPhone et Android.</p>
+        <p class="app-note" data-num="T40">Application en préparation, disponible prochainement sur iPhone et Android.</p>
       </div>
-      <div class="phone" aria-hidden="true">
+      <div class="phone" aria-hidden="true" data-num="I02">
         <span class="t">9:41</span>
         <h4>Le Patio</h4>
         <span>Bonjour Camille,<br>prête pour votre séance ?</span>
@@ -257,20 +268,20 @@ footer a{text-decoration:none}
     </div>
   </section>
 
-  <section class="end">
+  <section class="end" data-num="S05">
     <div class="wrap">
-      <h2>Un créneau vous tente ?</h2>
-      <p>Première séance : deux séances pour 35 € · 43 avenue Félix Louat, Senlis</p>
+      <h2 data-num="T41">Un créneau vous tente ?</h2>
+      <p data-num="T42">Première séance : deux séances pour 35 € · 43 avenue Félix Louat, Senlis</p>
       <div class="cta-row">
-        <a href="#creneaux" class="btn btn-light">Réserver ma première séance</a>
-        <a href="../tarifs/" class="btn btn-line">Voir les tarifs</a>
+        <a href="#creneaux" class="btn btn-light" data-num="B13">Réserver ma première séance</a>
+        <a href="../tarifs/" class="btn btn-line" data-num="B14">Voir les tarifs</a>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap"><span>© Le Patio Pilates Club · Senlis</span><a href="../">Retour à l'accueil</a></div>
+<footer data-num="S06">
+  <div class="wrap"><span data-num="T43">© Le Patio Pilates Club · Senlis</span><a href="../" data-num="L10">Retour à l'accueil</a></div>
 </footer>
 
 <script>
@@ -283,9 +294,12 @@ const todayIdx=(new Date().getDay()+6)%7; // 0 = lundi
 const API='../api/interet-samedi';
 let interetEtat=null; // null | 'ok' | 'deja'
 try{ if(localStorage.getItem('interet-samedi')) interetEtat='ok'; }catch(e){}
-function boutonInteret(){
-  return `<button type="button" class="interet" data-interet>Ça m'intéresse</button><span class="interet-msg" data-interet-msg aria-live="polite"></span>`;
+function boutonInteret(nb,nm){
+  return `<button type="button" class="interet" data-interet data-num="${nb}">Ça m'intéresse</button><span class="interet-msg" data-interet-msg aria-live="polite" data-num="${nm}"></span>`;
 }
+/* Outil interne (outils/numeros.js) : numéros des éléments créés ici, à la suite de ceux du HTML.
+   Ordinateur : T14–T25, C06–C41, B03 · Téléphone : T26–T29, C42–C49, B04–B10 */
+function numeroteur(dep){const c={...dep};return L=>L+String(c[L]++).padStart(2,'0');}
 function majInteret(msg){
   document.querySelectorAll('[data-interet]').forEach(b=>{
     if(interetEtat){b.disabled=true;b.textContent='C\'est noté ✓';}
@@ -312,17 +326,18 @@ document.addEventListener('click',async e=>{
 
 /* Grille ordinateur */
 (function(){
-  let h='<div></div>'+DAYS.map((d,i)=>`<div class="day${i===5?' sat':''}${i===todayIdx?' is-today':''}">${d.toUpperCase()}</div>`).join('');
+  const n=numeroteur({T:14,C:6,B:3});
+  let h='<div></div>'+DAYS.map((d,i)=>`<div class="day${i===5?' sat':''}${i===todayIdx?' is-today':''}" data-num="${n('T')}">${d.toUpperCase()}</div>`).join('');
   let row=2;
   GROUPS.forEach(([name,times],gi)=>{
     if(gi>0){h+=`<div class="gap" style="grid-row:${row}"></div>`;row++;}
     times.forEach((t,ti)=>{
-      if(ti===0) h+=`<div class="moment" style="grid-row:${row}/span ${times.length};grid-column:1">${name}</div>`;
-      for(let d=0;d<5;d++) h+=`<a href="${BOOK}" class="slot${d===todayIdx?' is-today':''}" style="grid-row:${row};grid-column:${d+2}" aria-label="${DAYS[d]} ${t}, Reformer 1 h, réserver"><b>${t}</b><small>Reformer · 1 h</small></a>`;
+      if(ti===0) h+=`<div class="moment" style="grid-row:${row}/span ${times.length};grid-column:1" data-num="${n('T')}">${name}</div>`;
+      for(let d=0;d<5;d++) h+=`<a href="${BOOK}" class="slot${d===todayIdx?' is-today':''}" style="grid-row:${row};grid-column:${d+2}" aria-label="${DAYS[d]} ${t}, Reformer 1 h, réserver" data-num="${n('C')}"><b>${t}</b><small>Reformer · 1 h</small></a>`;
       row++;
     });
   });
-  h+=`<div class="sat-col" style="grid-row:2/${row}"><b>Bientôt</b><small>Créneaux du samedi<br>annoncés prochainement</small>${boutonInteret()}</div>`;
+  h+=`<div class="sat-col" style="grid-row:2/${row}" data-num="${n('C')}"><b data-num="${n('T')}">Bientôt</b><small data-num="${n('T')}">Créneaux du samedi<br>annoncés prochainement</small>${boutonInteret(n('B'),n('T'))}</div>`;
   document.getElementById('pgrid').innerHTML=h;
   majInteret();
   if(todayIdx<5) document.getElementById('today-legend').hidden=false;
@@ -333,16 +348,19 @@ document.addEventListener('click',async e=>{
   const tabs=document.getElementById('tabs'), panel=document.getElementById('daypanel');
   let current=todayIdx<6?todayIdx:0;
   function render(){
-    tabs.innerHTML=DAYS.map((d,i)=>`<button role="tab" type="button" id="tab-${i}" aria-selected="${i===current}">${d}</button>`).join('');
-    if(current===5){panel.innerHTML=`<div class="soon-day"><b>Bientôt</b><br>Les créneaux du samedi seront annoncés prochainement.<br>${boutonInteret()}</div>`;majInteret();return;}
-    panel.innerHTML=GROUPS.map(([name,times])=>`<div class="group"><h3>${name}</h3>${times.map(t=>`<a class="row" href="${BOOK}"><span><b>${t}</b><small>Reformer · 1 h · tous niveaux</small></span><span>Réserver →</span></a>`).join('')}</div>`).join('');
+    const n=numeroteur({T:26,C:42,B:4});
+    tabs.innerHTML=DAYS.map((d,i)=>`<button role="tab" type="button" id="tab-${i}" aria-selected="${i===current}" data-num="${n('B')}">${d}</button>`).join('');
+    if(current===5){const s=numeroteur({T:29,C:49,B:10});panel.innerHTML=`<div class="soon-day" data-num="${s('C')}"><b>Bientôt</b><br>Les créneaux du samedi seront annoncés prochainement.<br>${boutonInteret(s('B'),s('T'))}</div>`;majInteret();return;}
+    panel.innerHTML=GROUPS.map(([name,times])=>`<div class="group"><h3 data-num="${n('T')}">${name}</h3>${times.map(t=>`<a class="row" href="${BOOK}" data-num="${n('C')}"><span><b>${t}</b><small>Reformer · 1 h · tous niveaux</small></span><span>Réserver →</span></a>`).join('')}</div>`).join('');
   }
   tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;current=+b.id.split('-')[1];render();});
   render();
 })();
 </script>
 <script>
-document.getElementById('burger').addEventListener('click',e=>{const h=document.querySelector('.site-header');const o=h.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o);});
 </script>
+<script src="../commun/entete.js"></script>
+<!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
+<script src="../outils/numeros.js"></script>
 </body>
 </html>

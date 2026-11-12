@@ -189,49 +189,62 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 .form-ok{grid-column:1/-1;font-size:14px;color:var(--olive)}
 @media (max-width:1000px){.contact .wrap{grid-template-columns:1fr;gap:40px}}
 @media (max-width:640px){.contact .wrap{padding-block:64px}form.cform{grid-template-columns:1fr;padding:26px 20px}}
+
+/* Mobile et tablette : zones tactiles ≥ 44 px, champs en 16 px (pas de zoom iPhone). Sans effet au-dessus de 1180 px. */
+@media (max-width:1180px){
+  .field input,.field select,.field textarea{font-size:16px}
+  .consent{min-height:44px}
+}
+@media (max-width:980px){footer a{padding-block:12px;margin-block:-12px}}
 </style>
+<link rel="stylesheet" href="../commun/entete.css">
 </head>
 <body>
 
 <header class="site-header">
-  <div class="wrap">
-    <a href="../" class="logo"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
-    <nav class="nav" id="menu" aria-label="Navigation principale"><a href="../premiere-seance/">Première séance</a><a href="../#le-studio">Le studio</a><a href="../#les-cours">Les cours</a><a href="../planning/">Planning</a><a href="../#infos-pratiques">Infos pratiques</a><a href="../#questions-frequentes">FAQ</a><a href="../tarifs/">Tarifs</a><a href="../contact/" aria-current="page">Contact</a></nav>
-    <div class="head-r">
-      <a href="../planning/" class="btn btn-light">Réserver</a>
-      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  <div class="wrap entete">
+    <div class="head-gauche">
+      <div class="menu-zone">
+        <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-num="B02"><span class="menu-ico" aria-hidden="true"></span><span class="menu-txt">Menu</span></button>
+        <nav class="menu-panel" id="menu" aria-label="Menu"><a href="../#les-cours" data-num="L01">Les cours</a><a href="../#le-studio" data-num="L02">Le studio</a><a href="../#infos-pratiques" data-num="L06">Infos pratiques</a><a href="../#questions-frequentes" data-num="L07">FAQ</a><a href="../contact/" aria-current="page" data-num="L08">Contact</a></nav>
+      </div>
+      <nav class="nav-rapide" aria-label="Accès rapide"><a href="../tarifs/" data-num="L03">Tarifs</a><a href="../planning/" data-num="L04">Planning</a><a href="../premiere-seance/" data-num="L05">Première séance</a></nav>
+    </div>
+    <a href="../" class="logo" data-num="I01"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
+    <div class="head-droite">
+      <a href="../planning/" class="btn btn-light" data-num="B01">Réserver</a>
     </div>
   </div>
 </header>
 
 <main>
-<section class="contact" id="contact">
+<section class="contact" id="contact" data-num="S01">
   <div class="wrap">
     <div class="contact-txt">
-      <div class="eyebrow">Contact</div>
-      <h1 class="h2">Une autre question ?<br>Parlons-en.</h1>
-      <p>Appelez-nous ou écrivez-nous via le formulaire ci-contre.</p>
+      <div class="eyebrow" data-num="T01">Contact</div>
+      <h1 class="h2" data-num="T02">Une autre question ?<br>Parlons-en.</h1>
+      <p data-num="T03">Appelez-nous ou écrivez-nous via le formulaire ci-contre.</p>
       <hr>
-      <div class="eyebrow">Téléphone</div>
-      <p class="tel">[Numéro à venir]</p>
+      <div class="eyebrow" data-num="T04">Téléphone</div>
+      <p class="tel" data-num="T05">[Numéro à venir]</p>
     </div>
-    <form class="cform" id="cform" novalidate data-tag="hors" data-label="Formulaire de contact" data-st="svg">
-      <h3>Écrivez-nous</h3>
-      <div class="field"><label for="c-nom">Nom et prénom</label><input id="c-nom" name="nom" placeholder="Camille Martin" required></div>
-      <div class="field"><label for="c-mail">E-mail</label><input id="c-mail" name="email" type="email" placeholder="vous@exemple.fr" required></div>
-      <div class="field full"><label for="c-objet">Objet</label>
+    <form class="cform" id="cform" novalidate data-tag="hors" data-label="Formulaire de contact" data-st="svg" data-num="F01">
+      <h3 data-num="T06">Écrivez-nous</h3>
+      <div class="field" data-num="F02"><label for="c-nom">Nom et prénom</label><input id="c-nom" name="nom" type="text" autocomplete="name" autocapitalize="words" placeholder="Camille Martin" required></div>
+      <div class="field" data-num="F03"><label for="c-mail">E-mail</label><input id="c-mail" name="email" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="vous@exemple.fr" required></div>
+      <div class="field full" data-num="F04"><label for="c-objet">Objet</label>
         <select id="c-objet" name="objet"><option value="">Choisissez un sujet : première séance, abonnement, autre…</option><option>Première séance</option><option>Abonnement</option><option>Forfait</option><option>Autre</option></select></div>
-      <div class="field full"><label for="c-msg">Message</label><textarea id="c-msg" name="message" placeholder="Votre message…"></textarea></div>
-      <label class="consent"><input type="checkbox" id="c-ok" required> J'accepte que mes données soient utilisées pour répondre à ma demande.</label>
-      <button class="btn btn-olive" type="submit">Envoyer le message</button>
-      <p class="form-ok" id="form-ok" hidden></p>
+      <div class="field full" data-num="F05"><label for="c-msg">Message</label><textarea id="c-msg" name="message" placeholder="Votre message…"></textarea></div>
+      <label class="consent" data-num="F06"><input type="checkbox" id="c-ok" required> J'accepte que mes données soient utilisées pour répondre à ma demande.</label>
+      <button class="btn btn-olive" type="submit" data-num="B03">Envoyer le message</button>
+      <p class="form-ok" id="form-ok" hidden data-num="T07"></p>
     </form>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap"><span>© Le Patio Pilates Club · Senlis</span><a href="../">Retour à l'accueil</a></div>
+<footer data-num="S02">
+  <div class="wrap"><span data-num="T08">© Le Patio Pilates Club · Senlis</span><a href="../" data-num="L09">Retour à l'accueil</a></div>
 </footer>
 <script>
 document.getElementById('cform').addEventListener('submit',e=>{
@@ -240,7 +253,9 @@ document.getElementById('cform').addEventListener('submit',e=>{
   if(!f.querySelector('#c-nom').value||!f.querySelector('#c-mail').validity.valid||!f.querySelector('#c-ok').checked){ok.hidden=false;ok.textContent="Renseignez votre nom, un e-mail valide et cochez la case de consentement.";return;}
   ok.hidden=false;ok.textContent="Merci, votre message est prêt. L'envoi sera branché à la mise en ligne.";
 });
-document.getElementById('burger').addEventListener('click',e=>{const h=document.querySelector('.site-header');const o=h.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o);});
 </script>
+<script src="../commun/entete.js"></script>
+<!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
+<script src="../outils/numeros.js"></script>
 </body>
 </html>

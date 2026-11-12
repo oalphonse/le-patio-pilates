@@ -99,6 +99,12 @@ class Gestionnaire(SimpleHTTPRequestHandler):
             total = len(data["votes"])
         self.repondre_json(200, {"ok": True, "deja": deja, "total": total})
 
+    def end_headers(self):
+        # En local, toujours revalider les fichiers : une modification se voit dès le rechargement.
+        if not any(h.lower().startswith(b"cache-control") for h in getattr(self, "_headers_buffer", [])):
+            self.send_header("Cache-Control", "no-cache")
+        super().end_headers()
+
     def log_message(self, fmt, *args):
         pass  # pas d'IP dans les journaux
 

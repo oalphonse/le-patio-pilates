@@ -26,7 +26,7 @@ Ne pas ouvrir les fichiers en double-cliquant (`file://`) : les liens de dossier
 | `/reserver-premiere-seance/` | Page d'attente (`noindex`) en attendant le lien bsport |
 
 Règles du projet :
-- **Le menu complet est sur toutes les pages** et reste collant en haut (burger sous 1180 px). Toute modification du menu doit être reportée sur les 6 pages.
+- **En-tête identique sur les 6 pages**, collant en haut : bouton « Menu » (burger) à gauche, logo au centre, « Réserver » à droite. Tarifs, Planning et Première séance restent visibles hors du menu (à côté du burger sur ordinateur, sur une 2e ligne sur mobile) ; Les cours, Le studio, Infos pratiques, FAQ et Contact sont dans le menu. Sur ordinateur le menu s'ouvre au survol, sur mobile au toucher. Style et comportement sont dans `commun/entete.css` et `commun/entete.js` (communs aux 6 pages) ; seul le HTML de l'en-tête est recopié dans chaque page, à garder identique.
 - **Slugs et noms de fichiers en français, mots séparés par des tirets** (SEO), ex. `photos-le-patio/pilates-reformer-senlis-le-patio.jpg`.
 - On parle de **« première séance »**, jamais d'« essai ».
 
@@ -34,7 +34,7 @@ Règles du projet :
 
 Il s'ouvre 2 s après l'arrivée et affiche un compte à rebours jusqu'au 1er février à 9h00, un bouton « Découvrir » et un lien « Me prévenir à l'ouverture » qui déplie l'inscription e-mail (l'ancienne section newsletter).
 
-⚠️ **À faire avant la mise en ligne** : dans `index.html`, passer `const MODE_DEV=true;` à `false`. En mode dev, le popup revient à chaque chargement. Sinon, il ne s'affiche qu'une fois par heure et par visiteur (localStorage).
+Le mode dev est désactivé (`const MODE_DEV=false;` dans `index.html`) : le popup ne s'affiche qu'une fois par heure et par visiteur (localStorage). Le repasser à `true` pour le revoir à chaque chargement pendant les tests.
 
 ## Compteur « samedi » (`serveur.py`)
 
@@ -61,23 +61,18 @@ Les 10 studios de référence (approche « offre de découverte ») sont : Club 
 - Police : Inter (Google Fonts).
 - Logos dans `logo/` : `logo-le-patio-menu.png` (en-tête), `logo-le-patio-pilates-club.png` (pied de page, popup), `icone-le-patio.png` (favicon).
 
-## Demandes en cours (pas encore faites)
+## Numéros des éléments (outil interne)
 
-1. **Réordonner le menu** selon les menus des 10 studios, du thème le plus recherché au moins recherché. Relevé fait le 12/11 :
-   - Club Pilates : Classes, Find a Studio, Memberships, Why Pilates, Teach
-   - Speir : Classes, Studios, Pricing, On Demand, Teacher Training
-   - Studio Pilates : Find a Studio, Intro Offer, Training, Own a Studio, Resources, Contact
-   - KX : Classes, KX Life, Store, Institute, FAQs, Trainer, Own a Studio
-   - Culte : Notre histoire, Nos cours, Plannings, Nos studios, Nos tarifs, Notre app, Compte, Book
-   - Ten : Reformer Pilates, Physio, Services, Locations, About, Prices, Timetable, Login
-   - LevelOut : Studios, Classes, Trainers, Book, Buy, Postnatal, Academy, Private Hire, FAQs
-   - BODYBAR : Find Your Studio, First Time, Own a BODYBAR, The Workout, Login
-   - Pilates Circuit : Studios, Timetables, Pricing, What to expect, Our team, Social, Contact
-   - Maison Amat : Concept, Cours, Tarifs, Cartes cadeaux, Planning, Coachs, Privatisations, Contact
+Chaque élément visible porte un attribut `data-num` (S section, C carte, T texte, P photo, I icône/logo, B bouton, L lien, F formulaire), numéroté par page et par lettre. `outils/numeros.js` les affiche en petits badges ; le bouton « Numéros » en bas de l'écran les montre ou les cache. On s'en sert pour désigner une modification (« T14 sur Tarifs »). L'en-tête a les mêmes numéros sur toutes les pages (I01 logo, L01–L08 liens, B01 Réserver, B02 Menu). **À retirer à la mise en ligne** : supprimer `outils/` et la balise `<script src="…outils/numeros.js">` de chaque page (les attributs `data-num` peuvent rester).
 
-   Les onglets les plus fréquents sont : cours (8/10), studios/lieu (7), tarifs (6), planning (5), première fois (3), équipe (3), FAQ (2) et contact (3). Le menu actuel est : Première séance, Le studio, Les cours, Planning, Infos pratiques, FAQ, Tarifs, Contact.
-2. **Photos interactives** : clic pour voir en grand (lightbox) et léger mouvement au survol, sur toutes les cartes photo.
-3. **Carte « Planning »** (accueil, section Planning et tarifs) : grande icône de calendrier à droite.
+## Fait le 12/11
+
+- Menu réordonné puis remplacé par le nouvel en-tête (voir Règles du projet).
+- Photos interactives (zoom au survol, photo en grand au clic) sur l'accueil et Première séance.
+- Accueil : icône calendrier sur la carte Planning, carte Tarifs en 3 colonnes.
+- Page Tarifs : formules en 3 colonnes (À la séance, Forfaits avec validité sur chaque ligne, Abonnements), léger mouvement au survol ; bandeau Première séance (C01) refait, « Une séance achetée, une séance offerte » mis en avant.
+- Compatibilité mobile vérifiée et corrigée sur les 6 pages (360 à 430 px, zones tactiles de 44 px, champs en 16 px).
+- `serveur.py` envoie `Cache-Control: no-cache` pour qu'un rechargement montre toujours la dernière version.
 
 ## À faire le 13/11
 
@@ -86,6 +81,12 @@ Les 10 studios de référence (approche « offre de découverte ») sont : Club 
 ## Demandes notées (pas encore faites)
 
 - **Page Tarifs : photo de fond dès l'arrivée.** Remplacer le gros bloc de couleur unie du haut de page (`<section class="intro">`, fond `var(--sand)`, titre « Séance, forfait ou abonnement : à vous de choisir. ») par une photo de fond, comme le hero de l'accueil. Prévoir un voile sombre pour que le texte reste lisible, et passer le texte en clair. Photo à choisir dans `photos-le-patio/` ou à fournir par le studio.
+
+- **Propositions mobiles** (écartées pour l'instant le 12/11) :
+  1. Barre fixe du bas de l'accueil (S17) : à 360–375 px, « Première séance / 2 séances pour 35 € » tient sur 4 lignes serrées ; raccourcir le bouton (« Réserver »).
+  2. Photos de 2000 px (jusqu'à 1 Mo) : prévoir des versions mobiles d'environ 800 px avec `srcset`.
+  3. Petits textes sur mobile (surtitres 12 px, pied de page 13,5 px, pastille T05 11 px) : passer à 14 px ou plus.
+  4. Popup « Coming soon » : ajouter une croix de fermeture visible.
 
 ## Autres points ouverts
 
