@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Planning des cours de Pilates Reformer à Senlis · Le Patio</title>
 <meta name="description" content="Planning du studio Le Patio à Senlis : sept cours de Pilates Reformer par jour, du lundi au vendredi, de 8h30 à 20h. Cours d'1 h, tous niveaux, six places.">
-<link rel="icon" type="image/png" href="../logo/logo-le-patio-pilates-club.png">
-<link rel="apple-touch-icon" href="../logo/logo-le-patio-pilates-club.png">
+<link rel="icon" type="image/png" href="../logo/icone-le-patio.png">
+<link rel="apple-touch-icon" href="../logo/icone-le-patio.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap">
 <style>
@@ -138,14 +138,47 @@ footer a{text-decoration:none}
   .burger{display:block}
   .site-header.open .nav{display:flex;flex-direction:column;gap:14px;position:absolute;top:100%;left:0;right:0;background:var(--olive);padding:20px 24px 28px}
 }
+
+/* Application (copie de l'accueil) */
+.h2{font-size:clamp(30px,3.4vw,44px);line-height:1.15}
+.app{background:var(--sand)}
+.app .wrap{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;padding-block:52px 48px}
+.app-txt{display:grid;gap:18px;max-width:520px}
+.app-txt > p{color:var(--brown);font-size:17px}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:12px;font-size:16px}
+.checks li{display:flex;gap:12px;align-items:center}
+.checks li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:var(--olive);color:var(--paper);font-size:11px;display:grid;place-items:center}
+.stores{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.store{background:var(--ink);color:#fff;border-radius:8px;padding:8px 18px 8px 22px;text-decoration:none;line-height:1.1}
+.store small{display:block;font-size:9px;opacity:.75}
+.store b{font-size:18px;font-weight:600}
+.app-note{font-size:12.5px;color:var(--brown)}
+.phone{width:300px;height:520px;border:12px solid var(--ink);border-radius:44px;background:var(--cream);padding:22px 18px;display:grid;align-content:start;gap:12px;font-size:13px}
+.phone .t{font-size:11px;font-weight:600}
+.phone h4{margin:6px 0 0;font-weight:400;font-size:22px;color:var(--olive)}
+.phone .next{background:var(--olive);color:var(--paper);border-radius:12px;padding:14px;display:grid;gap:4px}
+.phone .next small{font-size:9px;font-weight:600;letter-spacing:.05em;opacity:.8}
+.phone .next b{font-weight:400;font-size:20px}
+.phone .pill{justify-self:start;background:var(--paper);color:var(--olive-d);border-radius:999px;padding:4px 12px;font-size:11px;font-weight:600;margin-top:4px}
+.phone .row{display:flex;justify-content:space-between;background:var(--paper);border-radius:8px;padding:10px 12px}
+.phone .row b{color:var(--olive);font-weight:600;font-size:12px}
+.phone .row{border:0}
+.phone .row b,.phone .row span{font-size:12px}
+@media (max-width:980px){.app .wrap{grid-template-columns:1fr}.phone{justify-self:center}}
+@media (max-width:640px){.phone{width:min(300px,100%)}}
+
+/* Logo du menu (version horizontale) */
+.logo{width:auto;height:auto;overflow:visible;position:static;line-height:0}
+.logo img{position:static;height:66px;width:auto;max-width:none}
+@media (max-width:640px){.logo img{height:52px}}
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap">
-    <a href="../" class="logo"><img src="../logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="500" height="500"></a>
-    <nav class="nav" id="menu" aria-label="Navigation principale"><a href="../premiere-seance/">Première séance</a><a href="../#le-studio">Le studio</a><a href="../#les-cours">Les cours</a><a href="../planning/" aria-current="page">Planning</a><a href="../#infos-pratiques">Infos pratiques</a><a href="../#questions-frequentes">FAQ</a><a href="../tarifs/">Tarifs</a></nav>
+    <a href="../" class="logo"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
+    <nav class="nav" id="menu" aria-label="Navigation principale"><a href="../premiere-seance/">Première séance</a><a href="../#le-studio">Le studio</a><a href="../#les-cours">Les cours</a><a href="../planning/" aria-current="page">Planning</a><a href="../#infos-pratiques">Infos pratiques</a><a href="../#questions-frequentes">FAQ</a><a href="../tarifs/">Tarifs</a><a href="../contact/">Contact</a></nav>
     <div class="head-r">
       <a href="#creneaux" class="btn btn-light">Réserver</a>
       <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
@@ -193,12 +226,43 @@ footer a{text-decoration:none}
     </div>
   </section>
 
+  <!-- APPLICATION (copie de l'accueil) -->
+  <section class="app" aria-label="Application">
+    <div class="wrap">
+      <div class="app-txt">
+        <div class="eyebrow">L'application Le Patio</div>
+        <h2 class="h2">Votre studio,<br>dans votre poche.</h2>
+        <p>Téléchargez l'application Le Patio pour réserver vos cours où que vous soyez, en quelques secondes.</p>
+        <ul class="checks">
+          <li>Réservez et annulez vos cours en quelques secondes</li>
+          <li>Consultez le planning à jour en temps réel</li>
+          <li>Suivez vos séances et le solde de votre forfait</li>
+          <li>Recevez un rappel avant chacun de vos cours</li>
+        </ul>
+        <div class="stores">
+          <a class="store" href="#"><small>Télécharger dans</small><b>l'App Store</b></a>
+          <a class="store" href="#"><small>Disponible sur</small><b>Google Play</b></a>
+        </div>
+        <p class="app-note">Application en préparation, disponible prochainement sur iPhone et Android.</p>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <span class="t">9:41</span>
+        <h4>Le Patio</h4>
+        <span>Bonjour Camille,<br>prête pour votre séance ?</span>
+        <div class="next"><small>VOTRE PROCHAIN COURS</small><b>Reformer</b><span>Mardi · 9h45 – 10h45</span><span class="pill">Réservé ✓</span></div>
+        <span class="t" style="color:var(--muted)">CETTE SEMAINE</span>
+        <div class="row"><span>Jeudi · 17h45</span><b>Réserver</b></div>
+        <div class="row"><span>Vendredi · 13h00</span><b>Réserver</b></div>
+      </div>
+    </div>
+  </section>
+
   <section class="end">
     <div class="wrap">
       <h2>Un créneau vous tente ?</h2>
-      <p>Cours d'essai : deux séances pour 35 € · 43 avenue Félix Louat, Senlis</p>
+      <p>Première séance : deux séances pour 35 € · 43 avenue Félix Louat, Senlis</p>
       <div class="cta-row">
-        <a href="#creneaux" class="btn btn-light">Réserver mon cours d'essai</a>
+        <a href="#creneaux" class="btn btn-light">Réserver ma première séance</a>
         <a href="../tarifs/" class="btn btn-line">Voir les tarifs</a>
       </div>
     </div>
@@ -212,7 +276,7 @@ footer a{text-decoration:none}
 <script>
 const DAYS=["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
 const GROUPS=[["Matin",["8h30","9h45"]],["Midi",["11h45","13h00"]],["Soir",["16h30","17h45","19h00"]]];
-const BOOK="../#cours-d-essai";
+const BOOK="../#offre-premiere-seance";
 const todayIdx=(new Date().getDay()+6)%7; // 0 = lundi
 
 /* Bouton « Ça m'intéresse » du samedi : 1 clic par adresse IP, compté par le serveur */

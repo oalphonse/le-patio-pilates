@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Première séance · Le Patio Pilates Club</title>
-<meta name="description" content="Nouveau au Reformer ? Votre première séance au Patio en 3 étapes : choisir un créneau, réserver l'essai sur bsport, arriver 5 minutes avant.">
-<link rel="icon" type="image/png" href="../logo/logo-le-patio-pilates-club.png">
-<link rel="apple-touch-icon" href="../logo/logo-le-patio-pilates-club.png">
+<meta name="description" content="Nouveau au Reformer ? Votre première séance au Patio en 3 étapes : choisir un créneau, réserver sa première séance sur bsport, arriver 5 minutes avant.">
+<link rel="icon" type="image/png" href="../logo/icone-le-patio.png">
+<link rel="apple-touch-icon" href="../logo/icone-le-patio.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap">
 <style>
@@ -121,14 +121,19 @@ footer a{text-decoration:none}
   .burger{display:block}
   .site-header.open .nav{display:flex;flex-direction:column;gap:14px;position:absolute;top:100%;left:0;right:0;background:var(--olive);padding:20px 24px 28px}
 }
+
+/* Logo du menu (version horizontale) */
+.logo{width:auto;height:auto;overflow:visible;position:static;line-height:0}
+.logo img{position:static;height:66px;width:auto;max-width:none}
+@media (max-width:640px){.logo img{height:52px}}
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap">
-    <a href="../" class="logo"><img src="../logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="500" height="500"></a>
-    <nav class="nav" id="menu" aria-label="Navigation principale"><a href="../premiere-seance/" aria-current="page">Première séance</a><a href="../#le-studio">Le studio</a><a href="../#les-cours">Les cours</a><a href="../planning/">Planning</a><a href="../#infos-pratiques">Infos pratiques</a><a href="../#questions-frequentes">FAQ</a><a href="../tarifs/">Tarifs</a></nav>
+    <a href="../" class="logo"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
+    <nav class="nav" id="menu" aria-label="Navigation principale"><a href="../premiere-seance/" aria-current="page">Première séance</a><a href="../#le-studio">Le studio</a><a href="../#les-cours">Les cours</a><a href="../planning/">Planning</a><a href="../#infos-pratiques">Infos pratiques</a><a href="../#questions-frequentes">FAQ</a><a href="../tarifs/">Tarifs</a><a href="../contact/">Contact</a></nav>
     <div class="head-r">
       <a href="../planning/" class="btn btn-light">Réserver</a>
       <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
@@ -145,7 +150,7 @@ footer a{text-decoration:none}
       </div>
       <ol class="toc" aria-label="Les 3 étapes">
         <li><a href="#etape-1"><span class="n">ÉTAPE 1</span><span>Choisissez un créneau</span><span>↓</span></a></li>
-        <li><a href="#etape-2"><span class="n">ÉTAPE 2</span><span>Réservez l'essai sur bsport</span><span>↓</span></a></li>
+        <li><a href="#etape-2"><span class="n">ÉTAPE 2</span><span>Réservez votre première séance sur bsport</span><span>↓</span></a></li>
         <li><a href="#etape-3"><span class="n">ÉTAPE 3</span><span>Arrivez 5 minutes avant</span><span>↓</span></a></li>
       </ol>
     </div>
@@ -173,7 +178,7 @@ footer a{text-decoration:none}
     <div class="wrap">
       <div class="media card-bg">
         <div class="ticket" aria-hidden="true">
-          <div class="eyebrow">Cours d'essai · bsport</div>
+          <div class="eyebrow">Première séance · bsport</div>
           <div class="row"><span>Séances</span><span>2 × Reformer, 1 h</span></div>
           <div class="row"><span>Validité</span><span>3 semaines</span></div>
           <hr>
@@ -184,9 +189,9 @@ footer a{text-decoration:none}
       </div>
       <div class="txt">
         <div class="num" aria-hidden="true">2</div>
-        <h2>Réservez l'essai sur bsport</h2>
+        <h2>Réservez votre première séance sur bsport</h2>
         <p>35 € pour deux séances. Les codes d'accès vous sont envoyés.</p>
-        <a href="../planning/" class="btn btn-olive">Réserver mon cours d'essai</a>
+        <a href="../planning/" class="btn btn-olive">Réserver ma première séance</a>
       </div>
     </div>
   </section>
@@ -212,7 +217,7 @@ footer a{text-decoration:none}
       <h2>Prête ou prêt pour votre première séance ?</h2>
       <p>Deux séances pour 35 € · 43 avenue Félix Louat, Senlis</p>
       <div class="row">
-        <a href="../planning/" class="btn btn-light">Réserver mon cours d'essai</a>
+        <a href="../planning/" class="btn btn-light">Réserver ma première séance</a>
         <a href="../#questions-frequentes" class="btn btn-line">Lire les questions fréquentes</a>
       </div>
     </div>

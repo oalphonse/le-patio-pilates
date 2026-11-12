@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Le Patio · Pilates Club Senlis</title>
-<meta name="description" content="Studio de Pilates Reformer à Senlis. Six Reformers par cours, tous niveaux. Cours d'essai : une séance achetée, une séance offerte.">
-<link rel="icon" type="image/png" href="logo/logo-le-patio-pilates-club.png">
-<link rel="apple-touch-icon" href="logo/logo-le-patio-pilates-club.png">
+<meta name="description" content="Studio de Pilates Reformer à Senlis. Six Reformers par cours, tous niveaux. Première séance : une séance achetée, une séance offerte.">
+<link rel="icon" type="image/png" href="logo/icone-le-patio.png">
+<link rel="apple-touch-icon" href="logo/icone-le-patio.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap">
 <style>
@@ -68,12 +68,15 @@ section{scroll-margin-top:96px}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
 .reassure{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--sand)}
 .reassure span::before{content:"✓ ";color:var(--tan-2)}
-.offer-card{background:var(--paper);color:var(--ink);border-radius:14px;padding:26px 28px;width:322px;flex:none;display:grid;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.offer-card{background:var(--paper);color:var(--ink);border-radius:14px;padding:26px 28px;width:322px;flex:none;display:grid;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.12);text-decoration:none;transition:transform .35s ease,box-shadow .35s ease}
+.offer-card:hover,.offer-card:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.18)}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){.offer-card:hover{animation:flotte 2.4s ease-in-out .35s infinite}}
+@keyframes flotte{0%,100%{transform:translateY(-6px)}50%{transform:translateY(-10px)}}
+.offer-go{font-size:13.5px;font-weight:500;color:var(--olive);margin-top:2px}
 .offer-card .eyebrow{color:var(--olive);font-size:10.5px}
 .offer-card h3{font-size:23px;line-height:1.2}
 .offer-card p{font-size:13.5px;color:var(--brown)}
-.offer-card .offer-price{font-size:40px;font-weight:300;line-height:1;color:var(--ink);margin-top:4px}
-.offer-card .offer-note{margin-top:-4px}
+.offer-badge{justify-self:start;background:var(--olive);color:var(--paper);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:4px}
 
 /* Comment ça marche (ajouté) */
 .steps{background:var(--paper);border-bottom:1px solid var(--sand)}
@@ -88,14 +91,29 @@ section{scroll-margin-top:96px}
 .step span{font-size:14px;color:var(--brown)}
 
 /* Coming soon */
-.soon{background:var(--olive-d);color:var(--paper);text-align:center}
-.soon .wrap{display:grid;justify-items:center;gap:18px;padding-block:52px 50px}
-.soon h2{font-size:clamp(40px,5vw,66px);font-weight:300;letter-spacing:.02em;line-height:1}
-.soon p{color:var(--tan-2);font-size:19px}
-.count{display:flex;gap:12px;margin:6px 0 10px}
-.count div{width:78px;height:72px;border-radius:10px;background:rgba(194,184,143,.18);display:grid;place-items:center;align-content:center;gap:6px}
+/* Popup « Coming soon » */
+.popup{border:0;padding:0;background:transparent;max-width:min(520px,calc(100vw - 32px));width:100%;color:var(--paper)}
+.popup::backdrop{background:rgba(34,34,34,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.popup[open]{animation:popup-in .45s ease}
+@keyframes popup-in{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.popup[open]{animation:none}}
+.popup-in{background:var(--olive);border-radius:22px;padding:44px 40px 36px;display:grid;justify-items:center;gap:16px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.popup-logo{width:180px;height:180px;margin:-12px 0 -16px}
+.popup h2{font-size:clamp(34px,6vw,46px);font-weight:300;letter-spacing:.06em;line-height:1}
+.popup p{color:var(--tan-2);font-size:16px}
+.count{display:flex;gap:10px;margin:6px 0 8px}
+.count div{width:72px;height:68px;border-radius:12px;background:rgba(194,184,143,.16);display:grid;place-items:center;align-content:center;gap:5px}
 .count b{font-size:26px;font-weight:400;font-variant-numeric:tabular-nums;line-height:1}
-.count small{font-size:9.5px;font-weight:600;letter-spacing:.06em;color:var(--tan-2)}
+.count small{font-size:9.5px;font-weight:600;letter-spacing:.06em;color:var(--tan-2);text-transform:uppercase}
+.btn-prevenir{background:none;border:0;color:var(--tan-2);font:500 14px/1 var(--font);text-decoration:underline;text-underline-offset:4px;cursor:pointer;padding:4px 8px;margin-top:-4px}
+.btn-prevenir:hover{color:var(--paper)}
+.popup-news{display:flex;gap:8px;width:100%;max-width:400px;flex-wrap:wrap;justify-content:center}
+.popup-news input{flex:1 1 200px;min-width:0;font:15px var(--font);border:0;border-radius:999px;padding:0 20px;height:48px;background:var(--paper);color:var(--ink)}
+.popup-news .btn{flex:0 0 auto}
+.popup-news small{flex-basis:100%;font-size:12px;color:var(--tan-2)}
+.popup-news-ok{font-size:15px;color:var(--paper)!important}
+.popup [hidden]{display:none!important}
+@media (max-width:420px){.popup-in{padding:36px 20px 28px}.count{gap:6px}.count div{width:60px;height:60px}.count b{font-size:22px}}
 
 /* Application */
 .app{background:var(--sand)}
@@ -120,7 +138,7 @@ section{scroll-margin-top:96px}
 .phone .row{display:flex;justify-content:space-between;background:var(--paper);border-radius:8px;padding:10px 12px}
 .phone .row b{color:var(--olive);font-weight:600;font-size:12px}
 
-/* Offre d'essai (ajoutée) */
+/* Offre première séance (ajoutée) */
 .offre{background:var(--paper)}
 .offre .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:72px;align-items:center;padding-block:96px}
 .offre-txt{display:grid;gap:18px;max-width:560px}
@@ -132,7 +150,7 @@ section{scroll-margin-top:96px}
 /* Chiffres */
 
 /* Cours */
-.cours .wrap{display:grid;grid-template-columns:520px 1fr;gap:96px;align-items:center;padding-block:120px}
+.cours .wrap{display:grid;grid-template-columns:520px 1fr;gap:96px;align-items:center;padding-block:40px 120px}
 .cours .ph{aspect-ratio:520/640}
 .cours-txt{display:grid;gap:16px}
 .acc{border-top:2px solid var(--sand);margin-top:16px}
@@ -165,7 +183,7 @@ html,body{overflow-x:clip}
 .small-ph{width:min(240px,40%);aspect-ratio:240/320;flex:none}
 
 /* Attentions */
-.att .wrap{display:grid;gap:44px;padding-block:96px 80px}
+.att .wrap{display:grid;gap:44px;padding-block:96px 40px}
 .att h2{text-align:center}
 .att-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .att-item{display:grid;gap:10px;align-content:start}
@@ -210,7 +228,7 @@ html,body{overflow-x:clip}
 .cta-in p{font-size:16px;color:var(--sand)}
 
 /* FAQ */
-.faq{background:var(--sand);color:var(--ink)}
+.faq{background:var(--cream);color:var(--ink)}
 .faq .wrap{max-width:810px;display:grid;gap:28px;padding-block:72px 96px}
 .faq h2{text-align:center;font-size:40px}
 .faq-list{border-top:1px solid var(--tan)}
@@ -269,12 +287,6 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 
 /* Pied de page */
 footer{background:var(--olive);color:var(--paper)}
-.news{background:var(--olive-l);color:var(--paper)}
-.news .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-block:36px}
-.news h3{font-size:22px}
-.news p{font-size:14px;color:var(--tan-2);margin-top:4px}
-.news form{display:flex;gap:10px;flex-wrap:wrap}
-.news input{font:15px var(--font);border:0;border-radius:999px;padding:0 20px;height:48px;min-width:260px;background:var(--paper);color:var(--ink)}
 .foot{display:grid;grid-template-columns:1.2fr repeat(5,auto);gap:40px;padding-block:56px 28px}
 .foot h4{font-weight:400;font-size:16px;margin:0 0 12px}
 .foot p,.foot a{font-size:13.5px;color:var(--sand);text-decoration:none;display:block;line-height:1.5}
@@ -342,7 +354,7 @@ body.annot #annot-panel{display:block}
   .offre .wrap{grid-template-columns:1fr;gap:32px;padding-block:64px}
   .app .wrap,.cours .wrap,.studio .wrap,.contact .wrap,.infos-top{grid-template-columns:1fr}
   .phone{justify-self:center}
-  .cours .wrap{padding-block:80px}
+  .cours .wrap{padding-block:32px 80px}
   .cours .ph{aspect-ratio:4/3}
   .raccourcis .wrap{grid-template-columns:1fr;padding-block:56px}
   .studio-imgs{justify-content:flex-start}
@@ -359,12 +371,10 @@ body.annot #annot-panel{display:block}
   .hero{min-height:620px}
   .hero::after{background:linear-gradient(0deg,rgba(69,61,10,.9) 0%,rgba(69,61,10,.55) 55%,rgba(69,61,10,.15) 100%)}
   .offer-card{width:100%}
-  .count div{width:66px}
   .oval{width:58%}.small-ph{width:38%}
   .att-grid{grid-template-columns:1fr}
   .infos-bot{grid-template-columns:1fr}
   form.cform{grid-template-columns:1fr;padding:26px 20px}
-  .news input{min-width:0;flex:1}
   .foot{grid-template-columns:1fr 1fr}
   .foot .brand{grid-column:1/-1}
   .track .ph{flex-basis:78%}
@@ -375,20 +385,25 @@ body.annot #annot-panel{display:block}
   #annot-toggle{bottom:calc(84px + env(safe-area-inset-bottom,0px));height:44px;font-size:13px}
   #annot-panel{left:16px;right:16px;width:auto;bottom:calc(140px + env(safe-area-inset-bottom,0px));max-height:50vh}
 }
+
+/* Logo du menu (version horizontale) */
+.logo{width:auto;height:auto;overflow:visible;position:static;line-height:0}
+.logo img{position:static;height:66px;width:auto;max-width:none}
+@media (max-width:640px){.logo img{height:52px}}
 </style>
 </head>
 <body>
 
 <!-- Bandeau d'annonce : ajouté (3/10) -->
 <div class="announce" data-tag="bandeau essai" data-st="ajout">
-  Ouverture le 1er février à Senlis · Cours d'essai : une séance achetée, une séance offerte · <a href="#cours-d-essai">Voir l'offre</a>
+  Ouverture le 1er février à Senlis · Première séance : une séance achetée, une séance offerte · <a href="#offre-premiere-seance">Voir l'offre</a>
 </div>
 
 <header class="site-header" id="haut-de-page">
   <div class="wrap">
-    <a href="#haut-de-page" class="logo" data-tag="hors" data-label="Logo" data-st="svg"><img src="logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="500" height="500"></a>
+    <a href="#haut-de-page" class="logo" data-tag="hors" data-label="Logo" data-st="svg"><img src="logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
     <nav class="nav" aria-label="Navigation principale" data-tag="planning" data-st="svg">
-      <a href="premiere-seance/">Première séance</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="planning/">Planning</a><a href="#infos-pratiques">Infos pratiques</a><a href="#questions-frequentes">FAQ</a><a href="tarifs/">Tarifs</a>
+      <a href="premiere-seance/">Première séance</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="planning/">Planning</a><a href="#infos-pratiques">Infos pratiques</a><a href="#questions-frequentes">FAQ</a><a href="tarifs/">Tarifs</a><a href="contact/">Contact</a>
     </nav>
     <div class="head-cta">
       <a href="planning/" class="btn btn-light" data-tag="header pilule" data-st="svg">Réserver</a>
@@ -405,53 +420,37 @@ body.annot #annot-panel{display:block}
     <div class="hero-txt">
       <div class="eyebrow">Studio de Pilates Reformer à Senlis</div>
       <h1 data-tag="titre italique" data-st="svg" data-note="Mot en italique ajouté">Prenez le temps<br>de <em>bien</em> bouger.</h1>
-      <div class="hero-btns" data-tag="deuxboutons repete" data-st="svg">
-        <a href="planning/" class="btn btn-light">Réserver mon essai</a>
-        <a href="premiere-seance/" class="btn btn-ghost">Première fois ? Commencez ici</a>
+      <div class="hero-btns" data-tag="premiere" data-st="svg">
+        <a href="premiere-seance/" class="btn btn-light">Première fois ? Tout ce qu'il faut savoir</a>
       </div>
       <div class="reassure" data-tag="rassure" data-st="ajout">
         <span>Aucune expérience nécessaire</span><span>Sans engagement</span><span>Chaussettes en vente sur place</span>
       </div>
     </div>
-    <aside class="offer-card" data-tag="essai prix" data-st="svg">
+    <a class="offer-card" href="reserver-premiere-seance/" data-tag="essai" data-st="svg" aria-label="Offre exclusive première séance : une séance achetée, une séance offerte. Réserver">
+      <span class="offer-badge">Offre exclusive première séance</span>
       <h3>Une séance achetée,<br>une séance offerte.</h3>
-      <p class="offer-price">35 €</p>
-      <p class="offer-note"><em>Pour la séance d'essai</em></p>
-    </aside>
+      <span class="offer-go">Réserver →</span>
+    </a>
   </div>
 </section>
 
-<!-- COMING SOON -->
-<section class="soon" data-pos="22" aria-label="Ouverture" data-tag="urgence" data-st="svg">
-  <div class="wrap">
-    <h2>COMING SOON</h2>
-    <p>Le studio ouvre bientôt ses portes à Senlis.</p>
-    <div class="count" id="countdown" aria-live="polite">
-      <div><b id="cd-d">--</b><small>JOURS</small></div>
-      <div><b id="cd-h">--</b><small>HEURES</small></div>
-      <div><b id="cd-m">--</b><small>MINUTES</small></div>
-      <div><b id="cd-s">--</b><small>SECONDES</small></div>
-    </div>
-    <a href="planning/" class="btn btn-light" data-tag="repete" data-st="svg">Pré-réserver ma première séance</a>
-  </div>
-</section>
-
-<!-- OFFRE D'ESSAI -->
-<section class="offre" id="cours-d-essai" data-tag="essai prix repete" data-st="ajout" data-pos="26">
+<!-- OFFRE PREMIÈRE SÉANCE -->
+<section class="offre" id="offre-premiere-seance" data-tag="essai prix repete" data-st="ajout" data-pos="26">
   <div class="wrap">
     <div class="offre-txt">
       <div class="eyebrow">Offre de bienvenue</div>
-      <h2 class="h2">Essayez Le Patio : deux séances pour 35 €.</h2>
+      <h2 class="h2">Votre première séance : deux séances pour 35 €.</h2>
       <p>Une séance achetée, une séance offerte, valables 3 semaines. Tous niveaux, sans engagement.</p>
       <p class="offre-open">Ouverture le 1er février · 43 avenue Félix Louat, Senlis</p>
     </div>
     <div class="offre-box">
       <ul class="checks">
         <li>Deux cours Reformer d'une heure</li>
-        <li>Six élèves au plus, accompagnés de bout en bout</li>
+        <li>6 élèves maximum, accompagnés de bout en bout</li>
         <li>0 € de frais d'inscription</li>
       </ul>
-      <a href="planning/" class="btn btn-olive">Réserver mon cours d'essai</a>
+      <a href="planning/" class="btn btn-olive">Réserver ma première séance</a>
       <small>Réservation en ligne sur bsport, en quelques secondes.</small>
     </div>
   </div>
@@ -513,7 +512,7 @@ body.annot #annot-panel{display:block}
   <div class="wrap">
     <div class="steps-head"><div class="eyebrow">Première fois</div><h2>Nouveau au Reformer ? Commencez ici.</h2></div>
     <div class="step"><i>1</i><div><b>Choisissez un créneau</b><span>Dans le planning, du lundi au vendredi, de 8h30 à 19h.</span></div></div>
-    <div class="step"><i>2</i><div><b>Réservez l'essai sur bsport</b><span>35 € pour deux séances. Les codes d'accès vous sont envoyés.</span></div></div>
+    <div class="step"><i>2</i><div><b>Réservez votre première séance sur bsport</b><span>35 € pour deux séances. Les codes d'accès vous sont envoyés.</span></div></div>
     <div class="step"><i>3</i><div><b>Arrivez 5 minutes avant</b><span>Tenue souple et chaussettes antidérapantes. On s'occupe du reste.</span></div></div>
     <a class="steps-more" href="premiere-seance/">Tout savoir sur votre première séance →</a>
   </div>
@@ -545,7 +544,7 @@ body.annot #annot-panel{display:block}
     <a class="racc" href="tarifs/" data-tag="prix" data-st="svg">
       <div class="eyebrow">Tarifs</div>
       <h3>Séance, forfait ou abonnement : à vous de choisir.</h3>
-      <p>Dès 27 € la séance · cours d'essai : deux séances pour 35 €</p>
+      <p>Dès 27 € la séance · première séance : deux séances pour 35 €</p>
       <span>Voir les tarifs →</span>
     </a>
   </div>
@@ -586,20 +585,6 @@ body.annot #annot-panel{display:block}
       <div class="avis-card"><div class="stars">★★★★★</div><p>« [Avis client à venir : un extrait de deux ou trois lignes, choisi parmi les meilleurs commentaires.] »</p><small>[Prénom N.] · avis Google</small></div>
     </div>
     <p class="avis-note">Les avis seront ajoutés après l'ouverture, avec l'accord de leurs auteurs.</p>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq" data-pos="62" id="questions-frequentes" data-tag="faq rassure" data-st="svg">
-  <div class="wrap">
-    <h2>Questions fréquentes</h2>
-    <div class="faq-list">
-      <details><summary>Je n'ai jamais fait de Reformer, est-ce pour moi ?</summary><p>Oui. Les cours sont ouverts à tous les niveaux et limités à six personnes : la professeure vous guide pas à pas et adapte les ressorts à votre corps.</p></details>
-      <details><summary>Que dois-je apporter pour mon premier cours ?</summary><p>Une tenue souple et des chaussettes antidérapantes, obligatoires sur le Reformer. Si vous les oubliez, elles sont vendues sur place. Vestiaires et douches sont à votre disposition.</p></details>
-      <details><summary>Jusqu'à quand puis-je annuler un cours ?</summary><p>[Délai d'annulation à préciser.] L'annulation se fait en quelques secondes depuis bsport ou l'application.</p></details>
-      <details><summary>Enceinte, blessée ou en convalescence : puis-je pratiquer ?</summary><p>Parlez-en à votre médecin, puis prévenez-nous avant le cours. Les exercices peuvent être adaptés.</p></details>
-      <details><summary>Comment accéder au studio et où me garer ?</summary><p>Six places sécurisées dans l'enceinte et un parking public juste à côté. Les codes d'accès vous sont envoyés à la réservation.</p></details>
-    </div>
   </div>
 </section>
 
@@ -662,45 +647,52 @@ body.annot #annot-panel{display:block}
     <img src="photos-le-patio/reserver-cours-pilates-senlis.jpg" alt="" loading="lazy">
     <h2>Votre première séance vous attend.</h2>
     <p>Ouverture le 1er février · 43 avenue Félix Louat, Senlis</p>
-    <a href="planning/" class="btn btn-light">Réserver mon cours d'essai</a>
+    <a href="planning/" class="btn btn-light">Réserver ma première séance</a>
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="news" aria-label="Newsletter" data-tag="newsletter" data-st="ajout" data-pos="94">
-      <div class="wrap">
-      <div><h3>Soyez prévenu·e de l'ouverture</h3><p>Les nouveaux créneaux et les offres de lancement, une fois par mois au plus.</p></div>
-      <form id="nform" novalidate><label for="n-mail" class="sr" style="position:absolute;left:-9999px">E-mail</label><input id="n-mail" type="email" placeholder="vous@exemple.fr" required><button class="btn btn-light" type="submit">Je m'inscris</button></form>
-    </div>
-  
-</section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
+<!-- FAQ -->
+<section class="faq" data-pos="62" id="questions-frequentes" data-tag="faq rassure" data-st="svg">
   <div class="wrap">
-    <div class="contact-txt">
-      <div class="eyebrow">Contact</div>
-      <h2 class="h2">Une autre question ?<br>Parlons-en.</h2>
-      <p>Appelez-nous ou écrivez-nous via le formulaire ci-contre.</p>
-      <hr>
-      <div class="eyebrow">Téléphone</div>
-      <p class="tel">[Numéro à venir]</p>
+    <h2>Questions fréquentes</h2>
+    <div class="faq-list">
+      <details><summary>Je n'ai jamais fait de Reformer, est-ce pour moi ?</summary><p>Oui. Les cours sont ouverts à tous les niveaux et limités à six personnes : la professeure vous guide pas à pas et adapte les ressorts à votre corps.</p></details>
+      <details><summary>Que dois-je apporter pour mon premier cours ?</summary><p>Une tenue souple et des chaussettes antidérapantes, obligatoires sur le Reformer. Si vous les oubliez, elles sont vendues sur place. Vestiaires et douches sont à votre disposition.</p></details>
+      <details><summary>Jusqu'à quand puis-je annuler un cours ?</summary><p>[Délai d'annulation à préciser.] L'annulation se fait en quelques secondes depuis bsport ou l'application.</p></details>
+      <details><summary>Enceinte, blessée ou en convalescence : puis-je pratiquer ?</summary><p>Parlez-en à votre médecin, puis prévenez-nous avant le cours. Les exercices peuvent être adaptés.</p></details>
+      <details><summary>Comment accéder au studio et où me garer ?</summary><p>Six places sécurisées dans l'enceinte et un parking public juste à côté. Les codes d'accès vous sont envoyés à la réservation.</p></details>
     </div>
-    <form class="cform" id="cform" novalidate data-tag="hors" data-label="Formulaire de contact" data-st="svg">
-      <h3>Écrivez-nous</h3>
-      <div class="field"><label for="c-nom">Nom et prénom</label><input id="c-nom" name="nom" placeholder="Camille Martin" required></div>
-      <div class="field"><label for="c-mail">E-mail</label><input id="c-mail" name="email" type="email" placeholder="vous@exemple.fr" required></div>
-      <div class="field full"><label for="c-objet">Objet</label>
-        <select id="c-objet" name="objet"><option value="">Choisissez un sujet : cours d'essai, abonnement, autre…</option><option>Cours d'essai</option><option>Abonnement</option><option>Forfait</option><option>Autre</option></select></div>
-      <div class="field full"><label for="c-msg">Message</label><textarea id="c-msg" name="message" placeholder="Votre message…"></textarea></div>
-      <label class="consent"><input type="checkbox" id="c-ok" required> J'accepte que mes données soient utilisées pour répondre à ma demande.</label>
-      <button class="btn btn-olive" type="submit">Envoyer le message</button>
-      <p class="form-ok" id="form-ok" hidden></p>
-    </form>
   </div>
 </section>
+
 
 </main>
+
+<!-- POPUP COMING SOON : 2 s après l'arrivée, une fois par heure maximum -->
+<dialog class="popup" id="popup-ouverture" aria-labelledby="popup-titre" data-tag="urgence" data-st="svg">
+  <div class="popup-in">
+    <img class="popup-logo" src="logo/logo-le-patio-pilates-club.png" alt="" width="180" height="180">
+    <h2 id="popup-titre">COMING SOON</h2>
+    <p>Le studio ouvre ses portes le 1er février à Senlis.</p>
+    <div class="count" id="countdown" aria-hidden="true">
+      <div><b id="cd-d">--</b><small>jours</small></div>
+      <div><b id="cd-h">--</b><small>heures</small></div>
+      <div><b id="cd-m">--</b><small>minutes</small></div>
+      <div><b id="cd-s">--</b><small>secondes</small></div>
+    </div>
+    <button type="button" class="btn btn-light" id="popup-decouvrir">Découvrir</button>
+    <!-- Newsletter (déplacée depuis l'accueil) -->
+    <button type="button" class="btn-prevenir" id="popup-prevenir" aria-expanded="false" aria-controls="popup-news">Me prévenir à l'ouverture</button>
+    <form class="popup-news" id="popup-news" novalidate hidden data-tag="newsletter" data-st="ajout">
+      <label for="n-mail" style="position:absolute;left:-9999px">E-mail</label>
+      <input id="n-mail" type="email" placeholder="vous@exemple.fr" autocomplete="email" required>
+      <button class="btn btn-light" type="submit">Je m'inscris</button>
+      <small>Un e-mail à l'ouverture et les offres de lancement, rien de plus.</small>
+    </form>
+    <p class="popup-news-ok" id="popup-news-ok" hidden>C'est noté ✓ On vous écrit dès l'ouverture.</p>
+  </div>
+</dialog>
 
 <footer>
   <div class="wrap foot">
@@ -709,15 +701,15 @@ body.annot #annot-panel{display:block}
     <div data-tag="reseaux" data-st="svg"><h4>Nous suivre</h4><a href="https://www.instagram.com/lepatio.pilatesclub">◎ @lepatio.pilatesclub</a><a href="#">ⓕ Le Patio - Pilates Club</a></div>
     <div><h4>Réserver</h4><p>Tous les cours se réservent<br>en ligne sur bsport.</p><a href="#" data-tag="cadeau" data-st="ajout" style="margin-top:8px;color:var(--paper)">Offrir une carte cadeau →</a></div>
     <div><h4>Informations</h4><a href="#questions-frequentes">FAQ</a><a href="#">Mentions légales</a><a href="#">Conditions générales de vente</a><a href="#">Politique de confidentialité</a></div>
-    <div><h4>Navigation</h4><a href="#cours-d-essai">Cours d'essai</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="planning/">Planning</a><a href="tarifs/">Tarifs</a></div>
+    <div><h4>Navigation</h4><a href="premiere-seance/">Première séance</a><a href="#le-studio">Le studio</a><a href="#les-cours">Les cours</a><a href="planning/">Planning</a><a href="tarifs/">Tarifs</a><a href="contact/">Contact</a></div>
   </div>
   <div class="wrap copy">© Le Patio Pilates Club · Senlis</div>
 </footer>
 
 <!-- Barre mobile fixe : ajoutée (bouton répété, comme KX Pilates) -->
 <div class="mobile-bar" data-tag="repete essai" data-st="ajout">
-  <span>Cours d'essai<br><b>2 séances pour 35 €</b></span>
-  <a href="planning/" class="btn btn-olive">Réserver mon essai</a>
+  <span>Première séance<br><b>2 séances pour 35 €</b></span>
+  <a href="planning/" class="btn btn-olive">Réserver ma première séance</a>
 </div>
 
 <!-- ===== Détourage ===== -->
@@ -752,6 +744,29 @@ body.annot #annot-panel{display:block}
   tick();setInterval(tick,1000);
 })();
 
+/* Popup Coming soon : 2 s après l'arrivée, au plus une fois par heure et par visiteur */
+(function(){
+  const d=document.getElementById('popup-ouverture'); if(!d||!d.showModal) return;
+  const CLE='popup-ouverture-vue', UNE_HEURE=60*60*1000;
+  const MODE_DEV=true; // TEMPORAIRE : le popup s'affiche à chaque chargement. Remettre à false avant la mise en ligne.
+  let derniere=0; try{derniere=+localStorage.getItem(CLE)||0}catch(e){}
+  if(!MODE_DEV && Date.now()-derniere<UNE_HEURE) return;
+  setTimeout(()=>{
+    if(document.body.classList.contains('annot')) return;
+    d.showModal();
+    try{localStorage.setItem(CLE,String(Date.now()))}catch(e){}
+  },2000);
+  document.getElementById('popup-decouvrir').addEventListener('click',()=>d.close());
+  d.addEventListener('click',e=>{ if(e.target===d) d.close(); }); // clic à côté
+  const bp=document.getElementById('popup-prevenir'), fn=document.getElementById('popup-news');
+  bp.addEventListener('click',()=>{ bp.hidden=true; fn.hidden=false; bp.setAttribute('aria-expanded','true'); fn.querySelector('input').focus(); });
+  fn.addEventListener('submit',e=>{
+    e.preventDefault(); const i=fn.querySelector('input');
+    if(!i.value||!i.validity.valid){ i.focus(); i.setCustomValidity(''); fn.querySelector('small').textContent="Entrez une adresse e-mail valide."; return; }
+    fn.hidden=true; document.getElementById('popup-news-ok').hidden=false; // démo : l'envoi sera branché à la mise en ligne
+  });
+})();
+
 /* Menu mobile */
 document.getElementById('burger').addEventListener('click',e=>{
   const hd=document.querySelector('.site-header');const o=hd.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o);
@@ -764,17 +779,10 @@ document.getElementById('prev').onclick=()=>track.scrollBy({left:-320,behavior:'
 document.getElementById('next').onclick=()=>track.scrollBy({left:320,behavior:'smooth'});
 
 /* Formulaires (démo : rien n'est envoyé) */
-document.getElementById('cform').addEventListener('submit',e=>{
-  e.preventDefault();const ok=document.getElementById('form-ok');
-  const f=e.currentTarget;
-  if(!f.querySelector('#c-nom').value||!f.querySelector('#c-mail').validity.valid||!f.querySelector('#c-ok').checked){ok.hidden=false;ok.textContent="Renseignez votre nom, un e-mail valide et cochez la case de consentement.";return;}
-  ok.hidden=false;ok.textContent="Merci, votre message est prêt. L'envoi sera branché à la mise en ligne.";
-});
-document.getElementById('nform').addEventListener('submit',e=>{e.preventDefault();const b=e.currentTarget.querySelector('button');b.textContent="Inscription notée ✓";});
 
 /* ===== Détourage ===== */
 const TAGS={
-  essai:["Offre d'essai mise en avant",10],
+  essai:["Offre première séance mise en avant",10],
   repete:["Bouton de réservation répété",10],
   adresse:["Adresse / localisation",10],
   header:["Bouton « Réserver » dans l'en-tête",9],
