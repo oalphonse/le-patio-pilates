@@ -100,6 +100,25 @@ Le bouton « Afficher le détourage » en bas de l'accueil encadre chaque élém
 
 Les 10 studios de référence (approche « offre de découverte ») sont : Club Pilates, Speir, Studio Pilates, KX Pilates, Culte, Ten Health & Fitness, LevelOut, BODYBAR, Pilates Circuit et Maison Amat.
 
+## Référencement (préparé le 13/11)
+
+Objectif : sortir sur « Pilates Senlis » et « Pilates Chantilly ».
+
+Fait dans le site :
+- Titres et descriptions orientés « Pilates Reformer à Senlis » sur chaque page ; l'accueil mentionne aussi Chantilly (« à 15 minutes de Chantilly »).
+- Accueil : le titre principal (H1) contient « Studio de Pilates Reformer à Senlis » (même rendu qu'avant) ; phrase T119 dans Infos pratiques sur l'accès depuis Chantilly, Chamant, Courteuil, Aumont-en-Halatte ; question T120/T121 dans la FAQ « Je viens de Chantilly ou des environs, est-ce loin ? ». **À vérifier par le studio : le temps de trajet depuis Chantilly (« une quinzaine de minutes »).**
+- Fiche studio pour Google (données structurées `ExerciseGym` dans `index.html`) : adresse, horaires, villes desservies, prix de la première séance. À compléter quand on les aura : téléphone (`telephone`), e-mail, liens Instagram/Facebook (`sameAs`), coordonnées GPS (`geo`).
+- Adresse canonique et aperçus de partage (Facebook, WhatsApp, Instagram…) sur chaque page indexée.
+- `robots.txt` et `sitemap.xml` à la racine.
+
+**Le nom de domaine n'est pas encore renseigné** : `__DOMAINE__` apparaît dans `index.html`, les 4 sous-pages, `robots.txt` et `sitemap.xml`. À remplacer partout par le vrai domaine (sans `https://` ni `/` final) avant ou pendant la mise en ligne, par exemple au déploiement : `grep -rl __DOMAINE__ . | xargs sed -i '' 's/__DOMAINE__/www.exemple.fr/g'`.
+
+À faire hors du site (le plus important pour une recherche locale, c'est ce qui fait apparaître le studio sur la carte Google) :
+1. **Fiche Google Business Profile** (business.google.com) : nom « Le Patio Pilates Club », catégorie « Studio de Pilates », adresse exacte, horaires, photos, lien vers le site et lien de réservation bsport. Demander des avis Google aux élèves dès l'ouverture.
+2. **Google Search Console** (search.google.com/search-console) : valider le domaine, envoyer `sitemap.xml`.
+3. Même nom, adresse et téléphone partout : Google, bsport (marketplace), Instagram, Facebook, Pages Jaunes, ClassPass / Urban Sports Club si utilisés.
+4. Bing Places (optionnel, reprend la fiche Google).
+
 ## Charte
 
 - Couleurs : `--olive #5E530E`, `--olive-d #453D0A`, `--olive-l #7A6B2A`, `--sand #EBE6DC`, `--cream #F9F7F1`, `--paper #FDFCF9`, `--tan #C2B88F`, `--tan-2 #DBD1A8`, `--brown #574325`, `--muted #8B7B60`, `--ink #222222`.
