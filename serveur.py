@@ -8,8 +8,14 @@
 Les adresses IP ne sont jamais stockées en clair : seule une empreinte salée
 (SHA-256) est gardée, suffisante pour ne compter chaque personne qu'une fois.
 
-Lancement :  python3 serveur.py   (puis http://localhost:8765)
+Lancement :
+  sur le poste :            python3 serveur.py                (http://localhost:8765)
+  sur le serveur de dev :   python3 serveur.py --port 8790    (port réservé au Patio)
+  Options : --port N (ou variable PORT), --hote ADRESSE (ou variable HOTE).
+  Par défaut le serveur n'écoute qu'en local (127.0.0.1) : sur le VPS on y accède
+  par un tunnel SSH, sans ouvrir de port sur internet. --hote 0.0.0.0 l'ouvre à tous.
 """
+import argparse
 import hashlib
 import json
 import os
@@ -24,6 +30,7 @@ DONNEES = os.path.join(RACINE, "donnees")
 FICHIER_VOTES = os.path.join(DONNEES, "interet-samedi.json")
 FICHIER_SEL = os.path.join(DONNEES, "sel.txt")
 PORT = int(os.environ.get("PORT", "8765"))
+HOTE = os.environ.get("HOTE", "127.0.0.1")
 VERROU = threading.Lock()
 
 
@@ -110,7 +117,11 @@ class Gestionnaire(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    arguments = argparse.ArgumentParser(description="Serveur du site Le Patio")
+    arguments.add_argument("--port", type=int, default=PORT, help="port d'écoute (8765 sur le poste, 8790 sur le serveur de dev)")
+    arguments.add_argument("--hote", default=HOTE, help="adresse d'écoute (127.0.0.1 par défaut ; 0.0.0.0 = ouvert à tous)")
+    options = arguments.parse_args()
     SEL = sel()
-    serveur = ThreadingHTTPServer(("127.0.0.1", PORT), partial(Gestionnaire, directory=RACINE))
-    print(f"Le Patio : http://localhost:{PORT}  (Ctrl+C pour arrêter)")
+    serveur = ThreadingHTTPServer((options.hote, options.port), partial(Gestionnaire, directory=RACINE))
+    print(f"Le Patio : http://localhost:{options.port}  (écoute sur {options.hote}, Ctrl+C pour arrêter)")
     serveur.serve_forever()

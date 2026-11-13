@@ -14,6 +14,16 @@ Puis ouvrir http://localhost:8765. Le serveur (Python standard, sans dépendance
 
 Ne pas ouvrir les fichiers en double-cliquant (`file://`) : les liens de dossiers et l'API ne fonctionnent pas.
 
+## Serveur de dev (VPS OVH)
+
+Le site tourne sur le VPS dans le dossier `~/le-patio-pilates`, session tmux `lepatio`, port **8790** (réservé au Patio, hors des ports Cliford).
+Il n'écoute qu'en local sur le VPS : on le consulte depuis le poste par un tunnel SSH, sans ouvrir de port sur internet.
+
+- Mettre à jour et relancer (sur le VPS) :
+  `cd ~/le-patio-pilates && git pull --ff-only && tmux kill-session -t lepatio 2>/dev/null; tmux new -d -s lepatio 'python3 serveur.py --port 8790'`
+- Voir le site (sur le poste) : `ssh -N -L 8790:127.0.0.1:8790 <utilisateur>@<adresse du VPS>` puis http://localhost:8790
+- Options de `serveur.py` : `--port`, `--hote` (127.0.0.1 par défaut ; `0.0.0.0` l'ouvrirait à tous, à éviter sans pare-feu).
+
 ## Architecture et hébergement (décidé le 13/11)
 
 **Principe : tout ce qui a un module bsport passe par bsport. Seuls les petits boutons compteurs et assimilés vont sur notre serveur OVH. Le reste du site est statique.**
