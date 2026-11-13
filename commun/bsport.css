@@ -1,0 +1,117 @@
+/* Habillage du widget calendrier bsport aux couleurs du Patio.
+   On ne cible QUE les classes « bs-… » (noms fixes, écrits par bsport) :
+   jamais les classes générées (jss12, Mui…-495), qui changent d'une version à l'autre.
+   bsport écrit ses règles en « [id*="bsport-widget"] .cleanslate .bs-… » avec !important :
+   nos règles sont donc préfixées par « .bsport-widget.bsport-widget[id] » (plus fort)
+   et passent aussi en !important.
+   Si bsport renomme un jour une classe, l'élément reprend simplement son style d'origine. */
+
+.bsport-widget{
+  --bs-olive:#5E530E; --bs-olive-d:#453D0A; --bs-paper:#FDFCF9; --bs-cream:#F9F7F1;
+  --bs-sand:#EBE6DC; --bs-tan:#C2B88F; --bs-tan-2:#DBD1A8; --bs-brown:#574325;
+  --bs-muted:#8B7B60; --bs-ink:#222222;
+  --bs-font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+/* Variables de thème de bsport (définies sur .bs-setup-variable) : on les redéfinit.
+   Les couleurs principale et secondaire viennent du back-office bsport : on les y laisse. */
+.bsport-widget .bs-setup-variable{
+  --fontFamily:var(--bs-font);
+  --color-background-paper:var(--bs-paper);
+  --color-secondary-background-paper:var(--bs-cream);
+  --color-divider:var(--bs-sand);
+  --color-hover:rgba(94,83,14,.05);
+  --color-selected:rgba(94,83,14,.08);
+}
+
+/* Police partout */
+.bsport-widget.bsport-widget[id] .bs-calendar,
+.bsport-widget.bsport-widget[id] .bs-calendar *{font-family:var(--bs-font)!important;letter-spacing:normal!important}
+
+/* ---------- Sélecteur de semaine ---------- */
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker{
+  background:var(--bs-paper)!important;border:1px solid var(--bs-tan-2)!important;
+  border-radius:999px!important;box-shadow:none!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__placeholder{
+  color:var(--bs-ink)!important;font-size:15px!important;font-weight:500!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__left-button,
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__right-button{color:var(--bs-olive)!important}
+
+/* ---------- Recherche et filtres ---------- */
+.bsport-widget.bsport-widget[id] .bs-calendar-search__input__container,
+.bsport-widget.bsport-widget[id] .bs-marketplace-filter{
+  background:var(--bs-paper)!important;border:1px solid var(--bs-tan-2)!important;
+  border-radius:999px!important;box-shadow:none!important}
+.bsport-widget.bsport-widget[id] .bs-calendar-search__input,
+.bsport-widget.bsport-widget[id] .bs-calendar-search__input *{
+  color:var(--bs-ink)!important;font-size:15px!important;background:transparent!important;
+  box-shadow:none!important;border:0!important}
+.bsport-widget.bsport-widget[id] .bs-calendar-search__input__icon{color:var(--bs-muted)!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-filter__placeholder{color:var(--bs-brown)!important;font-size:14px!important;font-weight:500!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-filter:hover{border-color:var(--bs-olive)!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-filter--selected{border-color:var(--bs-olive)!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-filter__right__chip{
+  background:var(--bs-olive)!important;color:var(--bs-paper)!important}
+
+/* ---------- Bandeau des jours ---------- */
+.bsport-widget.bsport-widget[id] .bs-week__header__date__weekDay{
+  color:var(--bs-muted)!important;font-size:12px!important;font-weight:600!important;
+  text-transform:uppercase!important;letter-spacing:.06em!important}
+.bsport-widget.bsport-widget[id] .bs-week__header__date__monthDay{color:var(--bs-ink)!important;font-weight:400!important}
+.bsport-widget.bsport-widget[id] .bs-week__header__date__weekDay--is-selected{color:var(--bs-olive)!important}
+.bsport-widget.bsport-widget[id] .bs-week__header__date__monthDay--is-selected{
+  background:var(--bs-olive)!important;color:var(--bs-paper)!important}
+.bsport-widget.bsport-widget[id] .bs-week__header__date__dots{color:var(--bs-tan)!important}
+
+/* Titre du jour (« Vendredi 05 Février ») */
+.bsport-widget.bsport-widget[id] .bs-week__listMode__content__day__date{
+  color:var(--bs-olive)!important;font-size:12px!important;font-weight:600!important;
+  text-transform:uppercase!important;letter-spacing:.06em!important;margin:28px 0 12px!important}
+
+/* ---------- Cartes de séance ---------- */
+.bsport-widget.bsport-widget[id] .bs-week__listMode__content__day__offers{
+  display:grid!important;gap:10px!important;background:transparent!important;
+  border:0!important;box-shadow:none!important}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item{
+  background:var(--bs-paper)!important;border:1px solid var(--bs-sand)!important;
+  border-radius:14px!important;box-shadow:none!important;overflow:hidden!important;
+  transition:border-color .15s,transform .15s!important}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:hover{border-color:var(--bs-olive)!important;transform:translateY(-1px)}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item__content{background:transparent!important}
+
+/* Titre de l'activité */
+.bsport-widget.bsport-widget[id] .bs-offer-list-item__content__offer__left__title{
+  color:var(--bs-ink)!important;font-size:20px!important;font-weight:400!important}
+/* Horaire : mis en avant comme sur la grille du site */
+.bsport-widget.bsport-widget[id] .bs-offer-list-item__content__time__offer-hours,
+.bsport-widget.bsport-widget[id] .bs-offer-list-item__content__time__offer-hours *{
+  color:var(--bs-brown)!important;font-size:15px!important;font-variant-numeric:tabular-nums}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__start-time{font-weight:600!important;color:var(--bs-ink)!important}
+/* Professeure */
+.bsport-widget.bsport-widget[id] .bs-offer-list-item__content__offer__left__coach{color:var(--bs-muted)!important;font-size:14px!important}
+/* Lieu : un seul studio, inutile de le répéter sur chaque carte */
+.bsport-widget.bsport-widget[id] .bs-offer-list-item__content__offer__left__establishment{display:none!important}
+
+/* Pastille de niveau */
+.bsport-widget.bsport-widget[id] .bs-level,
+.bsport-widget.bsport-widget[id] .bs-level-content{
+  background:var(--bs-sand)!important;color:var(--bs-brown)!important;
+  border-radius:999px!important;font-size:12px!important;font-weight:500!important}
+.bsport-widget.bsport-widget[id] .bs-level-content{padding:4px 12px!important}
+
+/* Bouton Réserver : pilule olive, comme les boutons du site */
+.bsport-widget.bsport-widget[id] .bs-book-button-card{
+  background:var(--bs-olive)!important;border-radius:999px!important;border:0!important;
+  box-shadow:none!important;transition:background .15s!important}
+.bsport-widget.bsport-widget[id] .bs-book-button-card:hover{background:var(--bs-olive-d)!important}
+.bsport-widget.bsport-widget[id] .bs-book-button-card__inner{padding:10px 22px!important}
+.bsport-widget.bsport-widget[id] .bs-book-button-card__inner__text{
+  color:var(--bs-paper)!important;font-size:14px!important;font-weight:500!important;
+  text-transform:none!important}
+
+
+/* ---------- Mobile ---------- */
+/* La recherche et les filtres défilent sur une bande horizontale (comportement bsport) : on n'y touche pas. */
+@media (max-width:640px){
+  .bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__placeholder{font-size:14px!important;white-space:nowrap!important}
+}

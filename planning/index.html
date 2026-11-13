@@ -56,6 +56,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
 /* Grille (ordinateur) */
 .week{background:var(--cream)}
 .week{scroll-margin-top:87px}
+.bsport{background:var(--paper)}
+.bsport .wrap{display:grid;gap:20px;padding-block:56px 72px}
+#bsport-widget-574558{min-height:200px;min-width:0}
 .week .wrap{display:grid;gap:20px;padding-block:72px 40px}
 .legend{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--brown)}
 .legend .today{display:inline-flex;align-items:center;gap:8px}
@@ -178,6 +181,7 @@ footer a{text-decoration:none}
 @media (max-width:980px){.good a{padding-block:13px;margin-block:-13px}}
 </style>
 <link rel="stylesheet" href="../commun/entete.css">
+<link rel="stylesheet" href="../commun/bsport.css">
 <link rel="canonical" href="https://__DOMAINE__/planning/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
@@ -241,6 +245,45 @@ footer a{text-decoration:none}
       </div>
     </div>
   </section>
+
+  <!-- TEST : widget calendrier bsport (réservation en direct) -->
+  <section class="bsport" aria-label="Réserver en ligne" data-num="S06">
+    <div class="wrap">
+      <div class="eyebrow">Réserver en ligne</div>
+      <div id="bsport-widget-574558" class="bsport-widget" data-num="C51"></div>
+    </div>
+  </section>
+  <script id="insert-bsport-widget-cdn">!function (b, s, p) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { var m = b.createElement(s); m.id = "bsport-widget-cdn"; m.src = p; b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
+  <script id="bsport-widget-mount">
+    function MountBsportWidget(config, repeat = 1) {
+      if (repeat > 50) { return }
+      if (!window.BsportWidget) { return setTimeout(() => { MountBsportWidget(config, repeat + 1) }, 100 * repeat || 1) }
+      BsportWidget.mount(config)
+    }
+    MountBsportWidget({
+      "parentElement": "bsport-widget-574558",
+      "companyId": 7023,
+      "franchiseId": null,
+      "dialogMode": 1,
+      "widgetType": "calendar",
+      "showFab": false,
+      "fullScreenPopup": false,
+      "styles": undefined,
+      "config": {
+        "calendar": {
+          "coaches": [155027],
+          "establishments": [23608],
+          "metaActivities": [],
+          "levels": [],
+          "variant": null,
+          "groupSessionByPeriod": true,
+          "establishmentGroups": [],
+          "todayOnly": false,
+          "cardMode": false
+        }
+      }
+    })
+  </script>
 
   <section class="good" aria-label="Bon à savoir" data-num="S03">
     <div class="wrap">
