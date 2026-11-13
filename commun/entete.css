@@ -12,6 +12,15 @@
 .langue:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
 .langue:focus-visible{outline:2px solid var(--tan-2);outline-offset:2px;border-radius:6px}
 
+/* « Mon compte » : icône à côté de Réserver (ouvre la connexion bsport) */
+.compte{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:var(--paper);opacity:.9;flex:none}
+.compte svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.compte:hover{opacity:1;background:rgba(253,252,249,.12)}
+.compte:focus-visible{outline:2px solid var(--tan-2);outline-offset:2px}
+.compte[aria-busy="true"]{opacity:.5;cursor:progress}
+/* Le bouton de connexion bsport, monté hors de l'écran : seule sa fenêtre s'affiche */
+.compte-widget{position:fixed!important;left:-10000px;top:0;width:240px;height:80px;overflow:hidden}
+
 /* Bouton Menu */
 .menu-zone{position:relative;display:flex;align-items:center}
 .menu-btn{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 4px;background:none;border:0;color:var(--paper);font:500 15px var(--font);cursor:pointer}
