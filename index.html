@@ -82,7 +82,7 @@ section{scroll-margin-top:96px}
 
 /* Comment ça marche (ajouté) */
 .steps{background:var(--paper);border-bottom:1px solid var(--sand)}
-.steps .wrap{display:grid;grid-template-columns:auto repeat(3,1fr);gap:40px;align-items:start;padding-block:44px}
+.steps .wrap{display:grid;grid-template-columns:auto repeat(3,1fr);gap:40px;align-items:start;padding-block:22px}
 .steps-head{display:grid;gap:10px}
 .steps-more{grid-column:2/-1;justify-self:start;color:var(--olive);font-weight:500;text-decoration:none;border-bottom:1.5px solid var(--tan-2);padding-bottom:2px}
 @media (max-width:1180px){.steps-more{grid-column:1/-1}}
@@ -119,7 +119,7 @@ section{scroll-margin-top:96px}
 
 /* Application */
 .app{background:var(--sand)}
-.app .wrap{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;padding-block:52px 48px}
+.app .wrap{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;padding-block:26px 24px}
 .app-txt{display:grid;gap:18px;max-width:520px}
 .app-txt > p{color:var(--brown);font-size:17px}
 .checks{list-style:none;margin:0;padding:0;display:grid;gap:12px;font-size:16px}
@@ -142,7 +142,7 @@ section{scroll-margin-top:96px}
 
 /* Offre première séance (ajoutée) */
 .offre{background:var(--paper)}
-.offre .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:72px;align-items:center;padding-block:96px}
+.offre .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:72px;align-items:center;padding-block:48px}
 .offre-txt{display:grid;gap:18px;max-width:560px}
 .offre-txt > p{font-size:18px;color:var(--brown)}
 .offre-txt .offre-open{font-size:14px;color:var(--muted)}
@@ -152,7 +152,7 @@ section{scroll-margin-top:96px}
 /* Chiffres */
 
 /* Cours */
-.cours .wrap{display:grid;grid-template-columns:520px 1fr;gap:96px;align-items:center;padding-block:40px 120px}
+.cours .wrap{display:grid;grid-template-columns:520px 1fr;gap:96px;align-items:center;padding-block:20px 60px}
 .cours .ph{aspect-ratio:520/640}
 .cours-txt{display:grid;gap:16px}
 .acc{border-top:2px solid var(--sand);margin-top:16px}
@@ -167,7 +167,7 @@ section{scroll-margin-top:96px}
 .wrap > *{min-width:0}
 html,body{overflow-x:clip}
 .raccourcis{background:var(--sand)}
-.raccourcis .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-block:88px}
+.raccourcis .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-block:44px}
 .racc{background:var(--paper);border:1.5px solid transparent;border-radius:var(--r);padding:36px 40px;display:grid;gap:12px;text-decoration:none;transition:border-color .15s,transform .15s}
 .racc:hover{border-color:var(--olive);transform:translateY(-2px)}
 .racc h3{font-size:clamp(24px,2.4vw,30px);line-height:1.2}
@@ -194,7 +194,7 @@ html,body{overflow-x:clip}
 /* Studio */
 .studio{background:var(--olive);color:var(--paper)}
 .studio .eyebrow{color:var(--tan-2)}
-.studio .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-block:100px}
+.studio .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-block:50px}
 .studio-txt{display:grid;gap:22px;max-width:470px}
 .studio-txt p{color:var(--sand);font-size:17px}
 .studio-imgs{display:flex;gap:20px;align-items:flex-end;justify-content:flex-end}
@@ -202,7 +202,7 @@ html,body{overflow-x:clip}
 .small-ph{width:min(240px,40%);aspect-ratio:240/320;flex:none}
 
 /* Attentions */
-.att .wrap{display:grid;gap:44px;padding-block:96px 40px}
+.att .wrap{display:grid;gap:44px;padding-block:48px 20px}
 .att h2{text-align:center}
 .att-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .att-item{display:grid;gap:10px;align-content:start}
@@ -211,7 +211,7 @@ html,body{overflow-x:clip}
 .att-item p{font-size:15px;color:var(--brown)}
 
 /* Professeure */
-.prof .wrap{padding-block:0 80px}
+.prof .wrap{padding-block:0 40px}
 .prof-card{background:var(--olive);color:var(--paper);border-radius:var(--r);display:grid;grid-template-columns:220px 1fr;gap:64px;align-items:center;padding:56px 64px}
 .prof-card .ph{width:220px;aspect-ratio:1;border-radius:50%;background:var(--khaki)}
 .prof-card .eyebrow{color:var(--tan-2)}
@@ -219,7 +219,7 @@ html,body{overflow-x:clip}
 .prof-card p{color:var(--sand);max-width:680px}
 
 /* Infos pratiques */
-.infos .wrap{display:grid;gap:44px;padding-block:40px 40px}
+.infos .wrap{display:grid;gap:44px;padding-block:20px 20px}
 .infos h2{text-align:center}
 .infos-top{display:grid;grid-template-columns:1.12fr 1fr;gap:32px}
 .map{background:var(--sand);border-radius:var(--r);min-height:420px;display:grid;place-content:center;justify-items:center;gap:10px;text-align:center;text-decoration:none}
@@ -248,7 +248,7 @@ html,body{overflow-x:clip}
 
 /* FAQ */
 .faq{background:var(--cream);color:var(--ink)}
-.faq .wrap{max-width:810px;display:grid;gap:28px;padding-block:72px 96px}
+.faq .wrap{max-width:810px;display:grid;gap:28px;padding-block:36px 48px}
 .faq h2{text-align:center;font-size:40px}
 .faq-list{border-top:1px solid var(--tan)}
 .faq details{border-bottom:1px solid var(--tan);padding:18px 0}
@@ -260,7 +260,7 @@ html,body{overflow-x:clip}
 
 /* Contact */
 .contact{background:var(--sand)}
-.contact .wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:80px;align-items:center;padding-block:96px}
+.contact .wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:80px;align-items:center;padding-block:48px}
 .contact-txt{display:grid;gap:18px}
 .contact-txt > p{color:var(--brown);font-size:17px}
 .contact-txt hr{border:0;border-top:1px solid var(--tan-2);margin:4px 0;width:85%}
@@ -278,7 +278,7 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 .form-ok{grid-column:1/-1;font-size:14px;color:var(--olive)}
 
 /* Avis */
-.avis .wrap{display:grid;gap:22px;justify-items:center;padding-block:96px 32px}
+.avis .wrap{display:grid;gap:22px;justify-items:center;padding-block:48px 16px}
 .avis-grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:10px}
 .avis-card{background:var(--sand);border-radius:var(--r);padding:30px 32px;display:grid;gap:12px}
 .stars{color:var(--olive);letter-spacing:2px}
@@ -287,7 +287,7 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 .avis-note{font-size:13.5px;color:var(--brown)}
 
 /* Galerie */
-.gal .wrap{display:grid;gap:30px;padding-block:40px 100px}
+.gal .wrap{display:grid;gap:30px;padding-block:20px 50px}
 .gal-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
 .socials{display:flex;gap:12px;flex-wrap:wrap}
 .social{display:inline-flex;align-items:center;gap:10px;background:var(--olive);color:var(--paper);border-radius:999px;padding:9px 22px 9px 10px;font-size:14.5px;font-weight:500;text-decoration:none}
@@ -367,12 +367,12 @@ body.annot #annot-panel{display:block}
   .hero .wrap{flex-direction:column;align-items:flex-start}
   .steps .wrap{grid-template-columns:1fr;gap:20px}
   .steps h2{max-width:none}
-  .offre .wrap{grid-template-columns:1fr;gap:32px;padding-block:64px}
+  .offre .wrap{grid-template-columns:1fr;gap:32px;padding-block:32px}
   .app .wrap,.cours .wrap,.studio .wrap,.contact .wrap,.infos-top{grid-template-columns:1fr}
   .phone{justify-self:center}
-  .cours .wrap{padding-block:32px 80px}
+  .cours .wrap{padding-block:16px 40px}
   .cours .ph{aspect-ratio:4/3}
-  .raccourcis .wrap{grid-template-columns:1fr;padding-block:56px}
+  .raccourcis .wrap{grid-template-columns:1fr;padding-block:28px}
   .studio-imgs{justify-content:flex-start}
   .att-grid{grid-template-columns:1fr 1fr}
   .prof-card{grid-template-columns:1fr;gap:28px;padding:40px 28px;justify-items:start}
@@ -460,6 +460,8 @@ html.lb-bloque{overflow:hidden}
 }
 </style>
 <link rel="stylesheet" href="commun/entete.css">
+<!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
+<script src="commun/bsport-langue.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Le Patio Pilates Club">
@@ -563,7 +565,7 @@ html.lb-bloque{overflow:hidden}
     <a href="#top" class="logo" data-num="I01" data-tag="hors" data-label="Logo" data-st="svg"><img src="logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
     <div class="head-droite">
       <a class="langue" href="en/" hreflang="en" lang="en" aria-label="English version" data-num="L00">EN</a>
-      <a class="compte" href="https://backoffice.bsport.io/login?membership=7023&amp;next=%2Fc%2F7023%2Fbooking%2F" aria-label="Mon compte" title="Mon compte" data-num="B00"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a>
+      <span class="fab-place" data-num="B00"><a class="compte" href="https://backoffice.bsport.io/login?membership=7023&amp;next=%2Fc%2F7023%2Fbooking%2F" aria-label="Mon compte" title="Mon compte"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a></span>
       <a href="planning/" class="btn btn-light" data-num="B01" data-tag="header pilule" data-st="svg">Réserver</a>
     </div>
   </div>
@@ -583,7 +585,7 @@ html.lb-bloque{overflow:hidden}
         <span>Aucune expérience nécessaire</span><span>Sans engagement</span><span>Chaussettes en vente sur place</span>
       </div>
     </div>
-    <a class="offer-card" data-num="C01" href="reserver-premiere-seance/" data-tag="essai" data-st="svg" aria-label="Offre exclusive première séance : une séance achetée, une séance offerte. Réserver">
+    <a class="offer-card" data-num="C01" href="tarifs/#offre-premiere-seance" data-tag="essai" data-st="svg" aria-label="Offre exclusive première séance : une séance achetée, une séance offerte. Réserver">
       <span class="offer-badge" data-num="T05">Offre exclusive première séance</span>
       <h3 data-num="T06">Une séance achetée,<br>une séance offerte.</h3>
       <span class="offer-go" data-num="T07">Réserver →</span>

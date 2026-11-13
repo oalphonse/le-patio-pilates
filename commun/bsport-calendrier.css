@@ -1,0 +1,191 @@
+/* Habillage du calendrier bsport (Planning, 3-S07), retenu le 13/11 :
+   - mise en page « C » : créneaux en cartes, en colonnes Matin | Midi | Soir (empilées sur mobile) ;
+   - couleur « olive foncé ».
+   La section porte data-habillage="olive-fonce" (palette ci-dessous) ; tout le reste est commun.
+   Préfixe « .bsport[data-habillage] .bsport-widget[id] » : plus fort que commun/bsport.css.
+   Les quatre autres palettes essayées le 13/11, pour y revenir (remplacer la palette olive foncé ci-dessous) :
+   - olive :  --k-fond:#5E530E; --k-texte:#FDFCF9; --k-texte-2:#DBD1A8; --k-doux:#D3C9A0; --k-titre:#FDFCF9; --k-accent:#FDFCF9;
+              --k-filet:rgba(253,252,249,.16); --k-filet-fort:rgba(253,252,249,.45); --k-carte:#4A410B; --k-carte-bord:rgba(253,252,249,.08);
+              --k-survol:#3F3709; --k-btn:#FDFCF9; --k-btn-bord:rgba(253,252,249,.65); --k-btn-plein:#FDFCF9; --k-btn-plein-texte:#5E530E
+   - brun :   --k-fond:#574325; --k-texte:#FDFCF9; --k-texte-2:#DBD1A8; --k-doux:#C9B994; --k-titre:#DBD1A8; --k-accent:#DBD1A8;
+              --k-filet:rgba(253,252,249,.14); --k-filet-fort:rgba(219,209,168,.5); --k-carte:#68532F; --k-carte-bord:rgba(253,252,249,.08);
+              --k-survol:#745E39; --k-btn:#FDFCF9; --k-btn-bord:rgba(253,252,249,.6); --k-btn-plein:#DBD1A8; --k-btn-plein-texte:#574325
+   - sable :  --k-fond:#EBE6DC; --k-texte:#222222; --k-texte-2:#5E530E; --k-doux:#7A6B50; --k-titre:#5E530E; --k-accent:#5E530E;
+              --k-filet:rgba(87,67,37,.16); --k-filet-fort:#C2B88F; --k-carte:#FDFCF9; --k-carte-bord:#DBD1A8;
+              --k-survol:#FFFFFF; --k-btn:#5E530E; --k-btn-bord:#5E530E; --k-btn-plein:#5E530E; --k-btn-plein-texte:#FDFCF9
+   - crème :  --k-fond:#FDFCF9; --k-texte:#222222; --k-texte-2:#5E530E; --k-doux:#8B7B60; --k-titre:#5E530E; --k-accent:#5E530E;
+              --k-filet:#EBE6DC; --k-filet-fort:#DBD1A8; --k-carte:#F3EFE5; --k-carte-bord:#E4DCC6;
+              --k-survol:#EBE6DC; --k-btn:#5E530E; --k-btn-bord:#5E530E; --k-btn-plein:#5E530E; --k-btn-plein-texte:#FDFCF9
+     (sur fond clair, message d'erreur du formulaire samedi/dimanche en #A8432A au lieu de #F2B8A0) */
+
+/* =====================================================================
+   Palettes
+   --k-fond        fond de la section
+   --k-texte       texte principal (heure de début, cours, jour choisi)
+   --k-texte-2     surtitres (« Réserver en ligne », date du jour)
+   --k-doux        texte secondaire (heure de fin, professeure, jours non choisis)
+   --k-titre       titres de période (Matin, Midi, Soir)
+   --k-accent      soulignement du jour choisi
+   --k-filet       filets entre les créneaux
+   --k-filet-fort  filet en tête de colonne, sous la semaine
+   --k-carte       fond d'un créneau (une teinte à part du fond, pour le contraste)
+   --k-carte-bord  contour d'un créneau
+   --k-survol      fond d'un créneau survolé
+   --k-btn / --k-btn-bord        texte et contour du bouton « Réserver »
+   --k-btn-plein / --k-btn-plein-texte   bouton rempli au survol du créneau
+   ===================================================================== */
+.bsport[data-habillage="olive-fonce"]{
+  --k-fond:#453D0A; --k-texte:#FDFCF9; --k-texte-2:#DBD1A8; --k-doux:#C2B88F; --k-titre:#FDFCF9; --k-accent:#FDFCF9;
+  --k-filet:rgba(253,252,249,.14); --k-filet-fort:rgba(253,252,249,.4); --k-carte:#5A5017; --k-carte-bord:rgba(253,252,249,.08); --k-survol:#685D1F;
+  --k-btn:#FDFCF9; --k-btn-bord:rgba(253,252,249,.6); --k-btn-plein:#FDFCF9; --k-btn-plein-texte:#453D0A}
+
+/* =====================================================================
+   Mise en page commune
+   ===================================================================== */
+/* Recherche et filtres inutiles (une seule activité, une professeure, un studio) ; lieu et points des jours masqués */
+.bsport[data-habillage] .bsport-widget[id] .bs-marketplace-filters__list{display:none!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__left__extra,
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__left__establishment{display:none!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__header__date__dots{display:none!important}
+
+.bsport[data-habillage]{background:var(--k-fond)!important}
+.bsport[data-habillage] .eyebrow{color:var(--k-texte-2)}
+.bsport[data-habillage] .bsport-widget .bs-setup-variable{--color-background-paper:transparent;--color-divider:var(--k-filet)}
+.bsport[data-habillage] .bsport-widget[id] .bs-calendar,
+.bsport[data-habillage] .bsport-widget[id] .bs-setup-variable{background:transparent!important}
+
+/* Semaine : en texte simple */
+.bsport[data-habillage] .bsport-widget[id] .bs-calendar__datePicker{justify-content:flex-start!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-marketplace-date-picker{background:transparent!important;border:0!important;padding:0!important;justify-content:flex-start!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-marketplace-date-picker__placeholder{font-weight:400!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-marketplace-date-picker__placeholder:not([data-libelle]){font-size:22px!important}
+.bsport[data-habillage] .bsport-widget{--bs-date-taille:22px}
+.bsport[data-habillage] .bsport-widget[id] .bs-marketplace-date-picker__placeholder,
+.bsport[data-habillage] .bsport-widget[id] .bs-marketplace-date-picker__left-button,
+.bsport[data-habillage] .bsport-widget[id] .bs-marketplace-date-picker__right-button{color:var(--k-texte)!important;background:transparent!important}
+
+/* Jours : même fond que les cartes de séance ; le jour choisi a un contour de la couleur d'accent */
+.bsport[data-habillage] .bsport-widget[id] .bs-week-list{border:0!important;column-gap:8px!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__header__date--is-abled{padding:10px 0 12px!important;background:var(--k-carte)!important;border:1px solid var(--k-carte-bord)!important;border-radius:12px!important;box-shadow:none!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__header__date--is-abled:hover{background:var(--k-survol)!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__header__date--is-abled:has(.bs-week__header__date__monthDay--is-selected){border-color:var(--k-accent)!important;box-shadow:inset 0 0 0 1px var(--k-accent)!important}
+@media (max-width:640px){
+  .bsport[data-habillage] .bsport-widget[id] .bs-week-list{column-gap:4px!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-week__header__date--is-abled{padding:8px 0!important;border-radius:10px!important}
+}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__header__date__weekDay{color:var(--k-doux)!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__header__date__monthDay{color:var(--k-texte)!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__header__date__weekDay--is-selected{color:var(--k-accent)!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__header__date__monthDay--is-selected{background:transparent!important;color:var(--k-accent)!important;font-weight:600!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__listMode__content,
+.bsport[data-habillage] .bsport-widget[id] .bs-week__listMode__content__day,
+.bsport[data-habillage] .bsport-widget[id] .bs-week__listMode__content__day__offers{border:0!important;box-shadow:none!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-week__listMode__content__day__date{color:var(--k-texte-2)!important}
+
+/* Créneaux : lignes séparées par un filet, heure en grand à gauche */
+/* Chaque créneau est une carte d'une teinte différente du fond (contraste), espacée des autres */
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item{background:var(--k-carte)!important;border:1px solid var(--k-carte-bord)!important;border-radius:14px!important;padding:0 16px!important;margin:0 0 10px!important;transition:background-color .15s!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item:hover{background:var(--k-survol)!important;transform:none!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content{background:transparent!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer{flex-direction:row!important;align-items:center!important;gap:12px!important;padding:16px 0!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__left{
+  flex:1 1 auto!important;min-width:0!important;display:grid!important;grid-template-columns:70px 1fr!important;column-gap:14px!important;row-gap:2px!important;align-items:center!important;text-align:left!important;justify-items:start!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__left__time--without-date{grid-column:1!important;grid-row:1 / span 2!important;margin:0!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:0!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__start-time{font-size:24px!important;font-weight:400!important;line-height:1.1!important;color:var(--k-texte)!important;white-space:nowrap!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__time-separator{display:none!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__end-time-duration{font-size:12.5px!important;font-weight:400!important;color:var(--k-doux)!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__left__title{grid-column:2!important;font-size:16px!important;font-weight:400!important;margin:0!important;color:var(--k-texte)!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__left__coach{grid-column:2!important;margin:0!important;font-size:13.5px!important;color:var(--k-doux)!important;white-space:nowrap!important;text-transform:capitalize}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__right__top{display:none!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__right{flex:none!important;width:auto!important;justify-content:center!important}
+
+/* Bouton « Réserver » : contour. Il grandit quand la souris arrive sur le créneau et reprend sa taille
+   quand elle s'en va (une seule fois, pas en boucle) ; il ne se remplit que sur le bouton lui-même. */
+.bsport[data-habillage] .bsport-widget[id] .bs-book-button-card{background:transparent!important;border:1.5px solid var(--k-btn-bord)!important;
+  transform:scale(1)!important;transition:transform .22s ease-out,background-color .15s,border-color .15s!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-book-button-card__inner{padding:9px 16px!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-book-button-card__inner__text{color:var(--k-btn)!important;font-weight:500!important;transition:color .15s!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item:hover .bs-book-button-card,
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item:focus-visible .bs-book-button-card{transform:scale(1.08)!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-book-button-card:hover{background:var(--k-btn-plein)!important;border-color:var(--k-btn-plein)!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-book-button-card:hover .bs-book-button-card__inner__text{color:var(--k-btn-plein-texte)!important}
+@media (prefers-reduced-motion:reduce){
+  .bsport[data-habillage] .bsport-widget[id] .bs-book-button-card{transition:background-color .15s,border-color .15s!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item:hover .bs-book-button-card,
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item:focus-visible .bs-book-button-card{transform:none!important}
+}
+
+
+/* =====================================================================
+   Périodes en colonnes : Matin | Midi | Soir
+   commun/bsport-periodes.js pose data-periode, data-periode-nom et data-periode-debut sur chaque créneau ;
+   le titre de la période est le ::before du premier créneau de chaque période.
+   grid-auto-flow dense : chaque créneau remonte à la première ligne libre de sa colonne.
+   ===================================================================== */
+.bsport[data-habillage] .bsport-widget[id] .bs-week__listMode__content__day__offers{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-flow:row dense!important;column-gap:28px!important;row-gap:0!important;padding-top:48px!important;align-items:start!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode="matin"]{grid-column:1!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode="midi"]{grid-column:2!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode="soir"]{grid-column:3!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]{position:relative!important;overflow:visible!important}
+.bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]::before{
+  content:attr(data-periode-nom)!important;position:absolute!important;pointer-events:none!important;display:block!important;
+  font-family:var(--bs-font)!important;white-space:nowrap!important;text-align:left!important;
+  left:6px!important;top:-38px!important;font-size:20px!important;font-weight:400!important;color:var(--k-titre)!important}
+
+/* Sous 1280 px, trois colonnes sont trop étroites (le bouton recouvrait le texte) : les périodes s'empilent */
+@media (max-width:1279px){
+  .bsport[data-habillage] .bsport-widget[id] .bs-week__listMode__content__day__offers{grid-template-columns:1fr!important;padding-top:0!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode]{grid-column:1!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]{margin-top:56px!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut].bs-offer-list-item--first{margin-top:44px!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]::before{left:4px!important;top:-36px!important}
+}
+/* Mobile : petit titre en capitales au-dessus de chaque période */
+@media (max-width:640px){
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]{margin-top:52px!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut].bs-offer-list-item--first{margin-top:36px!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]::before{
+    left:0!important;top:-30px!important;font-size:13px!important;font-weight:600!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__left{grid-template-columns:62px 1fr!important;column-gap:12px!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__start-time{font-size:17px!important;font-weight:500!important}
+  .bsport[data-habillage] .bsport-widget[id] .bs-marketplace-date-picker__placeholder:not([data-libelle]){font-size:17px!important}
+  .bsport[data-habillage] .bsport-widget{--bs-date-taille:16px}
+}
+@media (max-width:360px){
+  .bsport[data-habillage] .bsport-widget{--bs-date-taille:14px}
+}
+
+
+/* =====================================================================
+   Samedi / dimanche sans cours (commun/bsport-jour-ferme.js) : bloc placé dans le calendrier, sous les jours.
+   ===================================================================== */
+.bsport[data-jour-ferme] .bsport-widget[id] .bs-calendar--no-offer,
+.bsport[data-jour-ferme] .bsport-widget[id] .bs-week__listMode__content{display:none!important}
+.jour-ferme[hidden],.jour-ferme__form[hidden]{display:none!important}
+.jour-ferme{margin:40px auto 0;padding:36px 40px;border-radius:18px;background:var(--k-carte,#F3EFE5);border:1px solid var(--k-carte-bord,#E4DCC6);
+  display:grid;justify-items:center;text-align:center;gap:12px;max-width:640px;box-sizing:border-box;width:100%;font-family:var(--bs-font,"Inter",sans-serif);color:var(--k-texte,#222);
+  animation:bsPatioApparition .38s cubic-bezier(.2,.7,.3,1) backwards}
+.jour-ferme__surtitre{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--k-texte-2,#5E530E)}
+.jour-ferme__titre{margin:0;font-size:clamp(24px,2.6vw,32px);font-weight:400;line-height:1.15;color:var(--k-texte,#222)}
+.jour-ferme__texte{margin:0 auto;font-size:15.5px;line-height:1.55;color:var(--k-doux,#8B7B60);max-width:46ch}
+.jour-ferme__btn,.jour-ferme__form button{border:0;border-radius:999px;background:var(--k-btn-plein,#5E530E);color:var(--k-btn-plein-texte,#FDFCF9);
+  font:500 15px/1 var(--bs-font,"Inter",sans-serif);min-height:48px;padding:0 26px;cursor:pointer;transition:transform .2s ease-out,opacity .15s}
+.jour-ferme__btn{margin-top:8px}
+.jour-ferme__btn:hover:not(:disabled),.jour-ferme__form button:hover{transform:scale(1.05)}
+.jour-ferme__btn:disabled{background:transparent;color:var(--k-texte,#222);border:1.5px solid var(--k-btn-bord,#5E530E);cursor:default}
+.jour-ferme__btn:focus-visible,.jour-ferme__form button:focus-visible,.jour-ferme__form input:focus-visible{outline:2px solid var(--k-accent,#5E530E);outline-offset:3px}
+.jour-ferme__form{display:grid;gap:10px;width:100%;margin-top:14px;padding-top:22px;border-top:1px solid var(--k-carte-bord,#E4DCC6)}
+.jour-ferme__form label{font-size:15px;font-weight:500;color:var(--k-texte,#222)}
+.jour-ferme__ligne{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.jour-ferme__form input{flex:1 1 220px;min-width:0;min-height:48px;padding:0 18px;border-radius:999px;border:1px solid var(--k-btn-bord,#C2B88F);
+  background:var(--k-fond,#FDFCF9);color:var(--k-texte,#222);font:400 16px var(--bs-font,"Inter",sans-serif)}
+.jour-ferme__form input::placeholder{color:var(--k-doux,#8B7B60);opacity:.8}
+.jour-ferme__msg{font-size:14px;min-height:1em;margin:0;color:var(--k-texte-2,#5E530E)}
+.jour-ferme__msg[data-etat="erreur"]{color:#F2B8A0}
+@media (max-width:640px){
+  .jour-ferme{margin:28px auto 0;padding:26px 20px}
+  .jour-ferme__ligne button{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){.jour-ferme{animation:none}.jour-ferme__btn:hover:not(:disabled),.jour-ferme__form button:hover{transform:none}}

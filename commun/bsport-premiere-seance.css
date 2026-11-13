@@ -1,0 +1,124 @@
+/* Habillage du widget « Cartes » bsport pour l'offre première séance (Tarifs, 4-S25).
+   Proposition A « Bandeau » retenue le 13/11 : bandeau olive du site, le bouton remplacé par un coupon clair (le widget).
+   On ne cible que les classes « bs-… » (fixes), plus la structure et :has() ; jamais jss… ni Mui….
+   Préfixe « .offre-bs .bsport-widget.bsport-widget[id] » + !important : plus fort que les règles de bsport
+   ([id*="bsport-widget"] .cleanslate .bs-… !important), y compris dans leurs requêtes de conteneur.
+
+   Archive des propositions non retenues (jamais commitées), pour pouvoir y revenir.
+   Abréviations : « B » = .offre-bs[data-habillage="b"], « C » = .offre-bs[data-habillage="c"], « W » = .bsport-widget[id].
+   Elles supposaient l'ancienne zone de choix (data-habillage) ; C utilisait aussi une liste
+   <ol class="offre-bs-etapes"> de 3 étapes (acheter en ligne / choisir ses créneaux dans le planning / venir en tenue confortable),
+   retirée du HTML.
+   B « Ticket » (texte centré, ticket clair pleine largeur en une ligne, talon à droite avec encoches) :
+   B .offre-bs-card{display:grid;justify-items:center;gap:28px;text-align:center} B .offre-bs-txt{justify-items:center} B .offre-bs-badge{justify-self:center;background:var(--olive);color:var(--paper)} B h2{color:var(--ink)} B h2 em{color:var(--olive)} B .offre-bs-txt p{color:var(--brown);font-size:17px} B .bsport-widget[id]{width:100%;max-width:1040px} B W .bs-pass-card{position:relative!important;background:var(--bs-paper)!important; border:0!important;border-radius:18px!important;overflow:visible!important} B W .bs-pass-card:hover{box-shadow:0 10px 30px rgba(87,67,37,.12)!important} B W .bs-pass-card-content{flex-direction:row!important;align-items:stretch!important;padding:0!important;text-align:left!important} B W .bs-paymentpack-card__grid{grid-template-columns:1fr auto!important;align-items:center!important;column-gap:32px!important;padding:28px 32px 28px 36px!important} B W .bs-paymentpack-card__grid > .bs-generic-card__content__grid__item:nth-child(2){ flex-direction:row-reverse!important;align-items:center!important;justify-content:flex-end!important;gap:20px!important} B W .bs-paymentpack-card__title{color:var(--bs-ink)!important;font-size:24px!important;font-weight:400!important;margin:0 0 2px!important} B W .bs-paymentpack-card__subtitle{display:inline-flex!important;color:var(--bs-brown)!important;font-size:12px!important;font-weight:600!important; text-transform:uppercase!important;letter-spacing:.06em!important} B W .bs-paymentpack-card__description{color:var(--bs-muted)!important;font-size:14.5px!important;margin:6px 0 0!important} B W .bs-paymentpack-card__validity{flex:none!important;background:transparent!important;border:1px solid var(--bs-tan-2)!important;border-radius:999px!important;padding:4px 10px!important} B W .bs-paymentpack-card__validity__content{font-size:13px!important;color:var(--bs-brown)!important;white-space:nowrap!important} B W .bs-price__container{color:var(--bs-ink)!important;font-size:40px!important;font-weight:300!important;line-height:1!important;white-space:nowrap!important} B W .bs-paymentpack-card__footer{position:relative!important;width:auto!important;flex:none!important;flex-direction:column-reverse!important; justify-content:center!important;align-items:stretch!important;gap:4px!important;padding:24px 32px!important;border-left:2px dashed var(--bs-tan-2)!important;background:var(--bs-cream)!important;border-radius:0 18px 18px 0!important} B W .bs-paymentpack-card__footer::before, B W .bs-paymentpack-card__footer::after{content:""!important;position:absolute!important;left:-13px!important;width:24px!important;height:24px!important;border-radius:50%!important;background:var(--sand)!important} B W .bs-paymentpack-card__footer::before{top:-12px!important} B W .bs-paymentpack-card__footer::after{bottom:-12px!important} B W .bs-paymentpack-card__right-button{background:var(--bs-olive)!important} B W .bs-paymentpack-card__right-button:hover{background:var(--bs-olive-d)!important} B W .bs-paymentpack-card__right-button .bs-button__text{color:var(--bs-paper)!important;text-align:center!important} B W .bs-paymentpack-card__left-button{margin:0!important;height:40px!important;justify-content:center!important} B W .bs-paymentpack-card__left-button__content{color:var(--bs-brown)!important;font-size:13.5px!important} B W .bs-paymentpack-card__left-button__icon{display:none!important} B W div:has(> a[href*="bsport.io"]){justify-content:center!important} @media (max-width:860px){ B W .bs-pass-card-content{flex-direction:column!important} B W .bs-paymentpack-card__grid{grid-template-columns:1fr!important;row-gap:18px!important;padding:24px 22px!important; border-radius:18px 18px 0 0!important} B W .bs-paymentpack-card__grid > .bs-generic-card__content__grid__item:nth-child(2){ grid-column:1!important;grid-row:2!important;flex-direction:row!important;justify-content:space-between!important;gap:12px!important} B W .bs-price__container{font-size:34px!important} B W .bs-paymentpack-card__footer{border-left:0!important;border-top:2px dashed var(--bs-tan-2)!important;border-radius:0 0 18px 18px!important;padding:20px 22px 14px!important} B W .bs-paymentpack-card__footer::before, B W .bs-paymentpack-card__footer::after{top:-13px!important;bottom:auto!important} B W .bs-paymentpack-card__footer::before{left:-12px!important} B W .bs-paymentpack-card__footer::after{left:auto!important;right:-12px!important} }
+   C « Affiche » (deux colonnes : texte + étapes à gauche, carte verticale olive foncé, prix en très grand) :
+   C .offre-bs-card{display:grid;grid-template-columns:1fr minmax(0,400px);gap:64px;align-items:center; background:var(--paper);border-radius:22px;padding:48px 48px 48px 56px} C .offre-bs-txt{gap:16px} C .offre-bs-badge{background:var(--sand);color:var(--olive-d)} C h2{font-size:clamp(32px,4vw,52px)} C h2 em{color:var(--olive)} C .offre-bs-txt p{color:var(--brown);font-size:17px;max-width:520px} C .offre-bs-etapes{display:grid;gap:12px;list-style:none;margin:10px 0 0;padding:20px 0 0;border-top:1px solid var(--sand);counter-reset:etape} C .offre-bs-etapes li{counter-increment:etape;position:relative;min-height:30px;padding:4px 0 0 44px;font-size:15.5px;line-height:1.45;color:var(--ink)} C .offre-bs-etapes li::before{content:counter(etape);position:absolute;left:0;top:0;display:grid;place-items:center;width:30px;height:30px;box-sizing:border-box;border-radius:50%; border:1.5px solid var(--olive);color:var(--olive);font-size:13.5px;font-weight:600} C .offre-bs-etapes a{color:var(--olive);text-underline-offset:3px} C W .bs-pass-card{background:var(--bs-olive-d)!important;border:0!important;border-radius:20px!important} C W .bs-pass-card:hover{background:#3d360a!important} C W .bs-pass-card-content{padding:32px 30px 26px!important} C W .bs-paymentpack-card__grid{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:0!important} C W .bs-paymentpack-card__grid > .bs-generic-card__content__grid__item{display:contents!important} C W .bs-price__container{order:-2!important;color:var(--bs-paper)!important;font-size:64px!important;font-weight:300!important;line-height:1!important;margin:0 0 6px!important} C W .bs-paymentpack-card__subtitle{order:-1!important;color:var(--bs-tan-2)!important;font-size:13px!important;font-weight:600!important; text-transform:uppercase!important;letter-spacing:.06em!important;margin-bottom:24px!important} C W .bs-paymentpack-card__title{color:var(--bs-paper)!important;font-size:22px!important;font-weight:400!important;margin:0 0 4px!important; padding-top:22px!important;border-top:1px solid rgba(219,209,168,.3)!important;width:100%!important} C W .bs-paymentpack-card__description{color:var(--bs-sand)!important;opacity:.8;font-size:14.5px!important;margin:4px 0 14px!important} C W .bs-paymentpack-card__validity{width:auto!important;align-self:flex-start!important;background:rgba(219,209,168,.16)!important;border-radius:999px!important;padding:4px 10px!important;margin-bottom:26px!important} C W .bs-paymentpack-card__validity__content{color:var(--bs-tan-2)!important;font-size:13px!important;white-space:nowrap!important} C W .bs-paymentpack-card__footer{flex-direction:column-reverse!important;align-items:stretch!important;gap:6px!important} C W .bs-paymentpack-card__right-button{background:var(--bs-tan-2)!important;height:52px!important} C W .bs-paymentpack-card__right-button:hover{background:var(--bs-paper)!important} C W .bs-paymentpack-card__right-button .bs-button__text{color:var(--bs-olive-d)!important;text-align:center!important;font-weight:600!important} C W .bs-paymentpack-card__left-button{margin:0!important;height:40px!important;justify-content:center!important} C W .bs-paymentpack-card__left-button:hover{background:rgba(253,252,249,.08)!important} C W .bs-paymentpack-card__left-button__content{color:var(--bs-tan-2)!important;font-size:13.5px!important} C W div:has(> a[href*="bsport.io"]){justify-content:center!important} @media (max-width:1000px){ C .offre-bs-card{grid-template-columns:1fr;gap:32px;padding:36px 24px 24px} } @media (max-width:640px){ C .offre-bs-card{padding:30px 18px 18px;border-radius:18px} C W .bs-pass-card-content{padding:26px 22px 18px!important} C W .bs-price__container{font-size:54px!important} }
+*/
+
+/* =====================================================================
+   Notre texte autour du widget
+   ===================================================================== */
+.offre-bs{background:var(--sand)}
+.offre-bs .wrap{padding-block:0 36px}
+.offre-bs-txt{display:grid;gap:12px;align-content:start;min-width:0}
+.offre-bs-badge{justify-self:start;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.offre-bs h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1}
+.offre-bs h2 em{font-style:italic;font-weight:300}
+.offre-bs .bsport-widget{min-width:0}
+
+/* =====================================================================
+   Widget : réglages communs
+   ===================================================================== */
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-page,
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-page *{font-family:var(--bs-font)!important;letter-spacing:normal!important}
+
+/* Une seule offre : pas de titres « Passes » / « Unitaire », pas de marges du widget */
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__title,
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__title--with-divider{display:none!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-page__list__filters__container{padding:0!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__container{
+  display:block!important;grid-template-columns:none!important;grid-template-rows:none!important}
+
+/* Le widget ne sait pas afficher un seul pack : on lui demande la catégorie « Unitaire »
+   (séance à l'unité + pack première séance) et on ne garde que la carte du pack 817521,
+   repérée par l'id que bsport pose sur chaque carte (payment-pack-button-container-<id>) : indépendant de l'ordre. */
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__card__button:not(#payment-pack-button-container-817521){display:none!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__card__button{
+  display:block!important;width:100%!important;text-align:left!important;cursor:pointer!important}
+
+/* Carte : hauteur libre, contenu toujours complet (bsport masque description et boutons sous 750 px) */
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-card{height:auto!important;width:100%!important;box-shadow:none!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__grid{min-height:0!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__description{
+  display:block!important;max-height:none!important;overflow:visible!important;-webkit-line-clamp:unset!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__footer{display:flex!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__price-icon{display:none!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-price__container{font-variant-numeric:tabular-nums}
+
+/* Boutons : texte normal (pas de capitales), pilules */
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__footer .bs-button__text{text-transform:none!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button{
+  border-radius:999px!important;height:48px!important;padding:0 24px!important;transition:background .15s!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button .bs-button__text{font-size:15px!important;font-weight:500!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__left-button{border-radius:999px!important;height:48px!important;margin-right:8px!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__left-button__content{font-size:14px!important;font-weight:500!important;gap:2px!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__left-button__icon{width:20px!important;height:20px!important}
+
+/* « Powered by » : plus discret */
+.offre-bs .bsport-widget.bsport-widget[id] a[href*="bsport.io"]{padding:10px 0 0!important;opacity:.75}
+.offre-bs .bsport-widget.bsport-widget[id] div:has(> div > a[href*="bsport.io"]){min-height:0!important;height:auto!important}
+
+/* =====================================================================
+   Bandeau : le bandeau olive du site, le bouton remplacé par un
+   coupon clair (le widget) posé à droite. Empilé sur mobile.
+   ===================================================================== */
+.offre-bs .offre-bs-card{position:relative;background:var(--olive);color:var(--paper);border-radius:22px;
+  display:grid;grid-template-columns:1fr minmax(0,440px);gap:48px;align-items:center;padding:36px 36px 36px 48px}
+.offre-bs .offre-bs-badge{position:absolute;top:-13px;left:48px;background:var(--tan-2);color:var(--olive-d)}
+.offre-bs h2 em{color:var(--tan-2)}
+.offre-bs .offre-bs-txt p{color:var(--sand);max-width:440px}
+/* Le coupon */
+.offre-bs .bsport-widget.bsport-widget[id]{background:var(--paper);border-radius:18px;padding:22px 22px 10px;box-shadow:0 18px 40px rgba(30,25,0,.22)}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-card{background:transparent!important;border:0!important;border-radius:0!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-pass-card-content{padding:0!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__grid{grid-template-columns:1fr auto!important;column-gap:16px!important;
+  padding-bottom:18px!important;border-bottom:1.5px dashed var(--tan)!important;margin-bottom:18px!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__title{color:var(--bs-ink)!important;font-size:21px!important;font-weight:500!important;margin:0 0 4px!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__subtitle{color:var(--bs-olive)!important;font-size:14px!important;font-weight:600!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__description{color:var(--bs-muted)!important;font-size:14px!important;margin:6px 0 0!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity{background:var(--bs-sand)!important;color:var(--bs-brown)!important;border-radius:999px!important;padding:3px 8px!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity__content{font-size:12.5px!important;font-weight:500!important;white-space:nowrap!important;color:var(--bs-brown)!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-price__container{color:var(--bs-olive-d)!important;font-size:34px!important;font-weight:300!important;line-height:1.1!important;margin-top:14px!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__footer{align-items:center!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__left-button__content{color:var(--bs-olive)!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button{flex:1!important;background:var(--bs-olive)!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button:hover{background:var(--bs-olive-d)!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button .bs-button__text{color:var(--bs-paper)!important;text-align:center!important}
+
+@media (max-width:1000px){
+  .offre-bs .offre-bs-card{grid-template-columns:1fr;gap:28px;padding:36px 24px 24px}
+  .offre-bs .offre-bs-badge{left:24px}
+}
+@media (max-width:640px){
+  .offre-bs .bsport-widget.bsport-widget[id]{padding:18px 18px 8px}
+  .offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__grid{grid-template-columns:1fr!important;row-gap:12px!important}
+  .offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__grid > .bs-generic-card__content__grid__item:nth-child(2){
+    grid-column:1!important;grid-row:2!important;flex-direction:row-reverse!important;align-items:center!important;justify-content:space-between!important}
+  .offre-bs .bsport-widget.bsport-widget[id] .bs-price__container{font-size:30px!important;margin:0!important}
+  .offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__footer{flex-direction:column-reverse!important;align-items:stretch!important;gap:4px!important}
+  .offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__left-button{margin:0!important;height:44px!important;justify-content:center!important}
+}
+
+/* Pastille de validité : largeur du texte seulement (bsport l'étire) */
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity{flex:none!important;width:max-content!important;min-width:0!important;max-width:100%!important}
+.offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity__content{width:auto!important}
+@media (max-width:640px){
+  .offre-bs .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button{flex:none!important;height:48px!important}
+}
+
+/* Hauteur du coupon réservée avant que bsport le dessine : sans ça, la section grandit d'un coup vers 2,5 s
+   (301 → 397 px sur ordinateur, 334 → 648 px sur mobile) et fait sauter la page, notamment à l'arrivée
+   sur tarifs/#offre-premiere-seance depuis l'accueil. Valeurs mesurées le 14/11 sur le coupon final. */
+.offre-bs #bsport-widget-premiere-seance{min-height:253px}
+@media (max-width:640px){.offre-bs #bsport-widget-premiere-seance{min-height:340px}}
+@media (max-width:340px){.offre-bs #bsport-widget-premiere-seance{min-height:360px}}

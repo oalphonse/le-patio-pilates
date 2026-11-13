@@ -12,13 +12,53 @@
 .langue:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
 .langue:focus-visible{outline:2px solid var(--tan-2);outline-offset:2px;border-radius:6px}
 
-/* « Mon compte » : icône à côté de Réserver (ouvre la connexion bsport) */
-.compte{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:var(--paper);opacity:.9;flex:none}
+/* Espace client bsport (voir entete.js) : à côté de « Réserver », une icône bonhomme.
+   .fab-place contient d'abord un lien bonhomme (.compte, secours sans JavaScript), remplacé par le bouton
+   flottant de bsport dès qu'il est chargé (.fab-place.fab-ok). */
+.fab-place{position:relative;display:inline-flex;width:44px;height:44px;flex:none}
+.compte{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;
+  color:var(--paper);opacity:.9;text-decoration:none;transition:background-color .15s,opacity .15s}
 .compte svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .compte:hover{opacity:1;background:rgba(253,252,249,.12)}
 .compte:focus-visible{outline:2px solid var(--tan-2);outline-offset:2px}
-.compte[aria-busy="true"]{opacity:.5;cursor:progress}
-/* Le bouton de connexion bsport, monté hors de l'écran : seule sa fenêtre s'affiche */
+.fab-place.fab-ok .compte{display:none}
+
+/* Bloc du bouton flottant bsport, superposé à .fab-place (il reste dans <body>, voir entete.js). bsport le fixe en
+   bas à gauche (colonne : 5 entrées du menu puis le rond). On le place sur l'emplacement de l'en-tête, rond en premier
+   (order:-1) et entrées en dessous : le menu se déplie vers le bas, par-dessus la page.
+   Pas de classes fixes chez bsport (jss…, Mui…) : on cible par la structure. */
+.fab-bsport{position:fixed!important;left:var(--fab-x,-10000px)!important;top:var(--fab-y,0px)!important;right:auto!important;bottom:auto!important;
+  width:var(--fab-l,44px)!important;height:44px!important;margin:0!important;padding:0!important;display:flex!important;flex-direction:column!important;
+  align-items:center!important;gap:8px!important;overflow:visible!important;z-index:60!important}
+.fab-bsport > button:not([title]),
+.fab-bsport > button[title="Mon espace"]{order:-1!important;flex:none!important;width:100%!important;height:44px!important;min-width:0!important;
+  margin:0!important;padding:0!important;border-radius:999px!important;background:transparent!important;box-shadow:none!important;color:var(--paper)!important;
+  opacity:.9;transition:background-color .15s,opacity .15s!important}
+.fab-bsport > button[title="Mon espace"]:hover{opacity:1;background:rgba(253,252,249,.12)!important}
+.fab-bsport > button[title="Mon espace"]:focus-visible{outline:2px solid var(--tan-2)!important;outline-offset:2px!important}
+.fab-bsport > button[title="Mon espace"] > div{width:100%!important;height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:transparent!important;box-shadow:none!important}
+/* compteurs (réservations à venir, articles du panier) : pastille olive au lieu du rouge de bsport */
+.fab-bsport [class*="MuiBadge-badge"]{background:var(--olive)!important;color:var(--paper)!important;box-shadow:0 0 0 2px var(--paper)!important}
+/* icône de bsport (maison / personne) remplacée par notre bonhomme */
+.fab-bsport > button[title="Mon espace"] > div > svg{display:none!important}
+.fab-bsport > button[title="Mon espace"] > div::before{content:"";width:22px;height:22px;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7'/%3E%3C/svg%3E") center/contain no-repeat}
+/* entrées du menu (Réservations, Panier, Profil, Souscriptions, Déconnexion) : pastilles crème sous le bonhomme */
+.fab-bsport > button[title]:not([title="Mon espace"]){flex:none!important;width:40px!important;height:40px!important;border-radius:999px!important;
+  background:var(--paper)!important;color:var(--olive-d)!important;box-shadow:0 6px 18px rgba(0,0,0,.18)!important}
+.fab-bsport > button[title]:not([title="Mon espace"]):hover{background:var(--tan-2)!important}
+/* bsport dessine en plus son propre rond blanc à ombre DANS chaque entrée : on l'efface (sinon deux ronds décalés) */
+.fab-bsport > button[title]:not([title="Mon espace"]){display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important}
+.fab-bsport > button[title]:not([title="Mon espace"]) > div,
+.fab-bsport > button[title]:not([title="Mon espace"]) > span[class*="MuiBadge-root"],
+.fab-bsport > button[title]:not([title="Mon espace"]) > span[class*="MuiBadge-root"] > div{
+  position:static!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;height:100%!important;margin:0!important;background:transparent!important;box-shadow:none!important}
+.fab-bsport > button[title]:not([title="Mon espace"]) > span[class*="MuiBadge-root"]{position:relative!important}
+.fab-bsport > button[title]:not([title="Mon espace"]) svg{width:18px!important;height:18px!important}
+
+/* Les widgets bsport de service sont montés hors de l'écran : seules leurs fenêtres s'affichent */
 .compte-widget{position:fixed!important;left:-10000px;top:0;width:240px;height:80px;overflow:hidden}
 
 /* Bouton Menu */
@@ -75,6 +115,31 @@
   .menu-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .entete .head-droite .btn{padding:0 13px}
   .menu-btn{min-width:44px;justify-content:flex-start}
+}
+/* Petit mobile : à droite, EN + compte + Réserver prennent ~180 px, plus que le tiers de l'écran.
+   Avec trois colonnes égales, ce bloc débordait sur le logo. On donne à chaque côté la place qu'il lui faut
+   et le logo se centre dans l'espace qui reste. */
+@media (max-width:540px){
+  .site-header .wrap.entete{grid-template-columns:auto minmax(0,1fr) auto;column-gap:8px}
+  .entete .logo{justify-self:center}
+}
+/* Petits écrans : EN + compte + panier + Réserver serrés (sans espace entre eux), sinon ils passent sur le logo */
+@media (max-width:420px){
+  .entete .head-droite{gap:0}
+  .langue{min-width:32px;padding:0 2px}
+  .fab-place,.compte{width:40px}
+  .entete .head-droite .btn{padding:0 12px}
+}
+/* Très petits écrans (320–360 px) : logo réduit (la taille de l'image est fixée en px sur mobile, d'où transform) */
+@media (max-width:360px){
+  .entete .logo{transform:scale(.8)}
+  .fab-place,.compte{width:38px}
+  .entete .head-droite .btn{padding:0 10px;font-size:13.5px}
+}
+@media (max-width:340px){
+  .entete .logo{transform:scale(.6)}
+  .langue{min-width:30px}
+  .fab-place,.compte{width:36px}
 }
 /* En-tête mobile sur 2 lignes (109 px) : les ancres (#les-cours, #etape-1, #creneaux…) ne passent plus dessous */
 @media (max-width:860px){

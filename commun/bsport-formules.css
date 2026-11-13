@@ -1,0 +1,387 @@
+/* Habillage des widgets Cartes (packs) et Abonnement de bsport : Tarifs, section Formules (4-S20).
+   « Carte des prix » (proposition A) retenue le 14/11 : séances et forfaits en lignes à gauche,
+   abonnements dans un encadré olive à droite, les deux cartes à la même hauteur sur ordinateur.
+   On ne cible que les classes « bs-… » (fixes), les id posés par bsport (payment-pack-button-container-<id>,
+   contract-button-container-<id>) et la structure ; jamais jss… ni Mui….
+   Préfixe « .fo .bsport-widget.bsport-widget[id] » + !important : plus fort que les règles de bsport
+   ([id*="bsport-widget"] .cleanslate .bs-… !important, y compris leurs requêtes de conteneur
+   bsPassPage / bsContractPage) et que commun/bsport.css.
+
+   Archive des propositions non retenues (jamais commitées), pour pouvoir y revenir.
+   Abréviations : « B » = .fo[data-habillage="b"], « C » = .fo[data-habillage="c"], « D » = .fd[data-habillage],
+   « W » = .bsport-widget[id], « ! » = !important. Elles supposaient l'ancienne zone de choix (data-habillage)
+   et ajoutaient leurs règles au bloc commun ci-dessous.
+   B « Vitrine » : les 5 cartes en tuiles côte à côte (prix en grand, bouton plein), séance à l'unité en pointillés
+   (bandeau pleine largeur sur mobile) ; abonnements en 2 cartes olive / olive foncé sur une bande sable, avantages à gauche.
+   B .fo-corps{gap:56px}
+   B .fo-packs .fo-txt{justify-items:center;text-align:center}
+   B .fo-abos{grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:40px;align-items:center;background:var(--sand);border-radius:24px;padding:40px}
+   B W .bs-pass-page__list{display:grid!;grid-template-columns:repeat(5,minmax(0,1fr))!;gap:14px!}
+   B W .bs-pass-page__list > div:not([class*="bs-"]),B W .bs-pass-page__payment__pack__list__container{display:contents!}
+   B W .bs-pass-page__payment__pack__list__title--with-divider{display:none!}
+   B W .bs-pass-page .bs-generic-card{border-radius:20px!}
+   @media (hover:hover){B W .bs-generic-card:hover{transform:translateY(-4px)!;box-shadow:0 14px 28px rgba(69,61,10,.10)!}
+   }
+   B W .bs-pass-page .bs-generic-card__content{display:flex!;flex-direction:column!;gap:22px!;padding:26px 20px 20px!;height:100%!}
+   B W .bs-paymentpack-card__grid{display:flex!;flex-direction:column!;align-items:center!;text-align:center!;gap:6px!;flex:1!}
+   B W .bs-paymentpack-card__grid > .bs-generic-card__content__grid__item{display:contents!}
+   B W .bs-paymentpack-card__title{order:1!;font-size:15px!;font-weight:600!;text-transform:uppercase!;letter-spacing:.05em!;color:var(--olive)!;text-align:center!}
+   B W .bs-pass-page .bs-price__container{order:2!;justify-content:center!;margin-top:6px!}
+   B W .bs-pass-page .bs-price__container > span{font-size:clamp(30px,2.6vw,38px)!;line-height:1.1!}
+   B W .bs-paymentpack-card__validity{order:3!;justify-content:center!}
+   B W .bs-paymentpack-card__validity__content{background:var(--cream)!;border-radius:999px!;padding:4px 12px!;font-size:12.5px!}
+   B W .bs-paymentpack-card__footer,B W .bs-contract-card__footer{width:100%!}
+   B W .bs-paymentpack-card__right-button,B W .bs-contract-card__right-button{width:100%!;justify-content:center!}
+   B W #payment-pack-817519{background:var(--cream)!;border-style:dashed!;border-color:var(--tan)!}
+   B W #payment-pack-817519 .bs-paymentpack-card__validity__content{background:var(--paper)!}
+   B W .bs-contract-page__contract__list__container{grid-template-columns:repeat(2,minmax(0,1fr))!;gap:14px!}
+   B W .bs-contract-page .bs-generic-card{background:var(--olive)!;border-color:var(--olive)!;border-radius:20px!}
+   B W .bs-contract-page__contract__button__container:last-child .bs-generic-card{background:var(--olive-d)!;border-color:var(--olive-d)!}
+   B W .bs-contract-page .bs-generic-card__content{display:flex!;flex-direction:column!;gap:22px!;padding:26px 24px 22px!}
+   B W .bs-contract-card__grid{display:flex!;flex-direction:column!;gap:10px!}
+   B W .bs-contract-card__grid > .bs-generic-card__content__grid__item{display:contents!}
+   B W .bs-contract-card__title{color:var(--tan-2)!;font-size:15px!;font-weight:500!}
+   B W .bs-contract-card__price-container{display:block!}
+   B W .bs-contract-page .bs-price__container{justify-content:flex-start!;align-items:baseline!;gap:6px!}
+   B W .bs-contract-page .bs-price__container > span{color:var(--paper)!;font-size:42px!;line-height:1.05!}
+   B W .bs-contract-page .bs-billing-interval{color:var(--tan-2)!}
+   B W .bs-contract-card__right-button{background:var(--paper)!;border-color:var(--paper)!}
+   B W .bs-contract-card__right-button .bs-button__text{color:var(--olive-d)!}
+   B W .bs-generic-card:hover .bs-contract-card__right-button{background:var(--tan-2)!;border-color:var(--tan-2)!}
+   @media (max-width:1100px){B W .bs-pass-page__list{grid-template-columns:repeat(6,minmax(0,1fr))!}
+   B W .bs-pass-page__payment__pack__list__card__button{grid-column:span 2!}
+   B W #payment-pack-button-container-817519{grid-column:span 2!}
+   B .fo-abos{grid-template-columns:1fr;gap:24px;padding:32px 28px}
+   }
+   @media (max-width:640px){B W .bs-pass-page__list{grid-template-columns:1fr 1fr!;gap:10px!}
+   B W .bs-pass-page__payment__pack__list__card__button{grid-column:auto!}
+   B W #payment-pack-button-container-817519{grid-column:1 / -1!}
+   B W #payment-pack-817519 .bs-generic-card__content{display:grid!;grid-template-columns:minmax(0,1fr) auto!;align-items:center!;gap:12px!;padding:16px 16px 16px 20px!}
+   B W #payment-pack-817519 .bs-paymentpack-card__grid{grid-column:1!;grid-row:1!;align-items:flex-start!;text-align:left!;gap:2px!}
+   B W #payment-pack-817519 .bs-paymentpack-card__title{text-align:left!}
+   B W #payment-pack-817519 .bs-price__container{justify-content:flex-start!;margin:0!}
+   B W #payment-pack-817519 .bs-price__container > span{font-size:28px!}
+   B W #payment-pack-817519 .bs-paymentpack-card__validity{justify-content:flex-start!}
+   B W #payment-pack-817519 .bs-paymentpack-card__footer{grid-column:2!;grid-row:1!;width:auto!}
+   B W #payment-pack-817519 .bs-paymentpack-card__right-button{width:auto!;padding:0 18px!}
+   B W .bs-pass-page .bs-generic-card__content{padding:20px 12px 14px!;gap:16px!}
+   B W .bs-paymentpack-card__title{font-size:13px!}
+   B W .bs-pass-page .bs-price__container > span{font-size:28px!}
+   B W .bs-paymentpack-card__right-button{padding:0 12px!}
+   B W .bs-paymentpack-card__right-button .bs-button__text{font-size:13.5px!}
+   B W .bs-contract-page__contract__list__container{grid-template-columns:1fr!;gap:10px!}
+   B W .bs-contract-page .bs-price__container > span{font-size:34px!}
+   B .fo-abos{padding:28px 16px 20px;border-radius:20px;margin-inline:-4px}
+   }
+   C « Deux temps » : deux bandes pleine largeur, texte collant à gauche, widget à droite ; tickets « prix d'abord »
+   avec filet pointillé, séance à l'unité couchée ; abonnements en cartes claires sur bande olive foncé.
+   C .wrap{padding-bottom:0}
+   C .fo-head{justify-items:start;text-align:left}
+   C .fo-corps{gap:0}
+   C .fo-bloc{grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);gap:56px;align-items:start;padding-block:48px 72px}
+   C .fo-txt{position:sticky;top:180px}
+   C .fo-txt h3{font-size:clamp(28px,2.6vw,36px);line-height:1.1}
+   C .fo-packs{border-top:1px solid var(--tan-2)}
+   C .fo-abos{background:var(--olive-d);color:var(--paper);box-shadow:0 0 0 100vmax var(--olive-d);clip-path:inset(0 -100vmax);padding-block:72px 64px}
+   C .fo-abos .eyebrow{color:var(--tan-2)}
+   C .fo-abos .fo-liste{color:var(--sand)}
+   C .fo-abos .fo-liste li::before{color:var(--tan-2)}
+   C W .bs-pass-page__list{display:grid!;grid-template-columns:repeat(2,minmax(0,1fr))!;gap:14px!}
+   C W .bs-pass-page__list > div:not([class*="bs-"]),C W .bs-pass-page__payment__pack__list__container{display:contents!}
+   C W .bs-pass-page__payment__pack__list__title--with-divider{display:none!}
+   C W #payment-pack-button-container-817519{grid-column:1 / -1!}
+   C W .bs-generic-card{border-radius:14px!;border-color:var(--tan-2)!}
+   C W .bs-generic-card__content{display:flex!;flex-direction:column!;gap:18px!;padding:24px 24px 18px!}
+   C W .bs-paymentpack-card__grid,C W .bs-contract-card__grid{display:flex!;flex-direction:column!;gap:4px!}
+   C W .bs-generic-card__content__grid > .bs-generic-card__content__grid__item{display:contents!}
+   C W .bs-price__container{order:-1!;justify-content:flex-start!;align-items:baseline!;gap:6px!;margin-bottom:6px!}
+   C W .bs-price__container > span{font-size:44px!;line-height:1!}
+   C W .bs-paymentpack-card__title,C W .bs-contract-card__title{font-size:17px!;font-weight:500!}
+   C W .bs-paymentpack-card__validity{justify-content:flex-start!}
+   C W .bs-paymentpack-card__footer,C W .bs-contract-card__footer{width:100%!;border-top:1px dashed var(--tan)!;padding-top:16px!}
+   C W #payment-pack-817519 .bs-generic-card__content{flex-direction:row!;align-items:center!;justify-content:space-between!;padding:20px 24px!}
+   C W #payment-pack-817519 .bs-paymentpack-card__grid{flex-direction:row!;flex-wrap:wrap!;align-items:baseline!;column-gap:16px!}
+   C W #payment-pack-817519 .bs-price__container{margin:0!}
+   C W #payment-pack-817519 .bs-paymentpack-card__footer{width:auto!;border:0!;padding:0!}
+   C W .bs-contract-page__contract__list__container{grid-template-columns:repeat(2,minmax(0,1fr))!;gap:14px!}
+   C W .bs-contract-page .bs-generic-card{background:var(--paper)!;border-color:var(--paper)!}
+   C W .bs-contract-page .bs-generic-card:hover{border-color:var(--tan-2)!}
+   C W .bs-contract-card__price-container{display:block!}
+   C W .bs-contract-card__right-button{width:100%!;justify-content:center!}
+   C W .bs-paymentpack-card__right-button{background:transparent!}
+   C W .bs-paymentpack-card__right-button .bs-button__text{color:var(--olive)!}
+   C W .bs-generic-card:hover .bs-paymentpack-card__right-button{background:var(--olive)!}
+   C W .bs-generic-card:hover .bs-paymentpack-card__right-button .bs-button__text{color:var(--paper)!}
+   C .fo-abos W .cleanslate > div > div:has(a[href*="bsport"]),C .fo-abos W .cleanslate > div > div:has(a[href*="bsport"]) *{color:var(--tan-2)!}
+   @media (max-width:1000px){C .fo-bloc{grid-template-columns:1fr;gap:24px}
+   C .fo-txt{position:static}
+   }
+   @media (max-width:640px){C .fo-bloc{padding-block:36px 48px}
+   C .fo-abos{padding-block:48px 56px}
+   C W .bs-pass-page__list{gap:10px!}
+   C W .bs-generic-card__content{padding:18px 14px 14px!;gap:14px!}
+   C W .bs-price__container > span{font-size:30px!}
+   C W .bs-paymentpack-card__title{font-size:15px!}
+   C W .bs-paymentpack-card__validity__content{font-size:12.5px!;white-space:normal!}
+   C W .bs-pass-page .bs-paymentpack-card__right-button{width:100%!;justify-content:center!;padding:0 10px!}
+   C W .bs-pass-page .bs-paymentpack-card__right-button .bs-button__text{font-size:13.5px!}
+   C W #payment-pack-817519 .bs-generic-card__content{padding:16px!}
+   C W #payment-pack-817519 .bs-paymentpack-card__right-button{width:auto!}
+   C W .bs-contract-page__contract__list__container{grid-template-columns:1fr!;gap:10px!}
+   }
+   D « Fusion » : les 3 colonnes de l'ancienne section S10 (classes .va…, retirées du head), avec à la place des lignes
+   de prix les tuiles de B : À la séance (widget pass, catégorie 31419), Forfaits en 2 × 2 (pass, 31417),
+   abonnements l'un sous l'autre (subscription), ids bsport-widget-fusion-unite / -forfaits / -abonnements.
+   .fd .fd-widget{min-width:0;margin-top:6px}
+   .fd .va-col{gap:12px}
+   .fd .va-col > .va-liste,.fd .va-col > .va-note{margin-top:6px}
+   .fd .va-col > :nth-last-child(2){margin-bottom:0}
+   .fd .va-badge{z-index:1}
+   D .bsport-widget .bs-setup-variable{--fontFamily:var(--font);--color-background-paper:transparent;--color-secondary-background-paper:var(--cream);--color-divider:var(--sand)}
+   D W .bs-pass-page,D W .bs-pass-page *,D W .bs-contract-page,D W .bs-contract-page *{font-family:var(--font)!;letter-spacing:normal!}
+   D W #payment-pack-button-container-817521{display:none!}
+   D W .bs-pass-page__list__filters__container,D W .bs-contract-page{padding:0!}
+   D W .bs-contract-page__pass__filters__search__container,D W .bs-pass-page__payment__pack__list__title,D W .bs-pass-page__payment__pack__list__title--with-divider,D W .bs-paymentpack-card__subtitle,D W .bs-paymentpack-card__description,D W .bs-contract-card__description,D W .bs-contract-card__planned-invoices,D W .bs-contract-card__title__icon,D W .bs-paymentpack-card__left-button,D W .bs-contract-card__left-button,D W .bs-paymentpack-card__price-icon,D W .bs-contract-card__price-icon,D W .bs-contract-card__billing-interval--mobile{display:none!}
+   D #bsport-widget-fusion-unite .cleanslate > div > div:has(a[href*="bsport"]),D #bsport-widget-fusion-abonnements .cleanslate > div > div:has(a[href*="bsport"]){display:none!}
+   D W .bs-pass-page__list > div:not([class*="bs-"]){display:contents!}
+   D W .bs-pass-page__list{display:grid!;grid-template-columns:1fr!;gap:10px!}
+   D #bsport-widget-fusion-forfaits .bs-pass-page__list{grid-template-columns:repeat(2,minmax(0,1fr))!}
+   D W .bs-pass-page__payment__pack__list__container{display:contents!}
+   D W .bs-contract-page__contract__list__container{display:grid!;grid-template-columns:1fr!;grid-template-rows:none!;grid-auto-rows:auto!;gap:10px!;padding:0!}
+   D W .bs-pass-page__payment__pack__list__card__button,D W .bs-contract-page__contract__button__container{text-align:center!;height:auto!;min-width:0!;width:100%!}
+   D W .bs-generic-card{background:var(--paper)!;border:1px solid var(--sand)!;border-radius:16px!;box-shadow:none!;height:100%!;transition:border-color .2s,transform .2s,box-shadow .2s!}
+   @media (hover:hover){D W .bs-generic-card:hover{border-color:var(--tan)!;transform:translateY(-3px)!;box-shadow:0 10px 22px rgba(69,61,10,.10)!}
+   }
+   D W .bs-generic-card__content{display:flex!;flex-direction:column!;gap:14px!;padding:18px 14px 14px!;width:100%!;height:100%!;box-sizing:border-box!;grid-template-rows:none!}
+   D W .bs-generic-card__content__grid{display:flex!;flex-direction:column!;align-items:center!;text-align:center!;gap:6px!;flex:1!;min-height:0!}
+   D W .bs-generic-card__content__grid > .bs-generic-card__content__grid__item{display:contents!}
+   D W .bs-paymentpack-card__title,D W .bs-contract-card__title{order:1!;margin:0!;display:block!;white-space:normal!;overflow:visible!;-webkit-line-clamp:unset!;font-size:13px!;font-weight:600!;text-transform:uppercase!;letter-spacing:.05em!;color:var(--olive)!;text-align:center!}
+   D W .bs-price__container,D W .bs-contract-card__price-container{order:2!}
+   D W .bs-price__container{display:flex!;flex-direction:row!;flex-wrap:nowrap!;justify-content:center!;align-items:baseline!;gap:4px!;margin-top:2px!}
+   D W .bs-price__container > span{color:var(--ink)!;font-weight:300!;font-size:30px!;line-height:1.1!;font-variant-numeric:tabular-nums;white-space:nowrap!}
+   D W .bs-contract-card__price-container{display:block!}
+   D W .bs-contract-card__billing-interval--desktop{display:block!;width:auto!;flex:none!;margin:0!}
+   D W .bs-billing-interval{color:var(--muted)!;font-size:14px!}
+   D W .bs-paymentpack-card__validity{order:3!;justify-content:center!;background:transparent!;padding:0!;margin:0!}
+   D W .bs-paymentpack-card__validity__content{background:var(--cream)!;border-radius:999px!;padding:3px 10px!;margin:0!;color:var(--muted)!;font-size:12px!;white-space:nowrap!}
+   D W .bs-paymentpack-card__footer,D W .bs-contract-card__footer{display:flex!;width:100%!;justify-content:center!}
+   D W .bs-paymentpack-card__right-button,D W .bs-contract-card__right-button{width:100%!;justify-content:center!;min-height:44px!;padding:0 10px!;border-radius:999px!;box-shadow:none!;background:var(--olive)!;border:0!;transition:background .15s!}
+   D W .bs-generic-card:hover .bs-paymentpack-card__right-button{background:var(--olive-d)!}
+   D W .bs-paymentpack-card__right-button .bs-button__text,D W .bs-contract-card__right-button .bs-button__text{color:var(--paper)!;text-transform:none!;font-size:14px!;font-weight:500!;white-space:nowrap!;overflow:visible!;text-overflow:clip!;max-width:none!;padding:0!}
+   D #bsport-widget-fusion-forfaits .bs-pass-page__list{gap:8px!}
+   D #bsport-widget-fusion-forfaits .bs-generic-card__content{padding:16px 8px 10px!;gap:12px!}
+   D #bsport-widget-fusion-forfaits .bs-price__container > span{font-size:25px!}
+   D #bsport-widget-fusion-forfaits .bs-paymentpack-card__right-button{padding:0 6px!}
+   D #bsport-widget-fusion-forfaits .bs-paymentpack-card__right-button .bs-button__text{font-size:13px!}
+   D W #payment-pack-817519{background:var(--cream)!;border-style:dashed!;border-color:var(--tan)!}
+   D W #payment-pack-817519 .bs-paymentpack-card__validity__content{background:var(--paper)!}
+   D W #payment-pack-817519 .bs-price__container > span{font-size:40px!}
+   D #bsport-widget-fusion-abonnements .bs-generic-card{background:var(--olive-d)!;border-color:rgba(253,252,249,.16)!}
+   D #bsport-widget-fusion-abonnements .bs-generic-card:hover{border-color:var(--tan-2)!}
+   D #bsport-widget-fusion-abonnements .bs-generic-card__content{padding:20px 18px 16px!}
+   D #bsport-widget-fusion-abonnements .bs-contract-card__title{color:var(--tan-2)!}
+   D #bsport-widget-fusion-abonnements .bs-price__container > span{color:var(--paper)!;font-size:36px!}
+   D #bsport-widget-fusion-abonnements .bs-billing-interval{color:var(--tan-2)!}
+   D #bsport-widget-fusion-abonnements .bs-contract-card__right-button{background:var(--paper)!}
+   D #bsport-widget-fusion-abonnements .bs-generic-card:hover .bs-contract-card__right-button{background:var(--tan-2)!}
+   D #bsport-widget-fusion-abonnements .bs-contract-card__right-button .bs-button__text{color:var(--olive-d)!}
+   @media (min-width:1001px) and (max-width:1200px){D #bsport-widget-fusion-forfaits .bs-price__container > span{font-size:21px!}
+   D #bsport-widget-fusion-forfaits .bs-paymentpack-card__right-button .bs-button__text{font-size:12px!}
+   }
+   @media (max-width:640px){.fd .va-col{padding:26px 18px}
+   D #bsport-widget-fusion-forfaits .bs-price__container > span{font-size:23px!}
+   }
+*/
+
+/* ---------- Section (notre balisage) ---------- */
+.fo .wrap{display:grid;gap:40px;padding-block:36px 44px}
+.fo-head{display:grid;gap:10px;justify-items:center;text-align:center}
+.fo-head h2{font-size:clamp(30px,3.4vw,44px);line-height:1.15}
+.fo-head p{color:var(--brown)}
+.fo-corps{display:grid;gap:32px;min-width:0}
+.fo-bloc{display:grid;gap:20px;min-width:0}
+.fo-txt{display:grid;gap:8px;align-content:start}
+.fo-txt h3{font-size:26px;line-height:1.2}
+.fo-txt p{color:var(--brown);font-size:15.5px}
+.fo-liste{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:8px;font-size:15px}
+.fo-liste li{display:flex;gap:10px}
+.fo-liste li::before{content:"✓";color:var(--olive);font-weight:600}
+.fo .bsport-widget{min-width:0}
+
+
+/* =====================================================================
+   Commun (cartes et abonnements)
+   ===================================================================== */
+.fo .bsport-widget .bs-setup-variable{
+  --fontFamily:var(--font);
+  --color-background-paper:var(--paper);
+  --color-secondary-background-paper:var(--cream);
+  --color-divider:var(--sand);
+}
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page,
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page *,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-page,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-page *{font-family:var(--font)!important;letter-spacing:normal!important}
+
+/* Séance d'essai (réservée aux nouveaux membres, déjà mise en avant plus haut) : masquée.
+   Le widget Cartes ne filtre que par catégorie, pas par produit. */
+.fo .bsport-widget.bsport-widget[id] #payment-pack-button-container-817521{display:none!important}
+
+/* Marges du widget, recherche, titre « Passes », textes redondants (« 5 credits », description = titre, « 6 invoices ») */
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page__list__filters__container{padding:0!important}
+.fo .bsport-widget.bsport-widget[id] .bs-contract-page{padding:0!important}
+.fo .bsport-widget.bsport-widget[id] .bs-contract-page__pass__filters__search__container,
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__title,
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__subtitle,
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__description,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__description,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__planned-invoices,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__title__icon{display:none!important}
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__container,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-page__contract__list__container{padding:0!important;grid-template-rows:none!important;grid-auto-rows:auto!important}
+
+/* Cartes : fond uni (bsport met un dégradé en biais), pas d'ombre */
+.fo .bsport-widget.bsport-widget[id] .bs-generic-card{
+  background:var(--paper)!important;border:1px solid var(--sand)!important;box-shadow:none!important;
+  border-radius:var(--r)!important;height:100%!important;transition:border-color .2s,transform .2s,box-shadow .2s!important}
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__card__button,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-page__contract__button__container{text-align:left!important;height:auto!important;min-width:0!important}
+.fo .bsport-widget.bsport-widget[id] .bs-generic-card__content{width:100%!important;box-sizing:border-box!important;grid-template-rows:none!important}
+.fo .bsport-widget.bsport-widget[id] .bs-generic-card__content__grid{min-height:0!important;grid-template-rows:none!important}
+
+/* Textes */
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__title,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__title{color:var(--ink)!important;font-weight:400!important;margin:0!important;white-space:normal!important;overflow:visible!important;-webkit-line-clamp:unset!important;display:block!important}
+.fo .bsport-widget.bsport-widget[id] .bs-price__container,
+.fo .bsport-widget.bsport-widget[id] .bs-price__container span{color:var(--ink)!important;font-weight:300!important;font-variant-numeric:tabular-nums}
+.fo .bsport-widget.bsport-widget[id] .bs-billing-interval{color:var(--muted)!important;font-size:14px!important;font-weight:400!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity{background:transparent!important;padding:0!important;margin:0!important;border-radius:0!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity__content{margin:0!important;padding:0!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity__content{color:var(--muted)!important;font-size:13.5px!important;white-space:nowrap!important}
+
+/* Bouton principal (« Add to basket » / « Subscribe ») : pilule, sans majuscules ; « Details » masqué (la carte entière l'ouvre) */
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__left-button,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__left-button,
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__price-icon,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__price-icon{display:none!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__footer,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__footer{display:flex!important;justify-content:flex-end!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__right-button{
+  border-radius:999px!important;box-shadow:none!important;background:var(--olive)!important;border:1.5px solid var(--olive)!important;
+  min-height:44px!important;padding:0 22px!important;transition:background .15s,color .15s!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button .bs-button__text,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__right-button .bs-button__text{
+  color:var(--paper)!important;text-transform:none!important;font-size:14.5px!important;font-weight:500!important;white-space:nowrap!important}
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__billing-interval--mobile{display:none!important}
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__billing-interval--desktop{display:block!important;width:auto!important;flex:none!important;margin:0!important}
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__price{flex-direction:row!important;flex-wrap:nowrap!important;align-items:baseline!important}
+
+/* Un seul « Powered by » : celui du widget Abonnement (bloc frère du widget qui contient le lien vers bsport) */
+.fo #bsport-widget-formules-cartes .cleanslate > div > div:has(a[href*="bsport"]){display:none!important}
+
+@media (hover:hover){
+  .fo .bsport-widget.bsport-widget[id] .bs-generic-card:hover{border-color:var(--tan)!important}
+}
+
+
+/* =====================================================================
+   « Carte des prix » (proposition A, retenue le 14/11) : comme la carte d'un restaurant.
+   Séances et forfaits en lignes (titre, validité, prix, bouton) à gauche ;
+   abonnements dans un encadré olive à droite, comme la colonne forte du site.
+   ===================================================================== */
+/* Les deux cartes ont la même hauteur sur ordinateur (grille étirée) */
+.fo .fo-corps{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:28px;align-items:stretch}
+.fo .fo-bloc{align-content:start}
+.fo .fo-bloc{background:var(--paper);border:1px solid var(--sand);border-radius:var(--r);padding:32px 32px 28px;gap:18px}
+.fo .fo-abos{background:var(--olive);border-color:var(--olive);color:var(--paper)}
+.fo .fo-abos .eyebrow{color:var(--tan-2)}
+.fo .fo-abos .fo-liste{color:var(--sand)}
+.fo .fo-abos .fo-liste li::before{color:var(--tan-2)}
+
+/* Intertitres des catégories (« Unitaire », « Forfaits ») */
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page__list{gap:0!important}
+/* Intertitres agrandis, olive, avec un filet dessous ; plus d'air au-dessus du 2e groupe.
+   Chaque intertitre est dans son propre bloc sans classe bs- : on vise le 2e bloc par la structure. */
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__title--with-divider{
+  color:var(--olive)!important;font-size:20px!important;font-weight:500!important;line-height:1.25!important;text-transform:none!important;
+  letter-spacing:-.005em!important;margin:4px 0 0!important;padding:0 0 10px!important;border:0!important;border-bottom:1.5px solid var(--tan-2)!important}
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page__list > div:not([class*="bs-"]) ~ div:not([class*="bs-"]) .bs-pass-page__payment__pack__list__title--with-divider{margin-top:36px!important}
+.fo .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__container,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-page__contract__list__container{grid-template-columns:1fr!important;gap:0!important}
+
+/* Lignes : pas de cartes, des filets */
+.fo .bsport-widget.bsport-widget[id] .bs-generic-card{border:0!important;border-bottom:1px solid var(--sand)!important;border-radius:0!important;background:transparent!important}
+.fo .bsport-widget.bsport-widget[id] .bs-generic-card:hover{background:var(--cream)!important}
+.fo .bsport-widget.bsport-widget[id] .bs-generic-card__content{
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;column-gap:20px!important;padding:16px 4px!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__grid,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__grid{
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;column-gap:16px!important;row-gap:2px!important}
+.fo .bsport-widget.bsport-widget[id] .bs-generic-card__content__grid > .bs-generic-card__content__grid__item{display:contents!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__title,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__title{grid-column:1!important;grid-row:1!important;font-size:18px!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity{grid-column:1!important;grid-row:2!important;justify-content:flex-start!important}
+.fo .bsport-widget.bsport-widget[id] .bs-price__container{grid-column:2!important;grid-row:1 / span 2!important;align-items:baseline!important;justify-content:flex-end!important;gap:4px!important}
+.fo .bsport-widget.bsport-widget[id] .bs-price__container > span{font-size:28px!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-price__container > span{font-size:26px!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__footer,
+.fo .bsport-widget.bsport-widget[id] .bs-contract-card__footer{width:auto!important;grid-row:auto!important}
+/* Bouton : contour, se remplit au survol de la ligne */
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button{background:transparent!important}
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button .bs-button__text{color:var(--olive)!important}
+.fo .bsport-widget.bsport-widget[id] .bs-generic-card:hover .bs-paymentpack-card__right-button{background:var(--olive)!important}
+.fo .bsport-widget.bsport-widget[id] .bs-generic-card:hover .bs-paymentpack-card__right-button .bs-button__text{color:var(--paper)!important}
+
+/* Abonnements sur l'olive */
+.fo .fo-abos .bsport-widget .bs-setup-variable{--color-background-paper:transparent}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-generic-card{border-bottom-color:rgba(253,252,249,.18)!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-contract-page__contract__button__container:first-child .bs-generic-card{border-top:1px solid rgba(253,252,249,.18)!important}
+/* Pas de surlignage au survol (demande du 14/11) : ni fond, ni filtre, ni changement du bouton */
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-generic-card,
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-generic-card:hover{background:transparent!important;filter:none!important;box-shadow:none!important;transform:none!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-generic-card__content{grid-template-columns:1fr!important;row-gap:12px!important}
+/* Empilés : titre sur une ligne (pleine largeur), puis prix, puis bouton */
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-contract-card__grid{grid-template-columns:minmax(0,1fr)!important;row-gap:6px!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-contract-card__title{
+  grid-column:1!important;grid-row:1!important;color:var(--paper)!important;font-size:17px!important;white-space:nowrap!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-contract-card__price-container{grid-column:1!important;grid-row:2!important;justify-self:start!important;display:block!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-price__container{grid-column:auto!important;grid-row:auto!important;justify-content:flex-start!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-price__container > span{color:var(--paper)!important}
+@media (max-width:380px){
+  .fo .fo-abos .bsport-widget.bsport-widget[id] .bs-contract-card__title{font-size:15px!important}
+}
+/* « Powered by » tout en bas à droite de la carte : le widget occupe la hauteur restante (carte étirée sur ordinateur) */
+.fo .fo-abos{grid-template-rows:auto 1fr;align-content:stretch}
+.fo .fo-abos .bsport-widget.bsport-widget[id]{display:flex!important;flex-direction:column!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] > .cleanslate{flex:1!important;height:auto!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .cleanslate > div{display:flex!important;flex-direction:column!important;height:100%!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .cleanslate > div > div:has(a[href*="bsport"]){margin-top:auto!important;align-self:flex-end!important;padding-top:20px!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-billing-interval{color:var(--tan-2)!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-contract-card__footer{justify-content:stretch!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-contract-card__right-button{width:100%!important;justify-content:center!important;background:var(--paper)!important;border-color:var(--paper)!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-contract-card__right-button .bs-button__text{color:var(--olive-d)!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-generic-card:hover .bs-contract-card__right-button{background:var(--paper)!important;border-color:var(--paper)!important}
+/* … mais le bouton « M'abonner » lui-même change de couleur quand la souris est dessus (demande du 14/11) */
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-generic-card .bs-contract-card__right-button{transition:background-color .15s,border-color .15s!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .bs-generic-card:hover .bs-contract-card__right-button:hover{background:var(--tan-2)!important;border-color:var(--tan-2)!important}
+.fo .fo-abos .bsport-widget.bsport-widget[id] .cleanslate > div > div:has(a[href*="bsport"]),
+.fo .fo-abos .bsport-widget.bsport-widget[id] .cleanslate > div > div:has(a[href*="bsport"]) *{color:var(--tan-2)!important}
+
+@media (max-width:1000px){
+  .fo .fo-corps{grid-template-columns:1fr;max-width:640px;margin-inline:auto;width:100%}
+}
+@media (max-width:640px){
+  .fo .fo-bloc{padding:24px 18px 20px}
+  /* Ligne sur deux étages : nom et validité à gauche ; prix puis bouton à droite */
+  .fo .bsport-widget.bsport-widget[id] .bs-pass-page .bs-generic-card__content{grid-template-columns:minmax(0,1fr) auto!important;row-gap:8px!important;column-gap:12px!important;padding:14px 2px!important;align-items:start!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-pass-page .bs-paymentpack-card__grid{display:contents!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-pass-page .bs-paymentpack-card__validity{align-self:start!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-pass-page .bs-price__container{grid-row:1!important;align-self:center!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-pass-page .bs-paymentpack-card__footer{grid-column:2!important;grid-row:2!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__title{font-size:17px!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-pass-page__payment__pack__list__title--with-divider{font-size:18px!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-pass-page__list > div:not([class*="bs-"]) ~ div:not([class*="bs-"]) .bs-pass-page__payment__pack__list__title--with-divider{margin-top:28px!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-price__container > span{font-size:24px!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button{min-height:44px!important;padding:0 18px!important}
+}

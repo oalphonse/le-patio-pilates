@@ -48,7 +48,7 @@ a:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
 
 /* Page en préparation */
 .bientot{background:var(--sand)}
-.bientot .wrap{display:grid;justify-items:start;gap:20px;padding-block:120px;max-width:860px}
+.bientot .wrap{display:grid;justify-items:start;gap:20px;padding-block:60px;max-width:860px}
 .bientot .badge{background:var(--olive);color:var(--paper);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
 .bientot h1{font-size:clamp(36px,4.6vw,60px);line-height:1.08}
 .bientot p{font-size:18px;color:var(--brown);max-width:620px}
@@ -62,7 +62,7 @@ footer a{text-decoration:none}
   .site-header .wrap{height:72px}
   .logo{--ls:.24}
   .site-header .btn{height:42px;padding:0 18px}
-  .bientot .wrap{padding-block:72px}
+  .bientot .wrap{padding-block:36px}
 }
 /* Menu (identique à l'accueil) */
 .nav{display:flex;gap:30px;font-size:15px}
@@ -84,6 +84,8 @@ footer a{text-decoration:none}
 @media (max-width:980px){footer a{padding-block:12px;margin-block:-12px}}
 </style>
 <link rel="stylesheet" href="../../commun/entete.css">
+<!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
+<script src="../../commun/bsport-langue.js"></script>
 </head>
 <body>
 

@@ -1,0 +1,13 @@
+/* Sélecteur de propositions (outil de travail, à retirer à la mise en ligne). Voir commun/propositions.js.
+   Même allure que la barre « Conditions » de Tarifs : pilule sombre, collante pendant qu'on fait défiler sa zone. */
+[data-prop]{position:relative}
+[data-prop] [data-prop-pour][hidden]{display:none!important}
+.prop-barre{position:sticky;top:96px;z-index:40;width:max-content;max-width:calc(100% - 32px);margin:24px auto;
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px;
+  background:#222;color:#fff;border-radius:999px;padding:5px;box-shadow:0 8px 24px rgba(0,0,0,.2);
+  font:500 13.5px "Inter",system-ui,sans-serif}
+.prop-barre > span{padding:0 10px 0 12px;opacity:.7;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.prop-barre button{border:0;background:none;color:#fff;font:inherit;padding:9px 16px;min-height:40px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.prop-barre button[aria-pressed="true"]{background:#FDFCF9;color:#453D0A}
+@media (max-width:980px){.prop-barre{top:120px}}
+@media (max-width:640px){.prop-barre{border-radius:20px}.prop-barre .prop-nom{display:none}}

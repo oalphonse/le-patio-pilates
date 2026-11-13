@@ -37,6 +37,65 @@
 .bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__left-button,
 .bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__right-button{color:var(--bs-olive)!important}
 
+/* Libellé de la semaine en toutes lettres (« Lundi 01/02 au Dimanche 07/02 ») : commun/bsport-semaine.js
+   le pose dans data-libelle ; on masque le texte de bsport et on affiche le nôtre à la place.
+   Taille réglable par --bs-date-taille. */
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__placeholder[data-libelle]{font-size:0!important;letter-spacing:0!important;
+  display:inline-flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:3px!important;height:auto!important}
+/* Mois en toutes lettres, en petit sous la semaine (data-mois) */
+/* bsport se sert déjà de ce ::before (voile de survol, en !important) : on reprend toutes ses propriétés. */
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__placeholder[data-mois]::before{
+  content:attr(data-mois)!important;order:2!important;display:block!important;position:static!important;inset:auto!important;
+  width:auto!important;height:auto!important;background:none!important;border:0!important;transform:none!important;
+  font-size:var(--bs-mois-taille,12.5px)!important;font-weight:400!important;line-height:1.2!important;letter-spacing:.02em!important;
+  white-space:nowrap!important;text-transform:none!important;opacity:.7!important;color:inherit!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__placeholder[data-libelle]::after{
+  content:attr(data-libelle);font-size:var(--bs-date-taille,15px);line-height:1.3;letter-spacing:normal;white-space:nowrap;text-transform:none}
+
+/* « Prochaine séance : lundi 01/02 à 08:30 » (semaine sans cours) : commun/bsport-textes.js pose le texte dans
+   data-texte ; on masque celui de bsport (« La séance la plus récente est le… ») et on affiche le nôtre.
+   Taille du texte : celle que bsport (ou l'habillage de la page) donnait, relevée par le script dans --bs-prochaine-taille.
+   (« .bs-calendar--no-offer » en plus : plus spécifique que les habillages de page, qui fixent font-size en !important.) */
+.bsport-widget.bsport-widget[id] .bs-calendar--no-offer .bs-calendar--no-offer--yes-next__text[data-texte]{font-size:0!important;letter-spacing:0!important}
+.bsport-widget.bsport-widget[id] .bs-calendar--no-offer .bs-calendar--no-offer--yes-next__text[data-texte]::after{
+  content:attr(data-texte);font-size:var(--bs-prochaine-taille,14px);line-height:1.4;letter-spacing:normal}
+
+/* ---------- Petit calendrier qui s'ouvre au clic sur la semaine ----------
+   Son fond vient de --color-background-paper, que l'habillage olive rend transparent : on lui donne ses propres
+   couleurs (carte claire, indépendante du fond de la section), lisibles sur n'importe quel fond. */
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu{
+  background:var(--bs-paper)!important;color:var(--bs-ink)!important;border:1px solid var(--bs-tan-2)!important;
+  border-radius:16px!important;box-shadow:0 18px 40px rgba(34,34,34,.28)!important;padding:16px!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__header__date{
+  color:var(--bs-ink)!important;font-size:16px!important;font-weight:500!important;text-transform:capitalize!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__header__buttons__left,
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__header__buttons__right{color:var(--bs-olive)!important;background:transparent!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day,
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day *{color:var(--bs-ink)!important;background:transparent!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day--header,
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day--header *{
+  color:var(--bs-muted)!important;font-size:11px!important;font-weight:600!important;text-transform:uppercase!important;letter-spacing:.06em!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day--disabled,
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day--disabled *{color:var(--bs-tan)!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day--today,
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day--today *{color:var(--bs-olive)!important;font-weight:600!important}
+/* Centrage : bsport (Popper) place le mini calendrier sous le bord gauche du sélecteur de semaine.
+   commun/bsport-semaine.js calcule le décalage qui le centre entre les deux flèches (--bs-menu-dx) ;
+   la propriété « translate » s'ajoute au transform de Popper sans toucher à sa position verticale. */
+.bsport-widget.bsport-widget[id] div:has(> .bs-marketplace-date-picker__menu){translate:var(--bs-menu-dx, 0px) 0!important}
+
+/* Le jour est un bouton (.…__day) dans un conteneur (.…__day__container) : les états sont posés sur le bouton. */
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day:not(.bs-marketplace-date-picker__menu__calendar__day--header){
+  width:36px!important;height:36px!important;border-radius:999px!important;margin:auto!important;transition:background-color .15s!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day:not(.bs-marketplace-date-picker__menu__calendar__day--header):not(.bs-marketplace-date-picker__menu__calendar__day--disabled):not(.bs-marketplace-date-picker__menu__calendar__day--selected):hover{
+  background:var(--bs-sand)!important}
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__menu__calendar__day--selected{
+  background:var(--bs-olive)!important;color:var(--bs-paper)!important;font-weight:600!important}
+
+/* Flèches de semaine : zone de clic de 44 px (bsport : 24 px) */
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__left-button,
+.bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__right-button{min-width:44px!important;min-height:44px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;border-radius:999px!important}
+
 /* ---------- Recherche et filtres ---------- */
 .bsport-widget.bsport-widget[id] .bs-calendar-search__input__container,
 .bsport-widget.bsport-widget[id] .bs-marketplace-filter{
@@ -78,6 +137,13 @@
   transition:border-color .15s,transform .15s!important}
 .bsport-widget.bsport-widget[id] .bs-offer-list-item:hover{border-color:var(--bs-olive)!important;transform:translateY(-1px)}
 .bsport-widget.bsport-widget[id] .bs-offer-list-item__content{background:transparent!important}
+/* bsport assombrit la carte au survol avec un filtre immédiat (brightness .9) : effet de « flash », retiré */
+.bsport-widget.bsport-widget[id] .bs-offer-list-item,
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:hover,
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:active,
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:focus,
+.bsport-widget.bsport-widget[id] .bs-offer-list-item.bs-offer-list-item--isNotWorkshop:enabled:hover,
+.bsport-widget.bsport-widget[id] .bs-offer-list-item.bs-offer-list-item--isWorkShop-with-hidden-button:hover{filter:none!important}
 
 /* Titre de l'activité */
 .bsport-widget.bsport-widget[id] .bs-offer-list-item__content__offer__left__title{
@@ -104,14 +170,44 @@
   background:var(--bs-olive)!important;border-radius:999px!important;border:0!important;
   box-shadow:none!important;transition:background .15s!important}
 .bsport-widget.bsport-widget[id] .bs-book-button-card:hover{background:var(--bs-olive-d)!important}
+/* bsport passe l'arrondi à 20px au survol (règle « :hover » chez eux) : on garde la pilule dans tous les états */
+.bsport-widget.bsport-widget[id] .bs-book-button-card:hover,
+.bsport-widget.bsport-widget[id] .bs-book-button-card:active,
+.bsport-widget.bsport-widget[id] .bs-book-button-card:focus,
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:hover .bs-book-button-card{border-radius:999px!important}
 .bsport-widget.bsport-widget[id] .bs-book-button-card__inner{padding:10px 22px!important}
 .bsport-widget.bsport-widget[id] .bs-book-button-card__inner__text{
   color:var(--bs-paper)!important;font-size:14px!important;font-weight:500!important;
   text-transform:none!important}
 
 
+/* ---------- Animation au changement de jour (tous les widgets) ----------
+   Quand on choisit un jour (ex. mardi), le jour choisi « rebondit » légèrement
+   et les séances du jour apparaissent en fondu, l'une après l'autre.
+   bsport recrée les cartes à chaque changement de jour : l'animation se rejoue toute seule.
+   Remplissage « backwards » seulement : une fois finie, l'animation ne bloque pas les effets de survol. */
+@keyframes bsPatioApparition{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes bsPatioJour{0%{transform:scale(.82)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item{animation:bsPatioApparition .38s cubic-bezier(.2,.7,.3,1) backwards!important}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:nth-child(2){animation-delay:.04s!important}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:nth-child(3){animation-delay:.08s!important}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:nth-child(4){animation-delay:.12s!important}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:nth-child(5){animation-delay:.16s!important}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:nth-child(6){animation-delay:.2s!important}
+.bsport-widget.bsport-widget[id] .bs-offer-list-item:nth-child(n+7){animation-delay:.24s!important}
+.bsport-widget.bsport-widget[id] .bs-week__header__date__monthDay--is-selected{animation:bsPatioJour .32s ease-out!important}
+.bsport-widget.bsport-widget[id] .bs-week__header__date--is-abled{transition:background-color .2s,border-color .2s,transform .12s!important}
+.bsport-widget.bsport-widget[id] .bs-week__header__date--is-abled:active{transform:scale(.95)!important}
+.bsport-widget.bsport-widget[id] .bs-week__header__date__weekDay,
+.bsport-widget.bsport-widget[id] .bs-week__header__date__monthDay{transition:color .2s,background-color .2s!important}
+@media (prefers-reduced-motion:reduce){
+  .bsport-widget.bsport-widget[id] .bs-offer-list-item,
+  .bsport-widget.bsport-widget[id] .bs-week__header__date__monthDay--is-selected{animation:none!important}
+  .bsport-widget.bsport-widget[id] .bs-week__header__date--is-abled:active{transform:none!important}
+}
+
 /* ---------- Mobile ---------- */
 /* La recherche et les filtres défilent sur une bande horizontale (comportement bsport) : on n'y touche pas. */
 @media (max-width:640px){
-  .bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__placeholder{font-size:14px!important;white-space:nowrap!important}
+  .bsport-widget.bsport-widget[id] .bs-marketplace-date-picker__placeholder:not([data-libelle]){font-size:14px!important;white-space:nowrap!important}
 }

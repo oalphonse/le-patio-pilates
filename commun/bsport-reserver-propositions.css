@@ -1,0 +1,364 @@
+/* Propositions pour la page « Réserver ma première séance » (page 6, section 6-S03).
+   Deux widgets bsport : l'offre première séance (widget Cartes, type « pass ») et le calendrier.
+   Choix avec le sélecteur commun (commun/propositions.js) : la section .reserver reçoit data-habillage="a|b|c".
+   Comme commun/bsport.css : on ne cible que les classes « bs-… » (et l'id fixe que bsport donne à chaque pack),
+   jamais les classes générées (jss…, Mui…), et on passe en !important avec un préfixe plus fort que celui de bsport.
+   Une fois la proposition choisie, on garde ses règles (plus le tronc commun) et on supprime le reste. */
+
+/* =====================================================================
+   Mise en page commune (nos propres éléments)
+   ===================================================================== */
+.reserver{background:var(--cream)}
+.reserver-grille{display:grid;gap:40px;padding-block:36px 44px}
+.reserver-tete{display:grid;gap:16px;justify-items:start}
+.reserver-surtitre{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--olive)}
+.reserver-tete h1{font-size:clamp(34px,4.4vw,56px);line-height:1.08}
+.reserver-tete p{font-size:18px;color:var(--brown);max-width:620px}
+.reserver-reperes{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.reserver-reperes li{font-size:14px;color:var(--brown);background:var(--paper);border:1px solid var(--sand);border-radius:999px;padding:6px 14px}
+.reserver-etape{display:grid;gap:10px;min-width:0}
+.reserver-etape-titre{display:flex;align-items:center;gap:14px;font-size:clamp(22px,2.4vw,28px);line-height:1.2}
+.reserver-num{flex:none;display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--olive);color:var(--paper);font-size:16px;font-weight:500;letter-spacing:0}
+.reserver-etape-texte{font-size:15.5px;color:var(--muted)}
+.reserver-etape .bsport-widget{min-width:0;margin-top:14px}
+.reserver-aide{font-size:15px;color:var(--brown)}
+.reserver-aide a{color:var(--olive);font-weight:500;text-underline-offset:4px}
+@media (max-width:980px){.reserver-aide a{display:inline-block;padding-block:12px;margin-block:-12px}}
+@media (max-width:640px){
+  .reserver-grille{gap:32px;padding-block:24px 32px}
+  .reserver-tete p{font-size:16.5px}
+  .reserver-num{width:34px;height:34px;font-size:15px}
+}
+
+/* =====================================================================
+   Tronc commun des widgets
+   ===================================================================== */
+/* Police partout (commun/bsport.css ne la met que sur le calendrier) */
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page,
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page *{font-family:var(--bs-font)!important;letter-spacing:normal!important}
+
+/* Offre : on ne garde que le pack « première séance » (id fixe donné par bsport au bouton de chaque pack).
+   La catégorie « Unitaire » contient aussi la séance à l'unité (817519). */
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page__payment__pack__list__card__button:not(#payment-pack-button-container-817521){display:none!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page__payment__pack__list__title,
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page__payment__pack__list__title--with-divider{display:none!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page,
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page__list__filters__container,
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page__list{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page__payment__pack__list__container{display:block!important;margin:0!important;padding:0!important;width:100%!important;max-width:none!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-pass-page__payment__pack__list__card__button{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;text-align:left!important;background:none!important;border:0!important}
+/* Carte : fond uni (bsport dessine une diagonale grise) */
+.reserver[data-habillage] .bsport-widget[id] .bs-generic-card,
+.reserver[data-habillage] .bsport-widget[id] .bs-generic-card__content{background:var(--bs-paper)!important;background-image:none!important;box-shadow:none!important;width:100%!important;max-width:none!important;margin:0!important;height:auto!important;min-height:0!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-generic-card::before,.reserver[data-habillage] .bsport-widget[id] .bs-generic-card::after,
+.reserver[data-habillage] .bsport-widget[id] .bs-generic-card__content::before,.reserver[data-habillage] .bsport-widget[id] .bs-generic-card__content::after{display:none!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__price-icon{display:none!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__title{color:var(--bs-ink)!important;font-weight:400!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__subtitle{color:var(--bs-brown)!important;font-weight:500!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__description{color:var(--bs-muted)!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__validity{background:var(--bs-sand)!important;border-radius:999px!important;flex:none!important;width:auto!important;max-width:none!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__validity__content{color:var(--bs-brown)!important;font-size:13px!important;white-space:nowrap!important;padding:4px 12px!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-price__container,
+.reserver[data-habillage] .bsport-widget[id] .bs-price__container span{color:var(--bs-ink)!important;font-weight:400!important;font-variant-numeric:tabular-nums}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__left-button,
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__left-button *{color:var(--bs-olive)!important;background:transparent!important;box-shadow:none!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__left-button__content{text-transform:none!important;font-size:14px!important;font-weight:500!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__right-button{background:var(--bs-olive)!important;border-radius:999px!important;box-shadow:none!important;border:0!important;transition:background .15s!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__right-button:hover{background:var(--bs-olive-d)!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__right-button .bs-button-primary__text{color:var(--bs-paper)!important;text-transform:none!important;font-size:15px!important;font-weight:500!important}
+/* Placement des blocs de la carte : la grille bsport contient les infos et le prix ; les boutons (__footer) sont à côté, dans __content */
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__grid{display:grid!important;width:100%!important;max-width:none!important;padding:0!important;margin:0!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__grid > .bs-grid-item-column-start-1{grid-area:infos!important;margin:0!important;padding:0!important;gap:6px!important;min-width:0!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__grid > .bs-grid-item-column-start-2{grid-area:prix!important;margin:0!important;padding:0!important;min-width:0!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-paymentpack-card__grid *{position:static!important}
+
+/* Calendrier : recherche et filtres inutiles (une activité, une professeure, un studio) */
+.reserver[data-habillage] .bsport-widget[id] .bs-marketplace-filters__list{display:none!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__left__extra,
+.reserver[data-habillage] .bsport-widget[id] .bs-week__header__date__dots{display:none!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-offer-list-item__content__offer__left__coach{text-transform:capitalize}
+/* Semaine vide avant l'ouverture : bouton « prochaine séance » aux couleurs du site */
+.reserver[data-habillage] .bsport-widget[id] .bs-calendar--no-offer{padding:24px 0!important;min-height:0!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-calendar--no-offer--yes-next{background:var(--bs-olive)!important;border-radius:999px!important;box-shadow:none!important;padding:12px 22px!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-calendar--no-offer--yes-next:hover{background:var(--bs-olive-d)!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-calendar--no-offer--yes-next *{color:var(--bs-paper)!important;fill:currentColor}
+.reserver[data-habillage] .bsport-widget[id] .bs-calendar--no-offer--yes-next__text{font-size:15px!important;font-weight:500!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-week__listMode__content__day__offers:empty{display:none!important}
+
+
+/* =====================================================================
+   A — « Étapes » : une colonne centrée, deux étapes reliées par un fil.
+   1. l'offre en carte large et horizontale ; 2. le calendrier en liste d'horaires.
+   ===================================================================== */
+.reserver[data-habillage="a"] .reserver-grille{max-width:920px;gap:0}
+.reserver[data-habillage="a"] .reserver-tete{justify-items:center;text-align:center;margin-bottom:56px}
+.reserver[data-habillage="a"] .reserver-tete p{margin-inline:auto}
+.reserver[data-habillage="a"] .reserver-reperes{justify-content:center}
+.reserver[data-habillage="a"] .reserver-etape{position:relative;padding-left:64px;padding-bottom:56px}
+.reserver[data-habillage="a"] .reserver-etape-titre{margin-left:-64px}
+.reserver[data-habillage="a"] .reserver-num{width:44px;height:44px;margin-right:6px;background:var(--paper);color:var(--olive);border:1.5px solid var(--olive);font-size:17px}
+/* le fil qui relie les étapes */
+.reserver[data-habillage="a"] .reserver-offre::before{content:"";position:absolute;left:21px;top:52px;bottom:8px;width:1.5px;background:var(--tan-2)}
+.reserver[data-habillage="a"] .reserver-creneau{padding-bottom:32px}
+.reserver[data-habillage="a"] .reserver-aide{text-align:center;padding-top:24px;border-top:1px solid var(--sand)}
+
+/* Offre : carte large, infos à gauche, prix et bouton à droite */
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-generic-card{border:1px solid var(--bs-tan-2)!important;border-radius:20px!important;overflow:hidden!important;transition:border-color .15s!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-generic-card:hover{border-color:var(--bs-olive)!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-generic-card__content{padding:28px 32px!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__grid{grid-template-columns:1fr auto!important;grid-template-areas:"infos prix"!important;column-gap:32px!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__title{font-size:24px!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__subtitle{font-size:15px!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__description{font-size:14.5px!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__grid > .bs-grid-item-column-start-2{display:flex!important;flex-direction:column!important;align-items:flex-end!important;justify-content:space-between!important;gap:12px!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-price__container span{font-size:44px!important;line-height:1!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__footer{display:flex!important;margin-top:22px!important;justify-content:space-between!important;align-items:center!important;padding-top:20px!important;border-top:1px solid var(--bs-sand)!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__right-button{padding:14px 30px!important}
+
+/* Calendrier : liste d'horaires, l'heure en grand à gauche */
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-calendar__datePicker{justify-content:flex-start!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-week-list{border-bottom:1px solid var(--tan-2)!important;padding-bottom:0!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-week__header__date--is-abled{padding:6px 0 12px!important;border-bottom:2px solid transparent!important;margin-bottom:-1px!important;border-radius:0!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-week__header__date--is-abled:has(.bs-week__header__date__monthDay--is-selected){border-bottom-color:var(--olive)!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-week__header__date__monthDay--is-selected{background:transparent!important;color:var(--olive)!important;font-weight:600!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-week__listMode__content{border:0!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-week__listMode__content__day__offers{gap:0!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item{border:0!important;border-bottom:1px solid var(--sand)!important;border-radius:0!important;background:transparent!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item:hover{background:var(--paper)!important;transform:none!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer{align-items:center!important;padding:16px 4px!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer__left{display:grid!important;grid-template-columns:110px 1fr!important;column-gap:20px!important;row-gap:2px!important;align-items:center!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer__left__time--without-date{grid-column:1!important;grid-row:1 / span 2!important;margin:0!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:0!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__start-time{font-size:24px!important;font-weight:400!important;line-height:1.1!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__time-separator{display:none!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__end-time-duration{font-size:13px!important;color:var(--bs-muted)!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer__left__title{grid-column:2!important;font-size:17px!important;margin:0!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer__left__coach{grid-column:2!important;margin:0!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer__right__top{display:none!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer__right{justify-content:center!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-book-button-card{background:transparent!important;border:1.5px solid var(--bs-olive)!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-book-button-card__inner__text{color:var(--bs-olive)!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item:hover .bs-book-button-card{background:var(--bs-olive)!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item:hover .bs-book-button-card__inner__text{color:var(--bs-paper)!important}
+
+@media (max-width:640px){
+  .reserver[data-habillage="a"] .reserver-tete{margin-bottom:40px}
+  .reserver[data-habillage="a"] .reserver-etape{padding-left:0;padding-bottom:44px}
+  .reserver[data-habillage="a"] .reserver-etape-titre{margin-left:0}
+  .reserver[data-habillage="a"] .reserver-offre::before{display:none}
+  .reserver[data-habillage="a"] .reserver-num{width:36px;height:36px;font-size:15px}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-generic-card__content{padding:22px 20px!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__grid{grid-template-columns:1fr!important;grid-template-areas:"infos" "prix"!important;row-gap:18px!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__grid > .bs-grid-item-column-start-2{flex-direction:column-reverse!important;align-items:flex-start!important;gap:10px!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__title{font-size:21px!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-price__container span{font-size:36px!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-paymentpack-card__right-button{padding:12px 22px!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer{flex-direction:row!important;justify-content:space-between!important;gap:12px!important;padding:14px 0!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer__left{grid-template-columns:62px 1fr!important;column-gap:12px!important;width:auto!important;flex:1 1 auto!important;min-width:0!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer__right{flex:none!important;width:auto!important;margin:0!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__start-time{font-size:19px!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item__content__offer__left__title{font-size:15.5px!important}
+  .reserver[data-habillage="a"] .bsport-widget[id] .bs-book-button-card__inner{padding:9px 16px!important}
+}
+
+
+/* =====================================================================
+   B — « Côte à côte » : à gauche un panneau olive (titre + offre en ticket),
+   à droite le calendrier en tuiles. Sur mobile : panneau puis calendrier.
+   ===================================================================== */
+.reserver[data-habillage="b"]{background:var(--paper)}
+.reserver[data-habillage="b"] .reserver-grille{grid-template-columns:minmax(0,420px) minmax(0,1fr);grid-template-rows:auto auto 1fr auto;grid-template-areas:"tete creneau" "offre creneau" ". creneau" "aide aide";column-gap:56px;row-gap:0;align-items:start}
+.reserver[data-habillage="b"] .reserver-tete{grid-area:tete;background:var(--olive-d);color:var(--paper);border-radius:28px 28px 0 0;padding:40px 36px 28px;gap:14px}
+.reserver[data-habillage="b"] .reserver-surtitre{color:var(--tan-2)}
+.reserver[data-habillage="b"] .reserver-tete h1{font-size:clamp(32px,3.2vw,42px)}
+.reserver[data-habillage="b"] .reserver-tete p{color:var(--sand);font-size:16.5px}
+.reserver[data-habillage="b"] .reserver-reperes li{background:transparent;border-color:rgba(253,252,249,.25);color:var(--sand);font-size:13px;padding:5px 12px}
+.reserver[data-habillage="b"] .reserver-offre{grid-area:offre;background:var(--olive-d);border-radius:0 0 28px 28px;padding:8px 36px 36px;gap:6px}
+.reserver[data-habillage="b"] .reserver-offre .reserver-etape-titre{color:var(--paper);font-size:20px}
+.reserver[data-habillage="b"] .reserver-offre .reserver-etape-texte{color:var(--tan);font-size:14px}
+.reserver[data-habillage="b"] .reserver-offre .reserver-num{background:var(--paper);color:var(--olive-d)}
+.reserver[data-habillage="b"] .reserver-num{width:34px;height:34px;font-size:15px}
+.reserver[data-habillage="b"] .reserver-creneau{grid-area:creneau;padding-top:8px}
+.reserver[data-habillage="b"] .reserver-aide{grid-area:aide;margin-top:48px}
+
+/* Offre : ticket vertical, prix en grand, bouton pleine largeur */
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-generic-card{border-radius:20px!important;border:0!important;overflow:hidden!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-generic-card__content{padding:24px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-paymentpack-card__grid{grid-template-columns:1fr!important;grid-template-areas:"infos" "prix"!important;row-gap:18px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-paymentpack-card__title{font-size:21px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-paymentpack-card__grid > .bs-grid-item-column-start-2{display:flex!important;flex-direction:column-reverse!important;align-items:flex-start!important;gap:12px!important;padding-top:18px!important;border-top:1.5px dashed var(--bs-tan-2)!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-price__container span{font-size:46px!important;line-height:1!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-paymentpack-card__footer{display:flex!important;margin-top:18px!important;flex-direction:column-reverse!important;align-items:stretch!important;gap:6px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-paymentpack-card__right-button{width:100%!important;padding:15px!important;justify-content:center!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-paymentpack-card__left-button{align-self:center!important}
+/* « Powered by bsport » lisible sur le panneau olive */
+.reserver[data-habillage="b"] #bsport-widget-reserver-offre .cleanslate > div > div:not(:has(.bs-setup-variable)) *{color:var(--tan)!important}
+
+/* Calendrier : jours en pastilles, créneaux en tuiles */
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-calendar__datePicker{justify-content:flex-start!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-week-list{column-gap:6px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-week__header__date--is-abled{background:var(--bs-cream)!important;border:1px solid var(--bs-sand)!important;border-radius:14px!important;padding:10px 2px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-week__header__date--is-abled:has(.bs-week__header__date__monthDay--is-selected){background:var(--bs-olive)!important;border-color:var(--bs-olive)!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-week__header__date__weekDay--is-selected{color:var(--bs-tan-2)!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-week__header__date__monthDay--is-selected{background:transparent!important;color:var(--bs-paper)!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-week__header__date__monthDay{font-size:20px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-week__listMode__content{border:0!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-week__listMode__content__day__offers{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))!important;gap:10px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item{border-radius:16px!important;background:var(--bs-cream)!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content,
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__offer{height:100%!important;width:100%!important;margin:0!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-book-button-card{padding:0!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__offer{box-sizing:border-box!important;flex-direction:column!important;align-items:stretch!important;gap:14px!important;padding:18px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__offer__left{gap:2px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__offer__left__time--without-date{order:-1!important;margin:0 0 6px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__start-time{font-size:28px!important;font-weight:400!important;line-height:1!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours{display:flex!important;align-items:baseline!important;gap:8px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__time-separator{display:none!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__end-time-duration{font-size:13px!important;color:var(--bs-muted)!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__end-time-duration::before{content:"→ "}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__offer__left__title{font-size:16px!important;font-weight:500!important;margin:0!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__offer__right{flex-direction:column!important;align-items:stretch!important;gap:10px!important;margin-top:auto!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__offer__right__top{display:none!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__offer__right > *{width:100%!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-book-button-card{width:100%!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-book-button-card__inner{justify-content:center!important;padding:11px!important}
+
+@media (max-width:980px){
+  .reserver[data-habillage="b"] .reserver-grille{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-template-areas:"tete" "offre" "creneau" "aide"}
+  .reserver[data-habillage="b"] .reserver-creneau{padding-top:48px}
+  .reserver[data-habillage="b"] .reserver-aide{margin-top:32px}
+}
+@media (max-width:640px){
+  .reserver[data-habillage="b"] .reserver-grille{padding-top:24px}
+  .reserver[data-habillage="b"] .reserver-tete{padding:32px 22px 22px;border-radius:22px 22px 0 0}
+  .reserver[data-habillage="b"] .reserver-offre{padding:6px 14px 22px;border-radius:0 0 22px 22px}
+  .reserver[data-habillage="b"] .reserver-offre .reserver-etape-titre,
+  .reserver[data-habillage="b"] .reserver-offre .reserver-etape-texte{padding-inline:8px}
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-generic-card__content{padding:20px!important}
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-price__container span{font-size:40px!important}
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-week__listMode__content__day__offers{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__offer{padding:14px!important;gap:10px!important}
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours__start-time{font-size:21px!important}
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-week__header__date--is-abled{padding:8px 0!important;border-radius:10px!important}
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-week__header__date__monthDay{font-size:16px!important}
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-week-list{column-gap:3px!important}
+}
+
+
+/* =====================================================================
+   C — « Créneau d'abord » : titre en bandeau sable sur deux colonnes,
+   le calendrier en premier (cartes à liseré olive), puis l'offre en bande olive horizontale.
+   ===================================================================== */
+.reserver[data-habillage="c"]{background:var(--paper)}
+.reserver[data-habillage="c"] .reserver-grille{max-width:1100px;gap:0;padding-top:0}
+.reserver[data-habillage="c"] .reserver-tete{order:1;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-areas:"sur sur" "titre texte" "titre reperes";column-gap:56px;row-gap:14px;align-items:end;background:var(--sand);border-radius:0 0 28px 28px;padding:56px 48px 48px;margin-bottom:64px}
+.reserver[data-habillage="c"] .reserver-surtitre{grid-area:sur}
+.reserver[data-habillage="c"] .reserver-tete h1{grid-area:titre;align-self:start}
+.reserver[data-habillage="c"] .reserver-tete p{grid-area:texte;font-size:16.5px}
+.reserver[data-habillage="c"] .reserver-reperes{grid-area:reperes}
+.reserver[data-habillage="c"] .reserver-creneau{order:2;margin-bottom:56px}
+.reserver[data-habillage="c"] .reserver-offre{order:3;background:var(--olive);border-radius:28px;padding:36px 40px 28px;gap:6px}
+.reserver[data-habillage="c"] .reserver-offre .reserver-etape-titre{color:var(--paper)}
+.reserver[data-habillage="c"] .reserver-offre .reserver-etape-texte{color:var(--tan-2)}
+.reserver[data-habillage="c"] .reserver-offre .reserver-num{background:var(--paper);color:var(--olive)}
+.reserver[data-habillage="c"] .reserver-num{border-radius:12px}
+.reserver[data-habillage="c"] .reserver-aide{order:4;margin-top:32px;text-align:center}
+
+/* Offre : carte à plat sur une ligne (infos | prix | bouton), fond transparent sur la bande olive */
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-generic-card,
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-generic-card__content{background:transparent!important;border:0!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-generic-card{border-top:1px solid rgba(253,252,249,.2)!important;border-radius:0!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-generic-card__content{padding:24px 0 4px!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;column-gap:36px!important;align-items:center!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__grid{grid-column:1!important;grid-row:1!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"infos prix"!important;column-gap:36px!important;align-items:center!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__footer{grid-column:2!important;grid-row:1!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__title{color:var(--bs-paper)!important;font-size:22px!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__subtitle{color:var(--bs-tan-2)!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__description{color:var(--bs-tan)!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__grid > .bs-grid-item-column-start-2{display:flex!important;flex-direction:column!important;align-items:flex-end!important;gap:8px!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__validity{background:rgba(253,252,249,.12)!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__validity__content{color:var(--bs-sand)!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-price__container span{color:var(--bs-paper)!important;font-size:42px!important;line-height:1!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__footer{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:4px!important;margin:0!important;padding:0!important;width:auto!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__right-button{background:var(--bs-paper)!important;padding:15px 30px!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__right-button:hover{background:var(--bs-tan-2)!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__right-button .bs-button-primary__text{color:var(--bs-olive-d)!important;font-weight:600!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__left-button,
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__left-button *{color:var(--bs-tan-2)!important}
+.reserver[data-habillage="c"] #bsport-widget-reserver-offre .cleanslate > div > div:not(:has(.bs-setup-variable)) *{color:var(--bs-tan-2)!important}
+
+/* Calendrier : semaine en ruban de pastilles rondes, séances en cartes à liseré olive */
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-week-list{column-gap:6px!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-week__header__date--is-abled{background:var(--bs-cream)!important;border-radius:999px!important;padding:10px 0!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-week__header__date--is-abled:has(.bs-week__header__date__monthDay--is-selected){background:var(--bs-olive)!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-week__header__date__weekDay--is-selected{color:var(--bs-tan-2)!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-week__header__date__monthDay--is-selected{background:transparent!important;color:var(--bs-paper)!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-week__listMode__content{border:0!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-week__listMode__content__day__offers{grid-template-columns:1fr 1fr!important;gap:12px!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item{border:1px solid var(--bs-sand)!important;border-left:4px solid var(--bs-olive)!important;border-radius:12px!important;background:var(--bs-paper)!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item__content__offer{align-items:center!important;padding:16px 18px!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item__content__offer__left__time--without-date{margin:0 0 4px!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item__content__time__offer-hours{display:inline-flex!important;background:var(--bs-sand)!important;border-radius:8px!important;padding:3px 10px!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item__content__offer__left__title{font-size:17px!important;margin:0!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item__content__offer__right__top{display:none!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item__content__offer__right{justify-content:center!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-book-button-card{border-radius:10px!important}
+
+@media (max-width:980px){
+  .reserver[data-habillage="c"] .reserver-tete{grid-template-columns:minmax(0,1fr);grid-template-areas:"sur" "titre" "texte" "reperes";padding:44px 28px 36px}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-week__listMode__content__day__offers{grid-template-columns:1fr!important}
+}
+@media (max-width:640px){
+  .reserver[data-habillage="c"] .reserver-grille{padding-inline:0}
+  .reserver[data-habillage="c"] .reserver-tete{border-radius:0 0 22px 22px;padding:36px 20px 28px;margin-bottom:44px}
+  .reserver[data-habillage="c"] .reserver-creneau{padding-inline:16px;margin-bottom:44px}
+  .reserver[data-habillage="c"] .reserver-offre{margin-inline:12px;padding:28px 20px 20px;border-radius:22px}
+  .reserver[data-habillage="c"] .reserver-aide{padding-inline:16px}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-generic-card__content{grid-template-columns:minmax(0,1fr)!important;row-gap:20px!important}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__footer{grid-column:1!important;grid-row:2!important}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__grid{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"infos" "prix"!important;row-gap:18px!important}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-paymentpack-card__grid > .bs-grid-item-column-start-2{flex-direction:column-reverse!important;align-items:flex-start!important;gap:10px!important}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-price__container span{font-size:36px!important}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-week-list{column-gap:3px!important}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-week__header__date--is-abled{padding:8px 0!important}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item__content__offer{flex-direction:row!important;justify-content:space-between!important;align-items:center!important;gap:12px!important;padding:14px!important}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item__content__offer__left{flex:1 1 auto!important;min-width:0!important;width:auto!important}
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item__content__offer__right{flex:none!important;width:auto!important;margin:0!important}
+}
+
+
+/* =====================================================================
+   Périodes du calendrier : Matin (2), Midi (2), Soir (3).
+   commun/bsport-periodes.js pose data-periode, data-periode-nom et data-periode-debut sur chaque séance ;
+   le titre de la période est le ::before de la première séance de chaque période.
+   ===================================================================== */
+.reserver[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]{position:relative!important;overflow:visible!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]::before{
+  content:attr(data-periode-nom)!important;position:absolute!important;pointer-events:none!important;display:block!important;
+  font-family:var(--bs-font)!important;white-space:nowrap!important;text-align:left!important;left:0!important;top:-30px!important;
+  font-size:12.5px!important;font-weight:600!important;letter-spacing:.08em!important;text-transform:uppercase!important;color:var(--bs-olive)!important}
+.reserver[data-habillage] .bsport-widget[id] .bs-week__listMode__content__day__date{margin-bottom:0!important}
+
+/* A · Étapes : titre au-dessus de chaque groupe de lignes, filet plus marqué */
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]{margin-top:48px!important;border-top:1px solid var(--bs-tan-2)!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut].bs-offer-list-item--first{margin-top:36px!important}
+.reserver[data-habillage="a"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]::before{left:4px!important}
+
+/* B · Côte à côte : une rangée de tuiles par période (3 colonnes, chaque période tient sur une rangée) */
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-week__listMode__content__day__offers{grid-template-columns:repeat(3,minmax(0,1fr))!important;row-gap:48px!important;padding-top:36px!important}
+.reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]{grid-column-start:1!important}
+
+/* C · Créneau d'abord : deux colonnes de cartes, chaque période repart à gauche */
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]{grid-column-start:1!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut],
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut] + .bs-offer-list-item:not([data-periode-debut]){margin-top:40px!important}
+.reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut]::before{left:6px!important}
+
+@media (max-width:980px){
+  .reserver[data-habillage="c"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut] + .bs-offer-list-item:not([data-periode-debut]){margin-top:0!important}
+}
+@media (max-width:640px){
+  /* B : deux colonnes ; la 1re rangée de chaque période descend pour laisser la place au titre */
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-week__listMode__content__day__offers{grid-template-columns:1fr 1fr!important;row-gap:8px!important;padding-top:0!important}
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut],
+  .reserver[data-habillage="b"] .bsport-widget[id] .bs-offer-list-item[data-periode-debut] + .bs-offer-list-item:not([data-periode-debut]){margin-top:40px!important}
+}

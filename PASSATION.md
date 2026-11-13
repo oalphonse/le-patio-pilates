@@ -10,7 +10,7 @@ Site statique (HTML/CSS/JS, sans framework ni build). Chaque sous-page est un do
 python3 serveur.py
 ```
 
-Puis ouvrir http://localhost:8765. Le serveur (Python standard, sans dépendance) sert les pages et l'API du compteur « samedi » (voir plus bas).
+Puis ouvrir http://localhost:8765. Le serveur (Python standard, sans dépendance) sert les pages et l'API des compteurs « samedi » et « dimanche » (voir plus bas).
 
 Ne pas ouvrir les fichiers en double-cliquant (`file://`) : les liens de dossiers et l'API ne fonctionnent pas.
 
@@ -25,6 +25,7 @@ Il n'écoute qu'en local sur le VPS : on le consulte depuis le poste par un tunn
   `lepatio-test --maj` : récupère d'abord le dernier code GitHub sur le VPS et relance le site (à faire après chaque push). `--sans-navigateur` : tunnel seul.
 - Sans le raccourci : `ssh -N -L 8790:127.0.0.1:8790 cliford` puis http://localhost:8790
 - Options de `serveur.py` : `--port`, `--hote` (127.0.0.1 par défaut ; `0.0.0.0` l'ouvrirait à tous, à éviter sans pare-feu).
+- **Après toute modification de `serveur.py`, relancer le serveur** (il ne recharge pas son code tout seul). Fait le 13/11 au soir après l'ajout du compteur dimanche : `/api/interet-samedi` et `/api/interet-dimanche` répondent sur le port 8790.
 
 ## Architecture et hébergement (décidé le 13/11)
 
@@ -33,7 +34,7 @@ Il n'écoute qu'en local sur le VPS : on le consulte depuis le poste par un tunn
 ```
 Visiteur ─► site statique (GitHub Pages)
    ├─ réserver, acheter, compte client, inscription newsletter ─► widgets / liens bsport
-   └─ petits compteurs (« Ça m'intéresse » samedi…) ─► https://api.<domaine> (VPS OVH)
+   └─ petits compteurs (« Ça m'intéresse » samedi, dimanche…) ─► https://api.<domaine> (VPS OVH)
 ```
 
 | Fonction | Où | Comment |
@@ -45,7 +46,7 @@ Visiteur ─► site statique (GitHub Pages)
 | Inscription « Me prévenir à l'ouverture » / newsletter | **bsport** | Widget « acquisition de leads » (e-mail seul) ; les inscrits deviennent des contacts bsport avec le tag « Newsletter » |
 | Envoi des newsletters | **bsport** | Marketing → smartlists. Uniquement vers les contacts présents dans bsport |
 | Suivi des visites (GA4, pixel Meta) | **bsport** + Google Tag Manager | Événements bsport récupérés dans GTM |
-| Compteur « Ça m'intéresse » du samedi (et futurs petits boutons du même type) | **VPS OVH** | `serveur.py` en mode API |
+| Compteurs « Ça m'intéresse » du samedi et du dimanche (et futurs petits boutons du même type) | **VPS OVH** | `serveur.py` en mode API |
 | Contact | **Aucun serveur** | Liens directs (e-mail, téléphone, éventuellement WhatsApp/Instagram) à la place du formulaire : bsport n'a pas de module pour les messages libres |
 
 ### GitHub Pages
@@ -67,19 +68,75 @@ Visiteur ─► site statique (GitHub Pages)
 ### bsport : ce qu'on sait (vérifié le 13/11 sur le compte du studio, n° 7023)
 
 - **Widgets disponibles** (back-office → Mon widget) : Calendrier, Ateliers, VOD, Cartes, Sur rendez-vous, Playlist, Magasin, Abonnement, Bouton login ; le script contient aussi `newsletterV2` (inscription newsletter, piste pour la popup « Me prévenir »). Webhooks disponibles (booking-, member-, invoice-, offer-…), à recevoir sur le VPS si besoin un jour.
-- Croisement avec le site : Calendrier → Planning (test en 3-S07, coach 155027, établissement 23608) et page « Réserver ma première séance » ; Cartes + Abonnement → Tarifs 4-S10 et offre 4-S02 ; Magasin → cartes cadeaux (lien 1-L14, boutique bsport encore vide) ; Bouton login → icône « Mon compte » de l'en-tête (fait) ; Ateliers / Sur rendez-vous seulement si le studio propose événements ou cours particuliers ; VOD / Playlist inutiles.
+- Croisement avec le site : Calendrier → Planning (3-S07, en place, coach 155027, établissement 23608) et page « Réserver ma première séance » ; Cartes + Abonnement → Tarifs 4-S10 et offre première séance 4-S25 (fait) ; Magasin → cartes cadeaux (lien 1-L14, boutique bsport encore vide) ; Bouton login → icône « Mon compte » de l'en-tête (fait) ; Ateliers / Sur rendez-vous seulement si le studio propose événements ou cours particuliers ; VOD / Playlist inutiles.
 - **Lien direct par produit** : on peut garder nos propres cartes de prix avec un bouton par produit.
   - Pack : `https://backoffice.bsport.io/customer/payment/pass/<id>` (passe par la connexion puis `/checkout/7023/pre-checkout/payment-pack/<id>`)
   - Abonnement : `https://backoffice.bsport.io/checkout/7023/subscription/<id>`
 - Identifiants (prix identiques au site) : Séance à l'unité 817519 · Séance d'essai 817521 (nouveaux membres seulement, 2 crédits, 35 €) · 5 séances 817520 · 10 séances 817522 · 20 séances 817524 · 30 séances 817523 · Abonnement 5/mois 60489 · Abonnement 10/mois 60490.
 - **Achat** : connexion ou création de compte bsport obligatoire avant le paiement ; en widget tout se passe dans une fenêtre par-dessus notre page (z-index 1300, au-dessus de l'en-tête).
 - Liste publique des packs (sans clé) : `https://api.production.bsport.io/buyable/v1/payment-pack/payment-pack/?company=7023&as_consumer=true&page_size=300`
+- **Catégories de packs** : Unitaire **31419** (séance à l'unité 817519 + séance d'essai 817521) · Forfaits **31417** · Abonnements **31418**.
+- **Widget Cartes (`widgetType: "pass"`)** : clés de config trouvées le 13/11 : `hideFilters`, `hidePaymentPack`, `hidePrivatePass`, `hidePaymentCombo`, `paymentPackCategories`, `privatePassCategories`. **Aucun filtre par produit**, seulement par catégorie. Pour n'afficher qu'un pack, on masque les autres cartes en CSS par l'id fixe que bsport pose sur chacune : `#payment-pack-button-container-<id>` (abonnements : `contract-button-container-<id>`).
+- Le prix s'affiche « 35.00 € » (point, deux décimales) : format bsport, on ne peut pas le changer en CSS.
+- Le « Powered by bsport » n'a **pas de classe fixe** : on le vise par son lien (`a[href*="bsport"]`) ou par la structure (`.cleanslate > div > div`). Sur le calendrier olive foncé du Planning, il est **peu lisible** (rien n'est fait pour l'instant).
+- Animation au changement de jour (demandée le 13/11, pour tous les widgets à jours) : dans `commun/bsport.css`, le jour choisi rebondit et les séances apparaissent en fondu décalé. bsport recrée les cartes à chaque jour, donc l'animation se rejoue seule. Désactivée si le visiteur a demandé de réduire les animations.
 - Habillage : n'utiliser que les classes `bs-*` (fixes) dans `commun/bsport.css`. bsport a aussi un « CSS personnalisé » dans son back-office (`core-data/v1/company/custom_css`).
-- Les widgets s'affichent en anglais en local (fichiers de traduction cherchés à une mauvaise adresse) : à revérifier sur le vrai domaine.
+- **Langue de bsport = langue de la page** (13/11), donc synchronisée avec le bouton **FR / EN** (chaque page porte sa langue dans `<html lang>`). Sans réglage, bsport prend la langue du **navigateur du visiteur** (« Book », « 8:30 AM », « Log in » sur les pages FR). `commun/bsport-langue.js`, dans le `<head>` des **12 pages** (FR et EN), avant tout chargement de bsport :
+  - widgets : cookie `i18next=fr|en-GB`, **mais il ne suffit pas** (14/11, vu sur le Chrome Mac de l'utilisateur : cookie `fr` posé, widget en anglais « MONDAY », « Book », « Most recent session »). Cause : `widget.js` et ses morceaux partagent **une seule instance i18next initialisée deux fois** ; la 1re (dans `widget.js`) ne regarde **que la langue du navigateur** (`order:["navigator"]`) ; si ses traductions ne sont pas arrivées quand le widget fait la 2e (cookie d'abord), i18next saute cette 2e détection et reste dans la langue du navigateur. Ça dépend du cache et du réseau, d'où « tout en français » dans les tests Playwright (prouvé en ralentissant `locales/*/translation.json` : anglais avant, français après).
+  - Correctif dans `bsport-langue.js` : la page met sa langue en tête de `navigator.languages` et `navigator.language` (`fr-FR`, ou `en-GB` sur les pages EN), et ajoute `language` à chaque `BsportWidget.mount` (bsport appelle alors `changeLanguage`). Anglais = `en-GB` pour avoir les dates en jour/mois et les heures sur 24 h, comme en français (`bsport-semaine.js` lit maintenant jour/mois dans les deux langues).
+  - `commun/bsport-textes.js` (Planning, Tarifs, Réserver ma première séance) : « La séance la plus récente est le 01/02/2027 : 08:30 » devient « Prochaine séance : lundi 01/02 à 08:30 » (« Next class: Monday 01/02 at 8:30 »), via `data-texte` + `::after` dans `commun/bsport.css`.
+  - fenêtres bsport en cadre (connexion, réservation, achat, servies par backoffice.bsport.io) : elles ignorent le cookie mais acceptent `lng=fr|en` dans l'adresse ; le script l'ajoute à chaque cadre (sauf le cadre technique `widget-proxy-bridge`) et aux liens directs vers bsport. Vérifié avec un navigateur anglais : connexion et réservation en français.
+  - Reste en anglais dans la fenêtre de connexion : « Email » et « Password » (traduction manquante chez bsport, inaccessible depuis notre site). Format des prix « 35.00 € » idem.
+  - Les pages `en/` n'ont pas encore les widgets ni le bouton espace client : à ajouter (les scripts gèrent déjà l'anglais : périodes Morning/Midday/Evening, semaine « Monday 01/02 to Sunday 07/02 », bloc week-end).
+  - Les requêtes 404 vers `…/undefined/locales/…` sont sans conséquence.
+
+### Widgets bsport sur le site (état du 13/11 au soir)
+
+**Fichiers communs**
+- `commun/bsport.css` : habillage de base de tous les widgets (classes `bs-*`), animation au changement de jour, libellé de la semaine, et deux corrections du survol :
+  - pas de « flash » au survol d'une séance : bsport met un filtre `brightness(.9)` immédiat, on le retire (`filter:none`) ;
+  - le bouton « Réserver » reste une pilule : bsport passe son arrondi à 20px au survol, on force `border-radius:999px` dans tous les états.
+- `commun/bsport-langue.js` : langue des widgets et des fenêtres bsport (voir plus haut). Dans le `<head>` des 12 pages.
+- `commun/bsport-periodes.js` : pose `data-periode` (matin / midi / soir) sur chaque séance d'après son heure. Matin avant 11 h, Midi de 11 h à 15 h, Soir à partir de 15 h.
+- `commun/bsport-semaine.js` : la semaine s'écrit « Du lundi 01/02 au dimanche 07/02 » (en anglais « Monday 01/02 to Sunday 07/02 »). En dessous, en petit, le mois en toutes lettres (« Février 2027 », « Janvier – Février 2027 » si la semaine est à cheval). Le script pose les textes dans `data-libelle` et `data-mois` ; `commun/bsport.css` masque le texte bsport et affiche les nôtres en `::after` (semaine) et `::before` (mois, bsport utilisait déjà ce `::before` : toutes ses propriétés sont reprises en `!important`). Le même script centre le mini calendrier (qui s'ouvre au clic sur la semaine) entre les deux flèches : décalage calculé dans `--bs-menu-dx`, appliqué par la propriété `translate` dans `commun/bsport.css` ; le mini calendrier a ses propres couleurs (carte claire), indépendantes du fond de la section. Sans le script, rien ne change.
+- `commun/bsport-jour-ferme.js` : bloc samedi / dimanche sans cours (voir Planning).
+- `commun/propositions.js` + `commun/propositions.css` : **sélecteur de propositions** (outil de travail, à retirer à la mise en ligne). Une zone `[data-prop]` contient une barre de boutons (A, B, C, « Site actuel ») ; les blocs `[data-prop-pour="a b c"]` ne s'affichent que pour leur choix ; `[data-habillage]` reçoit le choix pour le CSS. Choix mémorisé par zone dans le navigateur (`localStorage`, clé `prop:<nom>`). « Site actuel » = la version d'avant les widgets.
+
+**Planning (page 3) : fait, couleur fixée**
+- Le widget Calendrier (S07, `id="creneaux"`) **remplace notre grille**. Plus de sélecteur sur cette page (`propositions.css` / `.js` n'y sont plus chargés).
+- Habillage dans `commun/bsport-calendrier.css` (ex-`bsport-calendrier-propositions.css`), palette **olive foncé** seule, en dur sur la section : `data-habillage="olive-fonce"`.
+  - Les 4 autres palettes essayées le 13/11 (olive, brun, sable, crème) sont gardées **en commentaire** en tête de `commun/bsport-calendrier.css` (l'ancien fichier de propositions n'a jamais été commité).
+- Mise en page « C » : chaque séance est une carte ; les cartes sont rangées en colonnes **Matin | Midi | Soir** (titre de colonne = `::before` de la 1re séance de la période). Sur mobile (≤ 640 px), les colonnes s'empilent, avec un petit titre au-dessus de chaque période.
+- Les jours de la semaine ont le même fond que les cartes ; le jour choisi a un contour clair.
+- Bouton « Réserver » (contour) : il grandit un peu quand la souris arrive sur la carte et reprend sa taille quand elle part (une fois, pas en boucle). Il ne se remplit que quand on survole le bouton lui-même.
+- Recherche, filtres, lieu et points sous les jours sont masqués (une activité, une professeure, un studio).
+- **Samedi et dimanche sans cours** : quand le jour choisi est un samedi ou un dimanche et qu'il n'y a aucune séance, `commun/bsport-jour-ferme.js` place dans le calendrier le bloc « Pas encore de cours le samedi / dimanche » (C55, écrit dans `planning/index.html`).
+  - « Ça m'intéresse » (B15) compte le vote (`POST /api/interet-samedi` ou `/api/interet-dimanche`, voir « Compteurs »), puis déplie le formulaire « Me prévenir quand les cours du … ouvriront » (F01).
+  - **Ce formulaire est une démo : il vérifie l'adresse et affiche « Merci », mais rien n'est envoyé ni enregistré.** À brancher (voir Reste à décider).
+- L'ancienne grille (S02) est **encore dans le HTML mais masquée** (`hidden`) : à supprimer avec son CSS (`.week`, `.pgrid`…) et son JS (dont l'ancien bouton samedi) une fois le calendrier validé en ligne.
+
+**Tarifs (page 4)**
+- Carte « Une séance achetée, une séance offerte » de l'accueil (1-C01) → `tarifs/#offre-premiere-seance` (EN : `pricing/#first-class-offer`) ; à l'arrivée, `commun/ancre-centree.js` amène l'offre au **centre** de l'écran (attribut `data-ancre-centree` sur la section, recentrage pendant le chargement des widgets, arrêté dès que le visiteur fait défiler).
+- Offre première séance (section S25) : **A « Bandeau » retenue le 13/11** (bandeau olive, le widget en coupon clair à droite). Barre de choix et ancien bandeau S02 supprimés (S02 reste dans l'historique git). CSS : `commun/bsport-premiere-seance.css` (ex-`…-propositions.css`) ; B « Ticket » et C « Affiche » y sont gardées en commentaire en tête du fichier. L'ancien CSS de S02 (`.offre-ps…`, `.offer-badge`) a été retiré du `<head>`.
+  - Widget Cartes limité à la catégorie Unitaire (31419) ; on ne garde que la carte du pack 817521 (`#payment-pack-button-container-817521`), la séance à l'unité est masquée.
+- Formules (section S20) : **A « Carte des prix » retenue le 14/11**. Carte claire à gauche : séance et forfaits en lignes (nom, validité, prix, bouton contour) sous les intertitres bsport « Unitaire » et « Forfaits » (agrandis, olive, filet dessous). Encadré olive à droite : les abonnements, chacun empilé (titre sur une ligne, prix, bouton « M'abonner »), le « Powered by » tout en bas à droite de l'encadré. Sur ordinateur, les deux cartes ont la même hauteur. Barre de choix, anciennes colonnes S10 (restent dans l'historique git) et blocs B, C, D supprimés ; l'ancien CSS de S10 (`.va…`) a été retiré du `<head>`. CSS : `commun/bsport-formules.css` (ex-`…-propositions.css`, `<link>` placé juste avant la section) ; B « Vitrine », C « Deux temps » et D « Fusion » (les 3 colonnes de S10 avec les tuiles de B) y sont gardées en commentaire compact en tête du fichier.
+  - Widget Cartes (`pass`), catégories Unitaire (31419) et Forfaits (31417), séance d'essai masquée par son id (`#payment-pack-button-container-817521`) ; widget Abonnement (`subscription`). Un seul « Powered by » gardé (celui des abonnements).
+  - Tarifs n'a plus de zone de propositions : `commun/propositions.css` / `.js` n'y sont plus chargés (les fichiers restent, pour Réserver ma première séance).
+- Conditions (section S11 « Bon à savoir ») : **A « Cartes » retenue le 14/11** (4 cartes avec icône : Paiement, Parrainage, Gel de l'abonnement, Résiliation ; 4 colonnes, 2 sous 1000 px, 1 sur mobile avec l'icône à gauche). Sélecteur `cv-barre`, son script (clé `tarifs-conditions-proposition`) et son CSS retirés ; propositions B « Questions » (S12), C « Liste » (S13) et l'ancienne bande « Actuelle » (S06) supprimées avec leur CSS (`.cb…`, `.cc…`, `.cond…`) : elles restent dans l'historique git. CSS de S11 (`.ca…`) dans le `<head>` de la page.
+
+**Réserver ma première séance (page 6) : propositions** (zone `reserver-premiere-seance`, défaut A)
+- A Étapes, B Côte à côte, C Créneau d'abord (section S03) : offre première séance (widget Cartes, pack 817521 seul) + calendrier. « Site actuel » = la page d'attente S01. CSS : `commun/bsport-reserver-propositions.css`.
+
+**À faire côté bsport (back-office du studio)**
+- Renommer « Séance d'essai » en **« Première séance »** (titre et description) : on ne parle jamais d'« essai » sur le site.
+- Créer une **catégorie qui ne contient que le pack 817521** : le widget pourrait alors l'afficher seul, sans masquage en CSS.
+- Savoir que le prix s'affiche « 35.00 € » (format bsport, non modifiable en CSS).
 
 ### Reste à décider / obtenir
 - Le nom de domaine du site et du sous-domaine API.
-- Choisir pour Planning : garder notre grille ou la remplacer par le widget Calendrier.
+- Choisir les propositions (voir « Widgets bsport sur le site ») : Réserver ma première séance (A / B / C / Site actuel) ; Tarifs est fait (offre et formules retenues). Ensuite : garder le bloc retenu, supprimer l'autre et la barre, fusionner le CSS retenu, retirer `commun/propositions.*` quand plus aucune page ne s'en sert.
+- Planning : supprimer l'ancienne grille masquée une fois le calendrier validé en ligne ; rendre le « Powered by bsport » lisible sur l'olive foncé si on le souhaite.
+- **Formulaire « Me prévenir » des samedis / dimanches** (démo) : le brancher sur le widget leads bsport, ou collecter les e-mails sur le VPS. À décider, avec la question **RGPD** (consentement, durée de conservation, mention d'information) si on collecte nous-mêmes.
 - **Inscriptions avant l'ouverture** : le widget leads n'est disponible qu'une fois bsport ouvert. Soit on attend les accès bsport pour activer « Me prévenir », soit on collecte temporairement sur le VPS puis on importe la liste dans bsport (import à confirmer auprès de bsport).
 - Questions pour bsport : personnalisation des couleurs et de la police des widgets ; possibilité de ne pas forcer le tag « Newsletter » sur le widget leads ; import de contacts ; accès API si besoin un jour.
 
@@ -89,13 +146,13 @@ Visiteur ─► site statique (GitHub Pages)
 |---|---|
 | `/` | Accueil : hero, offre première séance, studio, attentions, cours, étapes première séance, professeure, raccourcis planning/tarifs, infos pratiques, avis, application, galerie, bandeau CTA, FAQ, pied de page |
 | `/premiere-seance/` | Déroulé d'une première séance en 3 étapes |
-| `/planning/` | Semaine type (lun–ven, 7 créneaux de 8h30 à 20h) + colonne samedi « Bientôt » avec bouton « Ça m'intéresse » |
-| `/tarifs/` | Offre première séance, séances à l'unité et forfaits, abonnements, conditions |
+| `/planning/` | Widget Calendrier bsport (réservation en direct), habillé olive foncé, séances en colonnes Matin / Midi / Soir ; bloc « Pas encore de cours le samedi / dimanche » avec « Ça m'intéresse ». L'ancienne grille est masquée |
+| `/tarifs/` | Offre première séance, séances à l'unité et forfaits, abonnements, conditions ; offre première séance et formules achetables en direct (widgets bsport Cartes et Abonnement) |
 | `/contact/` | Téléphone + formulaire de contact (retiré de l'accueil) |
-| `/reserver-premiere-seance/` | Page d'attente (`noindex`) en attendant le lien bsport |
+| `/reserver-premiere-seance/` | Page `noindex` : offre première séance + calendrier bsport en propositions A / B / C ; « Site actuel » = l'ancienne page d'attente |
 
 Règles du projet :
-- **En-tête identique sur les 6 pages**, collant en haut : bouton « Menu » (burger) à gauche, logo au centre, « Réserver » à droite. Tarifs, Planning et Première séance restent visibles hors du menu (à côté du burger sur ordinateur, sur une 2e ligne sur mobile) ; Les cours, Le studio, Infos pratiques, FAQ et Contact sont dans le menu. Sur ordinateur le menu s'ouvre au survol, sur mobile au toucher. Style et comportement sont dans `commun/entete.css` et `commun/entete.js` (communs aux 6 pages) ; seul le HTML de l'en-tête est recopié dans chaque page, à garder identique.
+- **En-tête identique sur les 6 pages**, collant en haut : bouton « Menu » (burger) à gauche, logo au centre, « Réserver » à droite. Tarifs, Planning et Première séance restent visibles hors du menu (à côté du burger sur ordinateur, sur une 2e ligne sur mobile) ; Les cours, Le studio, Infos pratiques, FAQ et Contact sont dans le menu. Sur ordinateur le menu s'ouvre au survol, sur mobile au toucher. Sous 540 px, le logo n'est plus centré sur l'écran mais dans l'espace entre le menu et le bloc de droite (EN, Se connecter, Réserver), sinon ce bloc passait sur le logo ; sous 360 px, logo réduit (transform). Style et comportement sont dans `commun/entete.css` et `commun/entete.js` (communs aux 6 pages) ; seul le HTML de l'en-tête est recopié dans chaque page, à garder identique.
 - **Slugs et noms de fichiers en français, mots séparés par des tirets** (SEO), ex. `photos-le-patio/pilates-reformer-senlis-le-patio.jpg`.
 - On parle de **« première séance »**, jamais d'« essai ».
 - **Ne pas citer bsport dans les textes du site** (ni en français ni en anglais, ni dans les titres et descriptions pour Google) : on pousse les visiteurs vers **notre site et l'application Le Patio**. Formulations utilisées : « en ligne, sur notre site ou l'application Le Patio » / « on our website or the Le Patio app ». La seule mention de bsport acceptée est le « Powered by bsport » affiché par leurs propres modules (widgets). Décidé le 13/11.
@@ -106,9 +163,13 @@ Il s'ouvre 2 s après l'arrivée et affiche un compte à rebours jusqu'au 1er f�
 
 Le mode dev est désactivé (`const MODE_DEV=false;` dans `index.html`) : le popup ne s'affiche qu'une fois par heure et par visiteur (localStorage). Le repasser à `true` pour le revoir à chaque chargement pendant les tests.
 
-## Compteur « samedi » (`serveur.py`)
+## Compteurs « samedi » et « dimanche » (`serveur.py`)
 
-- `POST /api/interet-samedi` enregistre un vote (1 par adresse IP), `GET` renvoie le total.
+- `POST /api/interet-samedi` et `POST /api/interet-dimanche` enregistrent un vote, `GET` renvoie le total. Un vote par adresse IP **et par jour de la semaine** : une même personne peut voter une fois pour le samedi et une fois pour le dimanche (pas une fois par date).
+- Un fichier par jour : `donnees/interet-samedi.json`, `donnees/interet-dimanche.json` (créé au premier vote).
+- Le bouton est propre à chaque jour : « Ça m'intéresse le samedi » / « … le dimanche », puis « C'est noté pour le samedi ✓ » (mémo par jour dans le navigateur, `localStorage` `interet-samedi` / `interet-dimanche`).
+- **Serveur de dev par le tunnel SSH : tout le monde arrive avec l'adresse 127.0.0.1**, donc un seul vote par jour pour tous les testeurs, tests automatiques compris. Les votes du 13/11 à 22:22 UTC (samedi et dimanche) sont de vrais clics de test du propriétaire : ne pas les effacer en croyant nettoyer un test.
+- Appelés par le bloc « Pas encore de cours le … » du Planning (`commun/bsport-jour-ferme.js`, adresse `../api/interet-<jour>`, à remplacer par `https://api.<domaine>/api/interet-` en ligne). Le navigateur retient aussi le vote (`localStorage`, clé `interet-<jour>`) pour afficher « C'est noté ✓ ».
 - Les IP ne sont jamais stockées en clair : empreinte SHA-256 salée dans `donnees/` (ignoré par git, ne pas versionner).
 - Le serveur bloque l'accès à `/donnees`, `/serveur.py`, `/.git`, `/.claude`.
 - En ligne, ce script tournera sur le **VPS OVH** en mode API seule (voir Architecture et hébergement) ; le site statique l'appellera sur `https://api.<domaine>`. Rien n'est encore adapté : aujourd'hui il sert aussi les pages et n'a ni CORS ni limite de requêtes.
@@ -117,8 +178,10 @@ Le mode dev est désactivé (`const MODE_DEV=false;` dans `index.html`) : le pop
 
 - Inscription e-mail du popup : valide la saisie puis affiche un message, sans envoi. À remplacer par le **widget leads bsport**.
 - Formulaire de contact (`/contact/`) : idem, sans envoi. À remplacer par des **liens directs** (e-mail, téléphone).
+- Formulaire « Me prévenir quand les cours du samedi / dimanche ouvriront » (Planning, F01, `commun/bsport-jour-ferme.js`) : vérifie l'adresse et affiche « Merci », **rien n'est envoyé ni enregistré**. À brancher : widget leads bsport ou collecte sur le VPS (voir Reste à décider). Le vote « Ça m'intéresse » juste avant, lui, est bien compté.
+- Achat en ligne : **branché** sur Tarifs (offre première séance et formules, widgets bsport) ; sur Réserver ma première séance, dans les propositions A / B / C, pas dans « Site actuel ».
 - Tous les boutons « Réserver » mènent au **planning** et les créneaux à l'offre première séance, en attendant de brancher les **liens bsport** par produit (voir « bsport : ce qu'on sait »).
-- **« Mon compte »** (icône B00 à côté de Réserver, 6 pages FR) : **branché**. Monte le bouton login bsport hors écran au premier survol et ouvre sa fenêtre de connexion ; sans JavaScript, lien vers la connexion bsport. Code dans `commun/entete.js` / `entete.css`.
+- **Espace client bsport** (B00, à côté de Réserver, 6 pages FR + page test ; remplace le 14/11 les icônes « Se connecter » et « Panier ») : c'est le **bouton flottant de bsport** (widget `consumerSpace`, `showFab:true`), monté sur chaque page par `commun/entete.js`. Bonhomme à la place de l'icône bsport. Déconnecté : un clic ouvre la connexion bsport. Connecté : un clic déplie son menu vers le bas (Mes réservations, Mon panier — avec compteurs olive —, Mon profil, Mes souscriptions, Déconnexion ; vu seulement en aperçu forcé, pas avec un vrai compte). **Le bloc reste dans `<body>`** et est superposé à `.fab-place` (position suivie au défilement, `--fab-x/--fab-y`) : le déplacer dans l'en-tête fait planter bsport (`removeChild`). Ciblage par la structure (`.fab-bsport > button[title]`…), bsport n'ayant pas de classes fixes ici. Le bloc est repéré par un `MutationObserver` dès son insertion par bsport, avant le premier affichage : il n'apparaît jamais en bas à gauche avec l'icône bsport. bsport dessine un rond blanc à ombre dans chaque entrée du menu : effacé (sinon deux ronds superposés). Sans JavaScript : lien bonhomme vers la connexion.
 - Numéro de téléphone et e-mail : « à venir ».
 
 ## Détourage (outil interne)
@@ -205,7 +268,7 @@ Chaque élément visible porte un attribut `data-num` (S section, C carte, T tex
 
 - Dossier `versions/` (anciennes copies v1/v2) : redondant avec git, peut être supprimé.
 - Hébergement : décidé le 13/11 (voir Architecture et hébergement). Mise en place à faire.
-- Intégration des widgets bsport (planning, packs, leads) une fois les accès reçus.
+- Intégration des widgets bsport : Planning et Tarifs faits, Réserver ma première séance en propositions (voir « Widgets bsport sur le site ») ; widget leads à faire. Pages `en/` sans widgets pour l'instant.
 
 ## Versionnement
 

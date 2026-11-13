@@ -2,8 +2,9 @@
 """Serveur local du site Le Patio.
 
 - Sert les pages du site (comme un hébergement classique).
-- /api/interet-samedi : compte les personnes intéressées par des cours le samedi.
-    POST -> enregistre un clic (1 seul par adresse IP), renvoie {"ok", "deja", "total"}
+- /api/interet-samedi et /api/interet-dimanche : comptent les personnes intéressées
+  par des cours ce jour-là (un fichier par jour dans donnees/).
+    POST -> enregistre un clic (1 seul par adresse IP et par jour), renvoie {"ok", "deja", "total"}
     GET  -> renvoie {"total"}
 Les adresses IP ne sont jamais stockées en clair : seule une empreinte salée
 (SHA-256) est gardée, suffisante pour ne compter chaque personne qu'une fois.
@@ -27,7 +28,7 @@ from functools import partial
 
 RACINE = os.path.dirname(os.path.abspath(__file__))
 DONNEES = os.path.join(RACINE, "donnees")
-FICHIER_VOTES = os.path.join(DONNEES, "interet-samedi.json")
+JOURS_INTERET = ("samedi", "dimanche")
 FICHIER_SEL = os.path.join(DONNEES, "sel.txt")
 PORT = int(os.environ.get("PORT", "8765"))
 HOTE = os.environ.get("HOTE", "127.0.0.1")
@@ -43,19 +44,31 @@ def sel():
         return f.read().strip()
 
 
-def lire_votes():
+def fichier_votes(jour):
+    return os.path.join(DONNEES, f"interet-{jour}.json")
+
+
+def jour_api(chemin):
+    """« /api/interet-samedi » -> « samedi » ; None si ce n'est pas une adresse de compteur."""
+    for jour in JOURS_INTERET:
+        if chemin.rstrip("/") == f"/api/interet-{jour}":
+            return jour
+    return None
+
+
+def lire_votes(jour):
     try:
-        with open(FICHIER_VOTES, encoding="utf-8") as f:
+        with open(fichier_votes(jour), encoding="utf-8") as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {"votes": {}}
 
 
-def ecrire_votes(data):
-    tmp = FICHIER_VOTES + ".tmp"
+def ecrire_votes(jour, data):
+    tmp = fichier_votes(jour) + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
-    os.replace(tmp, FICHIER_VOTES)
+    os.replace(tmp, fichier_votes(jour))
 
 
 class Gestionnaire(SimpleHTTPRequestHandler):
@@ -80,9 +93,10 @@ class Gestionnaire(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         p = self.chemin()
-        if p.rstrip("/") == "/api/interet-samedi":
+        jour = jour_api(p)
+        if jour:
             with VERROU:
-                total = len(lire_votes()["votes"])
+                total = len(lire_votes(jour)["votes"])
             return self.repondre_json(200, {"total": total})
         if p.startswith(self.PRIVE):
             return self.send_error(404)
@@ -94,15 +108,16 @@ class Gestionnaire(SimpleHTTPRequestHandler):
         return super().do_HEAD()
 
     def do_POST(self):
-        if self.chemin().rstrip("/") != "/api/interet-samedi":
+        jour = jour_api(self.chemin())
+        if not jour:
             return self.send_error(404)
         empreinte = hashlib.sha256((SEL + self.ip_client()).encode("utf-8")).hexdigest()
         with VERROU:
-            data = lire_votes()
+            data = lire_votes(jour)
             deja = empreinte in data["votes"]
             if not deja:
                 data["votes"][empreinte] = datetime.now(timezone.utc).isoformat(timespec="seconds")
-                ecrire_votes(data)
+                ecrire_votes(jour, data)
             total = len(data["votes"])
         self.repondre_json(200, {"ok": True, "deja": deja, "total": total})
 

@@ -46,13 +46,13 @@ a:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
 
 /* Introduction */
 .intro{background:var(--sand)}
-.intro .wrap{display:grid;gap:14px;padding-block:48px 56px}
+.intro .wrap{display:grid;gap:14px;padding-block:24px 28px}
 .intro h1{font-size:clamp(36px,4.6vw,62px);line-height:1.08;max-width:820px}
 .intro p{font-size:18px;color:var(--brown);max-width:620px;margin-top:6px}
 
 /* Première séance mise en avant */
 .offre-ps{background:var(--sand)}
-.offre-ps .wrap{padding-block:0 72px}
+.offre-ps .wrap{padding-block:0 36px}
 .offre-ps-card{position:relative;background:var(--olive);color:var(--paper);border-radius:22px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;padding:30px 48px}
 .offre-ps-txt{display:grid;gap:10px}
 /* Même pastille que l'accueil, en couleurs inversées sur le fond olive */
@@ -68,14 +68,14 @@ a:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
 
 /* Conditions */
 .cond{background:var(--paper);border-top:1px solid var(--sand)}
-.cond .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding-block:56px}
+.cond .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding-block:28px}
 .cond div{display:grid;gap:6px;align-content:start}
 .cond b{font-weight:500}
 .cond p{font-size:14.5px;color:var(--brown)}
 
 /* Fin */
 .end{background:var(--olive-d);color:var(--paper);text-align:center}
-.end .wrap{display:grid;justify-items:center;gap:18px;padding-block:80px}
+.end .wrap{display:grid;justify-items:center;gap:18px;padding-block:40px}
 .end h2{font-size:clamp(28px,3.4vw,42px)}
 .end p{color:var(--tan-2)}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
@@ -112,7 +112,7 @@ footer a{text-decoration:none}
 /* Application (copie de l'accueil) */
 .h2{font-size:clamp(30px,3.4vw,44px);line-height:1.15}
 .app{background:var(--sand)}
-.app .wrap{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;padding-block:52px 48px}
+.app .wrap{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;padding-block:26px 24px}
 .app-txt{display:grid;gap:18px;max-width:520px}
 .app-txt > p{color:var(--brown);font-size:17px}
 .checks{list-style:none;margin:0;padding:0;display:grid;gap:12px;font-size:16px}
@@ -143,7 +143,7 @@ footer a{text-decoration:none}
 @media (max-width:640px){.logo img{height:52px}}
 
 /* ===== Formules : trois colonnes ===== */
-.va .wrap{display:grid;gap:40px;padding-block:72px 88px}
+.va .wrap{display:grid;gap:40px;padding-block:36px 44px}
 .va-head{display:grid;gap:10px;justify-items:center;text-align:center}
 .va-head h2{font-size:clamp(30px,3.4vw,44px);line-height:1.15}
 .va-head p{color:var(--brown)}
@@ -195,7 +195,7 @@ footer a{text-decoration:none}
 
 /* A · Cartes */
 .ca{background:var(--sand)}
-.ca .wrap{display:grid;gap:32px;padding-block:64px 72px}
+.ca .wrap{display:grid;gap:32px;padding-block:32px 36px}
 .ca-head{display:grid;gap:10px;justify-items:center;text-align:center}
 .ca-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .ca-carte{background:var(--paper);border-radius:var(--r);padding:26px 24px;display:grid;gap:10px;align-content:start}
@@ -205,7 +205,7 @@ footer a{text-decoration:none}
 
 /* B · Questions */
 .cb{background:var(--paper);border-top:1px solid var(--sand)}
-.cb .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:56px;padding-block:64px 72px;align-items:start}
+.cb .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:56px;padding-block:32px 36px;align-items:start}
 .cb-head{display:grid;gap:10px}
 .cb-head p{color:var(--brown)}
 .cb-liste{border-top:1px solid var(--sand)}
@@ -218,7 +218,7 @@ footer a{text-decoration:none}
 
 /* C · Liste + parrainage */
 .cc{background:var(--paper);border-top:1px solid var(--sand)}
-.cc .wrap{display:grid;gap:32px;padding-block:64px 72px}
+.cc .wrap{display:grid;gap:32px;padding-block:32px 36px}
 .cc-head{display:grid;gap:10px}
 .cc-corps{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start}
 .cc-liste{margin:0;border-top:1px solid var(--sand)}
@@ -241,7 +241,7 @@ footer a{text-decoration:none}
 @media (max-width:640px){
   .cv-barre{top:120px;font-size:12.5px}
   .cv-barre > span,.cv-nom{display:none}
-  .ca .wrap,.cb .wrap,.cc .wrap{padding-block:48px 56px}
+  .ca .wrap,.cb .wrap,.cc .wrap{padding-block:24px 28px}
   .ca-grid{grid-template-columns:1fr;gap:12px}
   .ca-carte{grid-template-columns:36px minmax(0,1fr);column-gap:14px;padding:20px 18px}
   .ca-ico{grid-row:span 2;margin:0}
@@ -250,6 +250,8 @@ footer a{text-decoration:none}
 }
 </style>
 <link rel="stylesheet" href="../../commun/entete.css">
+<!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
+<script src="../../commun/bsport-langue.js"></script>
 <link rel="canonical" href="https://__DOMAINE__/en/pricing/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
@@ -291,7 +293,7 @@ footer a{text-decoration:none}
     </div>
   </section>
 
-  <section class="offre-ps" aria-label="First class" data-num="S02">
+  <section class="offre-ps" data-ancre-centree="first-class-offer" aria-label="First class" data-num="S02">
     <div class="wrap">
       <div class="offre-ps-card" data-num="C01">
         <div class="offre-ps-txt">
@@ -499,6 +501,7 @@ footer a{text-decoration:none}
 <script>
 </script>
 <script src="../../commun/entete.js"></script>
+<script src="../../commun/ancre-centree.js"></script>
 <script>
 /* Propositions pour les conditions (temporaire) : sélecteur A / B / C / Actuelle, choix mémorisé */
 (function(){

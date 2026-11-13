@@ -48,7 +48,7 @@ a:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
 
 /* Page en préparation */
 .bientot{background:var(--sand)}
-.bientot .wrap{display:grid;justify-items:start;gap:20px;padding-block:120px;max-width:860px}
+.bientot .wrap{display:grid;justify-items:start;gap:20px;padding-block:60px;max-width:860px}
 .bientot .badge{background:var(--olive);color:var(--paper);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
 .bientot h1{font-size:clamp(36px,4.6vw,60px);line-height:1.08}
 .bientot p{font-size:18px;color:var(--brown);max-width:620px}
@@ -62,7 +62,7 @@ footer a{text-decoration:none}
   .site-header .wrap{height:72px}
   .logo{--ls:.24}
   .site-header .btn{height:42px;padding:0 18px}
-  .bientot .wrap{padding-block:72px}
+  .bientot .wrap{padding-block:36px}
 }
 /* Menu (identique à l'accueil) */
 .nav{display:flex;gap:30px;font-size:15px}
@@ -84,6 +84,21 @@ footer a{text-decoration:none}
 @media (max-width:980px){footer a{padding-block:12px;margin-block:-12px}}
 </style>
 <link rel="stylesheet" href="../commun/entete.css">
+<!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
+<script src="../commun/bsport-langue.js"></script>
+<link rel="stylesheet" href="../commun/bsport.css">
+<!-- Propositions (temporaire, à retirer à la mise en ligne) -->
+<link rel="stylesheet" href="../commun/propositions.css">
+<link rel="stylesheet" href="../commun/bsport-reserver-propositions.css">
+<!-- Widgets bsport : chargement du script et fonction de montage, appelée après chaque bloc widget -->
+<script id="insert-bsport-widget-cdn">!function (b, s, p) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { var m = b.createElement(s); m.id = "bsport-widget-cdn"; m.src = p; b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
+<script>
+function MountBsportWidget(config, repeat = 1) {
+  if (repeat > 50) { return }
+  if (!window.BsportWidget) { return setTimeout(() => { MountBsportWidget(config, repeat + 1) }, 100 * repeat || 1) }
+  BsportWidget.mount(config)
+}
+</script>
 </head>
 <body>
 
@@ -99,15 +114,28 @@ footer a{text-decoration:none}
     <a href="../" class="logo" data-num="I01"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
     <div class="head-droite">
       <a class="langue" href="../en/book-first-class/" hreflang="en" lang="en" aria-label="English version" data-num="L00">EN</a>
-      <a class="compte" href="https://backoffice.bsport.io/login?membership=7023&amp;next=%2Fc%2F7023%2Fbooking%2F" aria-label="Mon compte" title="Mon compte" data-num="B00"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a>
+      <span class="fab-place" data-num="B00"><a class="compte" href="https://backoffice.bsport.io/login?membership=7023&amp;next=%2Fc%2F7023%2Fbooking%2F" aria-label="Mon compte" title="Mon compte"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a></span>
       <a href="../planning/" class="btn btn-light" data-num="B01">Réserver</a>
     </div>
   </div>
 </header>
 
 <main>
-  <!-- PAGE EN PRÉPARATION : à remplacer par la réservation bsport de la première séance -->
-  <section class="bientot" data-num="S01">
+  <!-- PROPOSITIONS POUR LA RÉSERVATION (temporaire) : A, B, C = offre première séance (widget Cartes, pack 817521)
+       + calendrier (widget Calendrier), habillés par commun/bsport-reserver-propositions.css ;
+       « Site actuel » = la page d'attente S01. Une fois le choix fait : garder le bloc retenu,
+       supprimer l'autre, la barre et les fichiers propositions. -->
+  <div data-prop="reserver-premiere-seance" data-defaut="a">
+  <div class="prop-barre" role="group" aria-label="Proposition pour la réservation de la première séance">
+    <span>Réservation</span>
+    <button type="button" data-choix="a">A<span class="prop-nom"> · Étapes</span></button>
+    <button type="button" data-choix="b">B<span class="prop-nom"> · Côte à côte</span></button>
+    <button type="button" data-choix="c">C<span class="prop-nom"> · Créneau d'abord</span></button>
+    <button type="button" data-choix="site">Site actuel</button>
+  </div>
+
+  <!-- PAGE EN PRÉPARATION (site actuel) -->
+  <section class="bientot" data-num="S01" data-prop-pour="site">
     <div class="wrap">
       <span class="badge" data-num="T01">Offre exclusive première séance</span>
       <h1 data-num="T02">Une séance achetée, une séance offerte.</h1>
@@ -118,6 +146,88 @@ footer a{text-decoration:none}
       </div>
     </div>
   </section>
+
+  <!-- Réservation en ligne : offre première séance (widget Cartes limité au pack 817521) + calendrier.
+       Même contenu pour A, B et C ; la mise en page et l'ordre changent par le CSS (data-habillage). -->
+  <section class="reserver" aria-label="Réserver ma première séance" data-num="S03" data-prop-pour="a b c" data-habillage>
+    <div class="wrap reserver-grille">
+      <header class="reserver-tete" data-num="C01">
+        <span class="reserver-surtitre" data-num="T05">Offre première séance</span>
+        <h1 data-num="T06">Une séance achetée, une séance offerte.</h1>
+        <p data-num="T07">Deux séances de Pilates Reformer pour 35&nbsp;€, réservées aux nouveaux membres.
+          <span data-prop-pour="a b">Prenez l'offre, puis choisissez votre créneau : tous les cours sont ouverts aux débutants.</span>
+          <span data-prop-pour="c">Choisissez votre créneau, puis réglez-le avec l'offre : tous les cours sont ouverts aux débutants.</span></p>
+        <ul class="reserver-reperes" data-num="T08">
+          <li>Ouverture le 1er février</li>
+          <li>6 Reformers</li>
+          <li>43 avenue Félix Louat, Senlis</li>
+        </ul>
+      </header>
+
+      <div class="reserver-etape reserver-offre" data-num="C02">
+        <h2 class="reserver-etape-titre" data-num="T09"><span class="reserver-num" aria-hidden="true"><span data-prop-pour="a b">1</span><span data-prop-pour="c">2</span></span>
+          <span data-prop-pour="a b">Prenez l'offre première séance</span><span data-prop-pour="c">Réglez avec l'offre première séance</span></h2>
+        <p class="reserver-etape-texte" data-num="T10">Paiement en ligne, après connexion ou création de votre compte.</p>
+        <div id="bsport-widget-reserver-offre" class="bsport-widget" data-num="C03"></div>
+        <script>
+          MountBsportWidget({
+            "parentElement": "bsport-widget-reserver-offre",
+            "companyId": 7023,
+            "franchiseId": null,
+            "dialogMode": 1,
+            "widgetType": "pass",
+            "showFab": false,
+            "fullScreenPopup": false,
+            "styles": undefined,
+            "config": {
+              "pass": {
+                "paymentPackCategories": [31419],
+                "privatePassCategories": [],
+                "hidePrivatePass": true,
+                "hidePaymentCombo": true,
+                "hideFilters": true
+              }
+            }
+          })
+        </script>
+      </div>
+
+      <div class="reserver-etape reserver-creneau" data-num="C04">
+        <h2 class="reserver-etape-titre" data-num="T11"><span class="reserver-num" aria-hidden="true"><span data-prop-pour="a b">2</span><span data-prop-pour="c">1</span></span>
+          Choisissez votre créneau</h2>
+        <p class="reserver-etape-texte" data-num="T12">Les cours commencent le 1er février. Réservez votre première séance, la seconde quand vous voulez.</p>
+        <div id="bsport-widget-reserver-calendrier" class="bsport-widget" data-num="C05"></div>
+        <script>
+          MountBsportWidget({
+            "parentElement": "bsport-widget-reserver-calendrier",
+            "companyId": 7023,
+            "franchiseId": null,
+            "dialogMode": 1,
+            "widgetType": "calendar",
+            "showFab": false,
+            "fullScreenPopup": false,
+            "styles": undefined,
+            "config": {
+              "calendar": {
+                "coaches": [155027],
+                "establishments": [23608],
+                "metaActivities": [],
+                "levels": [],
+                "variant": null,
+                "groupSessionByPeriod": true,
+                "establishmentGroups": [],
+                "todayOnly": false,
+                "cardMode": false
+              }
+            }
+          })
+        </script>
+      </div>
+
+      <p class="reserver-aide" data-num="T13">Première fois au studio ? <a href="../premiere-seance/" data-num="B05">Comment se passe la première séance →</a></p>
+    </div>
+  </section>
+  </div><!-- fin des propositions réservation -->
 </main>
 
 <footer data-num="S02">
@@ -126,6 +236,9 @@ footer a{text-decoration:none}
 <script>
 </script>
 <script src="../commun/entete.js"></script>
+<script src="../commun/propositions.js"></script>
+<script src="../commun/bsport-periodes.js"></script>
+<script src="../commun/bsport-textes.js"></script>
 <!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
 <script src="../outils/numeros.js"></script>
 </body>

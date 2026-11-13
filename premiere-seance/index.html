@@ -44,7 +44,7 @@ a:focus-visible,.btn:focus-visible{outline:2px solid var(--tan-2);outline-offset
 
 /* Ouverture : titre à gauche, sommaire des 3 étapes à droite */
 .intro{background:var(--sand)}
-.intro .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:end;padding-block:96px 80px}
+.intro .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:end;padding-block:48px 40px}
 .intro h1{font-size:clamp(40px,5.2vw,72px);line-height:1.05;margin-top:16px}
 .intro h1 em{font-style:italic;font-weight:300}
 .toc{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--tan)}
@@ -55,7 +55,7 @@ a:focus-visible,.btn:focus-visible{outline:2px solid var(--tan-2);outline-offset
 
 /* Étapes : grandes bandes alternées, chiffre géant + photo */
 .step{scroll-margin-top:96px}
-.step .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding-block:96px}
+.step .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding-block:48px}
 .step:nth-of-type(even) .media{order:2}
 .step.alt{background:var(--paper)}
 .media{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--tan)}
@@ -88,7 +88,7 @@ a:focus-visible,.btn:focus-visible{outline:2px solid var(--tan-2);outline-offset
 
 /* Fin de page */
 .end{background:var(--olive-d);color:var(--paper);text-align:center}
-.end .wrap{display:grid;justify-items:center;gap:18px;padding-block:88px}
+.end .wrap{display:grid;justify-items:center;gap:18px;padding-block:44px}
 .end h2{font-size:clamp(30px,3.6vw,46px)}
 .end p{color:var(--tan-2)}
 .end .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
@@ -100,8 +100,8 @@ footer a{text-decoration:none}
 @media (max-width:900px){
   .intro .wrap,.step .wrap{grid-template-columns:1fr;gap:40px}
   .step:nth-of-type(even) .media{order:0}
-  .step .wrap{padding-block:64px}
-  .intro .wrap{padding-block:64px 56px}
+  .step .wrap{padding-block:32px}
+  .intro .wrap{padding-block:32px 28px}
   .back{display:none}
 }
 @media (max-width:640px){
@@ -164,6 +164,8 @@ html.lb-bloque{overflow:hidden}
 @media (max-width:980px){footer a{padding-block:12px;margin-block:-12px}}
 </style>
 <link rel="stylesheet" href="../commun/entete.css">
+<!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
+<script src="../commun/bsport-langue.js"></script>
 <link rel="canonical" href="https://__DOMAINE__/premiere-seance/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
@@ -191,7 +193,7 @@ html.lb-bloque{overflow:hidden}
     <a href="../" class="logo" data-num="I01"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
     <div class="head-droite">
       <a class="langue" href="../en/first-class/" hreflang="en" lang="en" aria-label="English version" data-num="L00">EN</a>
-      <a class="compte" href="https://backoffice.bsport.io/login?membership=7023&amp;next=%2Fc%2F7023%2Fbooking%2F" aria-label="Mon compte" title="Mon compte" data-num="B00"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a>
+      <span class="fab-place" data-num="B00"><a class="compte" href="https://backoffice.bsport.io/login?membership=7023&amp;next=%2Fc%2F7023%2Fbooking%2F" aria-label="Mon compte" title="Mon compte"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a></span>
       <a href="../planning/" class="btn btn-light" data-num="B01">Réserver</a>
     </div>
   </div>
