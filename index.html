@@ -238,7 +238,7 @@ html,body{overflow-x:clip}
 .infos-bot p{font-size:15px;color:var(--brown)}
 
 /* CTA */
-.cta{padding:40px max(24px,env(safe-area-inset-right,0px)) 24px max(24px,env(safe-area-inset-left,0px))}
+.cta{padding:20px max(24px,env(safe-area-inset-right,0px)) 24px max(24px,env(safe-area-inset-left,0px))}
 .cta-in{position:relative;border-radius:22px;overflow:hidden;background:var(--khaki);color:var(--paper);text-align:center;min-height:380px;display:grid;place-content:center;justify-items:center;gap:16px;padding:48px 24px;max-width:1400px;margin:0 auto}
 .cta-in img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cta-in::after{content:"";position:absolute;inset:0;background:rgba(94,83,14,.55)}
@@ -278,10 +278,7 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 .form-ok{grid-column:1/-1;font-size:14px;color:var(--olive)}
 
 /* Avis */
-.avis .wrap{display:grid;gap:22px;justify-items:center;padding-block:96px 64px}
-.gnote{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--sand);border-radius:999px;padding:8px 18px 8px 10px;font-size:14px}
-.gnote i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--sand);display:grid;place-items:center;font-weight:600;color:var(--olive)}
-.gnote b{font-weight:600}
+.avis .wrap{display:grid;gap:22px;justify-items:center;padding-block:96px 32px}
 .avis-grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:10px}
 .avis-card{background:var(--sand);border-radius:var(--r);padding:30px 32px;display:grid;gap:12px}
 .stars{color:var(--olive);letter-spacing:2px}
@@ -563,7 +560,7 @@ html.lb-bloque{overflow:hidden}
       </div>
       <nav class="nav-rapide" aria-label="Accès rapide" data-tag="planning" data-st="svg"><a href="tarifs/" data-num="L03">Tarifs</a><a href="planning/" data-num="L04">Planning</a><a href="premiere-seance/" data-num="L05">Première séance</a></nav>
     </div>
-    <a href="#haut-de-page" class="logo" data-num="I01" data-tag="hors" data-label="Logo" data-st="svg"><img src="logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
+    <a href="#top" class="logo" data-num="I01" data-tag="hors" data-label="Logo" data-st="svg"><img src="logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
     <div class="head-droite">
       <a class="langue" href="en/" hreflang="en" lang="en" aria-label="English version" data-num="L00">EN</a>
       <a href="planning/" class="btn btn-light" data-num="B01" data-tag="header pilule" data-st="svg">Réserver</a>
@@ -753,13 +750,20 @@ html.lb-bloque{overflow:hidden}
   <div class="wrap">
     <div class="eyebrow" data-num="T67">Ils en parlent</div>
     <h2 class="h2" data-num="T68">Ce que disent nos élèves.</h2>
-    <div class="gnote" data-num="C16" data-tag="note" data-st="ajout"><i data-num="I07">G</i><span data-num="T69"><b>Note Google</b> · ★★★★★ · [x,x / 5 sur N avis, à afficher après l'ouverture]</span></div>
     <div class="avis-grid" data-pos="57" data-tag="avis" data-st="svg">
       <div class="avis-card" data-num="C17"><div class="stars" data-num="I08">★★★★★</div><p data-num="T70">« [Avis client à venir : un extrait de deux ou trois lignes, choisi parmi les meilleurs commentaires.] »</p><small data-num="T71">[Prénom N.] · avis Google</small></div>
       <div class="avis-card" data-num="C18"><div class="stars" data-num="I09">★★★★★</div><p data-num="T72">« [Avis client à venir : un extrait de deux ou trois lignes, choisi parmi les meilleurs commentaires.] »</p><small data-num="T73">[Prénom N.] · avis Google</small></div>
       <div class="avis-card" data-num="C19"><div class="stars" data-num="I10">★★★★★</div><p data-num="T74">« [Avis client à venir : un extrait de deux ou trois lignes, choisi parmi les meilleurs commentaires.] »</p><small data-num="T75">[Prénom N.] · avis Google</small></div>
     </div>
-    <p class="avis-note" data-num="T76">Les avis seront ajoutés après l'ouverture, avec l'accord de leurs auteurs.</p>
+  </div>
+</section>
+<!-- CTA -->
+<section class="cta" data-num="S13" aria-label="Réserver">
+  <div class="cta-in" data-tag="repete essai" data-st="svg">
+    <img data-num="P18" src="photos-le-patio/reserver-cours-pilates-senlis.jpg" alt="" loading="lazy">
+    <h2 data-num="T91">Votre première séance vous attend.</h2>
+    <p data-num="T92">Ouverture le 1er février · 43 avenue Félix Louat, Senlis</p>
+    <a href="planning/" class="btn btn-light" data-num="B11">Réserver ma première séance</a>
   </div>
 </section>
 
@@ -814,15 +818,6 @@ html.lb-bloque{overflow:hidden}
     </div>
     <div class="gal-foot"><span data-num="T90">Faites défiler pour découvrir le studio en images.</span>
       <div class="arrows"><button type="button" id="prev" data-num="B09" aria-label="Images précédentes">←</button><button type="button" id="next" data-num="B10" aria-label="Images suivantes">→</button></div></div>
-  </div>
-</section>
-<!-- CTA -->
-<section class="cta" data-num="S13" aria-label="Réserver">
-  <div class="cta-in" data-tag="repete essai" data-st="svg">
-    <img data-num="P18" src="photos-le-patio/reserver-cours-pilates-senlis.jpg" alt="" loading="lazy">
-    <h2 data-num="T91">Votre première séance vous attend.</h2>
-    <p data-num="T92">Ouverture le 1er février · 43 avenue Félix Louat, Senlis</p>
-    <a href="planning/" class="btn btn-light" data-num="B11">Réserver ma première séance</a>
   </div>
 </section>
 
