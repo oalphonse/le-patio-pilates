@@ -36,8 +36,6 @@ Visiteur ─► site statique (GitHub Pages)
 | Compteur « Ça m'intéresse » du samedi (et futurs petits boutons du même type) | **VPS OVH** | `serveur.py` en mode API |
 | Contact | **Aucun serveur** | Liens directs (e-mail, téléphone, éventuellement WhatsApp/Instagram) à la place du formulaire : bsport n'a pas de module pour les messages libres |
 
-Modèle de référence : **Gaia Club** (gaia-studio.fr, Paris 12e). Site statique (Next.js), réservation et achats entièrement en widgets bsport qui s'ouvrent en fenêtre par-dessus la page (`cdn.bsport.io/scripts/widget.js`, `dialogMode`), contact par simple lien e-mail, aucun serveur à eux. À reproduire pour nos boutons « Réserver ».
-
 ### GitHub Pages
 - En gratuit, le dépôt doit être **public** : avant d'activer Pages, retirer du dépôt publié ce qui est interne (`PASSATION.md`, `outils/`, détourage) et vérifier qu'aucune clé ou mot de passe n'y figure.
 - Conditions GitHub : Pages n'est pas prévu pour une activité commerciale ; site vitrine avec paiements chez bsport = zone grise, risque faible. Plan B sans ambiguïté, gratuit, dépôt privé possible : **Cloudflare Pages** (même dépôt, bascule en quelques minutes).
@@ -92,7 +90,7 @@ Le mode dev est désactivé (`const MODE_DEV=false;` dans `index.html`) : le pop
 ## Ce qui est en démo (rien n'est envoyé)
 
 - Inscription e-mail du popup : valide la saisie puis affiche un message, sans envoi. À remplacer par le **widget leads bsport**.
-- Formulaire de contact (`/contact/`) : idem, sans envoi. À remplacer par des **liens directs** (e-mail, téléphone), comme Gaia Club.
+- Formulaire de contact (`/contact/`) : idem, sans envoi. À remplacer par des **liens directs** (e-mail, téléphone).
 - Tous les boutons « Réserver » mènent au **planning** et les créneaux à l'offre première séance, en attendant les **widgets / liens bsport** (calendrier, packs, « Mon compte »), que le studio n'a pas encore.
 - Numéro de téléphone et e-mail : « à venir ».
 
