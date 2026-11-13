@@ -21,7 +21,9 @@ Il n'écoute qu'en local sur le VPS : on le consulte depuis le poste par un tunn
 
 - Mettre à jour et relancer (sur le VPS) :
   `cd ~/le-patio-pilates && git pull --ff-only && tmux kill-session -t lepatio 2>/dev/null; tmux new -d -s lepatio 'python3 serveur.py --port 8790'`
-- Voir le site (sur le poste) : `ssh -N -L 8790:127.0.0.1:8790 <utilisateur>@<adresse du VPS>` puis http://localhost:8790
+- Voir le site (sur le poste) : raccourci **`lepatio-test`** (dans `~/.local/bin`, sur le modèle de `cliford-test`, alias SSH `cliford`) : vérifie que le site tourne, ouvre le tunnel et le navigateur sur http://localhost:8790. Ctrl+C ferme le tunnel.
+  `lepatio-test --maj` : récupère d'abord le dernier code GitHub sur le VPS et relance le site (à faire après chaque push). `--sans-navigateur` : tunnel seul.
+- Sans le raccourci : `ssh -N -L 8790:127.0.0.1:8790 cliford` puis http://localhost:8790
 - Options de `serveur.py` : `--port`, `--hote` (127.0.0.1 par défaut ; `0.0.0.0` l'ouvrirait à tous, à éviter sans pare-feu).
 
 ## Architecture et hébergement (décidé le 13/11)
@@ -62,9 +64,22 @@ Visiteur ─► site statique (GitHub Pages)
   - DNS : `api.<domaine>` → IP du VPS.
 - Sécurité de l'API : n'accepter que l'origine du site (CORS), limiter le nombre de requêtes par visiteur, valider les entrées. Aucune clé bsport nécessaire tant que le serveur ne fait que compter.
 
+### bsport : ce qu'on sait (vérifié le 13/11 sur le compte du studio, n° 7023)
+
+- **Widgets disponibles** (back-office → Mon widget) : Calendrier, Ateliers, VOD, Cartes, Sur rendez-vous, Playlist, Magasin, Abonnement, Bouton login ; le script contient aussi `newsletterV2` (inscription newsletter, piste pour la popup « Me prévenir »). Webhooks disponibles (booking-, member-, invoice-, offer-…), à recevoir sur le VPS si besoin un jour.
+- Croisement avec le site : Calendrier → Planning (test en 3-S07, coach 155027, établissement 23608) et page « Réserver ma première séance » ; Cartes + Abonnement → Tarifs 4-S10 et offre 4-S02 ; Magasin → cartes cadeaux (lien 1-L14, boutique bsport encore vide) ; Bouton login → icône « Mon compte » de l'en-tête (fait) ; Ateliers / Sur rendez-vous seulement si le studio propose événements ou cours particuliers ; VOD / Playlist inutiles.
+- **Lien direct par produit** : on peut garder nos propres cartes de prix avec un bouton par produit.
+  - Pack : `https://backoffice.bsport.io/customer/payment/pass/<id>` (passe par la connexion puis `/checkout/7023/pre-checkout/payment-pack/<id>`)
+  - Abonnement : `https://backoffice.bsport.io/checkout/7023/subscription/<id>`
+- Identifiants (prix identiques au site) : Séance à l'unité 817519 · Séance d'essai 817521 (nouveaux membres seulement, 2 crédits, 35 €) · 5 séances 817520 · 10 séances 817522 · 20 séances 817524 · 30 séances 817523 · Abonnement 5/mois 60489 · Abonnement 10/mois 60490.
+- **Achat** : connexion ou création de compte bsport obligatoire avant le paiement ; en widget tout se passe dans une fenêtre par-dessus notre page (z-index 1300, au-dessus de l'en-tête).
+- Liste publique des packs (sans clé) : `https://api.production.bsport.io/buyable/v1/payment-pack/payment-pack/?company=7023&as_consumer=true&page_size=300`
+- Habillage : n'utiliser que les classes `bs-*` (fixes) dans `commun/bsport.css`. bsport a aussi un « CSS personnalisé » dans son back-office (`core-data/v1/company/custom_css`).
+- Les widgets s'affichent en anglais en local (fichiers de traduction cherchés à une mauvaise adresse) : à revérifier sur le vrai domaine.
+
 ### Reste à décider / obtenir
 - Le nom de domaine du site et du sous-domaine API.
-- Les accès bsport du studio (widgets, liens de paiement, lien « Mon compte »).
+- Choisir pour Planning : garder notre grille ou la remplacer par le widget Calendrier.
 - **Inscriptions avant l'ouverture** : le widget leads n'est disponible qu'une fois bsport ouvert. Soit on attend les accès bsport pour activer « Me prévenir », soit on collecte temporairement sur le VPS puis on importe la liste dans bsport (import à confirmer auprès de bsport).
 - Questions pour bsport : personnalisation des couleurs et de la police des widgets ; possibilité de ne pas forcer le tag « Newsletter » sur le widget leads ; import de contacts ; accès API si besoin un jour.
 
@@ -102,7 +117,8 @@ Le mode dev est désactivé (`const MODE_DEV=false;` dans `index.html`) : le pop
 
 - Inscription e-mail du popup : valide la saisie puis affiche un message, sans envoi. À remplacer par le **widget leads bsport**.
 - Formulaire de contact (`/contact/`) : idem, sans envoi. À remplacer par des **liens directs** (e-mail, téléphone).
-- Tous les boutons « Réserver » mènent au **planning** et les créneaux à l'offre première séance, en attendant les **widgets / liens bsport** (calendrier, packs, « Mon compte »), que le studio n'a pas encore.
+- Tous les boutons « Réserver » mènent au **planning** et les créneaux à l'offre première séance, en attendant de brancher les **liens bsport** par produit (voir « bsport : ce qu'on sait »).
+- **« Mon compte »** (icône B00 à côté de Réserver, 6 pages FR) : **branché**. Monte le bouton login bsport hors écran au premier survol et ouvre sa fenêtre de connexion ; sans JavaScript, lien vers la connexion bsport. Code dans `commun/entete.js` / `entete.css`.
 - Numéro de téléphone et e-mail : « à venir ».
 
 ## Détourage (outil interne)
@@ -160,7 +176,7 @@ Fait dans le site :
 
 ## Numéros des éléments (outil interne)
 
-Chaque élément visible porte un attribut `data-num` (S section, C carte, T texte, P photo, I icône/logo, B bouton, L lien, F formulaire), numéroté par page et par lettre. `outils/numeros.js` les affiche en petits badges ; le bouton « Numéros » en bas de l'écran les montre ou les cache. Chaque badge commence par le numéro de la page (1 Accueil, 2 Première séance, 3 Planning, 4 Tarifs, 5 Contact, 6 Réserver ma première séance) : « 4-S06 » = section S06 de la page Tarifs. On s'en sert pour désigner une modification. L'en-tête a les mêmes numéros sur toutes les pages (I01 logo, L01–L08 liens, B01 Réserver, B02 Menu). **À retirer à la mise en ligne** : supprimer `outils/` et la balise `<script src="…outils/numeros.js">` de chaque page (les attributs `data-num` peuvent rester).
+Chaque élément visible porte un attribut `data-num` (S section, C carte, T texte, P photo, I icône/logo, B bouton, L lien, F formulaire), numéroté par page et par lettre. `outils/numeros.js` les affiche en petits badges ; le bouton « Numéros » en bas de l'écran les montre ou les cache. Chaque badge commence par le numéro de la page (1 Accueil, 2 Première séance, 3 Planning, 4 Tarifs, 5 Contact, 6 Réserver ma première séance) : « 4-S06 » = section S06 de la page Tarifs. On s'en sert pour désigner une modification. L'en-tête a les mêmes numéros sur toutes les pages (I01 logo, L01–L08 liens, B00 Mon compte, B01 Réserver, B02 Menu, L00 langue). **À retirer à la mise en ligne** : supprimer `outils/` et la balise `<script src="…outils/numeros.js">` de chaque page (les attributs `data-num` peuvent rester).
 
 ## Fait le 12/11
 
