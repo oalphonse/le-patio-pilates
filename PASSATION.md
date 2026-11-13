@@ -145,4 +145,4 @@ Chaque élément visible porte un attribut `data-num` (S section, C carte, T tex
 
 Dépôt git, branche `main`, distant `git@github.com:oalphonse/le-patio-pilates.git` (passé en SSH le 13/11). Avant chaque grosse modification, on fait un commit de sauvegarde. Pas de copies de fichiers.
 
-Le 13/11, le push depuis le poste n'avait pas encore abouti : il faut que le compte GitHub utilisé soit collaborateur avec droit d'écriture sur le dépôt `oalphonse` (invitation acceptée).
+Le push en SSH depuis le poste fonctionne (vérifié le 13/11).
