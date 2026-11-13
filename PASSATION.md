@@ -4,6 +4,27 @@ Studio de Pilates Reformer à Senlis (43 avenue Félix Louat, 60300). Ouverture 
 
 Site statique (HTML/CSS/JS, sans framework ni build). Chaque sous-page est un dossier avec un `index.html` pour avoir des URL propres.
 
+## Où on en est (14/11 au soir) — à reprendre ici
+
+**Les 2 derniers commits du 14/11 sur `main` (`0f27095` le travail, puis cette passation) sont sur le VPS, PAS ENCORE POUSSÉS sur GitHub** (le VPS n'a pas d'accès en écriture à GitHub, voir Versionnement). Première chose à faire : les pousser, depuis le VPS avec ses identifiants, ou en ajoutant une clé de déploiement.
+
+Fait les 13 et 14/11 (détails dans « Widgets bsport sur le site ») :
+- **Planning** : calendrier bsport à la place de notre grille, couleur olive foncé, séances en colonnes Matin | Midi | Soir, bloc samedi / dimanche « Ça m'intéresse ».
+- **Tarifs** : offre première séance (Bandeau), Formules (Carte des prix), Conditions (Cartes) choisies ; achat en ligne par les widgets bsport.
+- **En-tête** : bouton espace client bsport (bonhomme) à côté de « Réserver », menu Réservations / Panier / Profil… ; plus de chevauchement du logo sur mobile.
+- **Langue de bsport = langue de la page**, même avec un navigateur en anglais.
+- **Marges haut / bas des sections à fond uni divisées par 2** sur toutes les pages, FR et EN (le bandeau photo de l'accueil et le pied de page n'ont pas bougé).
+- Accueil : la carte de l'offre mène à l'offre de Tarifs, centrée à l'écran.
+
+À faire ensuite, par ordre :
+1. **Pousser les commits** (voir plus haut).
+2. **Tester le bouton espace client connecté** avec un vrai compte client : menu qui se déplie, panier, réservations (vu seulement en aperçu forcé).
+3. **Réserver ma première séance** : choisir entre A Étapes, B Côte à côte, C Créneau d'abord (sélecteur sur la page), puis finaliser comme Tarifs.
+4. **Reporter sur les pages anglaises** (`en/`) : calendrier du Planning, choix de Tarifs, bouton espace client, ancre de l'offre (les scripts gèrent déjà l'anglais).
+5. **Formulaire « Me prévenir »** (samedi / dimanche, popup) : décider widget leads bsport ou collecte sur le VPS (question RGPD).
+6. Nettoyage : supprimer l'ancienne grille masquée du Planning, décider du sort de la page de test `/espace-client/` (inconnue de `outils/numeros.js`, badges « ? »), retirer `commun/propositions.*` quand plus aucune page ne s'en sert.
+7. **Back-office bsport** (studio) : renommer « Séance d'essai » en « Première séance », créer une catégorie avec seulement le pack 817521.
+
 ## Lancer le site en local
 
 ```bash
@@ -90,7 +111,7 @@ Visiteur ─► site statique (GitHub Pages)
   - Les pages `en/` n'ont pas encore les widgets ni le bouton espace client : à ajouter (les scripts gèrent déjà l'anglais : périodes Morning/Midday/Evening, semaine « Monday 01/02 to Sunday 07/02 », bloc week-end).
   - Les requêtes 404 vers `…/undefined/locales/…` sont sans conséquence.
 
-### Widgets bsport sur le site (état du 13/11 au soir)
+### Widgets bsport sur le site (état du 14/11 au soir)
 
 **Fichiers communs**
 - `commun/bsport.css` : habillage de base de tous les widgets (classes `bs-*`), animation au changement de jour, libellé de la semaine, et deux corrections du survol :
@@ -116,7 +137,7 @@ Visiteur ─► site statique (GitHub Pages)
 - L'ancienne grille (S02) est **encore dans le HTML mais masquée** (`hidden`) : à supprimer avec son CSS (`.week`, `.pgrid`…) et son JS (dont l'ancien bouton samedi) une fois le calendrier validé en ligne.
 
 **Tarifs (page 4)**
-- Carte « Une séance achetée, une séance offerte » de l'accueil (1-C01) → `tarifs/#offre-premiere-seance` (EN : `pricing/#first-class-offer`) ; à l'arrivée, `commun/ancre-centree.js` amène l'offre au **centre** de l'écran (attribut `data-ancre-centree` sur la section, recentrage pendant le chargement des widgets, arrêté dès que le visiteur fait défiler).
+- Carte « Une séance achetée, une séance offerte » de l'accueil (1-C01) → `tarifs/#offre-premiere-seance` (EN : `pricing/#first-class-offer`) ; à l'arrivée, `commun/ancre-centree.js` amène l'offre au **centre** de l'écran, en un seul mouvement instantané. La section porte `data-ancre-centree="offre-premiere-seance"` et **pas d'`id` égal au `#`** : sinon le navigateur saute déjà tout seul, en animé (`scroll-behavior:smooth`), puis le script recentre, ce qui faisait un double défilement. La hauteur du coupon bsport est réservée en CSS (`#bsport-widget-premiere-seance`, 253 px, 340 px sur mobile) pour que la page ne saute pas quand il se dessine. Correction seulement si l'offre a bougé de plus de 4 px, jamais après que le visiteur a fait défiler.
 - Offre première séance (section S25) : **A « Bandeau » retenue le 13/11** (bandeau olive, le widget en coupon clair à droite). Barre de choix et ancien bandeau S02 supprimés (S02 reste dans l'historique git). CSS : `commun/bsport-premiere-seance.css` (ex-`…-propositions.css`) ; B « Ticket » et C « Affiche » y sont gardées en commentaire en tête du fichier. L'ancien CSS de S02 (`.offre-ps…`, `.offer-badge`) a été retiré du `<head>`.
   - Widget Cartes limité à la catégorie Unitaire (31419) ; on ne garde que la carte du pack 817521 (`#payment-pack-button-container-817521`), la séance à l'unité est masquée.
 - Formules (section S20) : **A « Carte des prix » retenue le 14/11**. Carte claire à gauche : séance et forfaits en lignes (nom, validité, prix, bouton contour) sous les intertitres bsport « Unitaire » et « Forfaits » (agrandis, olive, filet dessous). Encadré olive à droite : les abonnements, chacun empilé (titre sur une ligne, prix, bouton « M'abonner »), le « Powered by » tout en bas à droite de l'encadré. Sur ordinateur, les deux cartes ont la même hauteur. Barre de choix, anciennes colonnes S10 (restent dans l'historique git) et blocs B, C, D supprimés ; l'ancien CSS de S10 (`.va…`) a été retiré du `<head>`. CSS : `commun/bsport-formules.css` (ex-`…-propositions.css`, `<link>` placé juste avant la section) ; B « Vitrine », C « Deux temps » et D « Fusion » (les 3 colonnes de S10 avec les tuiles de B) y sont gardées en commentaire compact en tête du fichier.
@@ -150,9 +171,10 @@ Visiteur ─► site statique (GitHub Pages)
 | `/tarifs/` | Offre première séance, séances à l'unité et forfaits, abonnements, conditions ; offre première séance et formules achetables en direct (widgets bsport Cartes et Abonnement) |
 | `/contact/` | Téléphone + formulaire de contact (retiré de l'accueil) |
 | `/reserver-premiere-seance/` | Page `noindex` : offre première séance + calendrier bsport en propositions A / B / C ; « Site actuel » = l'ancienne page d'attente |
+| `/espace-client/` | **Page de test** `noindex`, reliée à aucune autre : widget espace client bsport (`consumerSpace`, carte « M'inscrire / Me connecter », habillée par `commun/bsport-espace-client.css`). À garder ou supprimer |
 
 Règles du projet :
-- **En-tête identique sur les 6 pages**, collant en haut : bouton « Menu » (burger) à gauche, logo au centre, « Réserver » à droite. Tarifs, Planning et Première séance restent visibles hors du menu (à côté du burger sur ordinateur, sur une 2e ligne sur mobile) ; Les cours, Le studio, Infos pratiques, FAQ et Contact sont dans le menu. Sur ordinateur le menu s'ouvre au survol, sur mobile au toucher. Sous 540 px, le logo n'est plus centré sur l'écran mais dans l'espace entre le menu et le bloc de droite (EN, Se connecter, Réserver), sinon ce bloc passait sur le logo ; sous 360 px, logo réduit (transform). Style et comportement sont dans `commun/entete.css` et `commun/entete.js` (communs aux 6 pages) ; seul le HTML de l'en-tête est recopié dans chaque page, à garder identique.
+- **En-tête identique sur les 6 pages**, collant en haut : bouton « Menu » (burger) à gauche, logo au centre, « Réserver » à droite. Tarifs, Planning et Première séance restent visibles hors du menu (à côté du burger sur ordinateur, sur une 2e ligne sur mobile) ; Les cours, Le studio, Infos pratiques, FAQ et Contact sont dans le menu. Sur ordinateur le menu s'ouvre au survol, sur mobile au toucher. Sous 540 px, le logo n'est plus centré sur l'écran mais dans l'espace entre le menu et le bloc de droite (EN, bouton espace client, Réserver ; serrés sans espace sous 420 px), sinon ce bloc passait sur le logo ; sous 360 px, logo réduit (transform). Style et comportement sont dans `commun/entete.css` et `commun/entete.js` (communs aux 6 pages) ; seul le HTML de l'en-tête est recopié dans chaque page, à garder identique.
 - **Slugs et noms de fichiers en français, mots séparés par des tirets** (SEO), ex. `photos-le-patio/pilates-reformer-senlis-le-patio.jpg`.
 - On parle de **« première séance »**, jamais d'« essai ».
 - **Ne pas citer bsport dans les textes du site** (ni en français ni en anglais, ni dans les titres et descriptions pour Google) : on pousse les visiteurs vers **notre site et l'application Le Patio**. Formulations utilisées : « en ligne, sur notre site ou l'application Le Patio » / « on our website or the Le Patio app ». La seule mention de bsport acceptée est le « Powered by bsport » affiché par leurs propres modules (widgets). Décidé le 13/11.
@@ -233,6 +255,8 @@ Fait dans le site :
 
 ## Charte
 
+- Marges des sections : le 14/11, les `padding-block` des `.wrap` de toutes les sections à fond uni (et de `.reserver-grille`) ont été **divisés par 2**, sur les 13 pages et dans `commun/bsport-*.css`. Exclus : le bandeau photo de l'accueil (`.hero`) et le pied de page.
+
 - Couleurs : `--olive #5E530E`, `--olive-d #453D0A`, `--olive-l #7A6B2A`, `--sand #EBE6DC`, `--cream #F9F7F1`, `--paper #FDFCF9`, `--tan #C2B88F`, `--tan-2 #DBD1A8`, `--brown #574325`, `--muted #8B7B60`, `--ink #222222`.
 - Police : Inter (Google Fonts).
 - Logos dans `logo/` : `logo-le-patio-menu.png` (en-tête), `logo-le-patio-pilates-club.png` (pied de page, popup), `icone-le-patio.png` (favicon).
@@ -275,3 +299,8 @@ Chaque élément visible porte un attribut `data-num` (S section, C carte, T tex
 Dépôt git, branche `main`, distant `git@github.com:oalphonse/le-patio-pilates.git` (passé en SSH le 13/11). Avant chaque grosse modification, on fait un commit de sauvegarde. Pas de copies de fichiers.
 
 Le push en SSH depuis le poste fonctionne (vérifié le 13/11).
+
+**Sur le VPS (`~/le-patio-pilates`), le dépôt pointe en HTTPS (`https://github.com/oalphonse/le-patio-pilates.git`) et n'a aucun accès en écriture** : pas d'identifiants enregistrés, aucune clé SSH reconnue par GitHub (vérifié le 14/11). Le travail des 13 et 14/11 a été fait et commité sur le VPS (`0f27095` + la passation) ; il faut le pousser :
+- soit depuis le VPS, avec ses identifiants GitHub : `cd ~/le-patio-pilates && git push origin main` ;
+- soit en créant une clé SSH sur le VPS, ajoutée dans GitHub (dépôt → Settings → Deploy keys, « Allow write access »), puis en passant le distant en SSH (`git remote set-url origin git@github.com:oalphonse/le-patio-pilates.git`).
+Le poste et le VPS ont chacun leur copie : avant de travailler sur l'un, récupérer le travail de l'autre (`git pull`), sinon on crée des historiques divergents.
