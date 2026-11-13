@@ -29,7 +29,10 @@
    Pas de classes fixes chez bsport (jss…, Mui…) : on cible par la structure. */
 .fab-bsport{position:fixed!important;left:var(--fab-x,-10000px)!important;top:var(--fab-y,0px)!important;right:auto!important;bottom:auto!important;
   width:var(--fab-l,44px)!important;height:44px!important;margin:0!important;padding:0!important;display:flex!important;flex-direction:column!important;
-  align-items:center!important;gap:8px!important;overflow:visible!important;z-index:60!important}
+  align-items:center!important;gap:8px!important;overflow:visible!important;
+  /* garder le z-index de bsport (9999) : quand le menu est ouvert, bsport pose dessous un fond plein écran (z-index 999)
+     qui referme le menu au clic ; un z-index plus bas met ce fond PAR-DESSUS les entrées et les rend incliquables */
+  z-index:9999!important}
 .fab-bsport > button:not([title]),
 .fab-bsport > button[title="Mon espace"]{order:-1!important;flex:none!important;width:100%!important;height:44px!important;min-width:0!important;
   margin:0!important;padding:0!important;border-radius:999px!important;background:transparent!important;box-shadow:none!important;color:var(--paper)!important;
