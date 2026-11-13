@@ -14,6 +14,52 @@ Puis ouvrir http://localhost:8765. Le serveur (Python standard, sans dépendance
 
 Ne pas ouvrir les fichiers en double-cliquant (`file://`) : les liens de dossiers et l'API ne fonctionnent pas.
 
+## Architecture et hébergement (décidé le 13/11)
+
+**Principe : tout ce qui a un module bsport passe par bsport. Seuls les petits boutons compteurs et assimilés vont sur notre serveur OVH. Le reste du site est statique.**
+
+```
+Visiteur ─► site statique (GitHub Pages)
+   ├─ réserver, acheter, compte client, inscription newsletter ─► widgets / liens bsport
+   └─ petits compteurs (« Ça m'intéresse » samedi…) ─► https://api.<domaine> (VPS OVH)
+```
+
+| Fonction | Où | Comment |
+|---|---|---|
+| Pages, photos, CSS, JS | **GitHub Pages** (gratuit) | Mise en ligne par `git push` |
+| Planning et réservation | **bsport** | Widget « Calendrier » (Paramètres → Widgets) |
+| Achat des packs, forfaits, abonnements, offre première séance | **bsport** | Widget « Pass » ou lien direct vers la page de paiement de chaque pack |
+| Compte client (« Mon compte ») | **bsport** | Lien fourni par bsport |
+| Inscription « Me prévenir à l'ouverture » / newsletter | **bsport** | Widget « acquisition de leads » (e-mail seul) ; les inscrits deviennent des contacts bsport avec le tag « Newsletter » |
+| Envoi des newsletters | **bsport** | Marketing → smartlists. Uniquement vers les contacts présents dans bsport |
+| Suivi des visites (GA4, pixel Meta) | **bsport** + Google Tag Manager | Événements bsport récupérés dans GTM |
+| Compteur « Ça m'intéresse » du samedi (et futurs petits boutons du même type) | **VPS OVH** | `serveur.py` en mode API |
+| Contact | **Aucun serveur** | Liens directs (e-mail, téléphone, éventuellement WhatsApp/Instagram) à la place du formulaire : bsport n'a pas de module pour les messages libres |
+
+Modèle de référence : **Gaia Club** (gaia-studio.fr, Paris 12e). Site statique (Next.js), réservation et achats entièrement en widgets bsport qui s'ouvrent en fenêtre par-dessus la page (`cdn.bsport.io/scripts/widget.js`, `dialogMode`), contact par simple lien e-mail, aucun serveur à eux. À reproduire pour nos boutons « Réserver ».
+
+### GitHub Pages
+- En gratuit, le dépôt doit être **public** : avant d'activer Pages, retirer du dépôt publié ce qui est interne (`PASSATION.md`, `outils/`, détourage) et vérifier qu'aucune clé ou mot de passe n'y figure.
+- Conditions GitHub : Pages n'est pas prévu pour une activité commerciale ; site vitrine avec paiements chez bsport = zone grise, risque faible. Plan B sans ambiguïté, gratuit, dépôt privé possible : **Cloudflare Pages** (même dépôt, bascule en quelques minutes).
+- L'adresse de l'API OVH peut être injectée au déploiement depuis un **secret GitHub** (via GitHub Actions) pour ne pas figurer dans le code. Elle reste visible dans le navigateur des visiteurs : la sécurité est assurée côté serveur, pas par ce secret.
+
+### VPS OVH (état relevé le 13/11 par la session Ferdi, en lecture seule)
+- Ubuntu 24.04.5 LTS, Python 3.12.3, 8 CPU, 22 Go RAM, ~70 Go libres. Compte `cliford` (sudo avec mot de passe).
+- Ports 80/443 **libres**, aucun serveur web ni certificat. Seul SSH (22) est exposé.
+- **Le VPS sert au développement Cliford** : ne pas utiliser les ports 3002, 3004, 8056, 8057, 5433, 3101, 1025, 8025, 9341, 9343, 40603 ; ne toucher ni aux conteneurs Docker, ni aux sessions tmux (`rc`, `site3002`, `site3004`), ni au service `claude-rc`.
+- Installation prévue :
+  - **Caddy** sur 80/443 (HTTPS automatique) → `127.0.0.1:8790` ;
+  - `serveur.py` en mode API seule, lancé par **systemd** sous un utilisateur dédié (ex. `lepatio`), données dans `/srv/lepatio/donnees` ;
+  - pare-feu `ufw` : vérifier que **22 reste autorisé** avant d'ouvrir 80/443 ; vérifier aussi le pare-feu réseau OVH ;
+  - DNS : `api.<domaine>` → IP du VPS.
+- Sécurité de l'API : n'accepter que l'origine du site (CORS), limiter le nombre de requêtes par visiteur, valider les entrées. Aucune clé bsport nécessaire tant que le serveur ne fait que compter.
+
+### Reste à décider / obtenir
+- Le nom de domaine du site et du sous-domaine API.
+- Les accès bsport du studio (widgets, liens de paiement, lien « Mon compte »).
+- **Inscriptions avant l'ouverture** : le widget leads n'est disponible qu'une fois bsport ouvert. Soit on attend les accès bsport pour activer « Me prévenir », soit on collecte temporairement sur le VPS puis on importe la liste dans bsport (import à confirmer auprès de bsport).
+- Questions pour bsport : personnalisation des couleurs et de la police des widgets ; possibilité de ne pas forcer le tag « Newsletter » sur le widget leads ; import de contacts ; accès API si besoin un jour.
+
 ## Pages
 
 | URL | Rôle |
@@ -41,12 +87,13 @@ Le mode dev est désactivé (`const MODE_DEV=false;` dans `index.html`) : le pop
 - `POST /api/interet-samedi` enregistre un vote (1 par adresse IP), `GET` renvoie le total.
 - Les IP ne sont jamais stockées en clair : empreinte SHA-256 salée dans `donnees/` (ignoré par git, ne pas versionner).
 - Le serveur bloque l'accès à `/donnees`, `/serveur.py`, `/.git`, `/.claude`.
-- **L'hébergement final doit faire tourner ce script ou un équivalent** (PHP, fonction serverless…). Un hébergement 100 % statique ne suffit pas pour ce bouton.
+- En ligne, ce script tournera sur le **VPS OVH** en mode API seule (voir Architecture et hébergement) ; le site statique l'appellera sur `https://api.<domaine>`. Rien n'est encore adapté : aujourd'hui il sert aussi les pages et n'a ni CORS ni limite de requêtes.
 
 ## Ce qui est en démo (rien n'est envoyé)
 
-- Formulaire de contact (`/contact/`) et inscription e-mail du popup : ils valident la saisie puis affichent un message, sans envoi. À brancher sur un outil d'e-mailing / formulaire à la mise en ligne.
-- Tous les boutons « Réserver » mènent au **planning** et les créneaux à l'offre première séance, en attendant les **liens bsport** (créneaux, page de réservation, « Mon compte »), que le studio n'a pas encore.
+- Inscription e-mail du popup : valide la saisie puis affiche un message, sans envoi. À remplacer par le **widget leads bsport**.
+- Formulaire de contact (`/contact/`) : idem, sans envoi. À remplacer par des **liens directs** (e-mail, téléphone), comme Gaia Club.
+- Tous les boutons « Réserver » mènent au **planning** et les créneaux à l'offre première séance, en attendant les **widgets / liens bsport** (calendrier, packs, « Mon compte »), que le studio n'a pas encore.
 - Numéro de téléphone et e-mail : « à venir ».
 
 ## Détourage (outil interne)
@@ -91,9 +138,11 @@ Chaque élément visible porte un attribut `data-num` (S section, C carte, T tex
 ## Autres points ouverts
 
 - Dossier `versions/` (anciennes copies v1/v2) : redondant avec git, peut être supprimé.
-- Choix de l'hébergeur (doit pouvoir exécuter `serveur.py` ou un équivalent).
-- Intégration bsport en direct sur la page planning, à étudier une fois les accès reçus.
+- Hébergement : décidé le 13/11 (voir Architecture et hébergement). Mise en place à faire.
+- Intégration des widgets bsport (planning, packs, leads) une fois les accès reçus.
 
 ## Versionnement
 
-Dépôt git, branche `main`. Avant chaque grosse modification, on fait un commit de sauvegarde. Pas de copies de fichiers.
+Dépôt git, branche `main`, distant `git@github.com:oalphonse/le-patio-pilates.git` (passé en SSH le 13/11). Avant chaque grosse modification, on fait un commit de sauvegarde. Pas de copies de fichiers.
+
+Le 13/11, le push depuis le poste n'avait pas encore abouti : il faut que le compte GitHub utilisé soit collaborateur avec droit d'écriture sur le dépôt `oalphonse` (invitation acceptée).
