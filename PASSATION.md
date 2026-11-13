@@ -73,6 +73,7 @@ Règles du projet :
 - **En-tête identique sur les 6 pages**, collant en haut : bouton « Menu » (burger) à gauche, logo au centre, « Réserver » à droite. Tarifs, Planning et Première séance restent visibles hors du menu (à côté du burger sur ordinateur, sur une 2e ligne sur mobile) ; Les cours, Le studio, Infos pratiques, FAQ et Contact sont dans le menu. Sur ordinateur le menu s'ouvre au survol, sur mobile au toucher. Style et comportement sont dans `commun/entete.css` et `commun/entete.js` (communs aux 6 pages) ; seul le HTML de l'en-tête est recopié dans chaque page, à garder identique.
 - **Slugs et noms de fichiers en français, mots séparés par des tirets** (SEO), ex. `photos-le-patio/pilates-reformer-senlis-le-patio.jpg`.
 - On parle de **« première séance »**, jamais d'« essai ».
+- **Ne pas citer bsport dans les textes du site** (ni en français ni en anglais, ni dans les titres et descriptions pour Google) : on pousse les visiteurs vers **notre site et l'application Le Patio**. Formulations utilisées : « en ligne, sur notre site ou l'application Le Patio » / « on our website or the Le Patio app ». La seule mention de bsport acceptée est le « Powered by bsport » affiché par leurs propres modules (widgets). Décidé le 13/11.
 
 ## Popup « Coming soon » (accueil)
 
