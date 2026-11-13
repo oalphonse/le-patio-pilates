@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your First Reformer Pilates Class in Senlis · Le Patio</title>
+<meta name="description" content="New to Reformer? Your first class at Le Patio in 3 steps: pick a time slot, book your first class on bsport, arrive 5 minutes early.">
+<link rel="icon" type="image/png" href="../../logo/icone-le-patio.png">
+<link rel="apple-touch-icon" href="../../logo/icone-le-patio.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap">
+<style>
+:root{
+  --cream:#F9F7F1; --paper:#FDFCF9; --sand:#EBE6DC; --tan:#C2B88F; --tan-2:#DBD1A8; --khaki:#9E9466;
+  --olive-l:#7A6B2A; --olive:#5E530E; --olive-d:#453D0A; --ink:#222222; --brown:#574325; --muted:#8B7B60;
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-weight:400;letter-spacing:-.015em;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1248px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--olive)}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border-radius:999px;font:500 15px/1 var(--font);text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--tan-2);outline-offset:3px}
+.btn-light{background:var(--paper);color:var(--olive-d)}
+.btn-olive{background:var(--olive);color:var(--paper)}
+.btn-line{border:1.5px solid var(--olive);color:var(--olive)}
+
+/* En-tête (identique à l'accueil, version courte) */
+.site-header{position:sticky;top:0;z-index:50;background:var(--olive);color:var(--paper)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:87px;max-width:1440px}
+.logo{display:block;position:relative;overflow:hidden;width:calc(310px * var(--ls));height:calc(275px * var(--ls));--ls:.28;text-decoration:none;flex:none}
+.logo img{position:absolute;max-width:none;height:auto;width:calc(500px * var(--ls));left:calc(-95px * var(--ls));top:calc(-85px * var(--ls))}
+@media (max-width:640px){.logo{--ls:.24}}
+.back{font-size:14.5px;text-decoration:none;opacity:.9}
+.back:hover{text-decoration:underline;text-underline-offset:5px}
+.head-r{display:flex;align-items:center;gap:24px}
+
+/* Ouverture : titre à gauche, sommaire des 3 étapes à droite */
+.intro{background:var(--sand)}
+.intro .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:end;padding-block:96px 80px}
+.intro h1{font-size:clamp(40px,5.2vw,72px);line-height:1.05;margin-top:16px}
+.intro h1 em{font-style:italic;font-weight:300}
+.toc{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--tan)}
+.toc a{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:12px;padding:18px 0;border-bottom:1px solid var(--tan);text-decoration:none;font-size:18px}
+.toc a:hover span:last-child{transform:translateY(2px)}
+.toc .n{white-space:nowrap;font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--olive)}
+.toc span:last-child{color:var(--olive);transition:transform .15s}
+
+/* Étapes : grandes bandes alternées, chiffre géant + photo */
+.step{scroll-margin-top:96px}
+.step .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding-block:96px}
+.step:nth-of-type(even) .media{order:2}
+.step.alt{background:var(--paper)}
+.media{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--tan)}
+.media img{width:100%;height:100%;object-fit:cover}
+.txt{display:grid;gap:18px;align-content:center;max-width:480px}
+.num{font-size:clamp(110px,13vw,180px);line-height:.8;font-weight:300;color:var(--tan-2);letter-spacing:-.04em}
+.txt h2{font-size:clamp(28px,3vw,40px);line-height:1.15}
+.txt p{font-size:18px;color:var(--brown)}
+.txt .btn{justify-self:start;margin-top:8px}
+
+/* Étape 1 : mini planning en illustration */
+.mini-plan{position:absolute;left:24px;right:24px;bottom:24px;background:rgba(253,252,249,.94);border-radius:12px;padding:16px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;text-align:center}
+.mini-plan b{font-size:10.5px;font-weight:600;letter-spacing:.05em;color:var(--olive)}
+.mini-plan span{font-size:14px;background:var(--cream);border-radius:8px;padding:6px 0}
+.mini-plan span.on{background:var(--olive);color:var(--paper)}
+
+/* Étape 2 : carte de réservation en illustration */
+.media.card-bg{background:var(--olive);display:grid;place-items:center;padding:32px}
+.ticket{background:var(--paper);border-radius:14px;padding:26px 28px;width:min(360px,100%);display:grid;gap:14px;box-shadow:0 14px 40px rgba(0,0,0,.18)}
+.ticket .row{display:flex;justify-content:space-between;font-size:15px}
+.ticket .row span:first-child{color:var(--muted)}
+.ticket hr{border:0;border-top:1px dashed var(--tan);margin:2px 0;width:100%}
+.ticket .total{font-size:28px;font-weight:300}
+.ticket .code{display:flex;gap:8px}
+.ticket .code i{font-style:normal;flex:1;text-align:center;background:var(--sand);border-radius:8px;padding:8px 0;font-weight:600;letter-spacing:.1em;color:var(--olive-d)}
+
+/* Étape 3 : petite liste « à prévoir » */
+.bring{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.bring li{background:var(--sand);color:var(--olive-d);border-radius:999px;padding:7px 14px;font-size:14px}
+
+/* Fin de page */
+.end{background:var(--olive-d);color:var(--paper);text-align:center}
+.end .wrap{display:grid;justify-items:center;gap:18px;padding-block:88px}
+.end h2{font-size:clamp(30px,3.6vw,46px)}
+.end p{color:var(--tan-2)}
+.end .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.end .btn-line{border-color:rgba(253,252,249,.7);color:var(--paper)}
+footer{background:var(--olive);color:var(--sand);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:28px}
+footer a{text-decoration:none}
+
+@media (max-width:900px){
+  .intro .wrap,.step .wrap{grid-template-columns:1fr;gap:40px}
+  .step:nth-of-type(even) .media{order:0}
+  .step .wrap{padding-block:64px}
+  .intro .wrap{padding-block:64px 56px}
+  .back{display:none}
+}
+@media (max-width:640px){
+  .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .site-header .wrap{height:72px}
+  .mini-plan{left:12px;right:12px;bottom:12px;padding:10px;gap:5px}
+  .mini-plan span{font-size:12px}
+}
+
+/* Menu (identique à l'accueil) */
+.nav{display:flex;gap:30px;font-size:15px}
+.nav a{text-decoration:none;opacity:.92;white-space:nowrap}
+.nav a:hover,.nav a[aria-current="page"]{opacity:1;text-decoration:underline;text-underline-offset:6px}
+.burger{display:none;background:none;border:0;color:var(--paper);font:500 15px var(--font);cursor:pointer}
+@media (max-width:1180px){
+  .nav{display:none}
+  .burger{display:block}
+  .site-header.open .nav{display:flex;flex-direction:column;gap:14px;position:absolute;top:100%;left:0;right:0;background:var(--olive);padding:20px 24px 28px}
+}
+
+/* Logo du menu (version horizontale) */
+.logo{width:auto;height:auto;overflow:visible;position:static;line-height:0}
+.logo img{position:static;height:66px;width:auto;max-width:none}
+@media (max-width:640px){.logo img{height:52px}}
+
+/* Photos interactives : zoom doux au survol + agrandissement au clic (lightbox) */
+img.zoomable{cursor:zoom-in}
+img.zoomable:focus-visible{outline:3px solid var(--tan-2);outline-offset:-3px}
+@media (prefers-reduced-motion:no-preference){
+  img.zoomable{transition:transform .5s ease}
+  img.zoomable:focus-visible{transform:scale(1.04)}
+  .lb[open]{animation:lb-apparait .25s ease}
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){img.zoomable:hover,.media:hover > img.zoomable{transform:scale(1.04)}}
+@keyframes lb-apparait{from{opacity:0}}
+html.lb-bloque{overflow:hidden}
+.lb{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(34,34,34,.94);color:var(--paper);font-family:var(--font)}
+.lb::backdrop{background:transparent}
+.lb-fig{margin:0;width:100%;height:100%;display:grid;align-content:center;justify-items:center;gap:14px;padding:76px 88px 32px}
+.lb-fig img{width:auto;height:auto;max-width:100%;max-height:calc(100vh - 180px);max-height:calc(100dvh - 180px);object-fit:contain;border-radius:var(--r);box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.lb-fig figcaption{display:grid;justify-items:center;gap:4px;text-align:center;max-width:640px}
+.lb-cap{font-size:15px;color:var(--sand)}
+.lb-num{font-size:13px;color:var(--tan-2);font-variant-numeric:tabular-nums}
+.lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(253,252,249,.7);background:rgba(34,34,34,.35);color:var(--paper);font:400 20px/1 var(--font);display:grid;place-items:center;cursor:pointer;transition:background .15s,color .15s}
+.lb-btn:hover{background:var(--paper);color:var(--olive-d)}
+.lb-btn:focus-visible{outline:2px solid var(--tan-2);outline-offset:3px}
+.lb-fermer{top:max(16px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));font-size:26px}
+.lb-prec,.lb-suiv{top:50%;transform:translateY(-50%)}
+.lb-prec{left:max(20px,env(safe-area-inset-left,0px))}
+.lb-suiv{right:max(20px,env(safe-area-inset-right,0px))}
+@media (max-width:640px){
+  .lb-fig{padding:72px 16px 96px}
+  .lb-fig img{max-height:calc(100vh - 240px);max-height:calc(100dvh - 240px)}
+  .lb-prec,.lb-suiv{top:auto;bottom:max(24px,env(safe-area-inset-bottom,0px));transform:none}
+  .lb-prec{left:calc(50% - 60px)}
+  .lb-suiv{right:calc(50% - 60px)}
+}
+
+/* Mobile et tablette : zones tactiles ≥ 44 px. Sans effet au-dessus de 980 px. */
+@media (max-width:980px){footer a{padding-block:12px;margin-block:-12px}}
+</style>
+<link rel="stylesheet" href="../../commun/entete.css">
+<link rel="canonical" href="https://__DOMAINE__/en/first-class/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Le Patio Pilates Club">
+<meta property="og:title" content="Your First Reformer Pilates Class in Senlis · Le Patio">
+<meta property="og:description" content="New to Reformer? Your first class at Le Patio in 3 steps: pick a time slot, book your first class on bsport, arrive 5 minutes early.">
+<meta property="og:url" content="https://__DOMAINE__/en/first-class/">
+<meta property="og:image" content="https://__DOMAINE__/photos-le-patio/pilates-reformer-senlis-le-patio.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="fr" href="https://__DOMAINE__/premiere-seance/">
+<link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/first-class/">
+<link rel="alternate" hreflang="x-default" href="https://__DOMAINE__/premiere-seance/">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap entete">
+    <div class="head-gauche">
+      <div class="menu-zone">
+        <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-num="B02"><span class="menu-ico" aria-hidden="true"></span><span class="menu-txt">Menu</span></button>
+        <nav class="menu-panel" id="menu" aria-label="Menu"><a href="../#les-cours" data-num="L01">Classes</a><a href="../#le-studio" data-num="L02">The studio</a><a href="../#infos-pratiques" data-num="L06">Getting here</a><a href="../#questions-frequentes" data-num="L07">FAQ</a><a href="../contact/" data-num="L08">Contact</a></nav>
+      </div>
+      <nav class="nav-rapide" aria-label="Quick links"><a href="../pricing/" data-num="L03">Pricing</a><a href="../schedule/" data-num="L04">Schedule</a><a href="./" aria-current="page" data-num="L05">First class</a></nav>
+    </div>
+    <a href="../" class="logo" data-num="I01"><img src="../../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
+    <div class="head-droite">
+      <a class="langue" href="../../premiere-seance/" hreflang="fr" lang="fr" aria-label="Version française" data-num="L00">FR</a>
+      <a href="../schedule/" class="btn btn-light" data-num="B01">Book</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="intro" data-num="S01">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow" data-num="T01">First time</div>
+        <h1 data-num="T02">New to Reformer? <em>Start here.</em></h1>
+      </div>
+      <ol class="toc" aria-label="The 3 steps">
+        <li><a href="#etape-1" data-num="L09"><span class="n">STEP 1</span><span>Pick a time slot</span><span>↓</span></a></li>
+        <li><a href="#etape-2" data-num="L10"><span class="n">STEP 2</span><span>Book your first class on bsport</span><span>↓</span></a></li>
+        <li><a href="#etape-3" data-num="L11"><span class="n">STEP 3</span><span>Arrive 5 minutes early</span><span>↓</span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="step alt" id="etape-1" data-num="S02">
+    <div class="wrap">
+      <div class="media">
+        <img src="../../photos-le-patio/cours-pilates-reformer.jpg" alt="Client on a Reformer at the studio" data-num="P01">
+        <div class="mini-plan" aria-hidden="true" data-num="I02">
+          <b>MON</b><b>TUE</b><b>WED</b><b>THU</b><b>FRI</b>
+          <span>8:30am</span><span class="on">9:45am</span><span>11:45am</span><span>5:45pm</span><span>7pm</span>
+        </div>
+      </div>
+      <div class="txt">
+        <div class="num" aria-hidden="true" data-num="T03">1</div>
+        <h2 data-num="T04">Pick a time slot</h2>
+        <p data-num="T05">On the schedule, Monday to Friday, from 8:30am to 7pm.</p>
+        <a href="../schedule/" class="btn btn-line" data-num="B03">See the schedule</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="etape-2" data-num="S03">
+    <div class="wrap">
+      <div class="media card-bg">
+        <div class="ticket" aria-hidden="true" data-num="I03">
+          <div class="eyebrow">First class · bsport</div>
+          <div class="row"><span>Classes</span><span>2 × Reformer, 1 hr</span></div>
+          <div class="row"><span>Valid for</span><span>3 weeks</span></div>
+          <hr>
+          <div class="row"><span>Total</span><span class="total">€35</span></div>
+          <div class="row"><span>Access codes</span><span>sent by email</span></div>
+          <div class="code"><i>••</i><i>••</i><i>••</i><i>••</i></div>
+        </div>
+      </div>
+      <div class="txt">
+        <div class="num" aria-hidden="true" data-num="T06">2</div>
+        <h2 data-num="T07">Book your first class on bsport</h2>
+        <p data-num="T08">€35 for two classes. Your access codes are then sent to you.</p>
+        <a href="../schedule/" class="btn btn-olive" data-num="B04">Book my first class</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="step alt" id="etape-3" data-num="S04">
+    <div class="wrap">
+      <div class="media">
+        <img src="../../photos-le-patio/chaussettes-antiderapantes-pilates.jpg" alt="Grip socks laid out at the studio" data-num="P02" loading="lazy" decoding="async">
+      </div>
+      <div class="txt">
+        <div class="num" aria-hidden="true" data-num="T09">3</div>
+        <h2 data-num="T10">Arrive 5 minutes early</h2>
+        <p data-num="T11">Comfortable activewear and grip socks. We'll take care of the rest.</p>
+        <ul class="bring" aria-label="What to bring" data-num="T12">
+          <li>Comfortable activewear</li><li>Grip socks</li><li>5 minutes to spare</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="end" data-num="S05">
+    <div class="wrap">
+      <h2 data-num="T13">Ready for your first class?</h2>
+      <p data-num="T14">Two classes for €35 · 43 avenue Félix Louat, Senlis</p>
+      <div class="row">
+        <a href="../schedule/" class="btn btn-light" data-num="B05">Book my first class</a>
+        <a href="../#questions-frequentes" class="btn btn-line" data-num="B06">Read the FAQ</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-num="S06">
+  <div class="wrap"><span data-num="T15">© Le Patio Pilates Club · Senlis</span><a href="../" data-num="L12">Back to home</a></div>
+</footer>
+<script>
+
+/* ===== Photos interactives : agrandissement au clic (lightbox) ===== */
+(function(){
+  const photos=[...document.querySelectorAll('.ph > img, .media > img')];
+  if(!photos.length) return;
+  // Une seule entrée par photo (la galerie reprend des photos déjà présentes plus haut)
+  const liste=[], rang=new Map();
+  photos.forEach(img=>{
+    const src=img.getAttribute('src');
+    if(!rang.has(src)){ rang.set(src,liste.length); liste.push({src,alt:img.alt}); }
+    const p=liste[rang.get(src)]; if(img.alt.length>p.alt.length) p.alt=img.alt; // on garde la légende la plus complète
+  });
+  photos.forEach(img=>{
+    img.classList.add('zoomable'); img.tabIndex=0;
+    img.setAttribute('role','button'); img.setAttribute('aria-haspopup','dialog');
+    img.setAttribute('aria-label','Enlarge photo: '+(liste[rang.get(img.getAttribute('src'))].alt||'studio photo'));
+    img.addEventListener('click',()=>ouvrir(img));
+    img.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); ouvrir(img); } });
+  });
+
+  // Fenêtre (créée une seule fois)
+  const d=document.createElement('dialog');
+  d.className='lb'; d.setAttribute('aria-modal','true'); d.setAttribute('aria-label','Enlarged photo');
+  d.innerHTML='<figure class="lb-fig"><img alt=""><figcaption><span class="lb-cap"></span><span class="lb-num"></span></figcaption></figure>'
+    +'<button type="button" class="lb-btn lb-fermer" aria-label="Close">×</button>'
+    +'<button type="button" class="lb-btn lb-prec" aria-label="Previous photo">←</button>'
+    +'<button type="button" class="lb-btn lb-suiv" aria-label="Next photo">→</button>';
+  document.body.appendChild(d);
+  const fig=d.querySelector('.lb-fig'), grande=fig.querySelector('img'), cap=d.querySelector('.lb-cap'), num=d.querySelector('.lb-num');
+  const plusieurs=liste.length>1;
+  d.querySelector('.lb-prec').hidden=!plusieurs; d.querySelector('.lb-suiv').hidden=!plusieurs; num.hidden=!plusieurs;
+
+  let actuelle=0, source=null;
+  function afficher(i){
+    actuelle=(i+liste.length)%liste.length; const p=liste[actuelle];
+    grande.src=p.src; grande.alt=p.alt; cap.textContent=p.alt; cap.hidden=!p.alt;
+    num.textContent=(actuelle+1)+' / '+liste.length;
+  }
+  function ouvrir(img){
+    if(d.open) return;
+    source=img; afficher(rang.get(img.getAttribute('src')));
+    document.documentElement.classList.add('lb-bloque'); // bloque le défilement de la page
+    d.showModal(); d.querySelector('.lb-fermer').focus();
+  }
+  function fermer(){ if(d.open) d.close(); }
+  // Échap ferme nativement le <dialog> ; on remet tout en place à chaque fermeture
+  d.addEventListener('close',()=>{
+    document.documentElement.classList.remove('lb-bloque');
+    if(source) source.focus({preventScroll:true});
+  });
+  d.querySelector('.lb-fermer').addEventListener('click',fermer);
+  d.querySelector('.lb-prec').addEventListener('click',()=>afficher(actuelle-1));
+  d.querySelector('.lb-suiv').addEventListener('click',()=>afficher(actuelle+1));
+  d.addEventListener('click',e=>{ if(e.target===d||e.target===fig) fermer(); }); // clic sur le fond
+  d.addEventListener('keydown',e=>{
+    if(!plusieurs) return;
+    if(e.key==='ArrowLeft'){ e.preventDefault(); afficher(actuelle-1); }
+    else if(e.key==='ArrowRight'){ e.preventDefault(); afficher(actuelle+1); }
+  });
+  // Mobile : glisser à gauche / à droite pour changer de photo
+  let x0=null;
+  d.addEventListener('touchstart',e=>{ x0=e.touches.length===1?e.touches[0].clientX:null; },{passive:true});
+  d.addEventListener('touchend',e=>{
+    if(x0===null||!plusieurs) return;
+    const dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(dx)>50) afficher(actuelle+(dx<0?1:-1));
+  });
+})();
+</script>
+<script src="../../commun/entete.js"></script>
+<!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
+<script src="../../outils/numeros.js"></script>
+</body>
+</html>

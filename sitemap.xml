@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Plan du site pour Google. __DOMAINE__ est remplacé par le vrai nom de domaine à la mise en ligne. -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://__DOMAINE__/</loc><priority>1.0</priority></url>
-  <url><loc>https://__DOMAINE__/tarifs/</loc><priority>0.9</priority></url>
-  <url><loc>https://__DOMAINE__/planning/</loc><priority>0.9</priority></url>
-  <url><loc>https://__DOMAINE__/premiere-seance/</loc><priority>0.8</priority></url>
-  <url><loc>https://__DOMAINE__/contact/</loc><priority>0.5</priority></url>
+<!-- Plan du site pour Google, versions française et anglaise.
+     __DOMAINE__ est remplacé par le vrai nom de domaine à la mise en ligne. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://__DOMAINE__/</loc><priority>1.0</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/"/></url>
+  <url><loc>https://__DOMAINE__/en/</loc><priority>0.8</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/"/></url>
+  <url><loc>https://__DOMAINE__/tarifs/</loc><priority>0.9</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/tarifs/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/pricing/"/></url>
+  <url><loc>https://__DOMAINE__/en/pricing/</loc><priority>0.7</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/tarifs/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/pricing/"/></url>
+  <url><loc>https://__DOMAINE__/planning/</loc><priority>0.9</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/planning/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/schedule/"/></url>
+  <url><loc>https://__DOMAINE__/en/schedule/</loc><priority>0.7</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/planning/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/schedule/"/></url>
+  <url><loc>https://__DOMAINE__/premiere-seance/</loc><priority>0.8</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/premiere-seance/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/first-class/"/></url>
+  <url><loc>https://__DOMAINE__/en/first-class/</loc><priority>0.6</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/premiere-seance/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/first-class/"/></url>
+  <url><loc>https://__DOMAINE__/contact/</loc><priority>0.5</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/contact/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/contact/"/></url>
+  <url><loc>https://__DOMAINE__/en/contact/</loc><priority>0.3</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/contact/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/contact/"/></url>
 </urlset>

@@ -6,9 +6,21 @@
    Lettres utilisées :
    S section · C carte · T texte (titre, paragraphe, liste…) · P photo · I icône / logo / illustration
    B bouton · L lien · F formulaire / champ
+
+   Chaque badge commence par le numéro de la page, pour savoir tout de suite de quelle page on parle :
+   1 Accueil · 2 Première séance · 3 Planning · 4 Tarifs · 5 Contact · 6 Réserver ma première séance
+   Exemple : « 4-S06 » = section S06 de la page Tarifs ; « EN4-S06 » = la même chose sur la version anglaise.
 */
 (function(){
   const CLE='numeros-visibles';
+  const PAGES={'':1,'premiere-seance':2,'planning':3,'tarifs':4,'contact':5,'reserver-premiere-seance':6};
+  const NOMS_PAGES={1:'Accueil',2:'Première séance',3:'Planning',4:'Tarifs',5:'Contact',6:'Réserver'};
+  // Pages anglaises (/en/…) : même numéro de page, précédé de EN (ex. « EN4-S06 » = S06 de Pricing)
+  const PAGES_EN={'':1,'first-class':2,'schedule':3,'pricing':4,'contact':5,'book-first-class':6};
+  const segments=location.pathname.replace(/index\.html$/,'').split('/').filter(Boolean);
+  const anglais=segments[0]==='en';
+  const dossier=(anglais?segments.slice(1):segments).pop()||'';
+  const PAGE=anglais?('EN'+(PAGES_EN[dossier]||'?')):(PAGES[dossier]||'?');
   const COULEURS={S:'#6B4FA0',C:'#1E6FB8',T:'#222222',P:'#C0392B',I:'#B8860B',B:'#1F8A5B',L:'#0E8C8C',F:'#D35400'};
 
   const css=document.createElement('style');
@@ -33,7 +45,7 @@ body.num-on #num-toggle .sw::after{left:17px}
     const barre=document.createElement('div'); barre.id='num-barre';
     const bouton=document.createElement('button');
     bouton.id='num-toggle'; bouton.type='button';
-    bouton.innerHTML='<span class="sw" aria-hidden="true"></span><span>Numéros</span>';
+    bouton.innerHTML='<span class="sw" aria-hidden="true"></span><span>Numéros · page '+PAGE+(NOMS_PAGES[String(PAGE).replace('EN','')]?' '+NOMS_PAGES[String(PAGE).replace('EN','')]:'')+'</span>';
     const annot=document.getElementById('annot-toggle');
     if(annot){ annot.parentNode.insertBefore(barre,annot); barre.appendChild(annot); }
     else document.body.appendChild(barre);
@@ -63,7 +75,7 @@ body.num-on #num-toggle .sw::after{left:17px}
         let b=badges.get(el);
         if(!b){
           b=document.createElement('span'); b.className='num-badge';
-          const n=el.dataset.num; b.textContent=n;
+          const n=el.dataset.num; b.textContent=PAGE+'-'+n;
           b.style.background=COULEURS[n[0]]||'#444';
           badges.set(el,b);
         }

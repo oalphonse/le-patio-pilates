@@ -100,6 +100,28 @@ Le bouton « Afficher le détourage » en bas de l'accueil encadre chaque élém
 
 Les 10 studios de référence (approche « offre de découverte ») sont : Club Pilates, Speir, Studio Pilates, KX Pilates, Culte, Ten Health & Fitness, LevelOut, BODYBAR, Pilates Circuit et Maison Amat.
 
+## Version anglaise (créée le 13/11)
+
+Le site existe en français (racine) et en anglais (`en/`), anglais britannique.
+
+| Français | Anglais | N° de page |
+|---|---|---|
+| `/` | `/en/` | 1 / EN1 |
+| `/premiere-seance/` | `/en/first-class/` | 2 / EN2 |
+| `/planning/` | `/en/schedule/` | 3 / EN3 |
+| `/tarifs/` | `/en/pricing/` | 4 / EN4 |
+| `/contact/` | `/en/contact/` | 5 / EN5 |
+| `/reserver-premiere-seance/` | `/en/book-first-class/` | 6 / EN6 |
+
+- Les slugs anglais sont en anglais (référencement en anglais) ; la règle « slugs en français » vaut pour les pages françaises.
+- Lien de langue **FR / EN** dans l'en-tête (`<a class="langue" data-num="L00">`, à gauche de « Réserver »), vers la page équivalente. Style dans `commun/entete.css`.
+- Balises `hreflang` (fr, en, x-default = fr) sur les pages indexées des deux langues, `og:locale` en_GB, `sitemap.xml` bilingue.
+- **Les pages anglaises sont des copies traduites, pas générées** : toute modification d'une page française doit être reportée sur sa page anglaise (mêmes `data-num`, donc « 4-T12 » et « EN4-T12 » sont le même élément).
+- Vocabulaire retenu : première séance → first class ; forfait → class pack ; abonnement → membership ; à la séance → drop-in ; sans engagement → no commitment ; gel → membership freeze ; parrainage → referrals ; Réserver → Book ; Infos pratiques → Getting here ; prix « €35 », heures « 8:30am ».
+- L'outil de détourage reste en français sur `/en/` (outil interne).
+- À faire relire par quelqu'un d'anglophone si possible (titre « Take the time to move well. », qualification « CQP ALS » expliquée en anglais).
+- Incohérences relevées dans les textes français, reprises telles quelles en anglais, à trancher par le studio : fin des cours « 19h » (début du dernier cours) ou « 20h » (fin) selon les pages ; validité de l'offre première séance 3 semaines vs séance à l'unité 2 semaines (normal si voulu).
+
 ## Référencement (préparé le 13/11)
 
 Objectif : sortir sur « Pilates Senlis » et « Pilates Chantilly ».
@@ -127,7 +149,7 @@ Fait dans le site :
 
 ## Numéros des éléments (outil interne)
 
-Chaque élément visible porte un attribut `data-num` (S section, C carte, T texte, P photo, I icône/logo, B bouton, L lien, F formulaire), numéroté par page et par lettre. `outils/numeros.js` les affiche en petits badges ; le bouton « Numéros » en bas de l'écran les montre ou les cache. On s'en sert pour désigner une modification (« T14 sur Tarifs »). L'en-tête a les mêmes numéros sur toutes les pages (I01 logo, L01–L08 liens, B01 Réserver, B02 Menu). **À retirer à la mise en ligne** : supprimer `outils/` et la balise `<script src="…outils/numeros.js">` de chaque page (les attributs `data-num` peuvent rester).
+Chaque élément visible porte un attribut `data-num` (S section, C carte, T texte, P photo, I icône/logo, B bouton, L lien, F formulaire), numéroté par page et par lettre. `outils/numeros.js` les affiche en petits badges ; le bouton « Numéros » en bas de l'écran les montre ou les cache. Chaque badge commence par le numéro de la page (1 Accueil, 2 Première séance, 3 Planning, 4 Tarifs, 5 Contact, 6 Réserver ma première séance) : « 4-S06 » = section S06 de la page Tarifs. On s'en sert pour désigner une modification. L'en-tête a les mêmes numéros sur toutes les pages (I01 logo, L01–L08 liens, B01 Réserver, B02 Menu). **À retirer à la mise en ligne** : supprimer `outils/` et la balise `<script src="…outils/numeros.js">` de chaque page (les attributs `data-num` peuvent rester).
 
 ## Fait le 12/11
 

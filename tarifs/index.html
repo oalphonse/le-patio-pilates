@@ -184,6 +184,70 @@ footer a{text-decoration:none}
 
 /* Mobile et tablette : zones tactiles ≥ 44 px. Sans effet au-dessus de 980 px. */
 @media (max-width:980px){footer a{padding-block:12px;margin-block:-12px}}
+
+/* ===== Propositions pour les conditions (temporaire) ===== */
+.cv-barre{position:sticky;top:96px;z-index:40;width:max-content;max-width:calc(100% - 32px);margin:32px auto 0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px;background:var(--ink);color:#fff;border-radius:999px;padding:5px;box-shadow:0 8px 24px rgba(0,0,0,.2);font:500 13.5px var(--font)}
+.cv-barre > span{padding:0 10px 0 12px;opacity:.7;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.cv-barre button{border:0;background:none;color:#fff;font:inherit;padding:9px 16px;min-height:40px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.cv-barre button[aria-pressed="true"]{background:var(--paper);color:var(--olive-d)}
+[data-cond][hidden]{display:none!important}
+.ca h2,.cb h2,.cc h2{font-size:clamp(28px,3vw,38px);line-height:1.15}
+
+/* A · Cartes */
+.ca{background:var(--sand)}
+.ca .wrap{display:grid;gap:32px;padding-block:64px 72px}
+.ca-head{display:grid;gap:10px;justify-items:center;text-align:center}
+.ca-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.ca-carte{background:var(--paper);border-radius:var(--r);padding:26px 24px;display:grid;gap:10px;align-content:start}
+.ca-ico{width:36px;height:36px;fill:none;stroke:var(--olive);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:4px}
+.ca-carte h3{font-size:19px;font-weight:500}
+.ca-carte p{font-size:15px;color:var(--brown);line-height:1.5}
+
+/* B · Questions */
+.cb{background:var(--paper);border-top:1px solid var(--sand)}
+.cb .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:56px;padding-block:64px 72px;align-items:start}
+.cb-head{display:grid;gap:10px}
+.cb-head p{color:var(--brown)}
+.cb-liste{border-top:1px solid var(--sand)}
+.cb-liste details{border-bottom:1px solid var(--sand)}
+.cb-liste summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:60px;padding:14px 0;font-size:17px;font-weight:500}
+.cb-liste summary::-webkit-details-marker{display:none}
+.cb-liste summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--olive);color:var(--olive);display:grid;place-items:center;font-size:18px;line-height:1;transition:transform .2s}
+.cb-liste details[open] summary::after{transform:rotate(45deg)}
+.cb-liste p{color:var(--brown);font-size:15.5px;padding:0 46px 18px 0}
+
+/* C · Liste + parrainage */
+.cc{background:var(--paper);border-top:1px solid var(--sand)}
+.cc .wrap{display:grid;gap:32px;padding-block:64px 72px}
+.cc-head{display:grid;gap:10px}
+.cc-corps{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start}
+.cc-liste{margin:0;border-top:1px solid var(--sand)}
+.cc-liste > div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--sand)}
+.cc-liste dt{font-weight:500}
+.cc-liste dd{margin:0;color:var(--brown);font-size:15.5px}
+.cc-parrain{background:var(--olive);color:var(--paper);border-radius:var(--r);padding:30px 30px 32px;display:grid;gap:12px}
+.cc-parrain .eyebrow{color:var(--tan-2)}
+.cc-parrain h3{font-size:24px;line-height:1.2}
+.cc-gains{display:grid;gap:14px;margin-top:6px}
+.cc-gains div{display:grid;gap:2px;padding-top:14px;border-top:1px solid rgba(253,252,249,.2)}
+.cc-gains strong{font-size:30px;font-weight:300;line-height:1.1}
+.cc-gains span{color:var(--sand);font-size:14.5px}
+
+@media (max-width:1000px){
+  .ca-grid{grid-template-columns:1fr 1fr}
+  .cb .wrap{grid-template-columns:1fr;gap:24px}
+  .cc-corps{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .cv-barre{top:120px;font-size:12.5px}
+  .cv-barre > span,.cv-nom{display:none}
+  .ca .wrap,.cb .wrap,.cc .wrap{padding-block:48px 56px}
+  .ca-grid{grid-template-columns:1fr;gap:12px}
+  .ca-carte{grid-template-columns:36px minmax(0,1fr);column-gap:14px;padding:20px 18px}
+  .ca-ico{grid-row:span 2;margin:0}
+  .cc-liste > div{grid-template-columns:1fr;gap:4px;padding:16px 0}
+  .cb-liste p{padding-right:0}
+}
 </style>
 <link rel="stylesheet" href="../commun/entete.css">
 <link rel="canonical" href="https://__DOMAINE__/tarifs/">
@@ -195,6 +259,9 @@ footer a{text-decoration:none}
 <meta property="og:url" content="https://__DOMAINE__/tarifs/">
 <meta property="og:image" content="https://__DOMAINE__/photos-le-patio/pilates-reformer-senlis-le-patio.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="fr" href="https://__DOMAINE__/tarifs/">
+<link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/pricing/">
+<link rel="alternate" hreflang="x-default" href="https://__DOMAINE__/tarifs/">
 </head>
 <body>
 
@@ -209,6 +276,7 @@ footer a{text-decoration:none}
     </div>
     <a href="../" class="logo" data-num="I01"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
     <div class="head-droite">
+      <a class="langue" href="../en/pricing/" hreflang="en" lang="en" aria-label="English version" data-num="L00">EN</a>
       <a href="../planning/" class="btn btn-light" data-num="B01">Réserver</a>
     </div>
   </div>
@@ -289,7 +357,91 @@ footer a{text-decoration:none}
   </section>
 
 
-  <section class="cond" aria-label="Conditions" data-num="S06">
+    <!-- PROPOSITIONS POUR LES CONDITIONS (temporaire) : le sélecteur permet de comparer A, B et C.
+       Une fois la version choisie, garder sa section, supprimer les autres, le sélecteur, son CSS et son JS. -->
+  <div class="cv-barre" role="group" aria-label="Proposition de mise en page des conditions">
+    <span>Conditions</span>
+    <button type="button" data-cv="a" aria-pressed="true">A<span class="cv-nom"> · Cartes</span></button>
+    <button type="button" data-cv="b" aria-pressed="false">B<span class="cv-nom"> · Questions</span></button>
+    <button type="button" data-cv="c" aria-pressed="false">C<span class="cv-nom"> · Liste</span></button>
+    <button type="button" data-cv="actuelle" aria-pressed="false">Actuelle</button>
+  </div>
+
+  <!-- Proposition A : 4 cartes avec icône -->
+  <section class="ca" data-cond="a" aria-label="Bon à savoir" data-num="S11">
+    <div class="wrap">
+      <div class="ca-head">
+        <div class="eyebrow" data-num="T76">Bon à savoir</div>
+        <h2 data-num="T77">Les conditions, en clair.</h2>
+      </div>
+      <div class="ca-grid">
+        <article class="ca-carte" data-num="C17">
+          <svg class="ca-ico" viewBox="0 0 32 32" aria-hidden="true" focusable="false" data-num="I06"><rect x="3" y="8" width="26" height="17" rx="3"/><path d="M3 13h26M8 20h6"/></svg>
+          <h3 data-num="T84">Paiement</h3>
+          <p data-num="T85">Toutes les formules s'achètent en ligne sur bsport.</p>
+        </article>
+        <article class="ca-carte" data-num="C16">
+          <svg class="ca-ico" viewBox="0 0 32 32" aria-hidden="true" focusable="false" data-num="I05"><rect x="5" y="12" width="22" height="16" rx="2"/><path d="M3 12h26M16 12v16M16 12c-3-6-9-6-9-2s6 2 9 2c3 0 9 2 9-2s-6-4-9 2"/></svg>
+          <h3 data-num="T82">Parrainage</h3>
+          <p data-num="T83">15 € de crédit pour le parrain. Pour le filleul : 5 € de remise sur la première séance et 10 € sur le premier forfait.</p>
+        </article>
+        <article class="ca-carte" data-num="C14">
+          <svg class="ca-ico" viewBox="0 0 32 32" aria-hidden="true" focusable="false" data-num="I03"><path d="M16 3v26M4.7 9.5l22.6 13M4.7 22.5l22.6-13M12 5l4 3 4-3M12 27l4-3 4 3"/></svg>
+          <h3 data-num="T78">Gel de l'abonnement</h3>
+          <p data-num="T79">À demander au moins 1 semaine avant le mois concerné ; un mois en cours ne peut pas être gelé.</p>
+        </article>
+        <article class="ca-carte" data-num="C15">
+          <svg class="ca-ico" viewBox="0 0 32 32" aria-hidden="true" focusable="false" data-num="I04"><rect x="6" y="5" width="20" height="23" rx="2"/><path d="M11 11h10M11 16h10M11 21h6"/></svg>
+          <h3 data-num="T80">Résiliation de l'abonnement</h3>
+          <p data-num="T81">Frais de 50 % d'une mensualité, soit 75 € (5 séances) ou 140 € (10 séances).</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proposition B : questions dépliables -->
+  <section class="cb" data-cond="b" aria-label="Questions sur les formules" hidden data-num="S12">
+    <div class="wrap">
+      <div class="cb-head">
+        <div class="eyebrow" data-num="T86">Bon à savoir</div>
+        <h2 data-num="T87">Vos questions sur les formules.</h2>
+        <p data-num="T88">Tout ce qu'il faut savoir avant de choisir.</p>
+      </div>
+      <div class="cb-liste">
+        <details data-num="C18"><summary data-num="T89">Puis-je mettre mon abonnement en pause ?</summary><p data-num="T90">Oui, 1 mois de gel par an. À demander au moins 1 semaine avant le mois concerné ; un mois en cours ne peut pas être gelé.</p></details>
+        <details data-num="C19"><summary data-num="T91">Que se passe-t-il si je résilie mon abonnement ?</summary><p data-num="T92">Des frais de 50 % d'une mensualité s'appliquent, soit 75 € (5 séances) ou 140 € (10 séances).</p></details>
+        <details data-num="C20"><summary data-num="T93">Comment fonctionne le parrainage ?</summary><p data-num="T94">15 € de crédit pour le parrain. Pour le filleul : 5 € de remise sur la première séance et 10 € sur le premier forfait.</p></details>
+        <details data-num="C21"><summary data-num="T95">Comment acheter une formule ?</summary><p data-num="T96">Toutes les formules s'achètent en ligne sur bsport.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proposition C : liste à deux colonnes + parrainage mis en avant -->
+  <section class="cc" data-cond="c" aria-label="Conditions" hidden data-num="S13">
+    <div class="wrap">
+      <div class="cc-head">
+        <div class="eyebrow" data-num="T97">Bon à savoir</div>
+        <h2 data-num="T98">Conditions des formules.</h2>
+      </div>
+      <div class="cc-corps">
+        <dl class="cc-liste">
+          <div data-num="T99"><dt>Gel de l'abonnement</dt><dd>À demander au moins 1 semaine avant le mois concerné ; un mois en cours ne peut pas être gelé.</dd></div>
+          <div data-num="T100"><dt>Résiliation</dt><dd>Frais de 50 % d'une mensualité, soit 75 € (5 séances) ou 140 € (10 séances).</dd></div>
+          <div data-num="T101"><dt>Paiement</dt><dd>Toutes les formules s'achètent en ligne sur bsport.</dd></div>
+        </dl>
+        <aside class="cc-parrain" data-num="C22">
+          <div class="eyebrow" data-num="T102">Parrainage</div>
+          <h3 data-num="T103">Venez à deux, gagnez tous les deux.</h3>
+          <div class="cc-gains" data-num="C23">
+            <div data-num="T104"><strong class="num">15 €</strong><span>de crédit pour le parrain</span></div>
+            <div data-num="T105"><strong class="num">5 € + 10 €</strong><span>pour le filleul : sur la première séance, puis sur le premier forfait</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="cond" aria-label="Conditions" data-num="S06" data-cond="actuelle" hidden>
     <div class="wrap">
       <div data-num="C07"><b data-num="T35">Gel de l'abonnement</b><p data-num="T36">À demander au moins 1 semaine avant le mois concerné ; un mois en cours ne peut pas être gelé.</p></div>
       <div data-num="C08"><b data-num="T37">Résiliation</b><p data-num="T38">Frais de 50 % d'une mensualité, soit 75 € (5 séances) ou 140 € (10 séances).</p></div>
@@ -347,6 +499,24 @@ footer a{text-decoration:none}
 <script>
 </script>
 <script src="../commun/entete.js"></script>
+<script>
+/* Propositions pour les conditions (temporaire) : sélecteur A / B / C / Actuelle, choix mémorisé */
+(function(){
+  const barre=document.querySelector('.cv-barre'); if(!barre) return;
+  const CLE='tarifs-conditions-proposition';
+  const boutons=[...barre.querySelectorAll('button')];
+  const sections=[...document.querySelectorAll('[data-cond]')];
+  function choisir(v){
+    sections.forEach(s=>s.hidden=s.dataset.cond!==v);
+    boutons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.cv===v)));
+    try{ localStorage.setItem(CLE,v); }catch(e){}
+  }
+  boutons.forEach(b=>b.addEventListener('click',()=>choisir(b.dataset.cv)));
+  let v='a'; try{ v=localStorage.getItem(CLE)||'a'; }catch(e){}
+  if(!boutons.some(b=>b.dataset.cv===v)) v='a';
+  choisir(v);
+})();
+</script>
 <!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
 <script src="../outils/numeros.js"></script>
 </body>
