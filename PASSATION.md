@@ -254,12 +254,13 @@ Fait dans le site :
 - Fiche studio pour Google (données structurées `ExerciseGym` dans `index.html`) : adresse, horaires, villes desservies, prix de la première séance. À compléter quand on les aura : téléphone (`telephone`), e-mail, liens Instagram/Facebook (`sameAs`), coordonnées GPS (`geo`).
 - Adresse canonique et aperçus de partage (Facebook, WhatsApp, Instagram…) sur chaque page indexée.
 - `robots.txt` et `sitemap.xml` à la racine.
+- 14/11 : fiche studio enrichie (17 communes desservies, liens Instagram / Facebook en `sameAs`, fondatrice, « Oise ») ; « Senlis » ajouté aux titres des pages Cours, Histoire, FAQ et Contact ; phrase T120 sous l'adresse de l'accueil : « À 15 minutes de Chantilly, Chamant et Aumont-en-Halatte. »
 
 **Le nom de domaine n'est pas encore renseigné** : `__DOMAINE__` apparaît dans `index.html`, les 4 sous-pages, `robots.txt` et `sitemap.xml`. À remplacer partout par le vrai domaine (sans `https://` ni `/` final) avant ou pendant la mise en ligne, par exemple au déploiement : `grep -rl __DOMAINE__ . | xargs sed -i '' 's/__DOMAINE__/www.exemple.fr/g'`.
 
 À faire hors du site (le plus important pour une recherche locale, c'est ce qui fait apparaître le studio sur la carte Google) :
 1. **Fiche Google Business Profile** (business.google.com) : nom « Le Patio Pilates Club », catégorie « Studio de Pilates », adresse exacte, horaires, photos, lien vers le site et lien de réservation bsport. Demander des avis Google aux élèves dès l'ouverture.
-2. **Google Search Console** (search.google.com/search-console) : valider le domaine, envoyer `sitemap.xml`.
+2. **Google Search Console** (search.google.com/search-console) : valider le domaine, envoyer `sitemap.xml`. **À faire plus tard, une fois le site en ligne sur son domaine (noté le 14/11 à la demande d'Olivia).**
 3. Même nom, adresse et téléphone partout : Google, bsport (marketplace), Instagram, Facebook, Pages Jaunes, ClassPass / Urban Sports Club si utilisés.
 4. Bing Places (optionnel, reprend la fiche Google).
 
