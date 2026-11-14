@@ -173,6 +173,19 @@ a:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
 .contact-txt > p{color:var(--brown);font-size:17px}
 .contact-txt hr{border:0;border-top:1px solid var(--tan-2);margin:4px 0;width:85%}
 .contact-txt .tel{font-size:26px}
+/* Réseaux : deux gros boutons Instagram / Facebook */
+.reseaux{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:85%}
+.reseau{display:flex;align-items:center;gap:14px;min-height:72px;padding:14px 18px;border-radius:16px;text-decoration:none;
+  background:var(--olive);color:var(--paper);transition:transform .15s,background-color .15s}
+.reseau:hover{transform:translateY(-2px);background:var(--olive-d)}
+.reseau:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
+.reseau svg{width:28px;height:28px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.reseau svg .plein{fill:currentColor;stroke:none}
+.reseau span{display:grid;gap:2px;min-width:0}
+.reseau b{font-weight:500;font-size:17px}
+.reseau small{font-size:13px;color:var(--tan-2);overflow-wrap:anywhere}
+@media (max-width:900px){.reseaux{width:100%}}
+@media (max-width:420px){.reseaux{grid-template-columns:1fr}}
 form.cform{background:var(--cream);border-radius:22px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}
 form.cform h3{grid-column:1/-1;font-size:26px}
 .field{display:grid;gap:8px;min-width:0}
@@ -241,6 +254,13 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
       <hr>
       <div class="eyebrow" data-num="T04">Téléphone</div>
       <p class="tel" data-num="T05">[Numéro à venir]</p>
+      <hr>
+      <div class="eyebrow" data-num="T08">Réseaux</div>
+      <p data-num="T09">Si vous préférez nous contacter par les réseaux</p>
+      <div class="reseaux">
+        <a class="reseau" href="https://www.instagram.com/lepatio.pilatesclub" target="_blank" rel="noopener noreferrer" data-num="B04"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="plein" cx="17.3" cy="6.7" r="1.1"/></svg><span><b>Instagram</b><small>@lepatio.pilatesclub</small></span></a>
+        <a class="reseau" href="https://www.facebook.com/profile.php?id=61596106065468" target="_blank" rel="noopener noreferrer" data-num="B05"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M15.5 8H14a2 2 0 0 0-2 2v11M9.5 13h5.5"/></svg><span><b>Facebook</b><small>Le Patio - Pilates Club</small></span></a>
+      </div>
     </div>
     <form class="cform" id="cform" novalidate data-tag="hors" data-label="Formulaire de contact" data-st="svg" data-num="F01">
       <h3 data-num="T06">Écrivez-nous</h3>
