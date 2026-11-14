@@ -127,7 +127,8 @@ footer a{text-decoration:none}
 .ca{background:var(--sand)}
 .ca .wrap{display:grid;gap:32px;padding-block:32px 36px}
 .ca-head{display:grid;gap:10px;justify-items:center;text-align:center}
-.ca-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.ca-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+@media (max-width:1180px){.ca-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .ca-carte{background:var(--paper);border-radius:var(--r);padding:26px 24px;display:grid;gap:10px;align-content:start}
 .ca-ico{width:36px;height:36px;fill:none;stroke:var(--olive);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:4px}
 .ca-carte h3{font-size:19px;font-weight:500}
@@ -316,6 +317,11 @@ function MountBsportWidget(config, repeat = 1) {
           <svg class="ca-ico" viewBox="0 0 32 32" aria-hidden="true" focusable="false" data-num="I04"><rect x="6" y="5" width="20" height="23" rx="2"/><path d="M11 11h10M11 16h10M11 21h6"/></svg>
           <h3 data-num="T80">Résiliation de l'abonnement</h3>
           <p data-num="T81">Frais de 50 % d'une mensualité, soit 75 € (5 séances) ou 140 € (10 séances).</p>
+        </article>
+        <article class="ca-carte" data-num="C52">
+          <svg class="ca-ico" viewBox="0 0 32 32" aria-hidden="true" focusable="false" data-num="I07"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l4 3"/></svg>
+          <h3 data-num="T143">Annulation d'un cours</h3>
+          <p data-num="T144">Possible jusqu'à 24 h avant le début de la séance. Passé ce délai, tout cours réservé est dû.</p>
         </article>
       </div>
     </div>
