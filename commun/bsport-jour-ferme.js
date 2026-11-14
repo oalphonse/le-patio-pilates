@@ -5,7 +5,7 @@
    - Le formulaire est en DÉMO : il vérifie l'adresse et affiche un message, sans rien envoyer ni enregistrer
      (à brancher sur l'inscription bsport, ou sur le VPS : voir PASSATION.md).
    Le bloc est écrit dans la page ([data-jour-ferme], caché) ; ce script le place dans le calendrier bsport,
-   à la suite des jours (bsport y laisse une zone vide de 800 px de haut), au-dessus du bouton « Prochaine séance »
+   à la suite des jours (bsport y laisse une zone vide de 800 px de haut), sous le bouton « Prochaine séance »
    de bsport, et l'y remet si bsport redessine.
    Le jour courant est posé sur la section (data-jour-ferme="samedi|dimanche") pour le CSS. */
 (function(){
@@ -57,10 +57,8 @@
       var vide = widget.querySelectorAll('.bs-offer-list-item').length === 0;
       var afficher = !!(j && cal && charge && vide);
       if(afficher){
-        /* juste AVANT le bouton « Prochaine séance » de bsport (s'il est là), pour qu'il reste visible en dessous */
-        var suite = cal.querySelector(':scope > .bs-calendar--no-offer');
-        if(suite){ if(bloc.parentNode !== cal || bloc.nextSibling !== suite) cal.insertBefore(bloc, suite); }
-        else if(bloc.parentNode !== cal) cal.appendChild(bloc);
+        /* en dernier : sous le bouton « Prochaine séance » de bsport (.bs-calendar--no-offer) */
+        if(bloc.parentNode !== cal || bloc.nextSibling) cal.appendChild(bloc);
         if(j !== jour){ jour = j; remplir(j); }
         bloc.hidden = false;
         if(section.dataset.jourFerme !== j) section.dataset.jourFerme = j;
