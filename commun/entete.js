@@ -49,13 +49,21 @@
     return null;
   }
   /* Position de .fab-place, recopiée sur le bloc habillé du moment (--fab-x, --fab-y, --fab-l). */
+  /* Deux modes, pour que le bouton ne « traîne » jamais derrière l'en-tête pendant un défilement rapide :
+     - en-tête collé en haut (sticky) : bloc fixé à l'écran (position:fixed) ;
+     - en-tête pas encore collé (haut de l'accueil, sous le bandeau d'annonce) : bloc ancré dans la PAGE
+       (.fab-page, position:absolute), il défile donc exactement avec l'en-tête, sans attendre le JavaScript.
+     Au moment du passage d'un mode à l'autre, les deux positions coïncident. */
+  const entete=document.querySelector('.site-header');
   let bloc=null, prevu=false;
   function suivre(){
     prevu=false;
     if(!bloc||!bloc.isConnected) return;
     const r=place.getBoundingClientRect();
-    bloc.style.setProperty('--fab-x', Math.round(r.left)+'px');
-    bloc.style.setProperty('--fab-y', Math.round(r.top)+'px');
+    const colle=!entete || entete.getBoundingClientRect().top<=0.5;
+    bloc.classList.toggle('fab-page',!colle);
+    bloc.style.setProperty('--fab-x', Math.round(r.left+(colle?0:window.scrollX))+'px');
+    bloc.style.setProperty('--fab-y', Math.round(r.top+(colle?0:window.scrollY))+'px');
     bloc.style.setProperty('--fab-l', Math.round(r.width)+'px');
   }
   function demander(){ if(!prevu){ prevu=true; requestAnimationFrame(suivre); } }
@@ -83,7 +91,7 @@
     document.body.appendChild(boite);
     /* MutationObserver : le bloc est habillé avant son premier affichage (jamais visible en bas à gauche). */
     new MutationObserver(verifier).observe(document.body,{childList:true,subtree:true});
-    window.addEventListener('scroll',demander,{passive:true});
+    window.addEventListener('scroll',suivre,{passive:true});
     window.addEventListener('resize',demander);
     if(window.ResizeObserver) new ResizeObserver(demander).observe(document.querySelector('.site-header')||document.body);
     attendre(()=>window.BsportWidget,100).then(bw=>{
@@ -92,5 +100,10 @@
                 showFab:true,fullScreenPopup:false,styles:undefined,config:{consumerSpace:{}}});
     });
   }
+  /* bsport bloque le défilement pendant sa fenêtre (body style="overflow:hidden"), puis à la fermeture pose
+     overflow:auto au lieu de rendre la main : le <body> devient une zone de défilement interne et l'en-tête
+     (sticky) ne suit plus. On retire ce overflow:auto dès qu'il apparaît (le overflow-x:clip des pages revient). */
+  new MutationObserver(()=>{ if(document.body.style.overflow==='auto') document.body.style.removeProperty('overflow'); })
+    .observe(document.body,{attributes:true,attributeFilter:['style']});
   if(document.readyState==='complete') installer(); else window.addEventListener('load',installer);
 })();

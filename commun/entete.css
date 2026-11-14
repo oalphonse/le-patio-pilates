@@ -37,6 +37,8 @@ body > div:has(> button[title="Mon panier"], > button[title="My basket"]):not(.f
   /* garder le z-index de bsport (9999) : quand le menu est ouvert, bsport pose dessous un fond plein écran (z-index 999)
      qui referme le menu au clic ; un z-index plus bas met ce fond PAR-DESSUS les entrées et les rend incliquables */
   z-index:9999!important}
+/* en-tête pas encore collé en haut : bloc ancré dans la page (voir entete.js) */
+.fab-bsport.fab-page{position:absolute!important}
 .fab-bsport > button:last-child{order:-1!important;flex:none!important;width:100%!important;height:44px!important;min-width:0!important;
   margin:0!important;padding:0!important;border-radius:999px!important;background:transparent!important;box-shadow:none!important;color:var(--paper)!important;
   opacity:.9;transition:background-color .15s,opacity .15s!important}
