@@ -1,0 +1,115 @@
+/* Squelettes de chargement des widgets bsport, voir commun/bsport-squelette.js.
+   Tant que bsport n'a pas ses données, on montre la FORME du widget en gris animé à la place du vide ; le widget
+   est chargé en coulisse (hauteur 0) et remplace le squelette dès que son contenu est là.
+   - .squelette--calendrier : Planning (3-C54) : semaine, 7 jours, colonnes Matin / Midi / Soir (2, 2 et 3 cartes) ;
+   - .squelette--coupon     : Tarifs, offre première séance (C51) ;
+   - .squelette--liste      : Tarifs, séance à l'unité + forfaits (C31) ;
+   - .squelette--abos       : Tarifs, les 2 abonnements, sur fond olive (C33). */
+
+/* widget pas encore prêt : rendu en coulisse, sans place ni panneau */
+.bsport-widget.bsport-widget.bsport-widget[id][data-squelette-attente]{max-height:0!important;min-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important;background:transparent!important}
+
+.squelette{box-sizing:border-box}
+.squelette--calendrier{background:#EBE6DC;border-radius:22px;padding:28px 24px 24px;margin-inline:-24px;min-height:560px}
+.squelette[hidden]{display:none}
+.squelette i{display:block;border-radius:10px;background:#DBD1A8;position:relative;overflow:hidden}
+.squelette i::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,rgba(253,252,249,.55),transparent);animation:squeletteLueur 1.4s ease-in-out infinite}
+@keyframes squeletteLueur{to{transform:translateX(100%)}}
+
+.squelette__semaine{display:flex;align-items:center;gap:18px;padding:22px 32px 0}
+.squelette__semaine i:first-child,.squelette__semaine i:last-child{width:14px;height:14px;border-radius:4px}
+.squelette__titre{display:grid;gap:8px}
+.squelette__titre i:first-child{width:300px;height:22px}
+.squelette__titre i:last-child{width:96px;height:12px}
+
+.squelette__jours{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-top:54px}
+.squelette__jours i{height:86px;border-radius:12px;background:#FDFCF9;border:1px solid #DBD1A8}
+.squelette__jours i::after{background:linear-gradient(90deg,transparent,rgba(219,209,168,.35),transparent)}
+
+.squelette__date{width:130px;height:12px;margin-top:40px}
+
+.squelette__colonnes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:40px}
+.squelette__colonne{display:grid;gap:10px;align-content:start}
+.squelette__colonne > i:first-child{width:70px;height:18px;margin:0 0 12px 6px}
+.squelette__carte{display:grid;grid-template-columns:70px 1fr auto;align-items:center;gap:14px;height:116px;padding:0 16px;
+  border-radius:14px;background:#FDFCF9;border:1px solid #DBD1A8;box-sizing:border-box}
+.squelette__carte > i:nth-child(1){height:24px}
+.squelette__carte > span{display:grid;gap:8px}
+.squelette__carte > span i:first-child{width:80px;height:14px}
+.squelette__carte > span i:last-child{width:110px;height:12px}
+.squelette__carte > i:last-child{width:96px;height:44px;border-radius:999px}
+
+/* message si bsport ne répond toujours pas */
+.squelette__lent{margin:28px 0 0;text-align:center;font-size:15px;line-height:1.5;color:#574325}
+.squelette__lent[hidden]{display:none}
+.squelette__lent a{color:#5E530E;font-weight:500;text-underline-offset:3px}
+
+/* lecteurs d'écran seulement */
+.squelette .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+@media (max-width:1279px){
+  .squelette__colonnes{grid-template-columns:1fr;gap:6px}
+  .squelette__colonne:nth-child(n+2){display:none}
+}
+@media (max-width:1099px){ .squelette--calendrier{margin-inline:-8px;padding:24px 16px 18px} }
+@media (max-width:699px){
+  .squelette--calendrier{margin-inline:0;padding:24px 12px 16px;min-height:520px}
+  .squelette__semaine{padding:12px 4px 0}
+  .squelette__titre i:first-child{width:min(220px,60vw)}
+  .squelette__jours{gap:4px;margin-top:30px}
+  .squelette__jours i{height:56px;border-radius:10px}
+  .squelette__carte{grid-template-columns:50px 1fr auto;height:92px;padding:0 12px;gap:8px}
+  .squelette__carte > i:last-child{width:84px;height:38px}
+}
+/* Tarifs : coupon de l'offre première séance (mêmes dimensions que le coupon bsport habillé) */
+.squelette--coupon{background:#FDFCF9;border-radius:18px;padding:22px 22px 14px;box-shadow:0 18px 40px rgba(30,25,0,.22);min-height:253px;display:grid;gap:12px;align-content:start}
+.squelette .sq-ligne{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.squelette .sq-col{display:grid;gap:8px}
+.squelette--coupon .sq-haut i:first-child{width:150px;height:20px}
+.squelette--coupon .sq-haut i:last-child{width:96px;height:22px;border-radius:999px}
+.squelette--coupon .sq-col i:first-child{width:70px;height:14px}
+.squelette--coupon .sq-col i:last-child{width:190px;height:12px}
+.squelette--coupon .sq-prix{width:120px;height:34px}
+.squelette--coupon hr{border:0;border-top:1.5px dashed #C2B88F;margin:6px 0}
+.squelette--coupon .sq-pied i:first-child{width:72px;height:16px}
+.squelette--coupon .sq-pied i:last-child{flex:1;height:48px;border-radius:999px}
+@media (max-width:640px){
+  .squelette--coupon{padding:18px 18px 12px;min-height:340px}
+  .squelette--coupon .sq-milieu{flex-direction:column;align-items:flex-start}
+  .squelette--coupon .sq-pied{flex-direction:column-reverse;align-items:stretch}
+  .squelette--coupon .sq-pied i:first-child{align-self:center}
+}
+@media (max-width:340px){ .squelette--coupon{min-height:360px} }
+
+/* Tarifs : liste séance à l'unité + forfaits */
+.squelette--liste{display:grid;gap:0}
+.squelette--liste .sq-titre{width:90px;height:18px;margin:6px 0 12px}
+.squelette--liste .sq-titre:not(:first-child){margin-top:34px}
+.squelette--liste .sq-ligne{min-height:78px;border-top:1px solid #DBD1A8;padding:0 4px}
+.squelette--liste .sq-ligne:last-child{border-bottom:1px solid #DBD1A8}
+.squelette--liste .sq-col i:first-child{width:110px;height:16px}
+.squelette--liste .sq-col i:last-child{width:70px;height:12px}
+.squelette--liste .sq-droite{display:flex;align-items:center;gap:22px}
+.squelette--liste .sq-prix{width:110px;height:28px}
+.squelette--liste .sq-bouton{width:164px;height:44px;border-radius:999px;background:transparent!important;border:1.5px solid #DBD1A8}
+@media (max-width:640px){
+  .squelette--liste .sq-ligne{flex-wrap:wrap;padding:14px 4px;row-gap:12px}
+  .squelette--liste .sq-droite{width:100%;justify-content:space-between}
+}
+
+/* Tarifs : les 2 abonnements, sur le bloc olive foncé */
+.squelette--abos{display:grid;align-content:start;min-height:390px}
+.squelette--abos .sq-abo{display:grid;gap:10px;padding:18px 4px;border-bottom:1px solid rgba(253,252,249,.14)}
+.squelette--abos i{background:rgba(253,252,249,.16)}
+.squelette--abos i::after{background:linear-gradient(90deg,transparent,rgba(253,252,249,.18),transparent)}
+.squelette--abos .sq-abo i:nth-child(1){width:min(230px,80%);height:16px}
+.squelette--abos .sq-abo i:nth-child(2){width:150px;height:26px}
+.squelette--abos .sq-abo i:nth-child(3){height:44px;border-radius:999px;margin-top:4px}
+.squelette--abos .squelette__lent{color:#EBE6DC}
+.squelette--abos .squelette__lent a{color:#DBD1A8}
+
+/* boîte qui regroupe squelette + widget (une seule case pour la grille de la page) */
+.sq-boite{min-width:0}
+
+@media (prefers-reduced-motion:reduce){ .squelette i::after{animation:none;display:none} }

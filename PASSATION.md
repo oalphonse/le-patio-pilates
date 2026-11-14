@@ -15,9 +15,13 @@ Fait les 13 et 14/11 (détails dans « Widgets bsport sur le site ») :
 - **Langue de bsport = langue de la page**, même avec un navigateur en anglais.
 - **Marges haut / bas des sections à fond uni divisées par 2** sur toutes les pages, FR et EN (le bandeau photo de l'accueil et le pied de page n'ont pas bougé).
 - Accueil : la carte de l'offre mène à l'offre de Tarifs, centrée à l'écran.
+- 14/11 en soirée :
+  - **squelettes de chargement** (`commun/bsport-squelette.css/.js`) sur les 4 widgets bsport de contenu (calendrier du Planning, coupon de l'offre, forfaits, abonnements de Tarifs). Le widget se charge en coulisse (attribut `data-squelette-attente`, hauteur 0) pendant qu'un squelette gris animé de la même forme tient sa place ; dès que bsport a ses données, le squelette disparaît. Si bsport ne répond pas au bout de 15 s, un lien direct vers bsport s'affiche. Le bouton espace client de l'en-tête a déjà son bonhomme de secours ; la page de test `/espace-client/` n'en a pas.
+  - **Planning** : le widget est posé sur un panneau sable (`#EBE6DC`, couleur de l'intro S01) dans la section olive foncé ; cartes « Bon à savoir » (S03) intégrées sous le calendrier, même fond que les cartes de séances ; bouton « Prochaine séance » visible et au-dessus du bloc samedi / dimanche ; sur mobile, le nom de la professeure passe à la ligne.
+  - **En-tête** : le bouton espace client est réhabillé chaque fois que bsport le recrée (ouverture / fermeture de sa fenêtre) ; l'en-tête reste collé après une fenêtre bsport (bsport laissait `overflow:auto` sur le body) ; plus de décalage du bonhomme en haut de l'accueil. Signalé mais non reproduit : le bonhomme qui n'apparaît pas parfois en revenant sur l'accueil.
 
 À faire ensuite, par ordre :
-1. **Pousser les commits** (voir plus haut).
+1. **Bonhomme absent sur l'accueil** (signalé le 14/11, pas reproduit) : savoir comment on revient sur l'accueil et si on est connecté à bsport.
 2. **Tester le bouton espace client connecté** avec un vrai compte client : menu qui se déplie, panier, réservations (vu seulement en aperçu forcé).
 3. **Réserver ma première séance** : choisir entre A Étapes, B Côte à côte, C Créneau d'abord (sélecteur sur la page), puis finaliser comme Tarifs.
 4. **Reporter sur les pages anglaises** (`en/`) : calendrier du Planning, choix de Tarifs, bouton espace client, ancre de l'offre (les scripts gèrent déjà l'anglais).

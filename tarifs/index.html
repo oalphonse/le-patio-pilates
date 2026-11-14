@@ -206,7 +206,17 @@ function MountBsportWidget(config, repeat = 1) {
           <h2 data-num="T141">Une séance achetée,<br><em>une séance offerte.</em></h2>
           <p data-num="T142">35 € les deux séances, valables 3 semaines. Tous niveaux, sans engagement.</p>
         </div>
-        <div id="bsport-widget-premiere-seance" class="bsport-widget" data-num="C51"></div>
+        <div class="sq-boite">
+          <div class="squelette squelette--coupon" data-squelette-pour="bsport-widget-premiere-seance" data-squelette-pret="[class*=&quot;card__right-button&quot;]" aria-busy="true" hidden>
+            <span class="sr" role="status">Chargement de l'offre…</span>
+            <div class="sq-ligne sq-haut" aria-hidden="true"><i></i><i></i></div>
+            <div class="sq-ligne sq-milieu" aria-hidden="true"><span class="sq-col"><i></i><i></i></span><i class="sq-prix"></i></div>
+            <hr aria-hidden="true">
+            <div class="sq-ligne sq-pied" aria-hidden="true"><i></i><i></i></div>
+            <p class="squelette__lent" data-squelette-lent hidden>L'offre met plus de temps que prévu à s'afficher. <a href="https://backoffice.bsport.io/c/7023/booking/" rel="noopener">Acheter directement sur bsport</a>.</p>
+          </div>
+          <div id="bsport-widget-premiere-seance" class="bsport-widget" data-num="C51"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -237,6 +247,7 @@ function MountBsportWidget(config, repeat = 1) {
   <!-- Formules : widgets Cartes (packs) et Abonnement, achat en direct.
        Habillage « Carte des prix » (retenu le 14/11) : commun/bsport-formules.css -->
   <link rel="stylesheet" href="../commun/bsport-formules.css">
+  <link rel="stylesheet" href="../commun/bsport-squelette.css">
   <section class="fo" aria-label="Formules" data-num="S20">
     <div class="wrap">
       <div class="fo-head">
@@ -251,7 +262,17 @@ function MountBsportWidget(config, repeat = 1) {
             <h3 data-num="T149">À la séance ou en forfait</h3>
             <p data-num="T150">De 35 € la séance à l'unité jusqu'à 27 € la séance avec le forfait de 30.</p>
           </div>
-          <div id="bsport-widget-formules-cartes" class="bsport-widget" data-num="C31"></div>
+          <div class="sq-boite">
+            <div class="squelette squelette--liste" data-squelette-pour="bsport-widget-formules-cartes" data-squelette-pret="[class*=&quot;card__right-button&quot;]" aria-busy="true" hidden>
+              <span class="sr" role="status">Chargement des formules…</span>
+              <i class="sq-titre" aria-hidden="true"></i>
+              <div class="sq-ligne" aria-hidden="true"><span class="sq-col"><i></i><i></i></span><span class="sq-droite"><i class="sq-prix"></i><i class="sq-bouton"></i></span></div>
+              <i class="sq-titre" aria-hidden="true"></i>
+              <div class="sq-ligne" aria-hidden="true"><span class="sq-col"><i></i><i></i></span><span class="sq-droite"><i class="sq-prix"></i><i class="sq-bouton"></i></span></div><div class="sq-ligne" aria-hidden="true"><span class="sq-col"><i></i><i></i></span><span class="sq-droite"><i class="sq-prix"></i><i class="sq-bouton"></i></span></div><div class="sq-ligne" aria-hidden="true"><span class="sq-col"><i></i><i></i></span><span class="sq-droite"><i class="sq-prix"></i><i class="sq-bouton"></i></span></div><div class="sq-ligne" aria-hidden="true"><span class="sq-col"><i></i><i></i></span><span class="sq-droite"><i class="sq-prix"></i><i class="sq-bouton"></i></span></div>
+              <p class="squelette__lent" data-squelette-lent hidden>Les formules mettent plus de temps que prévu à s'afficher. <a href="https://backoffice.bsport.io/c/7023/booking/" rel="noopener">Acheter directement sur bsport</a>.</p>
+            </div>
+            <div id="bsport-widget-formules-cartes" class="bsport-widget" data-num="C31"></div>
+          </div>
         </div>
         <div class="fo-bloc fo-abos" data-num="C32">
           <div class="fo-txt">
@@ -263,11 +284,19 @@ function MountBsportWidget(config, repeat = 1) {
               <li>1 mois de gel par an</li>
             </ul>
           </div>
-          <div id="bsport-widget-formules-abonnements" class="bsport-widget" data-num="C33"></div>
+          <div class="sq-boite">
+            <div class="squelette squelette--abos" data-squelette-pour="bsport-widget-formules-abonnements" data-squelette-pret="[class*=&quot;card__right-button&quot;]" aria-busy="true" hidden>
+              <span class="sr" role="status">Chargement des abonnements…</span>
+              <div class="sq-abo" aria-hidden="true"><i></i><i></i><i></i></div><div class="sq-abo" aria-hidden="true"><i></i><i></i><i></i></div>
+              <p class="squelette__lent" data-squelette-lent hidden>Les abonnements mettent plus de temps que prévu à s'afficher. <a href="https://backoffice.bsport.io/c/7023/booking/" rel="noopener">Acheter directement sur bsport</a>.</p>
+            </div>
+            <div id="bsport-widget-formules-abonnements" class="bsport-widget" data-num="C33"></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+  <script src="../commun/bsport-squelette.js"></script>
   <script>
   /* Cartes : catégories Unitaire (31419) et Forfaits (31417) ; le widget ne filtre pas par produit,
      la séance d'essai (817521, nouveaux membres) est masquée en CSS par son id (#payment-pack-button-container-817521). */
