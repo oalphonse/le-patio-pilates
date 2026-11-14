@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Questions fréquentes · Le Patio Pilates Club</title>
+<meta name="description" content="Toutes les réponses sur le Pilates Reformer au Patio, à Senlis : débutants, tenue, tarifs, première séance, résultats, blessures, grossesse, réservation, annulation, accès.">
+<link rel="icon" type="image/png" href="../logo/icone-le-patio.png">
+<link rel="apple-touch-icon" href="../logo/icone-le-patio.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap">
+<style>
+:root{
+  --cream:#F9F7F1; --paper:#FDFCF9; --sand:#EBE6DC; --tan:#C2B88F; --tan-2:#DBD1A8; --khaki:#9E9466;
+  --olive-l:#7A6B2A; --olive:#5E530E; --olive-d:#453D0A; --ink:#222222; --brown:#574325; --muted:#8B7B60;
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-weight:400;letter-spacing:-.015em;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1248px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.wrap > *{min-width:0}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--olive)}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border-radius:999px;font:500 15px/1 var(--font);text-decoration:none;transition:transform .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+a:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
+.btn-light{background:var(--paper);color:var(--olive-d)}
+.btn-olive{background:var(--olive);color:var(--paper)}
+.btn-line{border:1.5px solid rgba(253,252,249,.7);color:var(--paper)}
+.num{font-variant-numeric:tabular-nums}
+
+/* En-tête */
+.site-header{position:sticky;top:0;z-index:50;background:var(--olive);color:var(--paper)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:87px;max-width:1440px}
+.logo{display:block;position:relative;overflow:hidden;width:calc(310px * var(--ls));height:calc(275px * var(--ls));--ls:.28;flex:none}
+.logo img{position:absolute;max-width:none;height:auto;width:calc(500px * var(--ls));left:calc(-95px * var(--ls));top:calc(-85px * var(--ls))}
+.head-r{display:flex;align-items:center;gap:24px}
+.back{font-size:14.5px;text-decoration:none;opacity:.9}
+.back:hover{text-decoration:underline;text-underline-offset:5px}
+
+/* Introduction */
+.intro{background:var(--sand)}
+.intro .wrap{display:grid;gap:14px;padding-block:44px 28px}
+.intro h1{font-size:clamp(36px,4.6vw,62px);line-height:1.08;max-width:820px}
+.intro p{font-size:18px;color:var(--brown);max-width:620px;margin-top:6px}
+
+/* Première séance mise en avant */
+.offre-ps{background:var(--sand)}
+.offre-ps .wrap{padding-block:0 36px}
+.offre-ps-card{background:var(--olive);color:var(--paper);border-radius:22px;display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:center;padding:40px 48px}
+.offre-ps-card .eyebrow{color:var(--tan-2)}
+.offre-ps-price{font-size:clamp(56px,6vw,84px);font-weight:300;line-height:1}
+.offre-ps-card h2{font-size:26px;margin:6px 0 6px}
+.offre-ps-card p{color:var(--sand)}
+
+/* Formules */
+.formules .wrap{display:grid;gap:56px;padding-block:44px}
+.block{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start}
+.block-head{display:grid;gap:10px;position:sticky;top:110px}
+.block-head h2{font-size:32px;line-height:1.15}
+.block-head p{color:var(--brown);font-size:15px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{background:var(--paper);border:1px solid var(--sand);border-radius:var(--r);padding:30px 32px;display:grid;gap:10px;align-content:start}
+.card .eyebrow{font-size:11.5px}
+.price{font-size:clamp(34px,3.2vw,46px);font-weight:300;line-height:1.1;white-space:nowrap}
+.card p{font-size:15px;color:var(--brown)}
+.card .small{font-size:12.5px;color:var(--muted)}
+.ftable{display:grid;gap:0;font-size:16px;margin-top:4px}
+.ftable div{display:grid;grid-template-columns:1fr auto auto;gap:16px;padding:11px 0;border-bottom:1px solid var(--sand)}
+.ftable div:last-child{border-bottom:0}
+.ftable span:first-child{color:var(--brown)}
+.ftable span:nth-child(2){font-weight:500}
+.ftable span:last-child{color:var(--muted);min-width:96px;text-align:right}
+.ftable .best span:last-child{color:var(--olive);font-weight:600}
+.badge{justify-self:start;background:var(--olive);color:var(--paper);font-size:11px;font-weight:600;letter-spacing:.04em;padding:5px 12px;border-radius:999px}
+.pill{justify-self:start;background:var(--sand);color:var(--olive-d);font-size:13px;font-weight:500;padding:7px 14px;border-radius:999px;margin-top:4px}
+.card.incl{grid-column:1/-1;background:var(--olive);border-color:var(--olive);color:var(--paper)}
+.card.incl .eyebrow{color:var(--tan-2)}
+.card.incl ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:16px}
+.card.incl li{display:flex;gap:10px}
+.card.incl li::before{content:"✓";color:var(--tan-2)}
+
+/* Conditions */
+.cond{background:var(--paper);border-top:1px solid var(--sand)}
+.cond .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding-block:28px}
+.cond div{display:grid;gap:6px;align-content:start}
+.cond b{font-weight:500}
+.cond p{font-size:14.5px;color:var(--brown)}
+
+/* Fin */
+.end{background:var(--olive-d);color:var(--paper);text-align:center}
+.end .wrap{display:grid;justify-items:center;gap:18px;padding-block:40px}
+.end h2{font-size:clamp(28px,3.4vw,42px)}
+.end p{color:var(--tan-2)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+@media (max-width:1180px){
+  .block{grid-template-columns:1fr;gap:24px}
+  .block-head{position:static}
+}
+@media (max-width:1000px){
+  .block{grid-template-columns:1fr;gap:24px}
+  .block-head{position:static}
+  .offre-ps-card{grid-template-columns:1fr;gap:20px;padding:32px 28px}
+  .cond .wrap{grid-template-columns:1fr 1fr}
+  .back{display:none}
+}
+@media (max-width:640px){
+  .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .site-header .wrap{height:72px}
+  .logo{--ls:.24}
+  .site-header .btn{height:42px;padding:0 18px}
+  .cards{grid-template-columns:1fr}
+  .card{padding:24px 22px}
+  .card.incl ul{grid-template-columns:1fr}
+  .cond .wrap{grid-template-columns:1fr}
+  .ftable span:last-child{min-width:0}
+}
+
+/* Menu (identique à l'accueil) */
+.nav{display:flex;gap:30px;font-size:15px}
+.nav a{text-decoration:none;opacity:.92;white-space:nowrap}
+.nav a:hover,.nav a[aria-current="page"]{opacity:1;text-decoration:underline;text-underline-offset:6px}
+.burger{display:none;background:none;border:0;color:var(--paper);font:500 15px var(--font);cursor:pointer}
+@media (max-width:1180px){
+  .nav{display:none}
+  .burger{display:block}
+  .site-header.open .nav{display:flex;flex-direction:column;gap:14px;position:absolute;top:100%;left:0;right:0;background:var(--olive);padding:20px 24px 28px}
+}
+
+/* Application (copie de l'accueil) */
+.h2{font-size:clamp(30px,3.4vw,44px);line-height:1.15}
+.app{background:var(--sand)}
+.app .wrap{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;padding-block:26px 24px}
+.app-txt{display:grid;gap:18px;max-width:520px}
+.app-txt > p{color:var(--brown);font-size:17px}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:12px;font-size:16px}
+.checks li{display:flex;gap:12px;align-items:center}
+.checks li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:var(--olive);color:var(--paper);font-size:11px;display:grid;place-items:center}
+.stores{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.store{background:var(--ink);color:#fff;border-radius:8px;padding:8px 18px 8px 22px;text-decoration:none;line-height:1.1}
+.store small{display:block;font-size:9px;opacity:.75}
+.store b{font-size:18px;font-weight:600}
+.app-note{font-size:12.5px;color:var(--brown)}
+.phone{width:300px;height:520px;border:12px solid var(--ink);border-radius:44px;background:var(--cream);padding:22px 18px;display:grid;align-content:start;gap:12px;font-size:13px}
+.phone .t{font-size:11px;font-weight:600}
+.phone h4{margin:6px 0 0;font-weight:400;font-size:22px;color:var(--olive)}
+.phone .next{background:var(--olive);color:var(--paper);border-radius:12px;padding:14px;display:grid;gap:4px}
+.phone .next small{font-size:9px;font-weight:600;letter-spacing:.05em;opacity:.8}
+.phone .next b{font-weight:400;font-size:20px}
+.phone .pill{justify-self:start;background:var(--paper);color:var(--olive-d);border-radius:999px;padding:4px 12px;font-size:11px;font-weight:600;margin-top:4px}
+.phone .row{display:flex;justify-content:space-between;background:var(--paper);border-radius:8px;padding:10px 12px}
+.phone .row b{color:var(--olive);font-weight:600;font-size:12px}
+.phone .row{border:0}
+.phone .row b,.phone .row span{font-size:12px}
+@media (max-width:980px){.app .wrap{grid-template-columns:1fr}.phone{justify-self:center}}
+@media (max-width:640px){.phone{width:min(300px,100%)}}
+
+/* Logo du menu (version horizontale) */
+.logo{width:auto;height:auto;overflow:visible;position:static;line-height:0}
+.logo img{position:static;height:66px;width:auto;max-width:none}
+@media (max-width:640px){.logo img{height:52px}}
+/* Contact (repris de l'accueil) */
+.contact{background:var(--sand)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:80px;align-items:center;padding-block:48px}
+.contact-txt{display:grid;gap:18px}
+.contact-txt > p{color:var(--brown);font-size:17px}
+.contact-txt hr{border:0;border-top:1px solid var(--tan-2);margin:4px 0;width:85%}
+.contact-txt .tel{font-size:26px}
+form.cform{background:var(--cream);border-radius:22px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}
+form.cform h3{grid-column:1/-1;font-size:26px}
+.field{display:grid;gap:8px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:14px;font-weight:500}
+.field input,.field select,.field textarea{font:15px var(--font);color:var(--ink);background:var(--paper);border:1.5px solid var(--tan-2);border-radius:10px;padding:13px 16px;width:100%}
+.field textarea{min-height:140px;resize:vertical}
+.consent{grid-column:1/-1;display:flex;gap:10px;align-items:center;font-size:13px;color:var(--brown)}
+.consent input{width:18px;height:18px;accent-color:var(--olive)}
+form.cform .btn{grid-column:1/-1;justify-self:start}
+.form-ok{grid-column:1/-1;font-size:14px;color:var(--olive)}
+@media (max-width:1000px){.contact .wrap{grid-template-columns:1fr;gap:40px}}
+@media (max-width:640px){.contact .wrap{padding-block:32px}form.cform{grid-template-columns:1fr;padding:26px 20px}}
+
+/* Mobile et tablette : zones tactiles ≥ 44 px, champs en 16 px (pas de zoom iPhone). Sans effet au-dessus de 1180 px. */
+@media (max-width:1180px){
+  .field input,.field select,.field textarea{font-size:16px}
+  .consent{min-height:44px}
+}
+</style>
+<link rel="stylesheet" href="../commun/entete.css">
+<link rel="stylesheet" href="../commun/adresse.css">
+<link rel="stylesheet" href="../commun/pied.css">
+<!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
+<script src="../commun/bsport-langue.js"></script>
+<link rel="canonical" href="https://__DOMAINE__/faq/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Le Patio Pilates Club">
+<meta property="og:title" content="Questions fréquentes · Le Patio Pilates Club">
+<meta property="og:description" content="Toutes les réponses sur le Pilates Reformer au Patio, à Senlis : débutants, tenue, tarifs, première séance, résultats, blessures, grossesse, réservation, annulation, accès.">
+<meta property="og:url" content="https://__DOMAINE__/faq/">
+<meta property="og:image" content="https://__DOMAINE__/photos-le-patio/pilates-reformer-senlis-le-patio.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Je n'ai jamais fait de Pilates. Est-ce pour moi ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Tous les créneaux sont ouverts aux débutants, et le Reformer s'y prête très bien : ses ressorts se règlent pour chaque personne, et ils aident autant qu'ils font travailler. À six au plus, la professeure vous guide pas à pas et adapte chaque exercice à votre corps."}}, {"@type": "Question", "name": "C'est quoi, le Pilates Reformer ? Quelle différence avec le Pilates au sol ?", "acceptedAnswer": {"@type": "Answer", "text": "Le Reformer est une machine de Pilates : un chariot qui coulisse sur des rails, retenu par des ressorts, avec une barre pour les pieds et des sangles pour les bras. Au sol, on travaille avec le seul poids du corps ; sur le Reformer, les ressorts ajoutent une résistance réglable, qui renforce davantage et guide aussi le placement. Comment se passe un cours"}}, {"@type": "Question", "name": "Que dois-je porter et apporter ?", "acceptedAnswer": {"@type": "Answer", "text": "Une tenue souple et près du corps, dans laquelle vous bougez librement, et surtout des chaussettes antidérapantes, obligatoires sur le Reformer. Oubliées ? Elles sont vendues sur place. Des vestiaires et des douches sont à votre disposition."}}, {"@type": "Question", "name": "Combien coûte un cours ?", "acceptedAnswer": {"@type": "Answer", "text": "35 € la séance à l'unité. Les forfaits font baisser le prix : 165 € les 5 séances, 320 € les 10, 600 € les 20 et 810 € les 30 (27 € la séance). Les abonnements sont à 150 € par mois pour 5 séances et 280 € par mois pour 10 séances. Tous les tarifs"}}, {"@type": "Question", "name": "Comment se passe la première séance ? Y a-t-il une offre d'essai ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui : l'offre de bienvenue, 2 séances pour le prix de 1, soit 35 € les deux, valables 3 semaines, sans engagement et réservée aux nouveaux membres. Arrivez 5 minutes avant : la professeure vous montre le Reformer et le règle avec vous. Tout savoir sur la première séance"}}, {"@type": "Question", "name": "Combien de fois par semaine faut-il venir ?", "acceptedAnswer": {"@type": "Answer", "text": "Une séance par semaine fait déjà du bien. Pour progresser régulièrement, l'idéal est de venir 2 à 3 fois par semaine : c'est la régularité qui fait la différence, plus que l'intensité."}}, {"@type": "Question", "name": "Au bout de combien de temps voit-on des résultats ?", "acceptedAnswer": {"@type": "Answer", "text": "La plupart des élèves sentent la différence après quelques semaines de pratique régulière : posture, gainage, souplesse, aisance dans les gestes du quotidien. Joseph Pilates le résumait ainsi : en 10 séances, vous sentez la différence ; en 20, vous la voyez ; en 30, vous avez un nouveau corps."}}, {"@type": "Question", "name": "Le Pilates Reformer fait-il maigrir ?", "acceptedAnswer": {"@type": "Answer", "text": "Ce n'est pas un cardio intense : le Reformer renforce les muscles en profondeur, tonifie et affine la silhouette, et améliore la posture. Associé à une activité régulière et à une alimentation équilibrée, il accompagne bien une perte de poids."}}, {"@type": "Question", "name": "J'ai mal au dos ou une blessure. Puis-je pratiquer ?", "acceptedAnswer": {"@type": "Answer", "text": "Dans la plupart des cas, oui : le Pilates est une pratique douce et contrôlée, et les exercices s'adaptent. Parlez-en d'abord à votre médecin ou à votre kiné, puis prévenez-nous avant de réserver pour que la professeure en tienne compte."}}, {"@type": "Question", "name": "Je suis enceinte ou je viens d'accoucher. Puis-je venir ?", "acceptedAnswer": {"@type": "Answer", "text": "Parlez-en à votre médecin ou à votre sage-femme, puis prévenez-nous avant de réserver un cours : les exercices peuvent être adaptés dans la plupart des cas."}}, {"@type": "Question", "name": "Combien de personnes y a-t-il par cours ?", "acceptedAnswer": {"@type": "Answer", "text": "Six au plus : le studio compte six Reformers. La professeure voit chacun et chacune, corrige les placements et adapte les exercices tout au long du cours."}}, {"@type": "Question", "name": "Combien de temps dure un cours ?", "acceptedAnswer": {"@type": "Answer", "text": "Une heure : on s'installe, on s'échauffe, on travaille, puis on termine par des étirements."}}, {"@type": "Question", "name": "Comment réserver un cours ?", "acceptedAnswer": {"@type": "Answer", "text": "En ligne, sur notre planning ou dans l'application Le Patio (en préparation). Achetez d'abord l'offre de bienvenue, une séance ou un forfait, puis choisissez votre créneau."}}, {"@type": "Question", "name": "Jusqu'à quand puis-je annuler un cours ?", "acceptedAnswer": {"@type": "Answer", "text": "Jusqu'à 24 h avant le début de la séance, en quelques secondes depuis le site ou l'application. Passé ce délai, tout cours réservé est dû, même si vous ne venez pas."}}, {"@type": "Question", "name": "Est-ce difficile ? Vais-je avoir des courbatures ?", "acceptedAnswer": {"@type": "Answer", "text": "C'est exigeant, mais jamais brutal : chaque exercice se fait à votre niveau, et la professeure règle la résistance pour vous. Des courbatures après les premières séances sont normales, elles s'estompent vite avec la régularité."}}, {"@type": "Question", "name": "Quelle différence avec le yoga ?", "acceptedAnswer": {"@type": "Answer", "text": "Le yoga travaille beaucoup la souplesse, l'équilibre et la respiration à travers des postures tenues. Le Pilates se concentre sur le renforcement profond, le centre du corps et le contrôle du mouvement ; sur le Reformer, la résistance des ressorts le rend plus musculaire. Les deux se complètent très bien."}}, {"@type": "Question", "name": "Les hommes peuvent-ils faire du Pilates Reformer ?", "acceptedAnswer": {"@type": "Answer", "text": "Bien sûr. Joseph Pilates était un homme, et sa méthode a longtemps été pratiquée par des sportifs et des danseurs. Le Reformer renforce le gainage, la mobilité et prévient les blessures : il profite à tout le monde."}}, {"@type": "Question", "name": "Qui donne les cours ?", "acceptedAnswer": {"@type": "Answer", "text": "Olivia Alphonse, fondatrice du studio, formée chez Polestar Pilates. Après plus de vingt ans de danse et de patinage, c'est le Pilates qui l'a ramenée au mouvement. L'histoire du Patio"}}, {"@type": "Question", "name": "Quels sont les horaires ?", "acceptedAnswer": {"@type": "Answer", "text": "Du lundi au vendredi, de 8h30 à 20h, sept créneaux par jour. Des créneaux le samedi seront bientôt annoncés. Voir le planning"}}, {"@type": "Question", "name": "À quelle heure dois-je arriver ?", "acceptedAnswer": {"@type": "Answer", "text": "5 minutes avant le début du cours, le temps de vous installer et de régler votre Reformer."}}, {"@type": "Question", "name": "Y a-t-il des vestiaires et des douches ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, des vestiaires et des douches sont à votre disposition, avant et après le cours."}}, {"@type": "Question", "name": "Comment accéder au studio et où me garer ?", "acceptedAnswer": {"@type": "Answer", "text": "Le studio est au 43 avenue Félix Louat à Senlis. L'accès est sécurisé : les codes du parking et du studio vous sont envoyés à la réservation. Six places privées sont réservées aux élèves, et un parking public se trouve juste à côté. Itinéraire"}}, {"@type": "Question", "name": "J'habite à Chantilly ou aux alentours. C'est loin ?", "acceptedAnswer": {"@type": "Answer", "text": "Non : le studio est à une quinzaine de minutes en voiture de Chantilly, et facile d'accès depuis Chamant, Courteuil ou Aumont-en-Halatte, avec un parking sur place."}}, {"@type": "Question", "name": "Abonnement ou forfait : que choisir ?", "acceptedAnswer": {"@type": "Answer", "text": "Le forfait est sans engagement : vous achetez un nombre de séances et vous les utilisez à votre rythme. L'abonnement (engagement 6 mois) est plus avantageux si vous venez chaque semaine, et il donne l'accès prioritaire à la réservation, l'ouverture de la barrière du parking par lecture de plaque et un mois de gel par an."}}, {"@type": "Question", "name": "Mes séances ont-elles une date de validité ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui : 14 jours pour la séance à l'unité, 3 mois pour le forfait de 5 séances, 6 mois pour celui de 10, et 1 an pour les forfaits de 20 et 30 séances. L'offre de bienvenue est valable 3 semaines."}}, {"@type": "Question", "name": "Puis-je geler ou résilier mon abonnement ?", "acceptedAnswer": {"@type": "Answer", "text": "Un mois de gel est inclus chaque année : demandez-le au moins une semaine avant le mois concerné (un mois en cours ne peut pas être gelé). La résiliation avant la fin de l'engagement coûte 50 % d'une mensualité, soit 75 € (5 séances) ou 140 € (10 séances)."}}, {"@type": "Question", "name": "Y a-t-il un parrainage ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui : le parrain reçoit 15 € de crédit ; le filleul a 5 € de remise sur l'offre de bienvenue et 10 € sur son premier forfait ou abonnement."}}]}</script>
+<style>
+/* FAQ : questions classées de la plus demandée (en haut) à la moins demandée */
+.faq-intro{background:var(--sand)}
+.faq-intro .wrap{max-width:900px;display:grid;gap:14px;padding-block:48px 36px}
+.faq-intro h1{font-size:clamp(36px,4.8vw,60px);line-height:1.06}
+.faq-intro p{font-size:18px;color:var(--brown);max-width:620px}
+.faq-cherche{position:relative;max-width:520px;margin-top:10px}
+.faq-cherche input{width:100%;height:52px;border-radius:999px;border:1.5px solid var(--tan-2);background:var(--paper);padding:0 20px 0 48px;font:16px var(--font);color:var(--ink)}
+.faq-cherche input:focus{outline:2px solid var(--olive);outline-offset:2px}
+.faq-cherche svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round}
+.faq-liste{background:var(--cream)}
+.faq-liste .wrap{max-width:900px;padding-block:36px 72px}
+.faq-liste ol{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:q}
+.faq-liste li{counter-increment:q}
+.faq-liste li[hidden]{display:none}
+.faq-liste details{background:var(--paper);border:1px solid var(--sand);border-radius:16px;transition:border-color .15s}
+.faq-liste details[open]{border-color:var(--tan-2)}
+.faq-liste summary{list-style:none;display:grid;grid-template-columns:34px 1fr 20px;gap:14px;align-items:center;padding:18px 20px;cursor:pointer;font-size:17px;font-weight:500;line-height:1.35}
+.faq-liste summary::-webkit-details-marker{display:none}
+.faq-liste summary::before{content:counter(q);width:34px;height:34px;border-radius:50%;background:var(--sand);color:var(--olive);display:grid;place-items:center;font-size:13.5px;font-weight:600}
+.faq-liste summary::after{content:"";width:9px;height:9px;border-right:1.8px solid var(--olive);border-bottom:1.8px solid var(--olive);transform:rotate(45deg);justify-self:center;margin-top:-4px;transition:transform .2s}
+.faq-liste details[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.faq-liste summary:focus-visible{outline:2px solid var(--olive);outline-offset:2px;border-radius:16px}
+.faq-liste .rep{padding:0 20px 20px 68px;font-size:16px;line-height:1.65;color:var(--brown)}
+.faq-liste .rep a{color:var(--olive);font-weight:500;text-underline-offset:3px}
+.faq-liste .a-completer{background:#F1E6BF;color:var(--olive-d);border-radius:4px;padding:0 4px}
+.faq-vide{margin-top:18px;color:var(--brown)}
+.faq-vide a{color:var(--olive)}
+.cours-fin{background:var(--olive-d);color:var(--paper);text-align:center}
+.cours-fin .wrap{display:grid;justify-items:center;gap:16px;padding-block:44px}
+.cours-fin h2{font-size:clamp(28px,3.4vw,42px)}
+.cours-fin p{color:var(--tan-2)}
+.cours-fin .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+@media (max-width:640px){
+  .faq-liste summary{grid-template-columns:30px 1fr 16px;gap:12px;padding:16px;font-size:16px}
+  .faq-liste summary::before{width:30px;height:30px;font-size:12.5px}
+  .faq-liste .rep{padding:0 16px 18px 58px;font-size:15.5px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap entete">
+    <div class="head-gauche">
+      <div class="menu-zone">
+        <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-num="B02"><span class="menu-ico" aria-hidden="true"></span><span class="menu-txt">Menu</span></button>
+        <nav class="menu-panel" id="menu" aria-label="Menu"><a href="../cours/" data-num="L01">Les cours</a><a href="../#le-studio" data-num="L02">Le studio</a><a href="../#infos-pratiques" data-num="L06">Infos pratiques</a><a href="../faq/" aria-current="page" data-num="L07">FAQ</a><a href="../contact/" data-num="L08">Contact</a></nav>
+      </div>
+      <nav class="nav-rapide" aria-label="Accès rapide"><a href="../tarifs/" data-num="L03">Tarifs</a><a href="../planning/" data-num="L04">Planning</a><a href="../premiere-seance/" data-num="L05">Première séance</a></nav>
+    </div>
+    <a href="../" class="logo" data-num="I01"><img src="../logo/logo-le-patio-menu.png" alt="Le Patio" width="500" height="229"></a>
+    <div class="head-droite">
+      <a class="langue" href="../en/" hreflang="en" lang="en" aria-label="English version" data-num="L00">EN</a>
+      <span class="fab-place" data-num="B00"><a class="compte" href="https://backoffice.bsport.io/login?membership=7023&amp;next=%2Fc%2F7023%2Fbooking%2F" aria-label="Mon compte" title="Mon compte"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a></span>
+      <a href="../planning/" class="btn btn-light" data-num="B01">Réserver</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="faq-intro" data-num="S01">
+  <div class="wrap">
+    <div class="eyebrow" data-num="T01">FAQ</div>
+    <h1 data-num="T02">Questions fréquentes</h1>
+    <p data-num="T03">Tout ce qu'on nous demande le plus souvent sur le Pilates Reformer et le studio, des questions les plus posées aux plus pratiques.</p>
+    <label class="faq-cherche" data-num="F01"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" id="faq-cherche" placeholder="Rechercher : tenue, prix, enceinte, annulation…" aria-label="Rechercher une question" autocomplete="off"></label>
+  </div>
+</section>
+
+<section class="faq-liste" data-num="S02" aria-label="Questions">
+  <div class="wrap">
+    <ol id="faq-questions" data-num="C01">
+      <li><details open><summary>Je n'ai jamais fait de Pilates. Est-ce pour moi ?</summary><div class="rep"><p>Oui. Tous les créneaux sont ouverts aux débutants, et le Reformer s'y prête très bien : ses ressorts se règlent pour chaque personne, et ils aident autant qu'ils font travailler. À six au plus, la professeure vous guide pas à pas et adapte chaque exercice à votre corps.</p></div></details></li>
+      <li><details><summary>C'est quoi, le Pilates Reformer ? Quelle différence avec le Pilates au sol ?</summary><div class="rep"><p>Le Reformer est une machine de Pilates : un chariot qui coulisse sur des rails, retenu par des ressorts, avec une barre pour les pieds et des sangles pour les bras. Au sol, on travaille avec le seul poids du corps ; sur le Reformer, les ressorts ajoutent une résistance réglable, qui renforce davantage et guide aussi le placement. <a href="../cours/">Comment se passe un cours →</a></p></div></details></li>
+      <li><details><summary>Que dois-je porter et apporter ?</summary><div class="rep"><p>Une tenue souple et près du corps, dans laquelle vous bougez librement, et surtout des chaussettes antidérapantes, obligatoires sur le Reformer. Oubliées ? Elles sont vendues sur place. Des vestiaires et des douches sont à votre disposition.</p></div></details></li>
+      <li><details><summary>Combien coûte un cours ?</summary><div class="rep"><p>35 € la séance à l'unité. Les forfaits font baisser le prix : 165 € les 5 séances, 320 € les 10, 600 € les 20 et 810 € les 30 (27 € la séance). Les abonnements sont à 150 € par mois pour 5 séances et 280 € par mois pour 10 séances. <a href="../tarifs/">Tous les tarifs →</a></p></div></details></li>
+      <li><details><summary>Comment se passe la première séance ? Y a-t-il une offre d'essai ?</summary><div class="rep"><p>Oui : l'offre de bienvenue, 2 séances pour le prix de 1, soit 35 € les deux, valables 3 semaines, sans engagement et réservée aux nouveaux membres. Arrivez 5 minutes avant : la professeure vous montre le Reformer et le règle avec vous. <a href="../premiere-seance/">Tout savoir sur la première séance →</a></p></div></details></li>
+      <li><details><summary>Combien de fois par semaine faut-il venir ?</summary><div class="rep"><p>Une séance par semaine fait déjà du bien. Pour progresser régulièrement, l'idéal est de venir 2 à 3 fois par semaine : c'est la régularité qui fait la différence, plus que l'intensité.</p></div></details></li>
+      <li><details><summary>Au bout de combien de temps voit-on des résultats ?</summary><div class="rep"><p>La plupart des élèves sentent la différence après quelques semaines de pratique régulière : posture, gainage, souplesse, aisance dans les gestes du quotidien. Joseph Pilates le résumait ainsi : en 10 séances, vous sentez la différence ; en 20, vous la voyez ; en 30, vous avez un nouveau corps.</p></div></details></li>
+      <li><details><summary>Le Pilates Reformer fait-il maigrir ?</summary><div class="rep"><p>Ce n'est pas un cardio intense : le Reformer renforce les muscles en profondeur, tonifie et affine la silhouette, et améliore la posture. Associé à une activité régulière et à une alimentation équilibrée, il accompagne bien une perte de poids.</p></div></details></li>
+      <li><details><summary>J'ai mal au dos ou une blessure. Puis-je pratiquer ?</summary><div class="rep"><p>Dans la plupart des cas, oui : le Pilates est une pratique douce et contrôlée, et les exercices s'adaptent. Parlez-en d'abord à votre médecin ou à votre kiné, puis prévenez-nous avant de réserver pour que la professeure en tienne compte.</p></div></details></li>
+      <li><details><summary>Je suis enceinte ou je viens d'accoucher. Puis-je venir ?</summary><div class="rep"><p>Parlez-en à votre médecin ou à votre sage-femme, puis prévenez-nous avant de réserver un cours : les exercices peuvent être adaptés dans la plupart des cas.</p></div></details></li>
+      <li><details><summary>Combien de personnes y a-t-il par cours ?</summary><div class="rep"><p>Six au plus : le studio compte six Reformers. La professeure voit chacun et chacune, corrige les placements et adapte les exercices tout au long du cours.</p></div></details></li>
+      <li><details><summary>Combien de temps dure un cours ?</summary><div class="rep"><p>Une heure : on s'installe, on s'échauffe, on travaille, puis on termine par des étirements.</p></div></details></li>
+      <li><details><summary>Comment réserver un cours ?</summary><div class="rep"><p>En ligne, sur notre <a href="../planning/">planning</a> ou dans l'application Le Patio (en préparation). Achetez d'abord l'offre de bienvenue, une séance ou un forfait, puis choisissez votre créneau.</p></div></details></li>
+      <li><details><summary>Jusqu'à quand puis-je annuler un cours ?</summary><div class="rep"><p>Jusqu'à 24 h avant le début de la séance, en quelques secondes depuis le site ou l'application. Passé ce délai, tout cours réservé est dû, même si vous ne venez pas.</p></div></details></li>
+      <li><details><summary>Est-ce difficile ? Vais-je avoir des courbatures ?</summary><div class="rep"><p>C'est exigeant, mais jamais brutal : chaque exercice se fait à votre niveau, et la professeure règle la résistance pour vous. Des courbatures après les premières séances sont normales, elles s'estompent vite avec la régularité.</p></div></details></li>
+      <li><details><summary>Quelle différence avec le yoga ?</summary><div class="rep"><p>Le yoga travaille beaucoup la souplesse, l'équilibre et la respiration à travers des postures tenues. Le Pilates se concentre sur le renforcement profond, le centre du corps et le contrôle du mouvement ; sur le Reformer, la résistance des ressorts le rend plus musculaire. Les deux se complètent très bien.</p></div></details></li>
+      <li><details><summary>Les hommes peuvent-ils faire du Pilates Reformer ?</summary><div class="rep"><p>Bien sûr. Joseph Pilates était un homme, et sa méthode a longtemps été pratiquée par des sportifs et des danseurs. Le Reformer renforce le gainage, la mobilité et prévient les blessures : il profite à tout le monde.</p></div></details></li>
+      <li><details><summary>Qui donne les cours ?</summary><div class="rep"><p>Olivia Alphonse, fondatrice du studio, formée chez Polestar Pilates. Après plus de vingt ans de danse et de patinage, c'est le Pilates qui l'a ramenée au mouvement. <a href="../histoire/">L'histoire du Patio →</a></p></div></details></li>
+      <li><details><summary>Quels sont les horaires ?</summary><div class="rep"><p>Du lundi au vendredi, de 8h30 à 20h, sept créneaux par jour. Des créneaux le samedi seront bientôt annoncés. <a href="../planning/">Voir le planning →</a></p></div></details></li>
+      <li><details><summary>À quelle heure dois-je arriver ?</summary><div class="rep"><p>5 minutes avant le début du cours, le temps de vous installer et de régler votre Reformer.</p></div></details></li>
+      <li><details><summary>Y a-t-il des vestiaires et des douches ?</summary><div class="rep"><p>Oui, des vestiaires et des douches sont à votre disposition, avant et après le cours.</p></div></details></li>
+      <li><details><summary>Comment accéder au studio et où me garer ?</summary><div class="rep"><p>Le studio est au 43 avenue Félix Louat à Senlis. L'accès est sécurisé : les codes du parking et du studio vous sont envoyés à la réservation. Six places privées sont réservées aux élèves, et un parking public se trouve juste à côté. <a href="https://www.google.com/maps/dir/?api=1&amp;destination=43+avenue+F%C3%A9lix+Louat+60300+Senlis" target="_blank" rel="noopener">Itinéraire →</a></p></div></details></li>
+      <li><details><summary>J'habite à Chantilly ou aux alentours. C'est loin ?</summary><div class="rep"><p>Non : le studio est à une quinzaine de minutes en voiture de Chantilly, et facile d'accès depuis Chamant, Courteuil ou Aumont-en-Halatte, avec un parking sur place.</p></div></details></li>
+      <li><details><summary>Abonnement ou forfait : que choisir ?</summary><div class="rep"><p>Le forfait est sans engagement : vous achetez un nombre de séances et vous les utilisez à votre rythme. L'abonnement (engagement 6 mois) est plus avantageux si vous venez chaque semaine, et il donne l'accès prioritaire à la réservation, l'ouverture de la barrière du parking par lecture de plaque et un mois de gel par an.</p></div></details></li>
+      <li><details><summary>Mes séances ont-elles une date de validité ?</summary><div class="rep"><p>Oui : 14 jours pour la séance à l'unité, 3 mois pour le forfait de 5 séances, 6 mois pour celui de 10, et 1 an pour les forfaits de 20 et 30 séances. L'offre de bienvenue est valable 3 semaines.</p></div></details></li>
+      <li><details><summary>Puis-je geler ou résilier mon abonnement ?</summary><div class="rep"><p>Un mois de gel est inclus chaque année : demandez-le au moins une semaine avant le mois concerné (un mois en cours ne peut pas être gelé). La résiliation avant la fin de l'engagement coûte 50 % d'une mensualité, soit 75 € (5 séances) ou 140 € (10 séances).</p></div></details></li>
+      <li><details><summary>Y a-t-il un parrainage ?</summary><div class="rep"><p>Oui : le parrain reçoit 15 € de crédit ; le filleul a 5 € de remise sur l'offre de bienvenue et 10 € sur son premier forfait ou abonnement.</p></div></details></li>
+      <li><details><summary>Que se passe-t-il si j'arrive en retard ?</summary><div class="rep"><p>Pour votre sécurité et le bon déroulé du cours, arrivez à l'heure : l'échauffement prépare le corps au travail sur le Reformer. <span class="a-completer">[à compléter]</span></p></div></details></li>
+      <li><details><summary>Y a-t-il un âge minimum ?</summary><div class="rep"><p><span class="a-completer">[à compléter]</span></p></div></details></li>
+      <li><details><summary>Proposez-vous des cours particuliers ?</summary><div class="rep"><p><span class="a-completer">[à compléter]</span></p></div></details></li>
+    </ol>
+    <p class="faq-vide" id="faq-vide" hidden>Aucune question ne correspond. <a href="../contact/">Posez-nous la vôtre →</a></p>
+  </div>
+</section>
+
+<section class="cours-fin" data-num="S03">
+  <div class="wrap">
+    <h2 data-num="T04">Une autre question ?</h2>
+    <p data-num="T05">Écrivez-nous, on vous répond avec plaisir.</p>
+    <div class="row">
+      <a href="../contact/" class="btn btn-light" data-num="B10">Nous contacter</a>
+      <a href="../premiere-seance/" class="btn btn-line" data-num="B11">Préparer ma première séance</a>
+    </div>
+  </div>
+</section>
+</main>
+<script>
+/* Recherche dans la FAQ : filtre les questions (texte de la question et de la réponse, sans accents) */
+(function(){
+  var champ=document.getElementById('faq-cherche'), vide=document.getElementById('faq-vide');
+  var items=[].slice.call(document.querySelectorAll('#faq-questions > li'));
+  var norm=function(t){ return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); };
+  var textes=items.map(function(li){ return norm(li.textContent); });
+  champ.addEventListener('input',function(){
+    var mots=norm(champ.value).split(/\s+/).filter(Boolean), n=0;
+    items.forEach(function(li,k){
+      var ok=mots.every(function(m){ return textes[k].indexOf(m)>=0; });
+      li.hidden=!ok; if(ok) n++;
+      if(mots.length) li.querySelector('details').open=ok && n<=3;
+    });
+    vide.hidden=n>0;
+  });
+})();
+</script>
+
+<footer data-num="S16">
+  <div class="wrap foot">
+    <div class="brand"><img class="foot-logo" data-num="I13" src="../logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="160" height="160" loading="lazy"><a class="adresse" data-num="T109" href="https://www.google.com/maps/dir/?api=1&amp;destination=43+avenue+F%C3%A9lix+Louat+60300+Senlis" target="_blank" rel="noopener" aria-label="Itinéraire vers le studio : 43 avenue Félix Louat, 60300 Senlis"><svg class="adresse__pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="adresse__txt">43 avenue Félix Louat<br>60300 Senlis</span><span class="adresse__go" aria-hidden="true">Y aller →</span></a></div>
+    <div><h4 data-num="T110">Contact</h4><p data-num="T111">Téléphone : à venir<br>E-mail : à venir</p></div>
+    <div data-tag="reseaux" data-st="svg"><h4 data-num="T112">Nous suivre</h4><a href="https://www.instagram.com/lepatio.pilatesclub" target="_blank" rel="noopener noreferrer" data-num="L12"><svg class="ico-reseau" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="plein" cx="17.3" cy="6.7" r="1.1"/></svg>@lepatio.pilatesclub</a><a href="https://www.facebook.com/profile.php?id=61596106065468" target="_blank" rel="noopener noreferrer" data-num="L13"><svg class="ico-reseau" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M15.5 8H14a2 2 0 0 0-2 2v11M9.5 13h5.5"/></svg>Le Patio - Pilates Club</a></div>
+    <div><h4 data-num="T113">Réserver</h4><p data-num="T114">Tous les cours se réservent<br>sur notre site ou l'application.</p></div>
+    <div><h4 data-num="T115">Informations</h4><a href="../faq/" data-num="L15">FAQ</a><a href="../mentions-legales/" data-num="L16">Mentions légales</a><a href="../conditions-generales-de-vente/" data-num="L17">Conditions générales de vente</a><a href="../politique-de-confidentialite/" data-num="L18">Politique de confidentialité</a></div>
+    <div><h4 data-num="T116">Navigation</h4><a href="../premiere-seance/" data-num="L19">Première séance</a><a href="../#le-studio" data-num="L20">Le studio</a><a href="../cours/" data-num="L21">Les cours</a><a href="../planning/" data-num="L22">Planning</a><a href="../tarifs/" data-num="L23">Tarifs</a><a href="../contact/" data-num="L24">Contact</a></div>
+  </div>
+  <div class="wrap copy"><span data-num="T117">© Le Patio Pilates Club · Senlis</span><span class="signature">Site réalisé par Fabian Le Maux - LEMAUX&amp;SCHODER</span></div>
+</footer>
+<script src="../commun/entete.js"></script>
+<!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
+<script src="../outils/numeros.js"></script>
+</body>
+</html>

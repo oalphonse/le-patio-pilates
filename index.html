@@ -228,6 +228,14 @@ html,body{overflow-x:clip}
 .map i{width:44px;height:44px;border-radius:50%;background:var(--olive);display:grid;place-items:center}
 .map i::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--paper)}
 .map small{color:var(--muted);font-size:13px}
+/* Carte Google Maps (C13) : chargée au clic (consentement, cookies Google), puis retenue pour les visites suivantes */
+.map{position:relative;overflow:hidden;padding:24px}
+.map-apercu{display:grid;justify-items:center;gap:10px}
+.map-apercu[hidden]{display:none}
+.map-btn{margin-top:8px}
+.map .map-note{max-width:300px;line-height:1.5}
+.map .map-note a{color:var(--olive);text-underline-offset:3px}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .addr{display:grid;gap:12px;align-content:center}
 .addr .big{font-size:28px;line-height:1.2}
 .addr hr{border:0;border-top:1px solid var(--tan-2);margin:6px 0;width:100%}
@@ -570,7 +578,7 @@ html.lb-bloque{overflow:hidden}
     <div class="head-gauche">
       <div class="menu-zone">
         <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-num="B02"><span class="menu-ico" aria-hidden="true"></span><span class="menu-txt">Menu</span></button>
-        <nav class="menu-panel" id="menu" aria-label="Menu"><a href="cours/" data-num="L01">Les cours</a><a href="#le-studio" data-num="L02">Le studio</a><a href="#infos-pratiques" data-num="L06">Infos pratiques</a><a href="#questions-frequentes" data-num="L07">FAQ</a><a href="contact/" data-num="L08">Contact</a></nav>
+        <nav class="menu-panel" id="menu" aria-label="Menu"><a href="cours/" data-num="L01">Les cours</a><a href="#le-studio" data-num="L02">Le studio</a><a href="#infos-pratiques" data-num="L06">Infos pratiques</a><a href="faq/" data-num="L07">FAQ</a><a href="contact/" data-num="L08">Contact</a></nav>
       </div>
       <nav class="nav-rapide" aria-label="Accès rapide" data-tag="planning" data-st="svg"><a href="tarifs/" data-num="L03">Tarifs</a><a href="planning/" data-num="L04">Planning</a><a href="premiere-seance/" data-num="L05">Première séance</a></nav>
     </div>
@@ -743,7 +751,13 @@ html.lb-bloque{overflow:hidden}
   <div class="wrap">
     <div style="display:grid;gap:12px;justify-items:center"><div class="eyebrow" data-num="T54">Infos pratiques</div><h2 class="h2" data-num="T55">Venir au studio, en toute simplicité.</h2></div>
     <div class="infos-top">
-      <a class="map" data-num="C13" href="https://www.google.com/maps/search/?api=1&query=43+avenue+F%C3%A9lix+Louat+60300+Senlis"><i data-num="I06"></i><b style="font-weight:500" data-num="T56">Le Patio Pilates Club</b><small data-num="T57">[Carte Google Maps à intégrer]</small></a>
+      <div class="map" data-num="C13" id="carte-studio">
+        <div class="map-apercu">
+          <i data-num="I06"></i><b style="font-weight:500" data-num="T56">Le Patio Pilates Club</b><small data-num="T57">43 avenue Félix Louat, 60300 Senlis</small>
+          <button type="button" class="btn btn-olive map-btn" data-num="B16">Afficher la carte</button>
+          <small class="map-note">Carte fournie par Google Maps, qui peut déposer des cookies. <a href="https://www.google.com/maps/search/?api=1&amp;query=43+avenue+F%C3%A9lix+Louat+60300+Senlis" target="_blank" rel="noopener">Ouvrir dans Google Maps</a></small>
+        </div>
+      </div>
       <div class="addr">
         <div class="eyebrow" data-num="T58">Adresse</div>
         <p class="big" data-num="T59">43 avenue Félix Louat<br>60300 Senlis</p>
@@ -861,7 +875,7 @@ html.lb-bloque{overflow:hidden}
     <div><h4 data-num="T110">Contact</h4><p data-num="T111">Téléphone : à venir<br>E-mail : à venir</p></div>
     <div data-tag="reseaux" data-st="svg"><h4 data-num="T112">Nous suivre</h4><a href="https://www.instagram.com/lepatio.pilatesclub" target="_blank" rel="noopener noreferrer" data-num="L12"><svg class="ico-reseau" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="plein" cx="17.3" cy="6.7" r="1.1"/></svg>@lepatio.pilatesclub</a><a href="https://www.facebook.com/profile.php?id=61596106065468" target="_blank" rel="noopener noreferrer" data-num="L13"><svg class="ico-reseau" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M15.5 8H14a2 2 0 0 0-2 2v11M9.5 13h5.5"/></svg>Le Patio - Pilates Club</a></div>
     <div><h4 data-num="T113">Réserver</h4><p data-num="T114">Tous les cours se réservent<br>sur notre site ou l'application.</p></div>
-    <div><h4 data-num="T115">Informations</h4><a href="#questions-frequentes" data-num="L15">FAQ</a><a href="mentions-legales/" data-num="L16">Mentions légales</a><a href="conditions-generales-de-vente/" data-num="L17">Conditions générales de vente</a><a href="politique-de-confidentialite/" data-num="L18">Politique de confidentialité</a></div>
+    <div><h4 data-num="T115">Informations</h4><a href="faq/" data-num="L15">FAQ</a><a href="mentions-legales/" data-num="L16">Mentions légales</a><a href="conditions-generales-de-vente/" data-num="L17">Conditions générales de vente</a><a href="politique-de-confidentialite/" data-num="L18">Politique de confidentialité</a></div>
     <div><h4 data-num="T116">Navigation</h4><a href="premiere-seance/" data-num="L19">Première séance</a><a href="#le-studio" data-num="L20">Le studio</a><a href="cours/" data-num="L21">Les cours</a><a href="planning/" data-num="L22">Planning</a><a href="tarifs/" data-num="L23">Tarifs</a><a href="contact/" data-num="L24">Contact</a></div>
   </div>
   <div class="wrap copy"><span data-num="T117">© Le Patio Pilates Club · Senlis</span><span class="signature">Site réalisé par Fabian Le Maux - LEMAUX&amp;SCHODER</span></div>
@@ -1090,5 +1104,24 @@ addEventListener('load',()=>{let s=null;try{s=localStorage.getItem('lepatio-anno
 <script src="commun/entete.js"></script>
 <!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
 <script src="outils/numeros.js"></script>
+<script>
+/* Carte Google Maps du bloc Infos pratiques : chargée seulement après un clic (cookies Google),
+   puis automatiquement aux visites suivantes (choix retenu dans le navigateur). */
+(function(){
+  var boite=document.getElementById('carte-studio'); if(!boite) return;
+  var CLE='carte-google';
+  function charger(){
+    if(boite.querySelector('iframe')) return;
+    var f=document.createElement('iframe');
+    f.src='https://www.google.com/maps?q=43+avenue+F%C3%A9lix+Louat,+60300+Senlis,+France&z=17&output=embed';   /* l'adresse seule : avec le nom du studio, Google pointait un autre studio de Senlis */
+    f.title='Carte : Le Patio Pilates Club, 43 avenue Félix Louat, Senlis';
+    f.loading='lazy'; f.referrerPolicy='no-referrer-when-downgrade'; f.allowFullscreen=true;
+    boite.appendChild(f);
+    var a=boite.querySelector('.map-apercu'); if(a) a.hidden=true;
+  }
+  boite.querySelector('.map-btn').addEventListener('click',function(){ try{ localStorage.setItem(CLE,'1'); }catch(e){} charger(); });
+  try{ if(localStorage.getItem(CLE)==='1') charger(); }catch(e){}
+})();
+</script>
 </body>
 </html>
