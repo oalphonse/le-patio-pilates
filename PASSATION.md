@@ -170,6 +170,7 @@ Visiteur ─► site statique (GitHub Pages)
 | `/planning/` | Widget Calendrier bsport (réservation en direct), habillé olive foncé, séances en colonnes Matin / Midi / Soir ; bloc « Pas encore de cours le samedi / dimanche » avec « Ça m'intéresse ». L'ancienne grille est masquée |
 | `/tarifs/` | Offre première séance, séances à l'unité et forfaits, abonnements, conditions ; offre première séance et formules achetables en direct (widgets bsport Cartes et Abonnement) |
 | `/contact/` | Téléphone + formulaire de contact (retiré de l'accueil) |
+| `/mentions-legales/`, `/conditions-generales-de-vente/`, `/politique-de-confidentialite/` | Pages légales (créées le 14/11, liens L16-L18 du pied de page, FR et EN). Modèles rédigés à partir des infos du site : les passages surlignés `[à compléter]` (SIRET, forme juridique, médiateur, assureur, e-mail…) sont à remplir, et la CGV (droit de rétractation) est à faire valider. Pas de version anglaise : le pied anglais pointe vers les pages françaises |
 | ~~`/reserver-premiere-seance/`~~ | **Supprimée le 14/11** à la demande d'Olivia (le bouton de l'offre mène à Tarifs, `tarifs/#offre-premiere-seance`). `commun/bsport-reserver-propositions.css` supprimé aussi. La page anglaise `en/book-first-class/` existe encore (son lien FR mène à Première séance) |
 | `/espace-client/` | **Page de test** `noindex`, reliée à aucune autre : widget espace client bsport (`consumerSpace`, carte « M'inscrire / Me connecter », habillée par `commun/bsport-espace-client.css`). À garder ou supprimer |
 
