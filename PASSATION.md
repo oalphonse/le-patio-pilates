@@ -6,7 +6,7 @@ Site statique (HTML/CSS/JS, sans framework ni build). Chaque sous-page est un do
 
 ## Où on en est (14/11 au soir) — à reprendre ici
 
-**Les commits du 14/11 sur `main` (`0f27095` le travail, puis la passation et le correctif du bouton espace client) sont sur le VPS, PAS ENCORE POUSSÉS sur GitHub** (le VPS n'a pas d'accès en écriture à GitHub, voir Versionnement). Première chose à faire : les pousser, depuis le VPS avec ses identifiants, ou en ajoutant une clé de déploiement.
+**Tous les commits du 14/11 sont poussés sur GitHub** (le VPS pousse désormais lui-même, voir Versionnement).
 
 Fait les 13 et 14/11 (détails dans « Widgets bsport sur le site ») :
 - **Planning** : calendrier bsport à la place de notre grille, couleur olive foncé, séances en colonnes Matin | Midi | Soir, bloc samedi / dimanche « Ça m'intéresse ».
@@ -300,7 +300,5 @@ Dépôt git, branche `main`, distant `git@github.com:oalphonse/le-patio-pilates.
 
 Le push en SSH depuis le poste fonctionne (vérifié le 13/11).
 
-**Sur le VPS (`~/le-patio-pilates`), le dépôt pointe en HTTPS (`https://github.com/oalphonse/le-patio-pilates.git`) et n'a aucun accès en écriture** : pas d'identifiants enregistrés, aucune clé SSH reconnue par GitHub (vérifié le 14/11). Le travail des 13 et 14/11 a été fait et commité sur le VPS (`0f27095` + la passation) ; il faut le pousser :
-- soit depuis le VPS, avec ses identifiants GitHub : `cd ~/le-patio-pilates && git push origin main` ;
-- soit en créant une clé SSH sur le VPS, ajoutée dans GitHub (dépôt → Settings → Deploy keys, « Allow write access »), puis en passant le distant en SSH (`git remote set-url origin git@github.com:oalphonse/le-patio-pilates.git`).
+**Sur le VPS (`~/le-patio-pilates`), le push fonctionne en SSH depuis le 14/11** : clé `~/.ssh/le_patio_deploy` (ed25519, « vps-le-patio-pilates-deploy »), alias `github-le-patio` dans `~/.ssh/config`, distant `git@github-le-patio:oalphonse/le-patio-pilates.git`. GitHub reconnaît la clé comme celle du compte `oalphonse` : elle donne accès à tous les dépôts de ce compte (pour la limiter au seul dépôt, la retirer du compte et la remettre en « Deploy key » du dépôt, avec « Allow write access »).
 Le poste et le VPS ont chacun leur copie : avant de travailler sur l'un, récupérer le travail de l'autre (`git pull`), sinon on crée des historiques divergents.
