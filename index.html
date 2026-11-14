@@ -753,11 +753,7 @@ html.lb-bloque{overflow:hidden}
     <div style="display:grid;gap:12px;justify-items:center"><div class="eyebrow" data-num="T54">Infos pratiques</div><h2 class="h2" data-num="T55">Venir au studio, en toute simplicité.</h2></div>
     <div class="infos-top">
       <div class="map" data-num="C13" id="carte-studio">
-        <div class="map-apercu">
-          <i data-num="I06"></i><b style="font-weight:500" data-num="T56">Le Patio Pilates Club</b><small data-num="T57">43 avenue Félix Louat, 60300 Senlis</small>
-          <button type="button" class="btn btn-olive map-btn" data-num="B16">Afficher la carte</button>
-          <small class="map-note">Carte fournie par Google Maps, qui peut déposer des cookies. <a href="https://www.google.com/maps/search/?api=1&amp;query=43+avenue+F%C3%A9lix+Louat+60300+Senlis" target="_blank" rel="noopener">Ouvrir dans Google Maps</a></small>
-        </div>
+        <iframe src="https://www.google.com/maps?q=43+avenue+F%C3%A9lix+Louat,+60300+Senlis,+France&amp;z=17&amp;output=embed" title="Carte : Le Patio Pilates Club, 43 avenue Félix Louat, Senlis" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
       </div>
       <div class="addr">
         <div class="eyebrow" data-num="T58">Adresse</div>
@@ -1106,24 +1102,5 @@ addEventListener('load',()=>{let s=null;try{s=localStorage.getItem('lepatio-anno
 <script src="commun/entete.js"></script>
 <!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
 <script src="outils/numeros.js"></script>
-<script>
-/* Carte Google Maps du bloc Infos pratiques : chargée seulement après un clic (cookies Google),
-   puis automatiquement aux visites suivantes (choix retenu dans le navigateur). */
-(function(){
-  var boite=document.getElementById('carte-studio'); if(!boite) return;
-  var CLE='carte-google';
-  function charger(){
-    if(boite.querySelector('iframe')) return;
-    var f=document.createElement('iframe');
-    f.src='https://www.google.com/maps?q=43+avenue+F%C3%A9lix+Louat,+60300+Senlis,+France&z=17&output=embed';   /* l'adresse seule : avec le nom du studio, Google pointait un autre studio de Senlis */
-    f.title='Carte : Le Patio Pilates Club, 43 avenue Félix Louat, Senlis';
-    f.loading='lazy'; f.referrerPolicy='no-referrer-when-downgrade'; f.allowFullscreen=true;
-    boite.appendChild(f);
-    var a=boite.querySelector('.map-apercu'); if(a) a.hidden=true;
-  }
-  boite.querySelector('.map-btn').addEventListener('click',function(){ try{ localStorage.setItem(CLE,'1'); }catch(e){} charger(); });
-  try{ if(localStorage.getItem(CLE)==='1') charger(); }catch(e){}
-})();
-</script>
 </body>
 </html>
