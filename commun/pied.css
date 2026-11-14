@@ -23,3 +23,18 @@ footer .wrap.copy{display:block;font-size:12.5px;color:var(--tan-2);padding-bloc
 /* Ligne du bas : © à gauche, signature du site à droite (l'une sous l'autre sur mobile) */
 footer .wrap.copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 24px}
 footer .copy .signature{opacity:.8}
+
+/* Mobile : pied de page compact (il faisait près de 1,5 écran de haut).
+   Logo à côté de l'adresse, colonnes resserrées, liens Informations et Navigation en ligne,
+   colonne « Réserver » masquée (le bouton Réserver reste dans l'en-tête). */
+@media (max-width:640px){
+  footer .wrap.foot{gap:22px 16px;padding-block:28px 18px}
+  .foot .brand{display:flex;align-items:center;gap:16px}
+  footer .foot .foot-logo{width:104px;margin:0;flex:none}
+  .foot h4{font-size:15px;margin:0 0 6px}
+  footer .foot a{min-height:34px}
+  .foot > div:has(> h4[data-num="T113"]){display:none}
+  .foot > div:has(> h4[data-num="T115"]),.foot > div:has(> h4[data-num="T116"]){grid-column:1/-1;display:flex;flex-wrap:wrap;column-gap:18px}
+  .foot > div:has(> h4[data-num="T115"]) h4,.foot > div:has(> h4[data-num="T116"]) h4{flex-basis:100%}
+  footer .wrap.copy{padding-block:0 22px}
+}
