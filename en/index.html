@@ -305,42 +305,6 @@ footer{background:var(--olive);color:var(--paper)}
 /* Barre mobile fixe (ajoutée) */
 .mobile-bar{display:none}
 
-/* ===== Détourage ===== */
-#annot-layer{position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:80;display:none}
-body.annot #annot-layer{display:block}
-.abox{position:absolute;border:2px dashed;border-radius:6px}
-.abox.svg{border-color:#1F8A5B;background:rgba(31,138,91,.06)}
-.abox.ajout{border-color:#2563EB;background:rgba(37,99,235,.08)}
-.abox.hors{border-color:#B45309;background:rgba(180,83,9,.05)}
-.atag{position:absolute;top:-2px;left:-2px;display:grid;gap:2px;max-width:min(320px,100%);font:600 11.5px/1.25 var(--font);color:#fff;padding:5px 8px;border-radius:6px 0 6px 0;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-.abox.svg .atag{background:#1F8A5B}
-.abox.ajout .atag{background:#2563EB}
-.abox.hors .atag{background:#B45309}
-.atag em{font-style:normal;font-weight:400;opacity:.9}
-.atag .sc{font-variant-numeric:tabular-nums}
-
-#annot-toggle{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:100;height:50px;padding:0 24px;border-radius:999px;border:0;background:var(--ink);color:#fff;font:600 14.5px var(--font);box-shadow:0 8px 24px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;gap:10px}
-#annot-toggle .sw{width:34px;height:20px;border-radius:999px;background:#555;position:relative;transition:background .2s}
-#annot-toggle .sw::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:left .2s}
-body.annot #annot-toggle .sw{background:#1F8A5B}
-body.annot #annot-toggle .sw::after{left:17px}
-
-#annot-panel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:100;width:340px;max-height:70vh;overflow:auto;background:#fff;color:var(--ink);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.25);padding:18px 18px 14px;font-size:13px;display:none}
-body.annot #annot-panel{display:block}
-#annot-panel h4{margin:0 0 6px;font-size:15px}
-#annot-panel .legend{display:grid;gap:6px;margin:10px 0 12px}
-#annot-panel .legend span{display:flex;gap:8px;align-items:center}
-#annot-panel .legend i{width:14px;height:14px;border-radius:3px;border:2px dashed}
-#annot-panel .sum{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px;text-align:center}
-#annot-panel .sum div{background:#f3f3ef;border-radius:8px;padding:8px 4px}
-#annot-panel .sum b{display:block;font-size:20px}
-#annot-panel table{width:100%;border-collapse:collapse}
-#annot-panel td{padding:5px 2px;border-top:1px solid #eee;vertical-align:top}
-#annot-panel td:first-child{font-variant-numeric:tabular-nums;font-weight:600;width:44px}
-#annot-panel td:last-child{text-align:right;white-space:nowrap}
-.st-svg{color:#1F8A5B}.st-ajout{color:#2563EB}.st-non{color:#999}
-#annot-panel button{margin-top:6px;border:0;background:none;color:#666;font:12px var(--font);cursor:pointer;padding:0}
-
 /* ===== Responsive ===== */
 .nav a{white-space:nowrap}
 @media (max-width:1180px){
@@ -390,8 +354,6 @@ body.annot #annot-panel{display:block}
   .mobile-bar span{font-size:13px;color:var(--brown);line-height:1.3}
   .mobile-bar .btn{height:44px;padding:0 20px;font-size:14px;flex:none}
   body{padding-bottom:72px}
-  #annot-toggle{bottom:calc(84px + env(safe-area-inset-bottom,0px));height:44px;font-size:13px}
-  #annot-panel{left:16px;right:16px;width:auto;bottom:calc(140px + env(safe-area-inset-bottom,0px));max-height:50vh}
 }
 
 /* Logo du menu (version horizontale) */
@@ -888,21 +850,6 @@ html.lb-bloque{overflow:hidden}
 </div>
 
 <!-- ===== Détourage ===== -->
-<div id="annot-layer" aria-hidden="true"></div>
-<aside id="annot-panel" aria-label="Légende du détourage">
-  <h4>Détourage de la page</h4>
-  <p style="color:#666;margin:0">Chaque élément encadré est comparé aux 10 studios étudiés. Le score indique sur combien de sites on le retrouve.</p>
-  <div class="legend">
-    <span><i style="border-color:#1F8A5B"></i>Dans votre maquette et dans la liste</span>
-    <span><i style="border-color:#2563EB"></i>Ajouté : dans la liste, absent de la maquette</span>
-    <span><i style="border-color:#B45309"></i>Dans votre maquette, hors liste (votre touche à vous)</span>
-  </div>
-  <p style="color:#666;margin:0 0 12px">Les sections suivent l’ordre moyen relevé sur les 10 sites (0 % = première section, 100 % = dernière). Chaque cadre de section indique sa place moyenne et sa place ici.</p>
-  <div class="sum" id="annot-sum"></div>
-  <table id="annot-table"></table>
-  <button type="button" id="annot-close">Masquer le détourage</button>
-</aside>
-<button id="annot-toggle" type="button" aria-pressed="false"><span class="sw"></span><span id="annot-label">Afficher le détourage</span></button>
 
 <script>
 /* Compte à rebours jusqu'au 1er février 9h */
@@ -951,90 +898,6 @@ document.getElementById('next').onclick=()=>track.scrollBy({left:320,behavior:'s
 
 /* Formulaires (démo : rien n'est envoyé) */
 
-/* ===== Détourage ===== */
-const TAGS={
-  essai:["Offre première séance mise en avant",10],
-  repete:["Bouton de réservation répété",10],
-  adresse:["Adresse / localisation",10],
-  header:["Bouton « Réserver » dans l'en-tête",9],
-  photo:["Vraie photo de cours en grand",9],
-  reseaux:["Liens réseaux sociaux",9],
-  titre:["Titre d'accueil très court",8],
-  compte:["Lien « Mon compte »",8],
-  faq:["FAQ",8],
-  premiere:["Rubrique « Première fois »",7],
-  prix:["Prix affichés",7],
-  appli:["Application mobile",7],
-  avis:["Témoignages d'élèves",6],
-  coachs:["Coachs mis en avant",6],
-  rassure:["Phrases qui rassurent les débutants",6],
-  deuxboutons:["Deux boutons sous le titre",5],
-  pilule:["Boutons en pilule",5],
-  planning:["Planning (menu ou section)",5],
-  newsletter:["Inscription newsletter",4],
-  urgence:["Message d'urgence (compte à rebours)",4],
-  etapes:["Étapes numérotées",4],
-  chiffres:["Chiffres clés",3],
-  bandeau:["Bandeau d'annonce en haut",3],
-  italique:["Mot en italique dans le titre",3],
-  cadeau:["Cartes cadeaux",2],
-  note:["Note Google affichée",0],
-};
-// Éléments de la liste volontairement non repris
-const SKIPPED={presse:["Logos de presse",2,"pas encore de parutions"],popup:["Pop-up d'offre à l'arrivée",2,"gêne la réservation sur mobile"],accent:["Une seule couleur d'accent",9,"déjà le cas : l'olive"]};
-
-const layer=document.getElementById('annot-layer');
-function draw(){
-  layer.innerHTML='';layer.style.height=document.documentElement.scrollHeight+'px';
-  document.querySelectorAll('[data-tag]').forEach(el=>{
-    if(!el.offsetParent && getComputedStyle(el).position!=='fixed') return;
-    const r=el.getBoundingClientRect(); if(r.width<2||r.height<2) return;
-    const fixed=getComputedStyle(el).position==='fixed';
-    const keys=el.dataset.tag.split(' ');const st=el.dataset.st;
-    const isHors=keys[0]==='hors';const cls=isHors?'hors':st;
-    const box=document.createElement('div');box.className='abox '+cls;
-    Object.assign(box.style,{left:(r.left+(fixed?0:scrollX))+'px',top:(r.top+(fixed?0:scrollY))+'px',width:r.width+'px',height:r.height+'px'});
-    if(fixed){box.style.position='fixed';}
-    const tag=document.createElement('div');tag.className='atag';
-    let lines;
-    if(isHors) lines=[`${el.dataset.label||'Élément'} <em>· hors liste</em>`];
-    else lines=keys.map(k=>`<span><span class="sc">${TAGS[k][1]}/10</span> · ${TAGS[k][0]}</span>`);
-    if(st==='ajout') lines.push('<em>Ajouté (absent de la maquette)</em>');
-    if(el.dataset.note) lines.push(`<em>${el.dataset.note}</em>`);
-    if(el.dataset.pos){const secs=[...document.querySelectorAll('main > section')];const i=secs.indexOf(el.closest('main > section'));const here=Math.round(i/(secs.length-1)*100);lines.push(`<em>Place moyenne sur les 10 sites : ${el.dataset.pos} % · ici : ${here} %</em>`);}
-    tag.innerHTML=lines.join('');box.appendChild(tag);
-    (fixed?document.body:layer).appendChild(box);
-    if(fixed) box.dataset.fixedBox='1';
-  });
-}
-function clearFixed(){document.querySelectorAll('[data-fixed-box]').forEach(b=>b.remove());}
-function buildPanel(){
-  const found={};
-  document.querySelectorAll('[data-tag]').forEach(el=>{
-    const st=el.dataset.st;
-    el.dataset.tag.split(' ').forEach(k=>{ if(k==='hors'||!TAGS[k]) return; if(!found[k]||found[k]==='ajout') found[k]=st; });
-  });
-  const hors=document.querySelectorAll('[data-tag^="hors"]').length;
-  const nSvg=Object.values(found).filter(s=>s==='svg').length, nAdd=Object.values(found).filter(s=>s==='ajout').length;
-  document.getElementById('annot-sum').innerHTML=`<div><b class="st-svg">${nSvg}</b>déjà dans la maquette</div><div><b class="st-ajout">${nAdd}</b>ajoutés</div><div><b style="color:#B45309">${hors}</b>hors liste</div>`;
-  const rows=Object.entries(TAGS).sort((a,b)=>b[1][1]-a[1][1]).map(([k,[l,n]])=>{
-    const s=found[k];return `<tr><td>${n}/10</td><td>${l}</td><td class="${s==='svg'?'st-svg':s==='ajout'?'st-ajout':'st-non'}">${s==='svg'?'maquette':s==='ajout'?'ajouté':'—'}</td></tr>`;
-  }).concat(Object.values(SKIPPED).map(([l,n,why])=>`<tr><td>${n}/10</td><td>${l}<br><span style="color:#999">${why}</span></td><td class="st-non">non repris</td></tr>`));
-  document.getElementById('annot-table').innerHTML=rows.join('');
-}
-let on=false;
-function setAnnot(v){
-  on=v;document.body.classList.toggle('annot',on);
-  const b=document.getElementById('annot-toggle');b.setAttribute('aria-pressed',on);
-  document.getElementById('annot-label').textContent=on?'Masquer le détourage':'Afficher le détourage';
-  clearFixed(); if(on){buildPanel();draw();} else layer.innerHTML='';
-  try{localStorage.setItem('lepatio-annot',on?'1':'0')}catch(e){}
-}
-document.getElementById('annot-toggle').addEventListener('click',()=>setAnnot(!on));
-document.getElementById('annot-close').addEventListener('click',()=>setAnnot(false));
-let rt;addEventListener('resize',()=>{if(!on)return;clearTimeout(rt);rt=setTimeout(()=>{clearFixed();draw();},150)});
-document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{if(on){clearFixed();draw();}}));
-addEventListener('load',()=>{let s=null;try{s=localStorage.getItem('lepatio-annot')}catch(e){} if(s==='1'||location.hash==='#detourage') setAnnot(true);});
 
 /* ===== Photos interactives : agrandissement au clic (lightbox) ===== */
 (function(){
@@ -1106,6 +969,5 @@ addEventListener('load',()=>{let s=null;try{s=localStorage.getItem('lepatio-anno
 </script>
 <script src="../commun/entete.js"></script>
 <!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
-<script src="../outils/numeros.js"></script>
 </body>
 </html>

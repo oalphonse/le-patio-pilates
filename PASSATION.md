@@ -220,7 +220,7 @@ Le mode dev est désactivé (`const MODE_DEV=false;` dans `index.html`) : le pop
 
 ## Détourage (outil interne)
 
-Le bouton « Afficher le détourage » en bas de l'accueil encadre chaque élément et indique combien des 10 studios de référence l'utilisent (attributs `data-tag`, `data-st`, `data-pos`). Il sert à justifier les choix de la maquette, et il faudra le retirer ou le masquer à la mise en ligne.
+Le bouton « Afficher le détourage » en bas de l'accueil encadre chaque élément et indique combien des 10 studios de référence l'utilisent (attributs `data-tag`, `data-st`, `data-pos`). Il servait à justifier les choix de la maquette. **Retiré de toutes les pages le 14/11** (bouton, panneau, CSS et script) avant la mise en ligne ; les attributs `data-tag` restent, sans effet. Pour le retrouver : historique git, commit précédant « Outils internes retirés ».
 
 Les 10 studios de référence (approche « offre de découverte ») sont : Club Pilates, Speir, Studio Pilates, KX Pilates, Culte, Ten Health & Fitness, LevelOut, BODYBAR, Pilates Circuit et Maison Amat.
 
@@ -285,7 +285,7 @@ Fait dans le site :
 
 ## Numéros des éléments (outil interne)
 
-Chaque élément visible porte un attribut `data-num` (S section, C carte, T texte, P photo, I icône/logo, B bouton, L lien, F formulaire), numéroté par page et par lettre. `outils/numeros.js` les affiche en petits badges ; le bouton « Numéros » en bas de l'écran les montre ou les cache. Chaque badge commence par le numéro de la page (1 Accueil, 2 Première séance, 3 Planning, 4 Tarifs, 5 Contact, 6 Réserver ma première séance) : « 4-S06 » = section S06 de la page Tarifs. On s'en sert pour désigner une modification. L'en-tête a les mêmes numéros sur toutes les pages (I01 logo, L01–L08 liens, B00 Mon compte, B01 Réserver, B02 Menu, L00 langue). **À retirer à la mise en ligne** : supprimer `outils/` et la balise `<script src="…outils/numeros.js">` de chaque page (les attributs `data-num` peuvent rester).
+Chaque élément visible porte un attribut `data-num` (S section, C carte, T texte, P photo, I icône/logo, B bouton, L lien, F formulaire), numéroté par page et par lettre. `outils/numeros.js` les affiche en petits badges ; le bouton « Numéros » en bas de l'écran les montre ou les cache. Chaque badge commence par le numéro de la page (1 Accueil, 2 Première séance, 3 Planning, 4 Tarifs, 5 Contact, 6 Réserver ma première séance) : « 4-S06 » = section S06 de la page Tarifs. On s'en sert pour désigner une modification. L'en-tête a les mêmes numéros sur toutes les pages (I01 logo, L01–L08 liens, B00 Mon compte, B01 Réserver, B02 Menu, L00 langue). **Retiré des pages le 14/11** avant la mise en ligne : plus aucune page ne charge `outils/numeros.js` (le fichier reste dans `outils/`) ; les attributs `data-num` restent, sans effet. Pour le réafficher en local, remettre `<script src="…outils/numeros.js"></script>` en fin de page, ou dans la console du navigateur : `document.body.appendChild(Object.assign(document.createElement('script'),{src:'/outils/numeros.js'}))`.
 
 ## Fait le 12/11
 
