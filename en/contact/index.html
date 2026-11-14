@@ -99,9 +99,6 @@ a:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
 .end h2{font-size:clamp(28px,3.4vw,42px)}
 .end p{color:var(--tan-2)}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-footer{background:var(--olive);color:var(--sand);font-size:13.5px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:28px}
-footer a{text-decoration:none}
 
 @media (max-width:1180px){
   .block{grid-template-columns:1fr;gap:24px}
@@ -195,9 +192,9 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
   .field input,.field select,.field textarea{font-size:16px}
   .consent{min-height:44px}
 }
-@media (max-width:980px){footer a{padding-block:12px;margin-block:-12px}}
 </style>
 <link rel="stylesheet" href="../../commun/entete.css">
+<link rel="stylesheet" href="../../commun/pied.css">
 <!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
 <script src="../../commun/bsport-langue.js"></script>
 <link rel="canonical" href="https://__DOMAINE__/en/contact/">
@@ -258,8 +255,16 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 </section>
 </main>
 
-<footer data-num="S02">
-  <div class="wrap"><span data-num="T08">© Le Patio Pilates Club · Senlis</span><a href="../" data-num="L09">Back to home</a></div>
+<footer data-num="S16">
+  <div class="wrap foot">
+    <div class="brand"><img class="foot-logo" data-num="I13" src="../../logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="160" height="160" loading="lazy"><p data-num="T109">43 avenue Félix Louat<br>60300 Senlis</p></div>
+    <div><h4 data-num="T110">Contact</h4><p data-num="T111">Phone: coming soon<br>Email: coming soon</p></div>
+    <div data-tag="reseaux" data-st="svg"><h4 data-num="T112">Follow us</h4><a href="https://www.instagram.com/lepatio.pilatesclub" data-num="L12">◎ @lepatio.pilatesclub</a><a href="#" data-num="L13">ⓕ Le Patio - Pilates Club</a></div>
+    <div><h4 data-num="T113">Book</h4><p data-num="T114">All classes are booked<br>on our website or app.</p></div>
+    <div><h4 data-num="T115">Information</h4><a href="../#questions-frequentes" data-num="L15">FAQ</a><a href="#" data-num="L16">Legal notice</a><a href="#" data-num="L17">Terms and conditions of sale</a><a href="#" data-num="L18">Privacy policy</a></div>
+    <div><h4 data-num="T116">Navigation</h4><a href="../first-class/" data-num="L19">First class</a><a href="../#le-studio" data-num="L20">The studio</a><a href="../#les-cours" data-num="L21">Classes</a><a href="../schedule/" data-num="L22">Schedule</a><a href="../pricing/" data-num="L23">Pricing</a><a href="../contact/" data-num="L24">Contact</a></div>
+  </div>
+  <div class="wrap copy" data-num="T117">© Le Patio Pilates Club · Senlis</div>
 </footer>
 <script>
 document.getElementById('cform').addEventListener('submit',e=>{

@@ -59,9 +59,6 @@ a:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
 .end h2{font-size:clamp(28px,3.4vw,42px)}
 .end p{color:var(--tan-2)}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-footer{background:var(--olive);color:var(--sand);font-size:13.5px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:28px}
-footer a{text-decoration:none}
 
 @media (max-width:1000px){
   .back{display:none}
@@ -120,7 +117,6 @@ footer a{text-decoration:none}
 @media (max-width:640px){.logo img{height:52px}}
 
 /* Mobile et tablette : zones tactiles ≥ 44 px. Sans effet au-dessus de 980 px. */
-@media (max-width:980px){footer a{padding-block:12px;margin-block:-12px}}
 
 /* ===== Conditions (« Bon à savoir », 4 cartes) ===== */
 .ca h2{font-size:clamp(28px,3vw,38px);line-height:1.15}
@@ -145,6 +141,7 @@ footer a{text-decoration:none}
 }
 </style>
 <link rel="stylesheet" href="../commun/entete.css">
+<link rel="stylesheet" href="../commun/pied.css">
 <!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
 <script src="../commun/bsport-langue.js"></script>
 <link rel="canonical" href="https://__DOMAINE__/tarifs/">
@@ -243,23 +240,23 @@ function MountBsportWidget(config, repeat = 1) {
   <section class="fo" aria-label="Formules" data-num="S20">
     <div class="wrap">
       <div class="fo-head">
-        <div class="eyebrow" data-num="T110">Nos formules</div>
-        <h2 data-num="T111">Trois façons de venir au studio.</h2>
-        <p data-num="T112">Tous les cours durent une heure, en petit groupe de six personnes au plus.</p>
+        <div class="eyebrow" data-num="T145">Nos formules</div>
+        <h2 data-num="T146">Trois façons de venir au studio.</h2>
+        <p data-num="T147">Tous les cours durent une heure, en petit groupe de six personnes au plus.</p>
       </div>
       <div class="fo-corps">
         <div class="fo-bloc fo-packs" data-num="C30">
           <div class="fo-txt">
-            <div class="eyebrow" data-num="T113">Sans engagement</div>
-            <h3 data-num="T114">À la séance ou en forfait</h3>
-            <p data-num="T115">De 35 € la séance à l'unité jusqu'à 27 € la séance avec le forfait de 30.</p>
+            <div class="eyebrow" data-num="T148">Sans engagement</div>
+            <h3 data-num="T149">À la séance ou en forfait</h3>
+            <p data-num="T150">De 35 € la séance à l'unité jusqu'à 27 € la séance avec le forfait de 30.</p>
           </div>
           <div id="bsport-widget-formules-cartes" class="bsport-widget" data-num="C31"></div>
         </div>
         <div class="fo-bloc fo-abos" data-num="C32">
           <div class="fo-txt">
-            <div class="eyebrow" data-num="T116">Engagement 6 mois</div>
-            <h3 data-num="T117">Abonnements</h3>
+            <div class="eyebrow" data-num="T151">Engagement 6 mois</div>
+            <h3 data-num="T152">Abonnements</h3>
             <ul class="fo-liste" data-num="T118">
               <li>Accès prioritaire à la réservation</li>
               <li>Ouverture de la barrière du parking privé par lecture de la plaque d'immatriculation</li>
@@ -363,15 +360,23 @@ function MountBsportWidget(config, repeat = 1) {
       <h2 data-num="T48">Commencez par deux séances.</h2>
       <p data-num="T49">Offre de bienvenue : une séance achetée, une séance offerte</p>
       <div class="cta-row">
-        <a href="../planning/" class="btn btn-light" data-num="B06">Réserver ma première séance</a>
+        <a href="../premiere-seance/" class="btn btn-light" data-num="B06">Préparer ma première séance</a>
         <a href="../planning/" class="btn btn-line" data-num="B07">Voir le planning</a>
       </div>
     </div>
   </section>
 </main>
 
-<footer data-num="S09">
-  <div class="wrap"><span data-num="T50">© Le Patio Pilates Club · Senlis</span><a href="../" data-num="L09">Retour à l'accueil</a></div>
+<footer data-num="S16">
+  <div class="wrap foot">
+    <div class="brand"><img class="foot-logo" data-num="I13" src="../logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="160" height="160" loading="lazy"><p data-num="T109">43 avenue Félix Louat<br>60300 Senlis</p></div>
+    <div><h4 data-num="T110">Contact</h4><p data-num="T111">Téléphone : à venir<br>E-mail : à venir</p></div>
+    <div data-tag="reseaux" data-st="svg"><h4 data-num="T112">Nous suivre</h4><a href="https://www.instagram.com/lepatio.pilatesclub" data-num="L12">◎ @lepatio.pilatesclub</a><a href="#" data-num="L13">ⓕ Le Patio - Pilates Club</a></div>
+    <div><h4 data-num="T113">Réserver</h4><p data-num="T114">Tous les cours se réservent<br>sur notre site ou l'application.</p></div>
+    <div><h4 data-num="T115">Informations</h4><a href="../#questions-frequentes" data-num="L15">FAQ</a><a href="#" data-num="L16">Mentions légales</a><a href="#" data-num="L17">Conditions générales de vente</a><a href="#" data-num="L18">Politique de confidentialité</a></div>
+    <div><h4 data-num="T116">Navigation</h4><a href="../premiere-seance/" data-num="L19">Première séance</a><a href="../#le-studio" data-num="L20">Le studio</a><a href="../#les-cours" data-num="L21">Les cours</a><a href="../planning/" data-num="L22">Planning</a><a href="../tarifs/" data-num="L23">Tarifs</a><a href="../contact/" data-num="L24">Contact</a></div>
+  </div>
+  <div class="wrap copy" data-num="T117">© Le Patio Pilates Club · Senlis</div>
 </footer>
 <script>
 </script>
