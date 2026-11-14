@@ -98,12 +98,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
 .row span:last-child{font-size:14px;font-weight:500;color:var(--olive)}
 .soon-day{background:var(--paper);border:1.5px dashed var(--tan);border-radius:12px;padding:24px;text-align:center;color:var(--muted)}
 
-/* Bon à savoir : 3 cartes sous le calendrier, dans la section olive (couleurs des créneaux : --k-carte…) */
+/* Bon à savoir : 3 cartes sous le calendrier, même fond que les cartes de séances (papier, contour paille) */
 .good{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
-.good > div{display:grid;align-content:start;gap:6px;padding:22px 24px;border-radius:16px;background:var(--k-carte,#4A410B);border:1px solid var(--k-carte-bord,rgba(253,252,249,.08))}
-.good b{font-weight:500;font-size:17px;color:var(--k-texte,#FDFCF9)}
-.good p{font-size:15px;color:var(--k-doux,#C2B88F)}
-.good a{color:var(--k-texte-2,#DBD1A8);text-underline-offset:3px}
+.good > div{display:grid;align-content:start;gap:6px;padding:22px 24px;border-radius:16px;background:var(--paper);border:1px solid var(--tan-2)}
+.good b{font-weight:500;font-size:17px;color:var(--ink)}
+.good p{font-size:15px;color:var(--muted)}
+.good a{color:var(--olive);text-underline-offset:3px}
 
 /* Fin */
 .end{background:var(--olive);color:var(--paper);text-align:center}
@@ -184,6 +184,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
 <link rel="stylesheet" href="../commun/bsport.css">
 <!-- Calendrier bsport : mise en page et couleur olive foncé du Planning -->
 <link rel="stylesheet" href="../commun/bsport-calendrier.css">
+<link rel="stylesheet" href="../commun/bsport-squelette.css">
 <link rel="canonical" href="https://__DOMAINE__/planning/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
@@ -254,7 +255,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
   <section class="bsport" id="creneaux" aria-label="Réserver en ligne" data-num="S07" data-habillage="olive-fonce">
     <div class="wrap">
       <div class="eyebrow" data-num="T44">Réserver en ligne</div>
+      <!-- Squelette affiché pendant le chargement de bsport (commun/bsport-squelette.js) -->
+      <div class="squelette squelette--calendrier" data-squelette-pour="bsport-widget-574558" data-squelette-pret=".bs-offer-list-item, .bs-calendar--no-offer" aria-busy="true" hidden>
+        <span class="sr" role="status">Chargement du planning…</span>
+        <div aria-hidden="true">
+          <div class="squelette__semaine"><i></i><div class="squelette__titre"><i></i><i></i></div><i></i></div>
+          <div class="squelette__jours"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <i class="squelette__date"></i>
+          <div class="squelette__colonnes"><div class="squelette__colonne"><i></i><div class="squelette__carte"><i></i><span><i></i><i></i></span><i></i></div><div class="squelette__carte"><i></i><span><i></i><i></i></span><i></i></div></div><div class="squelette__colonne"><i></i><div class="squelette__carte"><i></i><span><i></i><i></i></span><i></i></div><div class="squelette__carte"><i></i><span><i></i><i></i></span><i></i></div></div><div class="squelette__colonne"><i></i><div class="squelette__carte"><i></i><span><i></i><i></i></span><i></i></div><div class="squelette__carte"><i></i><span><i></i><i></i></span><i></i></div><div class="squelette__carte"><i></i><span><i></i><i></i></span><i></i></div></div></div>
+        </div>
+        <p class="squelette__lent" data-squelette-lent hidden>Le planning met plus de temps que prévu à s'afficher. Vous pouvez aussi <a href="https://backoffice.bsport.io/c/7023/booking/" rel="noopener">réserver directement sur bsport</a>.</p>
+      </div>
       <div id="bsport-widget-574558" class="bsport-widget" data-num="C54"></div>
+      <script src="../commun/bsport-squelette.js"></script>
       <!-- Samedi / dimanche sans cours : placé dans le calendrier par commun/bsport-jour-ferme.js -->
       <div class="jour-ferme" data-jour-ferme hidden data-num="C55">
         <span class="jour-ferme__surtitre" data-num="T45">Bientôt</span>
