@@ -196,6 +196,7 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 <link rel="stylesheet" href="../commun/entete.css">
 <link rel="stylesheet" href="../commun/adresse.css">
 <link rel="stylesheet" href="../commun/pied.css">
+<link rel="stylesheet" href="../commun/galerie.css">
 <!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
 <script src="../commun/bsport-langue.js"></script>
 <link rel="canonical" href="https://__DOMAINE__/histoire/">
@@ -282,6 +283,29 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
   </div>
 </section>
 
+<!-- GALERIE -->
+<section class="gal" data-num="S04" id="galerie">
+  <div class="wrap">
+    <div class="gal-head">
+      <div style="display:grid;gap:10px"><div class="eyebrow" data-num="T11">Suivez-nous</div><h2 class="h2" data-num="T12">Découvrez la vie au studio.</h2></div>
+      <div class="socials" data-pos="76" data-tag="reseaux" data-st="svg">
+        <a class="social" data-num="B12" href="https://www.instagram.com/lepatio.pilatesclub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="plein" cx="17.3" cy="6.7" r="1.1"/></svg>@lepatio.pilatesclub</a>
+        <a class="social" data-num="B13" href="https://www.facebook.com/profile.php?id=61596106065468" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M15.5 8H14a2 2 0 0 0-2 2v11M9.5 13h5.5"/></svg>Le Patio - Pilates Club</a>
+      </div>
+    </div>
+    <div class="track" id="track" data-tag="photo" data-st="svg">
+      <div class="ph"><img data-num="P02" src="../photos-le-patio/pilates-reformer-senlis-le-patio.jpg" alt="Élève en planche sur un Reformer au studio Le Patio" loading="lazy"></div>
+      <div class="ph"><img data-num="P03" src="../photos-le-patio/studio-pilates-senlis.jpg" alt="Le studio Le Patio" loading="lazy"></div>
+      <div class="ph"><img data-num="P04" src="../photos-le-patio/cours-pilates-reformer.jpg" alt="Étirement sur Reformer" loading="lazy"></div>
+      <div class="ph"><img data-num="P05" src="../photos-le-patio/studio-pilates-detail.jpg" alt="Détail du studio" loading="lazy"></div>
+      <div class="ph"><img data-num="P06" src="../photos-le-patio/reserver-cours-pilates-senlis.jpg" alt="Gainage sur un Reformer, devant les arches lumineuses du studio" loading="lazy"></div>
+      <div class="ph"><img data-num="P07" src="../photos-le-patio/vestiaires-douches-studio.jpg" alt="Vestiaires et douches du studio" loading="lazy"></div>
+    </div>
+    <div class="gal-foot"><span data-num="T13">Faites défiler pour découvrir le studio en images.</span>
+      <div class="arrows"><button type="button" id="prev" data-num="B14" aria-label="Images précédentes">←</button><button type="button" id="next" data-num="B15" aria-label="Images suivantes">→</button></div></div>
+  </div>
+</section>
+
 <section class="histoire-fin" data-num="S03">
   <div class="wrap">
     <h2 data-num="T10">Envie de découvrir le studio ?</h2>
@@ -304,6 +328,7 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
   </div>
   <div class="wrap copy"><span data-num="T117">© Le Patio Pilates Club · Senlis</span><span class="signature">Site réalisé par Fabian Le Maux - LEMAUX&amp;SCHODER</span></div>
 </footer>
+<script src="../commun/galerie.js"></script>
 <script src="../commun/entete.js"></script>
 <!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
 <script src="../outils/numeros.js"></script>

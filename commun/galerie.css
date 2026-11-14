@@ -1,0 +1,52 @@
+/* Galerie « Découvrez la vie au studio » (S12), déplacée de l'accueil vers la page L'histoire du Patio.
+   Bande de photos qui défile + agrandissement au clic (lightbox). Script : commun/galerie.js */
+.gal .ph{background:var(--tan);border-radius:var(--r);overflow:hidden;position:relative}
+.gal .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.gal .wrap{display:grid;gap:30px;padding-block:20px 50px}
+.gal-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.socials{display:flex;gap:12px;flex-wrap:wrap}
+/* mobile : boutons Instagram / Facebook (B07, B08) centrés sous le titre */
+@media (max-width:640px){.gal-head .socials{width:100%;justify-content:center}}
+.social{display:inline-flex;align-items:center;gap:10px;background:var(--olive);color:var(--paper);border-radius:999px;padding:11px 22px 11px 16px;font-size:14.5px;font-weight:500;text-decoration:none}
+.social svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.social svg .plein{fill:currentColor;stroke:none}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.track .ph{flex:0 0 300px;aspect-ratio:1;scroll-snap-align:start}
+.gal-foot{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--brown)}
+.arrows{display:flex;gap:10px}
+.arrows button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--olive);background:none;color:var(--olive);font-size:18px;cursor:pointer}
+.arrows button:last-child{background:var(--olive);color:var(--paper)}
+@media (max-width:640px){.track .ph{flex-basis:78%}}
+/* Photos interactives : zoom doux au survol + agrandissement au clic (lightbox) */
+img.zoomable{cursor:zoom-in}
+img.zoomable:focus-visible{outline:3px solid var(--tan-2);outline-offset:-3px}
+@media (prefers-reduced-motion:no-preference){
+  img.zoomable{transition:transform .5s ease}
+  img.zoomable:focus-visible{transform:scale(1.04)}
+  .lb[open]{animation:lb-apparait .25s ease}
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){img.zoomable:hover{transform:scale(1.04)}}
+@keyframes lb-apparait{from{opacity:0}}
+html.lb-bloque{overflow:hidden}
+.lb{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(34,34,34,.94);color:var(--paper);font-family:var(--font)}
+.lb::backdrop{background:transparent}
+.lb-fig{margin:0;width:100%;height:100%;display:grid;align-content:center;justify-items:center;gap:14px;padding:76px 88px 32px}
+.lb-fig img{width:auto;height:auto;max-width:100%;max-height:calc(100vh - 180px);max-height:calc(100dvh - 180px);object-fit:contain;border-radius:var(--r);box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.lb-fig figcaption{display:grid;justify-items:center;gap:4px;text-align:center;max-width:640px}
+.lb-cap{font-size:15px;color:var(--sand)}
+.lb-num{font-size:13px;color:var(--tan-2);font-variant-numeric:tabular-nums}
+.lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(253,252,249,.7);background:rgba(34,34,34,.35);color:var(--paper);font:400 20px/1 var(--font);display:grid;place-items:center;cursor:pointer;transition:background .15s,color .15s}
+.lb-btn:hover{background:var(--paper);color:var(--olive-d)}
+.lb-btn:focus-visible{outline:2px solid var(--tan-2);outline-offset:3px}
+.lb-fermer{top:max(16px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));font-size:26px}
+.lb-prec,.lb-suiv{top:50%;transform:translateY(-50%)}
+.lb-prec{left:max(20px,env(safe-area-inset-left,0px))}
+.lb-suiv{right:max(20px,env(safe-area-inset-right,0px))}
+@media (max-width:640px){
+  .lb-fig{padding:72px 16px 96px}
+  .lb-fig img{max-height:calc(100vh - 240px);max-height:calc(100dvh - 240px)}
+  .lb-prec,.lb-suiv{top:auto;bottom:max(24px,env(safe-area-inset-bottom,0px));transform:none}
+  .lb-prec{left:calc(50% - 60px)}
+  .lb-suiv{right:calc(50% - 60px)}
+}
