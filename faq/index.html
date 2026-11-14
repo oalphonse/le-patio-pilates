@@ -227,7 +227,7 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 .faq-liste details[open]{border-color:var(--tan-2)}
 .faq-liste summary{list-style:none;display:grid;grid-template-columns:34px 1fr 20px;gap:14px;align-items:center;padding:18px 20px;cursor:pointer;font-size:17px;font-weight:500;line-height:1.35}
 .faq-liste summary::-webkit-details-marker{display:none}
-.faq-liste summary::before{content:counter(q);width:34px;height:34px;border-radius:50%;background:var(--sand);color:var(--olive);display:grid;place-items:center;font-size:13.5px;font-weight:600}
+.faq-liste summary::before{content:attr(data-n);width:34px;height:34px;border-radius:50%;background:var(--sand);color:var(--olive);display:grid;place-items:center;font-size:13.5px;font-weight:600}
 .faq-liste summary::after{content:"";width:9px;height:9px;border-right:1.8px solid var(--olive);border-bottom:1.8px solid var(--olive);transform:rotate(45deg);justify-self:center;margin-top:-4px;transition:transform .2s}
 .faq-liste details[open] summary::after{transform:rotate(-135deg);margin-top:4px}
 .faq-liste summary:focus-visible{outline:2px solid var(--olive);outline-offset:2px;border-radius:16px}
@@ -235,6 +235,9 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 .faq-liste .rep a{color:var(--olive);font-weight:500;text-underline-offset:3px}
 .faq-liste .a-completer{background:#F1E6BF;color:var(--olive-d);border-radius:4px;padding:0 4px}
 .faq-vide{margin-top:18px;color:var(--brown)}
+.faq-compte{margin:0 0 12px;font-size:14px;color:var(--muted);min-height:1em}
+.faq-compte:empty{display:none}
+.faq-liste mark{background:#F1E6BF;color:inherit;border-radius:3px;padding:0 2px}
 .faq-vide a{color:var(--olive)}
 .cours-fin{background:var(--olive-d);color:var(--paper);text-align:center}
 .cours-fin .wrap{display:grid;justify-items:center;gap:16px;padding-block:44px}
@@ -274,43 +277,44 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
     <div class="eyebrow" data-num="T01">FAQ</div>
     <h1 data-num="T02">Questions fréquentes</h1>
     <p data-num="T03">Tout ce qu'on nous demande le plus souvent sur le Pilates Reformer et le studio, des questions les plus posées aux plus pratiques.</p>
-    <label class="faq-cherche" data-num="F01"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" id="faq-cherche" placeholder="Rechercher : tenue, prix, enceinte, annulation…" aria-label="Rechercher une question" autocomplete="off"></label>
+    <label class="faq-cherche" data-num="F01"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" id="faq-cherche" placeholder="Un mot suffit : tenue, prix, enceinte, parking…" aria-label="Rechercher une question" autocomplete="off"></label>
   </div>
 </section>
 
 <section class="faq-liste" data-num="S02" aria-label="Questions">
   <div class="wrap">
+    <p class="faq-compte" id="faq-compte" aria-live="polite"></p>
     <ol id="faq-questions" data-num="C01">
-      <li><details open><summary>Je n'ai jamais fait de Pilates. Est-ce pour moi ?</summary><div class="rep"><p>Oui. Tous les créneaux sont ouverts aux débutants, et le Reformer s'y prête très bien : ses ressorts se règlent pour chaque personne, et ils aident autant qu'ils font travailler. À six au plus, la professeure vous guide pas à pas et adapte chaque exercice à votre corps.</p></div></details></li>
-      <li><details><summary>C'est quoi, le Pilates Reformer ? Quelle différence avec le Pilates au sol ?</summary><div class="rep"><p>Le Reformer est une machine de Pilates : un chariot qui coulisse sur des rails, retenu par des ressorts, avec une barre pour les pieds et des sangles pour les bras. Au sol, on travaille avec le seul poids du corps ; sur le Reformer, les ressorts ajoutent une résistance réglable, qui renforce davantage et guide aussi le placement. <a href="../cours/">Comment se passe un cours →</a></p></div></details></li>
-      <li><details><summary>Que dois-je porter et apporter ?</summary><div class="rep"><p>Une tenue souple et près du corps, dans laquelle vous bougez librement, et surtout des chaussettes antidérapantes, obligatoires sur le Reformer. Oubliées ? Elles sont vendues sur place. Des vestiaires et des douches sont à votre disposition.</p></div></details></li>
-      <li><details><summary>Combien coûte un cours ?</summary><div class="rep"><p>35 € la séance à l'unité. Les forfaits font baisser le prix : 165 € les 5 séances, 320 € les 10, 600 € les 20 et 810 € les 30 (27 € la séance). Les abonnements sont à 150 € par mois pour 5 séances et 280 € par mois pour 10 séances. <a href="../tarifs/">Tous les tarifs →</a></p></div></details></li>
-      <li><details><summary>Comment se passe la première séance ? Y a-t-il une offre d'essai ?</summary><div class="rep"><p>Oui : l'offre de bienvenue, 2 séances pour le prix de 1, soit 35 € les deux, valables 3 semaines, sans engagement et réservée aux nouveaux membres. Arrivez 5 minutes avant : la professeure vous montre le Reformer et le règle avec vous. <a href="../premiere-seance/">Tout savoir sur la première séance →</a></p></div></details></li>
-      <li><details><summary>Combien de fois par semaine faut-il venir ?</summary><div class="rep"><p>Une séance par semaine fait déjà du bien. Pour progresser régulièrement, l'idéal est de venir 2 à 3 fois par semaine : c'est la régularité qui fait la différence, plus que l'intensité.</p></div></details></li>
-      <li><details><summary>Au bout de combien de temps voit-on des résultats ?</summary><div class="rep"><p>La plupart des élèves sentent la différence après quelques semaines de pratique régulière : posture, gainage, souplesse, aisance dans les gestes du quotidien. Joseph Pilates le résumait ainsi : en 10 séances, vous sentez la différence ; en 20, vous la voyez ; en 30, vous avez un nouveau corps.</p></div></details></li>
-      <li><details><summary>Le Pilates Reformer fait-il maigrir ?</summary><div class="rep"><p>Ce n'est pas un cardio intense : le Reformer renforce les muscles en profondeur, tonifie et affine la silhouette, et améliore la posture. Associé à une activité régulière et à une alimentation équilibrée, il accompagne bien une perte de poids.</p></div></details></li>
-      <li><details><summary>J'ai mal au dos ou une blessure. Puis-je pratiquer ?</summary><div class="rep"><p>Dans la plupart des cas, oui : le Pilates est une pratique douce et contrôlée, et les exercices s'adaptent. Parlez-en d'abord à votre médecin ou à votre kiné, puis prévenez-nous avant de réserver pour que la professeure en tienne compte.</p></div></details></li>
-      <li><details><summary>Je suis enceinte ou je viens d'accoucher. Puis-je venir ?</summary><div class="rep"><p>Parlez-en à votre médecin ou à votre sage-femme, puis prévenez-nous avant de réserver un cours : les exercices peuvent être adaptés dans la plupart des cas.</p></div></details></li>
-      <li><details><summary>Combien de personnes y a-t-il par cours ?</summary><div class="rep"><p>Six au plus : le studio compte six Reformers. La professeure voit chacun et chacune, corrige les placements et adapte les exercices tout au long du cours.</p></div></details></li>
-      <li><details><summary>Combien de temps dure un cours ?</summary><div class="rep"><p>Une heure : on s'installe, on s'échauffe, on travaille, puis on termine par des étirements.</p></div></details></li>
-      <li><details><summary>Comment réserver un cours ?</summary><div class="rep"><p>En ligne, sur notre <a href="../planning/">planning</a> ou dans l'application Le Patio (en préparation). Achetez d'abord l'offre de bienvenue, une séance ou un forfait, puis choisissez votre créneau.</p></div></details></li>
-      <li><details><summary>Jusqu'à quand puis-je annuler un cours ?</summary><div class="rep"><p>Jusqu'à 24 h avant le début de la séance, en quelques secondes depuis le site ou l'application. Passé ce délai, tout cours réservé est dû, même si vous ne venez pas.</p></div></details></li>
-      <li><details><summary>Est-ce difficile ? Vais-je avoir des courbatures ?</summary><div class="rep"><p>C'est exigeant, mais jamais brutal : chaque exercice se fait à votre niveau, et la professeure règle la résistance pour vous. Des courbatures après les premières séances sont normales, elles s'estompent vite avec la régularité.</p></div></details></li>
-      <li><details><summary>Quelle différence avec le yoga ?</summary><div class="rep"><p>Le yoga travaille beaucoup la souplesse, l'équilibre et la respiration à travers des postures tenues. Le Pilates se concentre sur le renforcement profond, le centre du corps et le contrôle du mouvement ; sur le Reformer, la résistance des ressorts le rend plus musculaire. Les deux se complètent très bien.</p></div></details></li>
-      <li><details><summary>Les hommes peuvent-ils faire du Pilates Reformer ?</summary><div class="rep"><p>Bien sûr. Joseph Pilates était un homme, et sa méthode a longtemps été pratiquée par des sportifs et des danseurs. Le Reformer renforce le gainage, la mobilité et prévient les blessures : il profite à tout le monde.</p></div></details></li>
-      <li><details><summary>Qui donne les cours ?</summary><div class="rep"><p>Olivia Alphonse, fondatrice du studio, formée chez Polestar Pilates. Après plus de vingt ans de danse et de patinage, c'est le Pilates qui l'a ramenée au mouvement. <a href="../histoire/">L'histoire du Patio →</a></p></div></details></li>
-      <li><details><summary>Quels sont les horaires ?</summary><div class="rep"><p>Du lundi au vendredi, de 8h30 à 20h, sept créneaux par jour. Des créneaux le samedi seront bientôt annoncés. <a href="../planning/">Voir le planning →</a></p></div></details></li>
-      <li><details><summary>À quelle heure dois-je arriver ?</summary><div class="rep"><p>5 minutes avant le début du cours, le temps de vous installer et de régler votre Reformer.</p></div></details></li>
-      <li><details><summary>Y a-t-il des vestiaires et des douches ?</summary><div class="rep"><p>Oui, des vestiaires et des douches sont à votre disposition, avant et après le cours.</p></div></details></li>
-      <li><details><summary>Comment accéder au studio et où me garer ?</summary><div class="rep"><p>Le studio est au 43 avenue Félix Louat à Senlis. L'accès est sécurisé : les codes du parking et du studio vous sont envoyés à la réservation. Six places privées sont réservées aux élèves, et un parking public se trouve juste à côté. <a href="https://www.google.com/maps/dir/?api=1&amp;destination=43+avenue+F%C3%A9lix+Louat+60300+Senlis" target="_blank" rel="noopener">Itinéraire →</a></p></div></details></li>
-      <li><details><summary>J'habite à Chantilly ou aux alentours. C'est loin ?</summary><div class="rep"><p>Non : le studio est à une quinzaine de minutes en voiture de Chantilly, et facile d'accès depuis Chamant, Courteuil ou Aumont-en-Halatte, avec un parking sur place.</p></div></details></li>
-      <li><details><summary>Abonnement ou forfait : que choisir ?</summary><div class="rep"><p>Le forfait est sans engagement : vous achetez un nombre de séances et vous les utilisez à votre rythme. L'abonnement (engagement 6 mois) est plus avantageux si vous venez chaque semaine, et il donne l'accès prioritaire à la réservation, l'ouverture de la barrière du parking par lecture de plaque et un mois de gel par an.</p></div></details></li>
-      <li><details><summary>Mes séances ont-elles une date de validité ?</summary><div class="rep"><p>Oui : 14 jours pour la séance à l'unité, 3 mois pour le forfait de 5 séances, 6 mois pour celui de 10, et 1 an pour les forfaits de 20 et 30 séances. L'offre de bienvenue est valable 3 semaines.</p></div></details></li>
-      <li><details><summary>Puis-je geler ou résilier mon abonnement ?</summary><div class="rep"><p>Un mois de gel est inclus chaque année : demandez-le au moins une semaine avant le mois concerné (un mois en cours ne peut pas être gelé). La résiliation avant la fin de l'engagement coûte 50 % d'une mensualité, soit 75 € (5 séances) ou 140 € (10 séances).</p></div></details></li>
-      <li><details><summary>Y a-t-il un parrainage ?</summary><div class="rep"><p>Oui : le parrain reçoit 15 € de crédit ; le filleul a 5 € de remise sur l'offre de bienvenue et 10 € sur son premier forfait ou abonnement.</p></div></details></li>
-      <li><details><summary>Que se passe-t-il si j'arrive en retard ?</summary><div class="rep"><p>Pour votre sécurité et le bon déroulé du cours, arrivez à l'heure : l'échauffement prépare le corps au travail sur le Reformer. <span class="a-completer">[à compléter]</span></p></div></details></li>
-      <li><details><summary>Y a-t-il un âge minimum ?</summary><div class="rep"><p><span class="a-completer">[à compléter]</span></p></div></details></li>
-      <li><details><summary>Proposez-vous des cours particuliers ?</summary><div class="rep"><p><span class="a-completer">[à compléter]</span></p></div></details></li>
+      <li><details open><summary data-n="1"><span class="q">Je n'ai jamais fait de Pilates. Est-ce pour moi ?</span></summary><div class="rep"><p>Oui. Tous les créneaux sont ouverts aux débutants, et le Reformer s'y prête très bien : ses ressorts se règlent pour chaque personne, et ils aident autant qu'ils font travailler. À six au plus, la professeure vous guide pas à pas et adapte chaque exercice à votre corps.</p></div></details></li>
+      <li><details><summary data-n="2"><span class="q">C'est quoi, le Pilates Reformer ? Quelle différence avec le Pilates au sol ?</span></summary><div class="rep"><p>Le Reformer est une machine de Pilates : un chariot qui coulisse sur des rails, retenu par des ressorts, avec une barre pour les pieds et des sangles pour les bras. Au sol, on travaille avec le seul poids du corps ; sur le Reformer, les ressorts ajoutent une résistance réglable, qui renforce davantage et guide aussi le placement. <a href="../cours/">Comment se passe un cours →</a></p></div></details></li>
+      <li><details><summary data-n="3"><span class="q">Que dois-je porter et apporter ?</span></summary><div class="rep"><p>Une tenue souple et près du corps, dans laquelle vous bougez librement, et surtout des chaussettes antidérapantes, obligatoires sur le Reformer. Oubliées ? Elles sont vendues sur place. Des vestiaires et des douches sont à votre disposition.</p></div></details></li>
+      <li><details><summary data-n="4"><span class="q">Combien coûte un cours ?</span></summary><div class="rep"><p>35 € la séance à l'unité. Les forfaits font baisser le prix : 165 € les 5 séances, 320 € les 10, 600 € les 20 et 810 € les 30 (27 € la séance). Les abonnements sont à 150 € par mois pour 5 séances et 280 € par mois pour 10 séances. <a href="../tarifs/">Tous les tarifs →</a></p></div></details></li>
+      <li><details><summary data-n="5"><span class="q">Comment se passe la première séance ? Y a-t-il une offre d'essai ?</span></summary><div class="rep"><p>Oui : l'offre de bienvenue, 2 séances pour le prix de 1, soit 35 € les deux, valables 3 semaines, sans engagement et réservée aux nouveaux membres. Arrivez 5 minutes avant : la professeure vous montre le Reformer et le règle avec vous. <a href="../premiere-seance/">Tout savoir sur la première séance →</a></p></div></details></li>
+      <li><details><summary data-n="6"><span class="q">Combien de fois par semaine faut-il venir ?</span></summary><div class="rep"><p>Une séance par semaine fait déjà du bien. Pour progresser régulièrement, l'idéal est de venir 2 à 3 fois par semaine : c'est la régularité qui fait la différence, plus que l'intensité.</p></div></details></li>
+      <li><details><summary data-n="7"><span class="q">Au bout de combien de temps voit-on des résultats ?</span></summary><div class="rep"><p>La plupart des élèves sentent la différence après quelques semaines de pratique régulière : posture, gainage, souplesse, aisance dans les gestes du quotidien. Joseph Pilates le résumait ainsi : en 10 séances, vous sentez la différence ; en 20, vous la voyez ; en 30, vous avez un nouveau corps.</p></div></details></li>
+      <li><details><summary data-n="8"><span class="q">Le Pilates Reformer fait-il maigrir ?</span></summary><div class="rep"><p>Ce n'est pas un cardio intense : le Reformer renforce les muscles en profondeur, tonifie et affine la silhouette, et améliore la posture. Associé à une activité régulière et à une alimentation équilibrée, il accompagne bien une perte de poids.</p></div></details></li>
+      <li><details><summary data-n="9"><span class="q">J'ai mal au dos ou une blessure. Puis-je pratiquer ?</span></summary><div class="rep"><p>Dans la plupart des cas, oui : le Pilates est une pratique douce et contrôlée, et les exercices s'adaptent. Parlez-en d'abord à votre médecin ou à votre kiné, puis prévenez-nous avant de réserver pour que la professeure en tienne compte.</p></div></details></li>
+      <li><details><summary data-n="10"><span class="q">Je suis enceinte ou je viens d'accoucher. Puis-je venir ?</span></summary><div class="rep"><p>Parlez-en à votre médecin ou à votre sage-femme, puis prévenez-nous avant de réserver un cours : les exercices peuvent être adaptés dans la plupart des cas.</p></div></details></li>
+      <li><details><summary data-n="11"><span class="q">Combien de personnes y a-t-il par cours ?</span></summary><div class="rep"><p>Six au plus : le studio compte six Reformers. La professeure voit chacun et chacune, corrige les placements et adapte les exercices tout au long du cours.</p></div></details></li>
+      <li><details><summary data-n="12"><span class="q">Combien de temps dure un cours ?</span></summary><div class="rep"><p>Une heure : on s'installe, on s'échauffe, on travaille, puis on termine par des étirements.</p></div></details></li>
+      <li><details><summary data-n="13"><span class="q">Comment réserver un cours ?</span></summary><div class="rep"><p>En ligne, sur notre <a href="../planning/">planning</a> ou dans l'application Le Patio (en préparation). Achetez d'abord l'offre de bienvenue, une séance ou un forfait, puis choisissez votre créneau.</p></div></details></li>
+      <li><details><summary data-n="14"><span class="q">Jusqu'à quand puis-je annuler un cours ?</span></summary><div class="rep"><p>Jusqu'à 24 h avant le début de la séance, en quelques secondes depuis le site ou l'application. Passé ce délai, tout cours réservé est dû, même si vous ne venez pas.</p></div></details></li>
+      <li><details><summary data-n="15"><span class="q">Est-ce difficile ? Vais-je avoir des courbatures ?</span></summary><div class="rep"><p>C'est exigeant, mais jamais brutal : chaque exercice se fait à votre niveau, et la professeure règle la résistance pour vous. Des courbatures après les premières séances sont normales, elles s'estompent vite avec la régularité.</p></div></details></li>
+      <li><details><summary data-n="16"><span class="q">Quelle différence avec le yoga ?</span></summary><div class="rep"><p>Le yoga travaille beaucoup la souplesse, l'équilibre et la respiration à travers des postures tenues. Le Pilates se concentre sur le renforcement profond, le centre du corps et le contrôle du mouvement ; sur le Reformer, la résistance des ressorts le rend plus musculaire. Les deux se complètent très bien.</p></div></details></li>
+      <li><details><summary data-n="17"><span class="q">Les hommes peuvent-ils faire du Pilates Reformer ?</span></summary><div class="rep"><p>Bien sûr. Joseph Pilates était un homme, et sa méthode a longtemps été pratiquée par des sportifs et des danseurs. Le Reformer renforce le gainage, la mobilité et prévient les blessures : il profite à tout le monde.</p></div></details></li>
+      <li><details><summary data-n="18"><span class="q">Qui donne les cours ?</span></summary><div class="rep"><p>Olivia Alphonse, fondatrice du studio, formée chez Polestar Pilates. Après plus de vingt ans de danse et de patinage, c'est le Pilates qui l'a ramenée au mouvement. <a href="../histoire/">L'histoire du Patio →</a></p></div></details></li>
+      <li><details><summary data-n="19"><span class="q">Quels sont les horaires ?</span></summary><div class="rep"><p>Du lundi au vendredi, de 8h30 à 20h, sept créneaux par jour. Des créneaux le samedi seront bientôt annoncés. <a href="../planning/">Voir le planning →</a></p></div></details></li>
+      <li><details><summary data-n="20"><span class="q">À quelle heure dois-je arriver ?</span></summary><div class="rep"><p>5 minutes avant le début du cours, le temps de vous installer et de régler votre Reformer.</p></div></details></li>
+      <li><details><summary data-n="21"><span class="q">Y a-t-il des vestiaires et des douches ?</span></summary><div class="rep"><p>Oui, des vestiaires et des douches sont à votre disposition, avant et après le cours.</p></div></details></li>
+      <li><details><summary data-n="22"><span class="q">Comment accéder au studio et où me garer ?</span></summary><div class="rep"><p>Le studio est au 43 avenue Félix Louat à Senlis. L'accès est sécurisé : les codes du parking et du studio vous sont envoyés à la réservation. Six places privées sont réservées aux élèves, et un parking public se trouve juste à côté. <a href="https://www.google.com/maps/dir/?api=1&amp;destination=43+avenue+F%C3%A9lix+Louat+60300+Senlis" target="_blank" rel="noopener">Itinéraire →</a></p></div></details></li>
+      <li><details><summary data-n="23"><span class="q">J'habite à Chantilly ou aux alentours. C'est loin ?</span></summary><div class="rep"><p>Non : le studio est à une quinzaine de minutes en voiture de Chantilly, et facile d'accès depuis Chamant, Courteuil ou Aumont-en-Halatte, avec un parking sur place.</p></div></details></li>
+      <li><details><summary data-n="24"><span class="q">Abonnement ou forfait : que choisir ?</span></summary><div class="rep"><p>Le forfait est sans engagement : vous achetez un nombre de séances et vous les utilisez à votre rythme. L'abonnement (engagement 6 mois) est plus avantageux si vous venez chaque semaine, et il donne l'accès prioritaire à la réservation, l'ouverture de la barrière du parking par lecture de plaque et un mois de gel par an.</p></div></details></li>
+      <li><details><summary data-n="25"><span class="q">Mes séances ont-elles une date de validité ?</span></summary><div class="rep"><p>Oui : 14 jours pour la séance à l'unité, 3 mois pour le forfait de 5 séances, 6 mois pour celui de 10, et 1 an pour les forfaits de 20 et 30 séances. L'offre de bienvenue est valable 3 semaines.</p></div></details></li>
+      <li><details><summary data-n="26"><span class="q">Puis-je geler ou résilier mon abonnement ?</span></summary><div class="rep"><p>Un mois de gel est inclus chaque année : demandez-le au moins une semaine avant le mois concerné (un mois en cours ne peut pas être gelé). La résiliation avant la fin de l'engagement coûte 50 % d'une mensualité, soit 75 € (5 séances) ou 140 € (10 séances).</p></div></details></li>
+      <li><details><summary data-n="27"><span class="q">Y a-t-il un parrainage ?</span></summary><div class="rep"><p>Oui : le parrain reçoit 15 € de crédit ; le filleul a 5 € de remise sur l'offre de bienvenue et 10 € sur son premier forfait ou abonnement.</p></div></details></li>
+      <li><details><summary data-n="28"><span class="q">Que se passe-t-il si j'arrive en retard ?</span></summary><div class="rep"><p>Pour votre sécurité et le bon déroulé du cours, arrivez à l'heure : l'échauffement prépare le corps au travail sur le Reformer. <span class="a-completer">[à compléter]</span></p></div></details></li>
+      <li><details><summary data-n="29"><span class="q">Y a-t-il un âge minimum ?</span></summary><div class="rep"><p><span class="a-completer">[à compléter]</span></p></div></details></li>
+      <li><details><summary data-n="30"><span class="q">Proposez-vous des cours particuliers ?</span></summary><div class="rep"><p><span class="a-completer">[à compléter]</span></p></div></details></li>
     </ol>
     <p class="faq-vide" id="faq-vide" hidden>Aucune question ne correspond. <a href="../contact/">Posez-nous la vôtre →</a></p>
   </div>
@@ -328,21 +332,109 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 </section>
 </main>
 <script>
-/* Recherche dans la FAQ : filtre les questions (texte de la question et de la réponse, sans accents) */
+/* Recherche intelligente de la FAQ, en temps réel (pas besoin de valider) :
+   - un seul mot suffit : une question s'affiche si AU MOINS un mot cherché se trouve dans la question ou la réponse ;
+   - sans accents ni majuscules, mots courts ignorés (le, de, est…), début de mot accepté (« chauss » → chaussettes),
+     pluriels et petites fautes de frappe tolérés (« enciente » → enceinte), synonymes (prix → tarif, coût…) ;
+   - les questions sont triées par pertinence (un mot dans la question compte plus que dans la réponse),
+     les mots trouvés sont surlignés, et les 3 premières réponses s'ouvrent. Champ vide : liste d'origine. */
 (function(){
-  var champ=document.getElementById('faq-cherche'), vide=document.getElementById('faq-vide');
-  var items=[].slice.call(document.querySelectorAll('#faq-questions > li'));
-  var norm=function(t){ return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); };
-  var textes=items.map(function(li){ return norm(li.textContent); });
-  champ.addEventListener('input',function(){
-    var mots=norm(champ.value).split(/\s+/).filter(Boolean), n=0;
-    items.forEach(function(li,k){
-      var ok=mots.every(function(m){ return textes[k].indexOf(m)>=0; });
-      li.hidden=!ok; if(ok) n++;
-      if(mots.length) li.querySelector('details').open=ok && n<=3;
+  var champ=document.getElementById('faq-cherche'), vide=document.getElementById('faq-vide'), compte=document.getElementById('faq-compte');
+  var liste=document.getElementById('faq-questions');
+  var items=[].slice.call(liste.children);
+  var VIDES=('a au aux avec ce ces c ca cela d de des du elle en est et etre il ils j je l la le les leur lui m ma mais me mes moi mon n ne nos notre nous on ou par pas pour qu que qui sa se ses si son sur t ta te tes toi ton tu un une vos votre vous y faut peut puis-je fait faire quoi comment combien quel quelle quels quelles est-ce');
+  VIDES=VIDES.split(' ').reduce(function(o,m){ o[m]=1; return o; },{});
+  var SYN={prix:['tarif','cout','coute','euro','€','forfait','abonnement'],tarif:['prix','cout','coute'],cout:['prix','tarif'],cher:['prix','tarif'],payer:['prix','paiement','tarif'],
+    bebe:['enceinte','accoucher','grossesse'],grossesse:['enceinte','accoucher'],enceinte:['grossesse','accoucher'],
+    blessure:['blesse','dos','douleur','convalescence'],douleur:['mal','blessure','dos'],mal:['douleur','blessure','dos'],
+    debutant:['jamais','debutants','niveau'],niveau:['debutant','debutants','niveaux'],
+    tenue:['porter','vetement','chaussettes'],vetement:['tenue','porter'],habits:['tenue','porter'],chaussure:['chaussettes'],
+    reserver:['reservation','planning','creneau'],reservation:['reserver','planning'],annuler:['annulation','24'],annulation:['annuler'],
+    garer:['parking','stationnement'],parking:['garer'],voiture:['parking','garer','acces'],adresse:['acces','senlis','itineraire'],
+    maigrir:['poids','mincir','silhouette'],poids:['maigrir'],mincir:['maigrir'],
+    horaire:['horaires','heure','creneaux'],heure:['horaires','arriver'],samedi:['horaires','samedi'],
+    douche:['douches','vestiaires'],vestiaire:['vestiaires','douches'],homme:['hommes'],
+    essai:['premiere','bienvenue','decouverte'],decouverte:['essai','premiere','bienvenue'],offert:['offerte','bienvenue','prix'],
+    retard:['retard','heure'],age:['age','ans','enfant'],enfant:['age'],prive:['particuliers'],particulier:['particuliers'],
+    resultat:['resultats','progres'],frequence:['semaine','fois'],gel:['geler','pause'],pause:['geler','gel'],resilier:['resiliation','arreter'],arreter:['resilier']};
+  var norm=function(t){ return (t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’']/g,' '); };
+  var mots=function(t){ return norm(t).split(/[^a-z0-9€]+/).filter(Boolean); };
+  function ecart(a,b){ /* distance d'édition avec inversion de deux lettres (« enciente » → enceinte) */
+    var n=a.length,m=b.length; if(Math.abs(n-m)>2) return 9;
+    var d=[]; for(var i=0;i<=n;i++){ d[i]=[i]; } for(var j=0;j<=m;j++) d[0][j]=j;
+    for(i=1;i<=n;i++) for(j=1;j<=m;j++){
+      var c=a[i-1]===b[j-1]?0:1;
+      d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+c);
+      if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1]) d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1);
+    }
+    return d[n][m];
+  }
+  /* mot cherché : début de mot (chauss → chaussettes) ou pluriel / accord (chaussettes → chaussette) */
+  function strict(q,w){ return w.indexOf(q)===0 || (q.length>=4 && q.indexOf(w)===0 && q.length-w.length<=2 && w.length>=3); }
+  /* synonyme : le mot exact ou son pluriel seulement (sinon « cout » attrape « cours ») */
+  function synonyme(q,w){ return w===q || w===q+'s' || w===q+'x' || w+'s'===q; }
+  /* faute de frappe : seulement si le mot tapé n'existe nulle part tel quel, et pour les mots d'au moins 5 lettres */
+  function approche(q,w){ return q.length>=5 && w.length>=4 && (ecart(q,w)<=(q.length>=8?2:1) || ecart(q,w.slice(0,q.length))<=1); }
+  var donnees=items.map(function(li,rang){
+    var sum=li.querySelector('summary .q'), rep=li.querySelector('.rep');
+    return {li:li, rang:rang, det:li.querySelector('details'), sum:sum, rep:rep, sumHtml:sum.innerHTML, repHtml:rep.innerHTML,
+      mq:mots(sum.textContent), mr:mots(rep.textContent), ouvert:li.querySelector('details').open};
+  });
+  function surligner(el,trouves){
+    if(!trouves.length) return;
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null), noeuds=[]; while(w.nextNode()) noeuds.push(w.currentNode);
+    noeuds.forEach(function(n){
+      var t=n.nodeValue, morceaux=t.split(/([A-Za-zÀ-ÿ0-9€]+)/); if(morceaux.length<2) return;
+      var frag=document.createDocumentFragment(), touche=false;
+      morceaux.forEach(function(m){
+        if(m && trouves.indexOf(norm(m))>=0){ var k=document.createElement('mark'); k.textContent=m; frag.appendChild(k); touche=true; }
+        else frag.appendChild(document.createTextNode(m));
+      });
+      if(touche) n.parentNode.replaceChild(frag,n);
+    });
+  }
+  function chercher(){
+    var brut=mots(champ.value), cles=brut.filter(function(m){ return !VIDES[m]; });
+    if(!cles.length) cles=brut.filter(function(m){ return m.length>1; });
+    donnees.forEach(function(d){ d.sum.innerHTML=d.sumHtml; d.rep.innerHTML=d.repHtml; });
+    if(!cles.length){
+      donnees.forEach(function(d){ d.li.hidden=false; d.det.open=d.ouvert; liste.appendChild(d.li); });
+      vide.hidden=true; compte.textContent=''; return;
+    }
+    var tous=[]; donnees.forEach(function(d){ tous=tous.concat(d.mq,d.mr); });
+    var groupes=cles.map(function(c){
+      var flou=!tous.some(function(w){ return strict(c,w); });   /* aucun mot du texte ne correspond : on tolère les fautes */
+      return {mot:c, flou:flou, syn:SYN[c]||SYN[c.replace(/s$/,'')]||[]};
+    });
+    donnees.forEach(function(d){
+      var score=0, trouves=[];
+      groupes.forEach(function(g){
+        var meilleur=0;
+        function tester(liste,poids){
+          liste.forEach(function(w){
+            var p=0;
+            if(strict(g.mot,w) || (g.flou && approche(g.mot,w))) p=poids;
+            else if(g.syn.some(function(sy){ return synonyme(sy,w); })) p=poids*.6;
+            if(p){ meilleur=Math.max(meilleur,p); if(trouves.indexOf(w)<0) trouves.push(w); }
+          });
+        }
+        tester(d.mq,3); tester(d.mr,1);
+        score+=meilleur;
+      });
+      d.score=score; d.trouves=trouves;
+    });
+    var tries=donnees.slice().sort(function(a,b){ return (b.score-a.score)||(a.rang-b.rang); });
+    var n=0;
+    tries.forEach(function(d){
+      liste.appendChild(d.li);
+      var ok=d.score>0; d.li.hidden=!ok;
+      if(ok){ n++; d.det.open=n<=3; surligner(d.sum,d.trouves); surligner(d.rep,d.trouves); }
     });
     vide.hidden=n>0;
-  });
+    compte.textContent=n ? n+(n>1?' questions trouvées':' question trouvée') : '';
+  }
+  champ.addEventListener('input',chercher);
+  champ.addEventListener('keydown',function(e){ if(e.key==='Escape'){ champ.value=''; chercher(); } });
 })();
 </script>
 
