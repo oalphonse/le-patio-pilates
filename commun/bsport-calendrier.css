@@ -211,3 +211,13 @@
   .jour-ferme__ligne button{flex:1 1 100%}
 }
 @media (prefers-reduced-motion:reduce){.jour-ferme{animation:none}.jour-ferme__btn:hover:not(:disabled),.jour-ferme__form button:hover{transform:none}}
+
+/* Avant l'ouverture (commun/bsport-avant-ouverture.js) : même allure que le bloc « Pas encore de cours »,
+   avec deux boutons Instagram / Facebook. Il remplace ce bloc tant que la date choisie est avant le 1er février. */
+.avant-ouverture__reseaux{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.avant-ouverture__reseaux .jour-ferme__btn{margin-top:0;display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.avant-ouverture__reseaux svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.avant-ouverture__reseaux svg .plein{fill:currentColor;stroke:none}
+.bsport[data-avant-ouverture] .jour-ferme:not(.avant-ouverture){display:none!important}
+.bsport[data-avant-ouverture] .bsport-widget[id] .bs-week__listMode__content{display:none!important}
+.bsport[data-avant-ouverture] .bsport-widget[id] .bs-calendar--no-offer + .jour-ferme{margin-top:12px}

@@ -151,3 +151,12 @@ body > div:has(> button[title="Mon panier"], > button[title="My basket"]):not(.f
 @media (max-width:860px){
   section[id],.step,.week{scroll-margin-top:120px}
 }
+
+/* Icônes Instagram / Facebook dans l'en-tête (à gauche de EN), masquées sur mobile faute de place */
+.reseaux-entete{display:inline-flex;align-items:center;gap:2px}
+.reseaux-entete a{display:inline-grid;place-items:center;width:40px;height:44px;color:var(--paper);opacity:.9}
+.reseaux-entete a:hover{opacity:1}
+.reseaux-entete a:focus-visible{outline:2px solid var(--tan-2);outline-offset:2px;border-radius:6px}
+.reseaux-entete svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.reseaux-entete svg .plein{fill:currentColor;stroke:none}
+@media (max-width:860px){.reseaux-entete{display:none}}
