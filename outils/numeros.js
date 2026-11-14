@@ -29,7 +29,8 @@
 .num-badge{position:fixed;font:600 10px/1 ui-monospace,Menlo,monospace;color:#fff;padding:2px 4px;border-radius:4px;
   box-shadow:0 1px 3px rgba(0,0,0,.35);letter-spacing:.02em;white-space:nowrap;pointer-events:none;opacity:.92}
 body:not(.num-on) .num-badge{display:none}
-#num-barre{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:100;display:flex;gap:10px;align-items:center}
+/* En haut de l'écran, juste sous l'en-tête (--num-haut, recalculé au défilement : l'en-tête peut descendre sous le bandeau d'annonce) */
+#num-barre{position:fixed;left:50%;transform:translateX(-50%);top:var(--num-haut,100px);bottom:auto;z-index:100;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;align-items:center;width:max-content;max-width:calc(100vw - 24px)}
 #num-barre #annot-toggle{position:static!important;transform:none!important;left:auto!important;bottom:auto!important}
 #num-toggle{height:50px;padding:0 20px;border-radius:999px;border:0;background:#222;color:#fff;font:600 14.5px Inter,system-ui,sans-serif;
   box-shadow:0 8px 24px rgba(0,0,0,.25);cursor:pointer;display:flex;align-items:center;gap:10px;white-space:nowrap}
@@ -50,6 +51,15 @@ body.num-on #num-toggle .sw::after{left:17px}
     if(annot){ annot.parentNode.insertBefore(barre,annot); barre.appendChild(annot); }
     else document.body.appendChild(barre);
     barre.appendChild(bouton);
+    function caler(){
+      const h=document.querySelector('.site-header');
+      const bas=h?Math.max(0,h.getBoundingClientRect().bottom):0;
+      barre.style.setProperty('--num-haut',Math.round(bas+10)+'px');
+    }
+    caler();
+    window.addEventListener('scroll',caler,{passive:true});
+    window.addEventListener('resize',caler);
+    window.addEventListener('load',caler);
 
     const calque=document.createElement('div'); calque.id='num-layer'; calque.setAttribute('aria-hidden','true');
     document.body.appendChild(calque);
