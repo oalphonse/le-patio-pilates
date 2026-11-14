@@ -98,11 +98,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
 .row span:last-child{font-size:14px;font-weight:500;color:var(--olive)}
 .soon-day{background:var(--paper);border:1.5px dashed var(--tan);border-radius:12px;padding:24px;text-align:center;color:var(--muted)}
 
-/* Bon à savoir */
-.good .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-block:12px 44px}
-.good div{border-top:2px solid var(--sand);padding-top:18px;display:grid;gap:6px}
-.good b{font-weight:500;font-size:17px}
-.good p{font-size:15px;color:var(--brown)}
+/* Bon à savoir : 3 cartes sous le calendrier, dans la section olive (couleurs des créneaux : --k-carte…) */
+.good{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.good > div{display:grid;align-content:start;gap:6px;padding:22px 24px;border-radius:16px;background:var(--k-carte,#4A410B);border:1px solid var(--k-carte-bord,rgba(253,252,249,.08))}
+.good b{font-weight:500;font-size:17px;color:var(--k-texte,#FDFCF9)}
+.good p{font-size:15px;color:var(--k-doux,#C2B88F)}
+.good a{color:var(--k-texte-2,#DBD1A8);text-underline-offset:3px}
 
 /* Fin */
 .end{background:var(--olive);color:var(--paper);text-align:center}
@@ -113,7 +114,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
 
 @media (max-width:900px){
   .intro .wrap{grid-template-columns:1fr;gap:32px;padding-block:28px 24px}
-  .good .wrap{grid-template-columns:1fr;gap:16px}
+  .good{grid-template-columns:1fr;gap:12px;margin-top:28px}
   .back{display:none}
 }
 @media (max-width:760px){
@@ -270,6 +271,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
           <p class="jour-ferme__msg" data-prevenir-msg aria-live="polite"></p>
         </form>
       </div>
+      <!-- Bon à savoir (ancienne section S03), en cartes sous le calendrier -->
+      <div class="good" role="list" aria-label="Bon à savoir" data-num="S03">
+        <div role="listitem" data-num="C51"><b data-num="T30">Arrivez 5 minutes avant</b><p data-num="T31">Le temps de vous installer et de régler votre Reformer.</p></div>
+        <div role="listitem" data-num="C52"><b data-num="T32">Réservez et annulez en ligne</b><p data-num="T33">Depuis le site ou l'application, jusqu'à 24 h avant le début de la séance. Passé ce délai, tout cours réservé est dû.</p></div>
+        <div role="listitem" data-num="C53"><b data-num="T34">Première fois ?</b><p data-num="T35">Tous les créneaux sont ouverts aux débutants. <a href="../premiere-seance/" data-num="L09">Comment se passe la première séance →</a></p></div>
+      </div>
     </div>
   </section>
   <script id="insert-bsport-widget-cdn">!function (b, s, p) { typeof window.BsportWidget === "undefined" && !document.getElementById("bsport-widget-cdn") && !function () { var m = b.createElement(s); m.id = "bsport-widget-cdn"; m.src = p; b.getElementsByTagName("head")[0].appendChild(m) }() }(document, "script", "https://cdn.bsport.io/scripts/widget.js")</script>
@@ -304,13 +311,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offs
     })
   </script>
 
-  <section class="good" aria-label="Bon à savoir" data-num="S03">
-    <div class="wrap">
-      <div data-num="C51"><b data-num="T30">Arrivez 5 minutes avant</b><p data-num="T31">Le temps de vous installer et de régler votre Reformer.</p></div>
-      <div data-num="C52"><b data-num="T32">Réservez et annulez en ligne</b><p data-num="T33">Depuis le site ou l'application, jusqu'à 24 h avant le début de la séance. Passé ce délai, tout cours réservé est dû.</p></div>
-      <div data-num="C53"><b data-num="T34">Première fois ?</b><p data-num="T35">Tous les créneaux sont ouverts aux débutants. <a href="../premiere-seance/" data-num="L09">Comment se passe la première séance →</a></p></div>
-    </div>
-  </section>
 
   <!-- APPLICATION (copie de l'accueil) -->
   <section class="app" aria-label="Application" data-num="S04">

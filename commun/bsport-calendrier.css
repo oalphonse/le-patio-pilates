@@ -161,8 +161,9 @@
 /* =====================================================================
    Samedi / dimanche sans cours (commun/bsport-jour-ferme.js) : bloc placé dans le calendrier, sous les jours.
    ===================================================================== */
-.bsport[data-jour-ferme] .bsport-widget[id] .bs-calendar--no-offer,
 .bsport[data-jour-ferme] .bsport-widget[id] .bs-week__listMode__content{display:none!important}
+/* le bouton « Prochaine séance » de bsport (.bs-calendar--no-offer) reste affiché, sous le bloc */
+.bsport[data-jour-ferme] .bsport-widget[id] .bs-calendar--no-offer{margin-top:20px!important}
 .jour-ferme[hidden],.jour-ferme__form[hidden]{display:none!important}
 .jour-ferme{margin:40px auto 0;padding:36px 40px;border-radius:18px;background:var(--k-carte,#F3EFE5);border:1px solid var(--k-carte-bord,#E4DCC6);
   display:grid;justify-items:center;text-align:center;gap:12px;max-width:640px;box-sizing:border-box;width:100%;font-family:var(--bs-font,"Inter",sans-serif);color:var(--k-texte,#222);
