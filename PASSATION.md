@@ -8,6 +8,8 @@ Site statique (HTML/CSS/JS, sans framework ni build). Chaque sous-page est un do
 
 **Tous les commits du 14/11 sont poussés sur GitHub** (le VPS pousse désormais lui-même, voir Versionnement).
 
+**⚠️ Référencement coupé (`noindex`) sur tout le site pendant la relecture : à retirer au lancement, voir « Référencement ».**
+
 Fait les 13 et 14/11 (détails dans « Widgets bsport sur le site ») :
 - **Planning** : calendrier bsport à la place de notre grille, couleur olive foncé, séances en colonnes Matin | Midi | Soir, bloc samedi / dimanche « Ça m'intéresse ».
 - **Tarifs** : offre première séance (Bandeau), Formules (Carte des prix), Conditions (Cartes) choisies ; achat en ligne par les widgets bsport.
@@ -245,6 +247,15 @@ Le site existe en français (racine) et en anglais (`en/`), anglais britannique.
 - Incohérences relevées dans les textes français, reprises telles quelles en anglais, à trancher par le studio : fin des cours « 19h » (début du dernier cours) ou « 20h » (fin) selon les pages ; validité de l'offre première séance 3 semaines vs séance à l'unité 2 semaines (normal si voulu).
 
 ## Référencement (préparé le 13/11)
+
+> ⚠️ **RÉFÉRENCEMENT COUPÉ PENDANT LA RELECTURE (depuis le 14/11)** : chaque page porte
+> `<meta name="robots" content="noindex, nofollow"><!-- RELECTURE : à retirer au lancement … -->`
+> pour que Google ne l'affiche pas pendant que des proches relisent le site. **À retirer au lancement**, sinon
+> le site reste invisible sur Google :
+> `grep -rl 'RELECTURE : à retirer' --include=*.html . | xargs sed -i '/RELECTURE : à retirer/d'`
+> (les `noindex` sans ce commentaire, sur `/espace-client/` et `/en/book-first-class/`, restent).
+> Ne pas bloquer `robots.txt` à la place : Google ne verrait plus le `noindex`. Pas de Search Console ni de lien
+> public (Instagram…) vers le site avant le lancement.
 
 Objectif : sortir sur « Pilates Senlis » et « Pilates Chantilly ».
 
