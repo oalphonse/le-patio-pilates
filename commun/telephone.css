@@ -28,3 +28,5 @@
 .phone-onglets span.actif{color:var(--olive);font-weight:600}
 .phone-onglets svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .phone-onglets::after{content:"";position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:108px;height:4px;border-radius:3px;background:#1C1C1E}
+/* Bloc appli empilé (tablette, mobile) : téléphone centré, boutons App Store / Google Play centrés aussi */
+@media (max-width:980px){.app .stores{justify-content:center}}
