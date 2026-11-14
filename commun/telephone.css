@@ -1,0 +1,30 @@
+/* Téléphone du bloc « L'application Le Patio » (accueil, Planning, FR et EN) : maquette façon capture d'écran
+   d'iPhone (cadre, Dynamic Island, barre d'état, en-tête olive avec le logo, onglets, barre d'accueil). */
+.phone{position:relative;width:300px;height:614px;flex:none;border-radius:54px;padding:11px;background:#1C1C1E;
+  box-shadow:0 0 0 2px #46464A,0 0 0 3px #1C1C1E,0 30px 60px rgba(34,34,34,.28),0 8px 18px rgba(34,34,34,.18)}
+.phone::before,.phone::after{content:"";position:absolute;width:4px;border-radius:3px;background:#2C2C2E}
+.phone::before{left:-6px;top:118px;height:60px;box-shadow:0 74px 0 #2C2C2E}
+.phone::after{right:-6px;top:150px;height:92px}
+.phone-ecran{position:relative;height:100%;border-radius:44px;overflow:hidden;background:var(--cream);display:flex;flex-direction:column;font-size:13px;color:var(--ink)}
+.phone-ile{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:92px;height:27px;border-radius:999px;background:#000;z-index:2}
+.phone-etat{display:flex;justify-content:space-between;align-items:center;height:47px;padding:4px 26px 0 30px;background:var(--olive);color:#fff;font:600 14px/1 -apple-system,"SF Pro Text",var(--font);flex:none}
+.phone-etat svg{height:11px;width:auto;fill:currentColor}
+.phone-etat span:last-child{display:flex;gap:5px;align-items:center}
+.phone-tete{background:var(--olive);display:grid;place-items:center;padding:2px 0 10px;flex:none}
+.phone-tete img{width:112px;height:auto}
+.phone-corps{flex:1;display:grid;align-content:start;gap:11px;padding:16px 16px 0}
+.phone-corps .salut{font-size:16px;line-height:1.3}
+.phone-corps .salut small{display:block;font-size:12px;color:var(--muted)}
+.phone .t{font-size:10.5px;font-weight:600;letter-spacing:.05em;color:var(--muted)}
+.phone .next{background:var(--olive);color:var(--paper);border-radius:16px;padding:14px;display:grid;gap:4px}
+.phone .next small{font-size:9px;font-weight:600;letter-spacing:.05em;opacity:.8}
+.phone .next b{font-weight:400;font-size:20px}
+.phone .pill{justify-self:start;background:var(--paper);color:var(--olive-d);border-radius:999px;padding:4px 12px;font-size:11px;font-weight:600;margin-top:4px}
+.phone .row{display:flex;justify-content:space-between;align-items:center;background:var(--paper);border-radius:12px;padding:11px 12px;border:1px solid var(--sand)}
+.phone .row span{font-size:12px}
+.phone .row b{color:var(--olive);font-weight:600;font-size:12px}
+.phone-onglets{display:grid;grid-template-columns:repeat(4,1fr);padding:8px 10px 26px;background:var(--paper);border-top:1px solid var(--sand);flex:none;position:relative}
+.phone-onglets span{display:grid;justify-items:center;gap:3px;font-size:9.5px;color:var(--muted)}
+.phone-onglets span.actif{color:var(--olive);font-weight:600}
+.phone-onglets svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.phone-onglets::after{content:"";position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:108px;height:4px;border-radius:3px;background:#1C1C1E}
