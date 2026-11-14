@@ -252,8 +252,11 @@ html,body{overflow-x:clip}
 .cta-in > *:not(img){position:relative;z-index:1}
 .cta-in h2{font-size:clamp(30px,3.6vw,46px)}
 .cta-in p{font-size:16px;color:var(--sand)}
-.cta-lien{color:var(--paper);font-weight:500;font-size:15px;text-decoration:none;border-bottom:1.5px solid rgba(253,252,249,.6);padding-bottom:2px}
-.cta-lien:hover{border-bottom-color:var(--paper)}
+.cta-in{grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:32px 56px;padding:48px 64px}
+.cta-txt{display:grid;justify-items:start;gap:16px;text-align:left;max-width:560px}
+.cta-txt .btn{margin-top:8px}
+.cta-in .offer-card{justify-self:end;text-align:left}
+@media (max-width:900px){.cta-in{grid-template-columns:1fr;padding:40px 24px}.cta-in .offer-card{justify-self:stretch;width:auto}.cta-txt .btn{white-space:normal;text-align:center;height:auto;min-height:48px;padding-block:12px}}
 
 /* FAQ */
 .faq{background:var(--cream);color:var(--ink)}
@@ -664,18 +667,6 @@ html.lb-bloque{overflow:hidden}
   </div>
 </section>
 
-<!-- PREMIÈRE SÉANCE : étapes (4/10) + Première fois (7/10), ajouté -->
-<section class="steps" data-num="S06" id="premiere-seance" data-pos="42" aria-label="Première séance" data-tag="etapes premiere" data-st="ajout">
-  <div class="wrap">
-    <div class="steps-head"><div class="eyebrow" data-num="T33">Première séance</div><h2 data-num="T34">Découvrez tout ce qu'il faut savoir pour votre première séance</h2></div>
-    <a class="offer-card" data-num="C07" href="tarifs/#offre-premiere-seance" aria-label="Offre exclusive première séance : une séance achetée, une séance offerte. Réserver">
-      <span class="offer-badge" data-num="T35">Offre exclusive première séance</span>
-      <h3 data-num="T36">Une séance achetée,<br>une séance offerte.</h3>
-      <span class="offer-go" data-num="T37">Réserver →</span>
-    </a>
-  </div>
-</section>
-
 <!-- PROFESSEURE -->
 <section class="prof" data-num="S07" aria-label="Votre professeure">
   <div class="wrap">
@@ -734,10 +725,16 @@ html.lb-bloque{overflow:hidden}
 <section class="cta" data-num="S13" aria-label="Réserver">
   <div class="cta-in" data-tag="repete essai" data-st="svg">
     <img data-num="P18" src="photos-le-patio/reserver-cours-pilates-senlis.jpg" alt="" loading="lazy">
-    <h2 data-num="T91">Votre première séance vous attend.</h2>
-    <p data-num="T92">Ouverture le 1er février · 43 avenue Félix Louat, Senlis</p>
-    <a class="cta-lien" data-num="L10" href="premiere-seance/">Tout savoir sur votre première séance →</a>
-    <a href="planning/" class="btn btn-light" data-num="B11">Réserver</a>
+    <div class="cta-txt">
+      <h2 data-num="T91">Votre première séance vous attend.</h2>
+      <p data-num="T92">Ouverture le 1er février · 43 avenue Félix Louat, Senlis</p>
+      <a class="btn btn-light" data-num="L10" href="premiere-seance/">Tout savoir sur votre première séance</a>
+    </div>
+    <a class="offer-card" data-num="C07" href="tarifs/#offre-premiere-seance" aria-label="Offre exclusive première séance : une séance achetée, une séance offerte. Réserver">
+      <span class="offer-badge" data-num="T35">Offre exclusive première séance</span>
+      <h3 data-num="T36">Une séance achetée,<br>une séance offerte.</h3>
+      <span class="offer-go" data-num="T37">Réserver →</span>
+    </a>
   </div>
 </section>
 
