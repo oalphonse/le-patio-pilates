@@ -1,0 +1,63 @@
+/* Page Première séance : « Guide pas à pas » (proposition A, retenue le 14/11 ; les propositions B « Check-list »
+   et C « Offre d'abord » sont supprimées, elles restent dans l'historique git). */
+
+/* ---------- Commun ---------- */
+.ps-sec{scroll-margin-top:110px}
+.ps-sec .wrap{padding-block:64px}
+.ps-h2{font-size:clamp(28px,3.4vw,42px);line-height:1.12}
+.ps-lead{font-size:18px;color:var(--brown);max-width:560px}
+.ps-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.ps-ctas .btn{min-height:48px;height:auto;padding-block:12px}
+.btn-line-clair{border:1.5px solid rgba(253,252,249,.75);color:var(--paper)}
+.ps-ico{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--sand);color:var(--olive)}
+.ps-ico svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ps-oblig{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--olive);color:var(--paper);border-radius:999px;padding:4px 10px}
+.ps-a-preciser{color:var(--muted);font-style:italic}
+
+/* Coupon de l'offre */
+.ps-coupon{background:var(--paper);border:1.5px dashed var(--tan);border-radius:20px;padding:28px;display:grid;gap:14px;align-content:start}
+.ps-coupon .big{font-size:clamp(24px,2.6vw,30px);line-height:1.15}
+.ps-coupon .prix{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ps-coupon .prix b{font-size:44px;font-weight:300;color:var(--olive-d);line-height:1}
+.ps-coupon .prix span{color:var(--brown)}
+.ps-coupon ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;color:var(--brown);font-size:15px}
+.ps-coupon li::before{content:"✓";color:var(--olive);font-weight:600;margin-right:8px}
+.ps-coupon .ps-ctas .btn{flex:1 1 200px}
+
+/* ---------- A : Guide pas à pas ---------- */
+.pa-hero{background:var(--sand)}
+.pa-hero .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center;padding-block:56px}
+.pa-hero h1{font-size:clamp(38px,5vw,64px);line-height:1.05;margin:14px 0 18px}
+.pa-hero h1 em{font-style:italic;font-weight:300}
+.pa-sommaire{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.pa-sommaire a{font-size:14px;text-decoration:none;border:1px solid var(--tan);border-radius:999px;padding:8px 14px;color:var(--brown);background:var(--paper)}
+.pa-sommaire a:hover{border-color:var(--olive);color:var(--olive)}
+.pa-ligne{background:var(--paper)}
+.pa-ligne .wrap{display:grid;gap:0;max-width:960px}
+.pa-temps{display:grid;grid-template-columns:72px 1fr;gap:28px;position:relative;padding-bottom:48px}
+.pa-temps:not(:last-child)::before{content:"";position:absolute;left:35px;top:72px;bottom:0;width:2px;background:var(--sand)}
+.pa-temps .pastille{width:72px;height:72px;border-radius:50%;background:var(--olive);color:var(--paper);display:grid;place-items:center;font-size:28px;font-weight:300}
+.pa-temps h2{font-size:clamp(24px,2.6vw,32px);margin:6px 0 6px}
+.pa-temps .eyebrow{margin-top:4px}
+.pa-temps ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}
+.pa-temps li{display:flex;gap:14px;align-items:flex-start;background:var(--cream);border-radius:14px;padding:14px 16px}
+.pa-temps li b{display:block;font-weight:500}
+.pa-temps li span{color:var(--brown);font-size:15px}
+.pa-temps li.fort{background:var(--olive-d);color:var(--paper)}
+.pa-temps li.fort span{color:var(--tan-2)}
+.pa-temps li.fort .ps-ico{background:rgba(253,252,249,.12);color:var(--paper)}
+.pa-temps li.fort .ps-oblig{background:var(--paper);color:var(--olive-d);margin-left:6px}
+.pa-temps .ps-ctas{margin-top:18px}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .pa-hero .wrap{grid-template-columns:1fr;gap:32px}
+}
+@media (max-width:640px){
+  .ps-sec .wrap{padding-block:48px}
+  .pa-hero .wrap{padding-block:36px}
+  .pa-temps{grid-template-columns:44px 1fr;gap:16px}
+  .pa-temps .pastille{width:44px;height:44px;font-size:20px}
+  .pa-temps:not(:last-child)::before{left:21px;top:44px}
+  .ps-ctas .btn{flex:1 1 100%}
+}

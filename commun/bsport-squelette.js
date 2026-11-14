@@ -13,8 +13,13 @@
     var lent = sq.querySelector('[data-squelette-lent]');
     var fini = false;
     widget.setAttribute('data-squelette-attente', '');
+    /* prêt = contenu là ET plus aucun indicateur de chargement de bsport (il en relance parfois un juste
+       après avoir affiché les cartes) ; au plus 1,5 s d'attente une fois le contenu là, pour ne jamais rester bloqué */
+    var vuPret = 0;
     function verifier(){
       if(fini || !widget.querySelector(pret)) return;
+      if(!vuPret){ vuPret = Date.now(); setTimeout(verifier, 1500); }
+      if(widget.querySelector('[role="progressbar"]') && Date.now() - vuPret < 1500) return;
       fini = true;
       obs.disconnect(); clearTimeout(minuteur);
       widget.removeAttribute('data-squelette-attente');

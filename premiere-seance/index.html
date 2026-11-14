@@ -160,9 +160,10 @@ html.lb-bloque{overflow:hidden}
 /* Mobile et tablette : zones tactiles ≥ 44 px. Sans effet au-dessus de 980 px. */
 </style>
 <link rel="stylesheet" href="../commun/entete.css">
+<link rel="stylesheet" href="../commun/adresse.css">
 <link rel="stylesheet" href="../commun/pied.css">
-<link rel="stylesheet" href="../commun/propositions.css">
-<link rel="stylesheet" href="../commun/premiere-seance-propositions.css">
+<link rel="stylesheet" href="../commun/premiere-seance.css">
+<link rel="stylesheet" href="../commun/bsport-panier.css">
 <!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
 <script src="../commun/bsport-langue.js"></script>
 <link rel="canonical" href="https://__DOMAINE__/premiere-seance/">
@@ -199,11 +200,8 @@ html.lb-bloque{overflow:hidden}
 </header>
 
 <main>
-<div data-prop="premiere-seance" data-defaut="a">
-  <div class="prop-barre" role="group" aria-label="Choisir une proposition"><span class="prop-nom">Première séance</span><button type="button" data-choix="a">A · Guide</button><button type="button" data-choix="b">B · Check-list</button><button type="button" data-choix="c">C · Offre d'abord</button><button type="button" data-choix="site">Site actuel</button></div>
-
-  <!-- ===== Proposition A : Guide pas à pas ===== -->
-  <section class="ps-sec pa-hero" data-prop-pour="a" aria-label="Première séance">
+  <!-- Guide pas à pas (proposition A, retenue le 14/11) -->
+  <section class="ps-sec pa-hero" aria-label="Première séance">
     <div class="wrap">
       <div>
         <div class="eyebrow">Première fois au Reformer</div>
@@ -216,11 +214,11 @@ html.lb-bloque{overflow:hidden}
           <p class="big">Une séance achetée,<br>une séance offerte.</p>
           <div class="prix"><b>35 €</b><span>les deux séances</span></div>
           <ul><li>Deux cours Reformer d'une heure</li><li>Valables 3 semaines</li><li>Sans engagement, 0 € de frais d'inscription</li><li>Réservée aux nouveaux membres</li></ul>
-          <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive">Acheter l'offre · 35 €</a><a href="../planning/" class="btn btn-line">Réserver sur le planning</a></div>
+          <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive btn-panier" data-bsport-pack="817521" data-bsport-categorie="31419"><svg class="btn-panier__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l-1.4 9.1a2 2 0 0 1-2 1.9H8.4a2 2 0 0 1-2-1.9z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/></svg>Ajouter au panier · 35 €</a><a href="../planning/" class="btn btn-line">Réserver sur le planning</a></div>
         </div>
     </div>
   </section>
-  <section class="ps-sec pa-ligne" data-prop-pour="a" aria-label="Le déroulé">
+  <section class="ps-sec pa-ligne" aria-label="Le déroulé">
     <div class="wrap">
       <div class="pa-temps ps-sec" id="pa-avant"><div class="pastille" aria-hidden="true">1</div><div>
         <div class="eyebrow">Avant de venir</div><h2>Prenez l'offre, puis votre créneau</h2>
@@ -230,7 +228,7 @@ html.lb-bloque{overflow:hidden}
           <li><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2"/></svg></span><div><b>Recevez vos codes d'accès</b><span>Les codes du parking et du studio vous sont envoyés à la réservation.</span></div></li>
           <li><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></svg></span><div><b>Un empêchement ?</b><span>Annulez en quelques secondes depuis le site ou l'application Le Patio. Jusqu'à 24 h avant le début de la séance ; passé ce délai, le cours est dû.</span></div></li>
         </ul>
-        <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive">Acheter l'offre · 35 €</a><a href="../planning/" class="btn btn-line">Réserver sur le planning</a></div>
+        <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive btn-panier" data-bsport-pack="817521" data-bsport-categorie="31419"><svg class="btn-panier__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l-1.4 9.1a2 2 0 0 1-2 1.9H8.4a2 2 0 0 1-2-1.9z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/></svg>Ajouter au panier · 35 €</a><a href="../planning/" class="btn btn-line">Réserver sur le planning</a></div>
       </div></div>
       <div class="pa-temps ps-sec" id="pa-sac"><div class="pastille" aria-hidden="true">2</div><div>
         <div class="eyebrow">Dans votre sac</div><h2>Deux choses suffisent</h2>
@@ -243,7 +241,7 @@ html.lb-bloque{overflow:hidden}
         <div class="eyebrow">Le jour J</div><h2>Arrivez 5 minutes avant</h2>
         <ul>
           <li class="fort"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>5 minutes d'avance</b><span>Le temps de vous installer sereinement avant le début du cours.</span></div></li>
-          <li><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b>43 avenue Félix Louat, Senlis</b><span>À une quinzaine de minutes en voiture de Chantilly.</span></div></li>
+          <li><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b><a class="adresse" href="https://www.google.com/maps/dir/?api=1&amp;destination=43+avenue+F%C3%A9lix+Louat+60300+Senlis" target="_blank" rel="noopener" aria-label="Itinéraire vers le studio : 43 avenue Félix Louat, Senlis"><span class="adresse__txt">43 avenue Félix Louat, Senlis</span><span class="adresse__go" aria-hidden="true">Y aller →</span></a></b><span>À une quinzaine de minutes en voiture de Chantilly.</span></div></li>
           <li><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 16V11l2-5h10l2 5v5"/><path d="M3 16h18v3H3z"/><circle cx="7.5" cy="13.5" r=".5"/><circle cx="16.5" cy="13.5" r=".5"/></svg></span><div><b>Parking</b><span>Six places sécurisées dans l'enceinte (barrière à code) et un parking public juste à côté.</span></div></li>
           <li><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V8a4 4 0 0 1 8 0"/><path d="M9 11h6"/><path d="M10 14v1M12 14v2M14 14v1M11 17v1M13 17v1"/></svg></span><div><b>Vestiaires et douches</b><span>À votre disposition avant et après le cours.</span></div></li>
         </ul>
@@ -260,199 +258,15 @@ html.lb-bloque{overflow:hidden}
         <ul>
           <li><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="1"/><path d="M3 13h18M12 9v12"/><path d="M12 9c-2-4-6-4-6-1.5S12 9 12 9zM12 9c2-4 6-4 6-1.5S12 9 12 9z"/></svg></span><div><b>La séance offerte</b><span>Réservez-la quand vous voulez dans les 3 semaines.</span></div></li>
         </ul>
-        <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive">Acheter l'offre · 35 €</a><a href="../planning/" class="btn btn-line">Réserver sur le planning</a></div>
+        <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive btn-panier" data-bsport-pack="817521" data-bsport-categorie="31419"><svg class="btn-panier__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l-1.4 9.1a2 2 0 0 1-2 1.9H8.4a2 2 0 0 1-2-1.9z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/></svg>Ajouter au panier · 35 €</a><a href="../planning/" class="btn btn-line">Réserver sur le planning</a></div>
       </div></div>
     </div>
   </section>
-
-  <!-- ===== Proposition B : Check-list ===== -->
-  <section class="ps-sec pb-hero" data-prop-pour="b" aria-label="Première séance">
-    <div class="wrap">
-      <div>
-        <div class="eyebrow">Première séance</div>
-        <h1>Votre check-list <em>avant de venir.</em></h1>
-        <p class="ps-lead">Tout ce qu'il faut savoir pour votre premier cours de Pilates Reformer au Patio, à Senlis.</p>
-        <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive">Acheter l'offre · 35 €</a><a href="../planning/" class="btn btn-line">Réserver sur le planning</a></div>
-      </div>
-      <div class="pb-photo">
-        <img src="../photos-le-patio/chaussettes-antiderapantes-pilates.jpg" alt="Chaussettes antidérapantes posées au studio" loading="lazy" decoding="async">
-        <div class="etiquette"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6v8l3.5 4.5a3 3 0 0 1-2.4 4.8H8.5A3.5 3.5 0 0 1 5 16.8V15l4-4z"/><path d="M9 7h6"/></svg></span><span><b>Chaussettes antidérapantes</b> obligatoires sur le Reformer</span></div>
-      </div>
-    </div>
-  </section>
-  <section class="ps-sec pb-liste" data-prop-pour="b" aria-label="Les essentiels">
-    <div class="wrap">
-      <div><div class="eyebrow">Les essentiels</div><h2 class="ps-h2">Ce qu'il faut savoir</h2></div>
-      <div class="pb-grille">
-        <article class="pb-carte fort"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6v8l3.5 4.5a3 3 0 0 1-2.4 4.8H8.5A3.5 3.5 0 0 1 5 16.8V15l4-4z"/><path d="M9 7h6"/></svg></span><h3>Chaussettes antidérapantes</h3><span class="ps-oblig">À ne pas oublier</span><p>Obligatoires sur le Reformer. Vendues sur place si vous les oubliez.</p></article>
-        <article class="pb-carte fort"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>5 minutes d'avance</h3><span class="ps-oblig">À ne pas oublier</span><p>Pour vous installer sereinement avant le début du cours.</p></article>
-        <article class="pb-carte"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3c-.5 1.5-2 2.5-4 2.5S8.5 4.5 8 3z"/></svg></span><h3>Tenue souple</h3><p>Une tenue dans laquelle vous bougez librement.</p></article>
-        <article class="pb-carte"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2"/></svg></span><h3>Codes d'accès</h3><p>Ceux du parking et du studio vous sont envoyés à la réservation.</p></article>
-        <article class="pb-carte"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 16V11l2-5h10l2 5v5"/><path d="M3 16h18v3H3z"/><circle cx="7.5" cy="13.5" r=".5"/><circle cx="16.5" cy="13.5" r=".5"/></svg></span><h3>Parking</h3><p>Six places sécurisées dans l'enceinte et un parking public juste à côté.</p></article>
-        <article class="pb-carte"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V8a4 4 0 0 1 8 0"/><path d="M9 11h6"/><path d="M10 14v1M12 14v2M14 14v1M11 17v1M13 17v1"/></svg></span><h3>Vestiaires et douches</h3><p>À votre disposition avant et après le cours.</p></article>
-        <article class="pb-carte"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 15c3 0 5 1.5 5 4"/></svg></span><h3>Tous niveaux, 6 élèves max</h3><p>La professeure vous guide et adapte les ressorts à votre corps.</p></article>
-        <article class="pb-carte"><span class="ps-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><h3>Santé</h3><p>Enceinte, blessé·e ou en convalescence : demandez l'avis de votre médecin et prévenez-nous.</p></article>
-      </div>
-    </div>
-  </section>
-  <section class="ps-sec pb-offre" data-prop-pour="b" aria-label="Offre première séance">
-    <div class="wrap">
-      <div>
-        <div class="eyebrow">Offre de bienvenue</div>
-        <h2 class="ps-h2">Une séance achetée,<br>une séance offerte.</h2>
-        <p class="ps-lead">Prenez l'offre, puis choisissez votre créneau sur le planning : tous les cours sont ouverts aux débutants.</p>
-      </div>
-      <div class="ps-coupon">
-          <div class="eyebrow">Offre première séance</div>
-          <p class="big">Une séance achetée,<br>une séance offerte.</p>
-          <div class="prix"><b>35 €</b><span>les deux séances</span></div>
-          <ul><li>Deux cours Reformer d'une heure</li><li>Valables 3 semaines</li><li>Sans engagement, 0 € de frais d'inscription</li><li>Réservée aux nouveaux membres</li></ul>
-          <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive">Acheter l'offre · 35 €</a><a href="../planning/" class="btn btn-line">Réserver sur le planning</a></div>
-        </div>
-    </div>
-  </section>
-  <section class="ps-sec pb-faq" data-prop-pour="b" aria-label="Questions fréquentes">
-    <div class="wrap">
-      <div><div class="eyebrow">Encore une question ?</div><h2 class="ps-h2">Questions fréquentes</h2></div>
-      <div>
-        <details><summary>Je n'ai jamais fait de Reformer, est-ce pour moi ?</summary><p>Oui. Les cours sont ouverts à tous les niveaux et limités à six personnes : la professeure vous guide pas à pas et adapte les ressorts à votre corps.</p></details>
-        <details><summary>Jusqu'à quand puis-je annuler un cours ?</summary><p>Jusqu'à 24 h avant le début de la séance. Passé ce délai, tout cours réservé est dû, même si vous ne vous présentez pas. L'annulation se fait en quelques secondes depuis notre site ou l'application Le Patio.</p></details>
-        <details><summary>Comment accéder au studio et où me garer ?</summary><p>Au 43 avenue Félix Louat à Senlis. Six places sécurisées dans l'enceinte et un parking public juste à côté. Les codes d'accès vous sont envoyés à la réservation.</p></details>
-        <details><summary>Quand utiliser ma séance offerte ?</summary><p>Les deux séances de l'offre sont valables 3 semaines : réservez la deuxième quand vous voulez dans ce délai.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Proposition C : Offre d'abord ===== -->
-  <section class="ps-sec pc-hero" data-prop-pour="c" aria-label="Offre première séance">
-    <div class="wrap">
-      <div class="eyebrow">Première séance au Patio</div>
-      <h1>Une séance achetée, <em>une séance offerte.</em></h1>
-      <div class="pc-faits"><span>2 cours Reformer d'1 h · 35 €</span><span>Valables 3 semaines</span><span>6 élèves maximum</span><span>Sans engagement</span></div>
-      <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-light">Acheter l'offre · 35 €</a><a href="../planning/" class="btn btn-line-clair">Réserver sur le planning</a></div>
-    </div>
-  </section>
-  <section class="ps-sec pc-etapes" data-prop-pour="c" aria-label="Comment ça marche">
-    <div class="wrap">
-      <div><div class="eyebrow">Comment ça marche</div><h2 class="ps-h2">Trois étapes, et c'est parti</h2></div>
-      <ol class="pc-trois">
-        <li><h3>Achetez l'offre</h3><p>Deux séances pour 35 €, sans frais d'inscription.</p><a href="https://backoffice.bsport.io/customer/payment/pass/817521">Acheter l'offre →</a></li>
-        <li><h3>Réservez vos créneaux</h3><p>Du lundi au vendredi, de 8h30 à 20h. Vos codes d'accès arrivent par e-mail.</p><a href="../planning/">Voir le planning →</a></li>
-        <li><h3>Venez 5 minutes avant</h3><p>Avec une tenue souple et vos chaussettes antidérapantes. On s'occupe du reste.</p><a href="#pc-savoir">À savoir avant de venir ↓</a></li>
-      </ol>
-    </div>
-  </section>
-  <section class="ps-sec pc-savoir" id="pc-savoir" data-prop-pour="c" aria-label="À savoir avant de venir">
-    <div class="wrap">
-      <div><div class="eyebrow">À savoir avant de venir</div><h2 class="ps-h2">Le pense-bête de votre premier cours</h2></div>
-      <div class="pc-cols">
-        <div class="pc-col"><h3>À apporter</h3><ul>
-          <li class="fort"><div><b>Chaussettes antidérapantes</b>Obligatoires sur le Reformer. Vendues sur place si besoin.</div></li>
-          <li><div><b>Une tenue souple</b>Dans laquelle vous bougez librement.</div></li>
-        </ul></div>
-        <div class="pc-col"><h3>En arrivant</h3><ul>
-          <li class="fort"><div><b>5 minutes d'avance</b>Le temps de vous installer.</div></li>
-          <li><div><b>43 avenue Félix Louat, Senlis</b>Barrière à code : vos codes arrivent à la réservation.</div></li>
-          <li><div><b>Parking</b>Six places dans l'enceinte, parking public juste à côté.</div></li>
-          <li><div><b>Vestiaires et douches</b>À votre disposition.</div></li>
-        </ul></div>
-        <div class="pc-col"><h3>Pendant le cours</h3><ul>
-          <li><div><b>Tous niveaux</b>La professeure vous guide et adapte les ressorts à votre corps.</div></li>
-          <li><div><b>Santé</b>Enceinte, blessé·e ou en convalescence : avis médical, et prévenez-nous avant.</div></li>
-          <li><div><b>Annulation</b>Jusqu'à 24 h avant, depuis le site ou l'application Le Patio. Passé ce délai, le cours est dû.</div></li>
-        </ul></div>
-      </div>
-      <div class="ps-ctas"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive">Acheter l'offre · 35 €</a><a href="../planning/" class="btn btn-line">Réserver sur le planning</a></div>
-    </div>
-  </section>
-  <div class="pc-barre" data-prop-pour="c"><a href="https://backoffice.bsport.io/customer/payment/pass/817521" class="btn btn-olive">Acheter l'offre</a><a href="../planning/" class="btn btn-line">Planning</a></div>
-
-  <section class="intro" data-num="S01" data-prop-pour="site">
-    <div class="wrap">
-      <div>
-        <div class="eyebrow" data-num="T01">Première fois</div>
-        <h1 data-num="T02">Nouveau au Reformer ? <em>Commencez ici.</em></h1>
-      </div>
-      <ol class="toc" aria-label="Les 3 étapes">
-        <li><a href="#etape-1" data-num="L09"><span class="n">ÉTAPE 1</span><span>Choisissez un créneau</span><span>↓</span></a></li>
-        <li><a href="#etape-2" data-num="L10"><span class="n">ÉTAPE 2</span><span>Réservez votre première séance</span><span>↓</span></a></li>
-        <li><a href="#etape-3" data-num="L11"><span class="n">ÉTAPE 3</span><span>Arrivez 5 minutes avant</span><span>↓</span></a></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="step alt" id="etape-1" data-prop-pour="site" data-num="S02">
-    <div class="wrap">
-      <div class="media">
-        <img src="../photos-le-patio/cours-pilates-reformer.jpg" alt="Élève sur un Reformer au studio" data-num="P01">
-        <div class="mini-plan" aria-hidden="true" data-num="I02">
-          <b>LUN</b><b>MAR</b><b>MER</b><b>JEU</b><b>VEN</b>
-          <span>8h30</span><span class="on">9h45</span><span>11h45</span><span>17h45</span><span>19h00</span>
-        </div>
-      </div>
-      <div class="txt">
-        <div class="num" aria-hidden="true" data-num="T03">1</div>
-        <h2 data-num="T04">Choisissez un créneau</h2>
-        <p data-num="T05">Dans le planning, du lundi au vendredi, de 8h30 à 19h.</p>
-        <a href="../planning/" class="btn btn-line" data-num="B03">Voir le planning</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="step" id="etape-2" data-prop-pour="site" data-num="S03">
-    <div class="wrap">
-      <div class="media card-bg">
-        <div class="ticket" aria-hidden="true" data-num="I03">
-          <div class="eyebrow">Première séance</div>
-          <div class="row"><span>Séances</span><span>2 × Reformer, 1 h</span></div>
-          <div class="row"><span>Validité</span><span>3 semaines</span></div>
-          <hr>
-          <div class="row"><span>Total</span><span class="total">35 €</span></div>
-          <div class="row"><span>Codes d'accès</span><span>envoyés par e-mail</span></div>
-          <div class="code"><i>••</i><i>••</i><i>••</i><i>••</i></div>
-        </div>
-      </div>
-      <div class="txt">
-        <div class="num" aria-hidden="true" data-num="T06">2</div>
-        <h2 data-num="T07">Réservez votre première séance</h2>
-        <p data-num="T08">35 € pour deux séances. Les codes d'accès vous sont envoyés.</p>
-        <a href="../planning/" class="btn btn-olive" data-num="B04">Réserver ma première séance</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="step alt" id="etape-3" data-prop-pour="site" data-num="S04">
-    <div class="wrap">
-      <div class="media">
-        <img src="../photos-le-patio/chaussettes-antiderapantes-pilates.jpg" alt="Chaussettes antidérapantes posées au studio" data-num="P02" loading="lazy" decoding="async">
-      </div>
-      <div class="txt">
-        <div class="num" aria-hidden="true" data-num="T09">3</div>
-        <h2 data-num="T10">Arrivez 5 minutes avant</h2>
-        <p data-num="T11">Tenue souple et chaussettes antidérapantes. On s'occupe du reste.</p>
-        <ul class="bring" aria-label="À prévoir" data-num="T12">
-          <li>Tenue souple</li><li>Chaussettes antidérapantes</li><li>5 minutes d'avance</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="end" data-num="S05" data-prop-pour="site">
-    <div class="wrap">
-      <h2 data-num="T13">Prête ou prêt pour votre première séance ?</h2>
-      <p data-num="T14">Deux séances pour 35 € · 43 avenue Félix Louat, Senlis</p>
-      <div class="row">
-        <a href="../planning/" class="btn btn-light" data-num="B05">Réserver ma première séance</a>
-        <a href="../#questions-frequentes" class="btn btn-line" data-num="B06">Lire les questions fréquentes</a>
-      </div>
-    </div>
-  </section>
-</div>
 </main>
 
 <footer data-num="S16">
   <div class="wrap foot">
-    <div class="brand"><img class="foot-logo" data-num="I13" src="../logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="160" height="160" loading="lazy"><p data-num="T109">43 avenue Félix Louat<br>60300 Senlis</p></div>
+    <div class="brand"><img class="foot-logo" data-num="I13" src="../logo/logo-le-patio-pilates-club.png" alt="Le Patio Pilates Club" width="160" height="160" loading="lazy"><a class="adresse" data-num="T109" href="https://www.google.com/maps/dir/?api=1&amp;destination=43+avenue+F%C3%A9lix+Louat+60300+Senlis" target="_blank" rel="noopener" aria-label="Itinéraire vers le studio : 43 avenue Félix Louat, 60300 Senlis"><svg class="adresse__pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="adresse__txt">43 avenue Félix Louat<br>60300 Senlis</span><span class="adresse__go" aria-hidden="true">Y aller →</span></a></div>
     <div><h4 data-num="T110">Contact</h4><p data-num="T111">Téléphone : à venir<br>E-mail : à venir</p></div>
     <div data-tag="reseaux" data-st="svg"><h4 data-num="T112">Nous suivre</h4><a href="https://www.instagram.com/lepatio.pilatesclub" target="_blank" rel="noopener noreferrer" data-num="L12"><svg class="ico-reseau" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="plein" cx="17.3" cy="6.7" r="1.1"/></svg>@lepatio.pilatesclub</a><a href="https://www.facebook.com/profile.php?id=61596106065468" target="_blank" rel="noopener noreferrer" data-num="L13"><svg class="ico-reseau" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M15.5 8H14a2 2 0 0 0-2 2v11M9.5 13h5.5"/></svg>Le Patio - Pilates Club</a></div>
     <div><h4 data-num="T113">Réserver</h4><p data-num="T114">Tous les cours se réservent<br>sur notre site ou l'application.</p></div>
@@ -531,9 +345,9 @@ html.lb-bloque{overflow:hidden}
   });
 })();
 </script>
-<script src="../commun/propositions.js"></script>
 <script src="../commun/entete.js"></script>
 <!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
 <script src="../outils/numeros.js"></script>
+<script src="../commun/bsport-panier.js"></script>
 </body>
 </html>

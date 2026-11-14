@@ -6,6 +6,10 @@
    - .squelette--liste      : Tarifs, séance à l'unité + forfaits (C31) ;
    - .squelette--abos       : Tarifs, les 2 abonnements, sur fond olive (C33). */
 
+/* ronds et barres de chargement de bsport : jamais affichés dans nos widgets (le squelette en tient lieu),
+   sauf dans un bouton (retour visuel après un clic « Ajouter au panier »…) */
+.bsport-widget[id] [role="progressbar"]:not(button *){display:none!important}
+
 /* widget pas encore prêt : rendu en coulisse, sans place ni panneau */
 .bsport-widget.bsport-widget.bsport-widget[id][data-squelette-attente]{max-height:0!important;min-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important;background:transparent!important}
 

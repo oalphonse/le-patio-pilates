@@ -1,0 +1,8 @@
+/* Boutons « Ajouter au panier » branchés sur bsport (commun/bsport-panier.js) : style .btn du site + icône panier */
+.btn-panier{gap:9px}
+.btn-panier__ico{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+/* bsport pas encore prêt au moment du clic : le bouton patiente */
+.btn-panier[aria-busy="true"]{cursor:progress;opacity:.75}
+.btn-panier[aria-busy="true"] .btn-panier__ico{animation:btnPanier 1s ease-in-out infinite}
+@keyframes btnPanier{50%{transform:translateY(-2px)}}
+@media (prefers-reduced-motion:reduce){.btn-panier[aria-busy="true"] .btn-panier__ico{animation:none}}
