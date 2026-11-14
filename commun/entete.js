@@ -38,11 +38,41 @@
   function attendre(test,essais){
     return new Promise(res=>{ let n=0; (function boucle(){ const v=test(); if(v||n++>=essais) return res(v||null); setTimeout(boucle,100); })(); });
   }
+  /* Bloc du bouton flottant pas encore habillé (enfant direct de <body>, contenant les entrées du menu
+     et le bouton principal sans titre), ou null. */
   function blocFlottant(){
-    const b=[...document.querySelectorAll('body > div button[title]')].find(x=>ENTREES.test(x.title.trim()) && !x.closest('.site-header'));
-    if(!b) return null;
-    let r=b; while(r.parentElement && r.parentElement!==document.body) r=r.parentElement;
-    return r.querySelector(':scope > button:not([title])') ? r : null;
+    for(const x of document.querySelectorAll('body > div button[title]')){
+      if(!ENTREES.test(x.title.trim()) || x.closest('.site-header')) continue;
+      let r=x; while(r.parentElement && r.parentElement!==document.body) r=r.parentElement;
+      if(!r.classList.contains('fab-bsport') && r.querySelector(':scope > button:last-child:not([title])')) return r;
+    }
+    return null;
+  }
+  /* Position de .fab-place, recopiée sur le bloc habillé du moment (--fab-x, --fab-y, --fab-l). */
+  let bloc=null, prevu=false;
+  function suivre(){
+    prevu=false;
+    if(!bloc||!bloc.isConnected) return;
+    const r=place.getBoundingClientRect();
+    bloc.style.setProperty('--fab-x', Math.round(r.left)+'px');
+    bloc.style.setProperty('--fab-y', Math.round(r.top)+'px');
+    bloc.style.setProperty('--fab-l', Math.round(r.width)+'px');
+  }
+  function demander(){ if(!prevu){ prevu=true; requestAnimationFrame(suivre); } }
+  /* bsport RECRÉE son bloc (nouvel élément, sans nos réglages) à chaque ouverture / fermeture de sa fenêtre
+     de connexion, et sans doute à la connexion : on surveille <body> en permanence et on habille chaque
+     nouveau bloc. Tant qu'aucun bloc habillé n'est affiché, le lien bonhomme de secours reprend sa place. */
+  function habiller(b){
+    if(!b.classList.contains('fab-bsport')) b.classList.add('fab-bsport');
+    const principal=b.querySelector(':scope > button:last-child');
+    if(principal){ principal.setAttribute('aria-label','Mon espace'); principal.title='Mon espace'; }
+    if(b!==bloc){ bloc=b; suivre(); }
+  }
+  function verifier(){
+    const b=blocFlottant();
+    if(b) habiller(b);
+    else if(bloc&&!bloc.isConnected) bloc=null;
+    place.classList.toggle('fab-ok', !!(bloc&&bloc.isConnected));
   }
   function installer(){
     if(!window.BsportWidget&&!document.getElementById('bsport-widget-cdn')){
@@ -51,38 +81,16 @@
     const boite=document.createElement('div');
     boite.id='bsport-widget-espace'; boite.className='compte-widget'; boite.setAttribute('aria-hidden','true');
     document.body.appendChild(boite);
-    /* Le bloc est repéré dès que bsport l'insère dans <body> (MutationObserver : avant le premier affichage),
-       pour qu'il n'apparaisse jamais en bas à gauche avec l'icône de bsport. */
-    const guet=new MutationObserver(()=>{ const b=blocFlottant(); if(b) habiller(b); });
-    guet.observe(document.body,{childList:true,subtree:true});
+    /* MutationObserver : le bloc est habillé avant son premier affichage (jamais visible en bas à gauche). */
+    new MutationObserver(verifier).observe(document.body,{childList:true,subtree:true});
+    window.addEventListener('scroll',demander,{passive:true});
+    window.addEventListener('resize',demander);
+    if(window.ResizeObserver) new ResizeObserver(demander).observe(document.querySelector('.site-header')||document.body);
     attendre(()=>window.BsportWidget,100).then(bw=>{
-      if(!bw){ guet.disconnect(); return; }
+      if(!bw) return;
       bw.mount({parentElement:boite.id,companyId:STUDIO,franchiseId:null,dialogMode:1,widgetType:'consumerSpace',
                 showFab:true,fullScreenPopup:false,styles:undefined,config:{consumerSpace:{}}});
-      attendre(blocFlottant,150).then(b=>{ if(b) habiller(b); });
     });
-    let fait=false;
-    function habiller(bloc){
-      if(fait) return; fait=true; guet.disconnect();
-      bloc.classList.add('fab-bsport');
-      const principal=bloc.querySelector(':scope > button:not([title])');
-      principal.setAttribute('aria-label','Mon espace');
-      principal.title='Mon espace';
-      let prevu=false;
-      function suivre(){
-        prevu=false;
-        const r=place.getBoundingClientRect();
-        bloc.style.setProperty('--fab-x', Math.round(r.left)+'px');
-        bloc.style.setProperty('--fab-y', Math.round(r.top)+'px');
-        bloc.style.setProperty('--fab-l', Math.round(r.width)+'px');
-      }
-      function demander(){ if(!prevu){ prevu=true; requestAnimationFrame(suivre); } }
-      suivre();
-      window.addEventListener('scroll',demander,{passive:true});
-      window.addEventListener('resize',demander);
-      if(window.ResizeObserver) new ResizeObserver(demander).observe(document.querySelector('.site-header')||document.body);
-      place.classList.add('fab-ok');
-    }
   }
   if(document.readyState==='complete') installer(); else window.addEventListener('load',installer);
 })();
