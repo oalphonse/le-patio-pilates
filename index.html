@@ -86,7 +86,13 @@ section{scroll-margin-top:96px}
 .steps-head{display:grid;gap:10px}
 .steps-more{grid-column:2/-1;justify-self:start;color:var(--olive);font-weight:500;text-decoration:none;border-bottom:1.5px solid var(--tan-2);padding-bottom:2px}
 @media (max-width:1180px){.steps-more{grid-column:1/-1}}
-.steps h2{font-size:24px;line-height:1.25;max-width:240px}
+.steps h2{font-size:24px;line-height:1.25;max-width:420px}
+.steps .wrap{grid-template-columns:1fr auto;align-items:center;gap:32px 56px;padding-block:40px}
+.steps-head .steps-more{margin-top:8px;justify-self:start}
+.steps .offer-card{border:1px solid var(--sand)}
+.cours-infos{color:var(--brown);margin-top:18px;line-height:1.7}
+.prof-bio{display:grid;gap:12px}
+.prof-bienvenue{font-weight:500;color:var(--paper)!important}
 .step{display:grid;grid-template-columns:36px 1fr;gap:14px}
 .step i{font-style:normal;width:36px;height:36px;border-radius:50%;background:var(--olive);color:var(--paper);display:grid;place-items:center;font-size:15px}
 .step b{display:block;font-weight:500;margin-bottom:2px}
@@ -577,12 +583,12 @@ html.lb-bloque{overflow:hidden}
   <img src="photos-le-patio/pilates-reformer-senlis-le-patio.jpg" data-num="P01" alt="Élève en planche sur un Reformer au studio Le Patio" data-tag="photo" data-st="svg" data-note="Photo ajoutée à la place de l'aplat">
   <div class="wrap">
     <div class="hero-txt">
-      <h1 data-num="T03" data-tag="titre italique" data-st="svg" data-note="Mot en italique ajouté"><span class="eyebrow" data-num="T02">Studio de Pilates Reformer à Senlis</span> Prenez le temps<br>de <em>bien</em> bouger.</h1>
+      <h1 data-num="T03" data-tag="titre italique" data-st="svg" data-note="Mot en italique ajouté"><span class="eyebrow" data-num="T02">Votre nouveau studio de Pilates à Senlis</span> Prenez le temps<br>de <em>bien</em> bouger.</h1>
       <div class="hero-btns" data-tag="premiere" data-st="svg">
         <a href="premiere-seance/" class="btn btn-light" data-num="B03">Première fois ? Tout ce qu'il faut savoir</a>
       </div>
       <div class="reassure" data-num="T04" data-tag="rassure" data-st="ajout">
-        <span>Aucune expérience nécessaire</span><span>Sans engagement</span><span>Chaussettes en vente sur place</span>
+        <span>Cours tous niveaux</span><span>Sans frais d'inscription</span><span>Sans engagement</span>
       </div>
     </div>
     <a class="offer-card" data-num="C01" href="tarifs/#offre-premiere-seance" data-tag="essai" data-st="svg" aria-label="Offre exclusive première séance : une séance achetée, une séance offerte. Réserver">
@@ -598,9 +604,8 @@ html.lb-bloque{overflow:hidden}
   <div class="wrap">
     <div class="offre-txt">
       <div class="eyebrow" data-num="T08">Offre de bienvenue</div>
-      <h2 class="h2" data-num="T09">Votre première séance : deux séances pour 35 €.</h2>
-      <p data-num="T10">Une séance achetée, une séance offerte, valables 3 semaines. Tous niveaux, sans engagement.</p>
-      <p class="offre-open" data-num="T11">Ouverture le 1er février · 43 avenue Félix Louat, Senlis</p>
+      <h2 class="h2" data-num="T09">Une séance achetée, une séance offerte.</h2>
+      <p data-num="T10">35 €, valables 3 semaines. Tous niveaux, sans engagement.</p>
     </div>
     <div class="offre-box" data-num="C02">
       <ul class="checks" data-num="T12">
@@ -609,7 +614,7 @@ html.lb-bloque{overflow:hidden}
         <li>0 € de frais d'inscription</li>
       </ul>
       <a href="planning/" class="btn btn-olive" data-num="B04">Réserver ma première séance</a>
-      <small data-num="T13">Réservation en ligne sur notre site ou l'application Le Patio, en quelques secondes.</small>
+      <small data-num="T13">Réservez en ligne sur notre site ou l'application Le Patio, en quelques secondes.</small>
     </div>
   </div>
 </section>
@@ -620,9 +625,9 @@ html.lb-bloque{overflow:hidden}
   <div class="wrap">
     <div class="studio-txt">
       <div class="eyebrow" data-num="T14">Le studio</div>
-      <h2 class="h2" data-num="T15">Un club à taille humaine, pensé comme un patio : calme, lumineux, ouvert.</h2>
+      <h2 class="h2" data-num="T15">Un club à taille humaine, calme et lumineux.</h2>
       <p data-num="T16">Six Reformers seulement, pour que chaque élève soit vu, corrigé et accompagné tout au long du cours.</p>
-      <p data-num="T17">Débutant ou habitué, le Reformer s'adapte à votre corps : on progresse à son rythme, sans jamais forcer.</p>
+      <p data-num="T17">Débutant ou habitué, le Reformer s'adapte à votre corps : on progresse à son rythme, en toute sérénité.</p>
     </div>
     <div class="studio-imgs" data-tag="photo" data-st="svg">
       <div class="ph oval"><img src="photos-le-patio/studio-pilates-senlis.jpg" data-num="P02" alt="Le studio Le Patio" loading="lazy"></div>
@@ -636,10 +641,10 @@ html.lb-bloque{overflow:hidden}
   <div class="wrap">
     <h2 class="h2" data-num="T18">Les petites attentions qui changent tout.</h2>
     <div class="att-grid">
-      <div class="att-item" data-num="C03"><div class="ph"><img data-num="P04" src="photos-le-patio/vestiaires-douches-studio.jpg" alt="Vestiaires" loading="lazy"></div><h3 data-num="T19">Vestiaires et douches</h3><p data-num="T20">Un vestiaire femmes, un vestiaire hommes, et des douches.</p></div>
-      <div class="att-item" data-num="C04"><div class="ph"><img data-num="P05" src="photos-le-patio/parking-studio-pilates-senlis.jpg" alt="Parking" loading="lazy"></div><h3 data-num="T21">Parking et accès sécurisés</h3><p data-num="T22">Six places dans l'enceinte, ouvertes à tous, et un parking public à côté.</p></div>
-      <div class="att-item" data-num="C05"><div class="ph"><img data-num="P06" src="photos-le-patio/chaussettes-antiderapantes-pilates.jpg" alt="Chaussettes antidérapantes" loading="lazy"></div><h3 data-num="T23">Chaussettes sur place</h3><p data-num="T24">Antidérapantes et obligatoires : oubliées ? Elles sont vendues sur place.</p></div>
-      <div class="att-item" data-num="C06"><div class="ph" style="background:var(--khaki)"><img data-num="P07" src="photos-le-patio/branche-olivier-espace-lounge.jpg" alt="Branche d'olivier" loading="lazy"></div><h3 data-num="T25">Espace lounge</h3><p data-num="T26">Canapé et fauteuils pour se détendre, avec des boissons à disposition.</p></div>
+      <div class="att-item" data-num="C03"><div class="ph"><img data-num="P04" src="photos-le-patio/vestiaires-douches-studio.jpg" alt="Vestiaires" loading="lazy"></div><h3 data-num="T19">Vestiaires et douches</h3><p data-num="T20">Un vestiaire femmes, un vestiaire hommes, des douches à disposition et tout ce qui va avec.</p></div>
+      <div class="att-item" data-num="C04"><div class="ph"><img data-num="P05" src="photos-le-patio/parking-studio-pilates-senlis.jpg" alt="Parking" loading="lazy"></div><h3 data-num="T21">Parking et accès sécurisés</h3><p data-num="T22">Accès au studio sécurisé, parking privé avec six places dédiées aux élèves du studio, ainsi qu'un parking public en complément.</p></div>
+      <div class="att-item" data-num="C05"><div class="ph"><img data-num="P06" src="photos-le-patio/chaussettes-antiderapantes-pilates.jpg" alt="Chaussettes antidérapantes" loading="lazy"></div><h3 data-num="T23">Chaussettes sur place</h3><p data-num="T24">Les chaussettes antidérapantes sont un indispensable et sont obligatoires pour pratiquer le Pilates Reformer au Patio. Vous n'en avez pas ou les avez oubliées ? Pas de panique, vous en trouverez en vente sur place.</p></div>
+      <div class="att-item" data-num="C06"><div class="ph" style="background:var(--khaki)"><img data-num="P07" src="photos-le-patio/branche-olivier-espace-lounge.jpg" alt="Branche d'olivier" loading="lazy"></div><h3 data-num="T25">Espace lounge</h3><p data-num="T26">Un espace dédié à la détente, avant ou après le cours, avec des boissons chaudes et froides à disposition.</p></div>
     </div>
   </div>
 </section>
@@ -650,17 +655,8 @@ html.lb-bloque{overflow:hidden}
     <div class="ph" data-tag="photo" data-st="svg"><img src="photos-le-patio/cours-pilates-reformer.jpg" data-num="P08" alt="Étirement sur Reformer" loading="lazy"></div>
     <div class="cours-txt">
       <div class="eyebrow" data-num="T27">Les cours</div>
-      <h2 class="h2" data-num="T28">Le Reformer, en petit groupe.</h2>
-      <div class="acc">
-        <details open data-tag="hors" data-label="Description du cours" data-st="svg">
-          <summary data-num="T29">Reformer small group</summary>
-          <p data-num="T30">Durée : 1 heure. Niveau : tous niveaux. Six personnes au plus, pour un suivi attentif de chacun.</p>
-        </details>
-        <details data-tag="premiere rassure" data-st="svg">
-          <summary data-num="T31">Votre première séance</summary>
-          <p data-num="T32">Aucune expérience n'est nécessaire. Votre professeure vous présente le Reformer, ses ressorts et les positions de base avant de commencer, puis adapte chaque exercice à votre niveau.</p>
-        </details>
-      </div>
+      <h2 class="h2" data-num="T28">Le Pilates Reformer, en petit groupe.</h2>
+      <p class="cours-infos" data-num="T30">Durée : 1 heure.<br>Niveau : tous niveaux.<br>Six personnes maximum, pour un suivi attentif et personnalisé.</p>
     </div>
   </div>
 </section>
@@ -668,11 +664,13 @@ html.lb-bloque{overflow:hidden}
 <!-- PREMIÈRE SÉANCE : étapes (4/10) + Première fois (7/10), ajouté -->
 <section class="steps" data-num="S06" id="premiere-seance" data-pos="42" aria-label="Première séance" data-tag="etapes premiere" data-st="ajout">
   <div class="wrap">
-    <div class="steps-head"><div class="eyebrow" data-num="T33">Première fois</div><h2 data-num="T34">Nouveau au Reformer ? Commencez ici.</h2></div>
-    <div class="step" data-num="C07"><i data-num="I02">1</i><div><b data-num="T35">Choisissez un créneau</b><span data-num="T36">Dans le planning, du lundi au vendredi, de 8h30 à 19h.</span></div></div>
-    <div class="step" data-num="C08"><i data-num="I03">2</i><div><b data-num="T37">Réservez votre première séance en ligne</b><span data-num="T38">35 € pour deux séances. Les codes d'accès vous sont envoyés.</span></div></div>
-    <div class="step" data-num="C09"><i data-num="I04">3</i><div><b data-num="T39">Arrivez 5 minutes avant</b><span data-num="T40">Tenue souple et chaussettes antidérapantes. On s'occupe du reste.</span></div></div>
-    <a class="steps-more" data-num="L10" href="premiere-seance/">Tout savoir sur votre première séance →</a>
+    <div class="steps-head"><div class="eyebrow" data-num="T33">Première séance</div><h2 data-num="T34">Découvrez tout ce qu'il faut savoir pour votre première séance</h2>
+      <a class="steps-more" data-num="L10" href="premiere-seance/">Tout savoir sur votre première séance →</a></div>
+    <a class="offer-card" data-num="C07" href="tarifs/#offre-premiere-seance" aria-label="Offre exclusive première séance : une séance achetée, une séance offerte. Réserver">
+      <span class="offer-badge" data-num="T35">Offre exclusive première séance</span>
+      <h3 data-num="T36">Une séance achetée,<br>une séance offerte.</h3>
+      <span class="offer-go" data-num="T37">Réserver →</span>
+    </a>
   </div>
 </section>
 
@@ -684,7 +682,13 @@ html.lb-bloque{overflow:hidden}
       <div>
         <div class="eyebrow" data-num="T41">Votre professeure</div>
         <h3 data-num="T42">Olivia Alphonse</h3>
-        <p data-num="T43">Diplômée Polestar Pilates · CQP ALS, activités gymniques d'entretien et d'expression.<br>[Parcours à compléter] Une approche précise et bienveillante, à l'écoute de chaque corps.</p>
+        <div class="prof-bio" data-num="T43">
+          <p>J'ai grandi en dansant, sur scène comme sur la glace. Pendant plus de vingt ans, la danse et le patinage ont rythmé ma vie, entre représentations et compétitions. J'ai également pu transmettre ma passion pendant une dizaine d'années, en initiant petits et grands au patinage artistique et en jugeant des épreuves de danse sur glace.</p>
+          <p>C'est lors d'un stage de patinage que j'ai découvert le Pilates pour la toute première fois.</p>
+          <p>Après des études en psychologie puis en management du luxe et du design, j'ai travaillé quelques années dans la mode et le marketing. Un univers dans lequel je ne me suis pas épanouie, et qui m'a éloignée du mouvement. Le Pilates a su m'y ramener.</p>
+          <p>Je me suis formée pendant un an, notamment chez Polestar Pilates, école de Pilates agréée par la Fédération des Professionnels de la Méthode Pilates. Puis j'ai fondé Le Patio avec l'envie de partager mon expérience et mon approche de cette discipline. Aujourd'hui, je vous ouvre les portes du studio pour vous offrir un lieu où prendre soin de vous, vous dépasser en douceur et retrouver le plaisir de bouger, comme le Pilates me l'a permis.</p>
+          <p class="prof-bienvenue">Bienvenue au Patio !</p>
+        </div>
       </div>
     </div>
   </div>
@@ -696,8 +700,8 @@ html.lb-bloque{overflow:hidden}
     <a class="racc racc-cal" data-num="C11" href="planning/" data-tag="planning" data-st="svg">
       <div class="racc-txt">
         <div class="eyebrow" data-num="T44">Planning</div>
-        <h3 data-num="T45">7 cours / jour, du lundi au vendredi</h3>
-        <p data-num="T46">Premier cours à 8h30, dernier à 19h. Cours d'1 heure, tous niveaux.</p>
+        <h3 data-num="T45">7 cours / jour, 5 jours / semaine</h3>
+        <p data-num="T46">Le matin, le soir ou entre midi et deux : choisissez le créneau qui vous convient le mieux.</p>
         <span data-num="T47">Voir le planning →</span>
       </div>
       <svg class="racc-ico" data-num="I05" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -713,10 +717,10 @@ html.lb-bloque{overflow:hidden}
     </a>
     <a class="racc" href="tarifs/" data-num="C12" data-tag="prix" data-st="svg">
       <div class="eyebrow" data-num="T48">Tarifs</div>
-      <h3 data-num="T49">Choisissez la formule qui vous va.</h3>
+      <h3 data-num="T49">Choisissez votre formule.</h3>
       <div class="racc-prix">
         <div data-num="T50"><b>À la séance</b><strong>35 €</strong><small>valable 2 semaines</small></div>
-        <div data-num="T51"><b>Forfaits</b><strong>dès 27 €</strong><small>la séance, de 5 à 30 séances</small></div>
+        <div data-num="T51"><b>Forfaits</b><strong>dès 27 €</strong><small>la séance, sans engagement</small></div>
         <div data-num="T52"><b>Abonnements</b><strong>dès 150 €</strong><small>par mois, engagement 6 mois</small></div>
       </div>
       <span data-num="T53">Voir les tarifs →</span>
@@ -733,7 +737,6 @@ html.lb-bloque{overflow:hidden}
       <div class="addr">
         <div class="eyebrow" data-num="T58">Adresse</div>
         <p class="big" data-num="T59">43 avenue Félix Louat<br>60300 Senlis</p>
-        <p class="sm" data-num="T119">À quelques minutes du centre de Senlis, à une quinzaine de minutes en voiture de Chantilly, et tout près de Chamant, Courteuil et Aumont-en-Halatte.</p>
         <a href="https://www.google.com/maps/dir/?api=1&destination=43+avenue+F%C3%A9lix+Louat+60300+Senlis" data-num="L11">Ouvrir l'itinéraire →</a>
         <hr>
         <div class="eyebrow" data-num="T60">Horaires des cours</div>
@@ -742,8 +745,8 @@ html.lb-bloque{overflow:hidden}
       </div>
     </div>
     <div class="infos-bot">
-      <div data-num="C14"><div class="ph"><img data-num="P10" src="photos-le-patio/parking-studio-pilates-senlis.jpg" alt="Parking du studio" loading="lazy"></div><h3 data-num="T63">Parking</h3><p data-num="T64">Six places sécurisées dans l'enceinte, ouvertes à tous, et un parking public juste à côté.</p></div>
-      <div data-num="C15"><div class="ph"><img data-num="P11" src="photos-le-patio/acces-studio-pilates-senlis.jpg" alt="Accès au studio" loading="lazy"></div><h3 data-num="T65">Accès</h3><p data-num="T66">Une barrière à code ferme l'enceinte. Les codes du parking et du studio vous sont envoyés à la réservation.</p></div>
+      <div data-num="C14"><div class="ph"><img data-num="P10" src="photos-le-patio/parking-studio-pilates-senlis.jpg" alt="Parking du studio" loading="lazy"></div><h3 data-num="T63">Parking</h3><p data-num="T64">Parking privé avec six places dédiées aux élèves du studio, ainsi qu'un parking public en complément.</p></div>
+      <div data-num="C15"><div class="ph"><img data-num="P11" src="photos-le-patio/acces-studio-pilates-senlis.jpg" alt="Accès au studio" loading="lazy"></div><h3 data-num="T65">Accès</h3><p data-num="T66">Accès au studio sécurisé.<br>Les codes du parking et du studio vous sont envoyés à la réservation.</p></div>
     </div>
   </div>
 </section>
@@ -787,7 +790,6 @@ html.lb-bloque{overflow:hidden}
         <a class="store" data-num="B05" href="#"><small>Télécharger dans</small><b>l'App Store</b></a>
         <a class="store" data-num="B06" href="#"><small>Disponible sur</small><b>Google Play</b></a>
       </div>
-      <p class="app-note" data-num="T81">Application en préparation, disponible prochainement sur iPhone et Android.</p>
     </div>
     <div class="phone" data-num="I11" aria-hidden="true">
       <span class="t" data-num="T82">9:41</span>
@@ -830,12 +832,11 @@ html.lb-bloque{overflow:hidden}
   <div class="wrap">
     <h2 data-num="T93">Questions fréquentes</h2>
     <div class="faq-list">
-      <details><summary data-num="T94">Je n'ai jamais fait de Reformer, est-ce pour moi ?</summary><p data-num="T95">Oui. Les cours sont ouverts à tous les niveaux et limités à six personnes : la professeure vous guide pas à pas et adapte les ressorts à votre corps.</p></details>
-      <details><summary data-num="T96">Que dois-je apporter pour mon premier cours ?</summary><p data-num="T97">Une tenue souple et des chaussettes antidérapantes, obligatoires sur le Reformer. Si vous les oubliez, elles sont vendues sur place. Vestiaires et douches sont à votre disposition.</p></details>
-      <details><summary data-num="T98">Jusqu'à quand puis-je annuler un cours ?</summary><p data-num="T99">[Délai d'annulation à préciser.] L'annulation se fait en quelques secondes depuis notre site ou l'application Le Patio.</p></details>
-      <details><summary data-num="T100">Enceinte, blessée ou en convalescence : puis-je pratiquer ?</summary><p data-num="T101">Parlez-en à votre médecin, puis prévenez-nous avant le cours. Les exercices peuvent être adaptés.</p></details>
-      <details><summary data-num="T102">Comment accéder au studio et où me garer ?</summary><p data-num="T103">Six places sécurisées dans l'enceinte et un parking public juste à côté. Les codes d'accès vous sont envoyés à la réservation.</p></details>
-      <details><summary data-num="T120">Je viens de Chantilly ou des environs, est-ce loin ?</summary><p data-num="T121">Non. Le studio est au 43 avenue Félix Louat à Senlis, à une quinzaine de minutes en voiture de Chantilly, avec six places de parking dans l'enceinte et un parking public juste à côté. Il est aussi facile d'accès depuis Chamant, Courteuil ou Aumont-en-Halatte.</p></details>
+      <details><summary data-num="T94">Je n'ai jamais fait de Reformer, est-ce pour moi ?</summary><p data-num="T95">Oui ! Au Patio, le Pilates, c'est pour tout le monde. Les cours sont ouverts à tous les niveaux et limités à six personnes : la professeure vous guide pas à pas et adapte les exercices à votre corps.</p></details>
+      <details><summary data-num="T96">Que dois-je apporter pour mon premier cours ?</summary><p data-num="T97">Une tenue souple et près du corps et, surtout, des chaussettes antidérapantes, obligatoires sur le Reformer. Si vous les oubliez, elles sont vendues sur place. Des vestiaires et des douches sont à votre disposition.</p></details>
+      <details><summary data-num="T98">Jusqu'à quand puis-je annuler un cours ?</summary><p data-num="T99">Vous pouvez annuler votre cours jusqu'à 24 h avant le début de la séance. Passé ce délai, tout cours réservé est dû, même si vous ne vous présentez pas. L'annulation se fait en quelques secondes depuis notre site ou l'application Le Patio.</p></details>
+      <details><summary data-num="T100">Enceinte, blessée ou en convalescence : puis-je pratiquer ?</summary><p data-num="T101">Parlez-en à votre médecin, puis prévenez-nous avant de réserver un cours. Les exercices peuvent être adaptés dans la plupart des cas.</p></details>
+      <details><summary data-num="T102">Comment accéder au studio et où me garer ?</summary><p data-num="T103">L'accès au studio est sécurisé. Les codes du parking et du studio vous sont envoyés à la réservation. Vous trouverez sur place un parking privé avec six places dédiées aux élèves du studio, ainsi qu'un parking public en complément.</p></details>
     </div>
   </div>
 </section>
