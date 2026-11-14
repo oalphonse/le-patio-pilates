@@ -91,7 +91,9 @@ section{scroll-margin-top:96px}
 .steps-head .steps-more{margin-top:8px;justify-self:start}
 .steps .offer-card{border:1px solid var(--sand)}
 .cours-infos{color:var(--brown);margin-top:18px;line-height:1.7}
+.cours-btn{justify-self:start;margin-top:8px}
 .prof-bio{display:grid;gap:12px}
+.prof-formations{color:var(--tan-2);font-size:14px;font-weight:500;letter-spacing:.02em;margin:-4px 0 14px}
 .prof-card .prof-bio p{max-width:none;text-align:justify}
 .prof-bienvenue{font-weight:500;color:var(--paper)!important}
 .prof-lien{justify-self:start;margin-top:4px;color:var(--tan-2);font-weight:500;text-decoration:none;border-bottom:1.5px solid var(--tan-2);padding-bottom:2px}
@@ -152,8 +154,8 @@ section{scroll-margin-top:96px}
 /* Chiffres */
 
 /* Cours */
-.cours .wrap{display:grid;grid-template-columns:520px 1fr;gap:96px;align-items:center;padding-block:20px 60px}
-.cours .ph{aspect-ratio:520/640}
+.cours .wrap{display:grid;grid-template-columns:400px 1fr;gap:72px;align-items:center;padding-block:20px 60px}
+.cours .ph{aspect-ratio:1/1}
 .cours-txt{display:grid;gap:16px}
 .acc{border-top:2px solid var(--sand);margin-top:16px}
 .acc details{border-bottom:2px solid var(--sand);padding:18px 0}
@@ -363,7 +365,7 @@ body.annot #annot-panel{display:block}
   .burger{display:block}
   .site-header.open .nav{display:flex;flex-direction:column;gap:14px;position:absolute;top:87px;left:0;right:0;background:var(--olive);padding:20px 24px 28px}
   .site-header.open .account{display:block;position:absolute;top:calc(87px + 330px);left:24px}
-  .cours .wrap{grid-template-columns:1fr 1fr;gap:56px}
+  .cours .wrap{grid-template-columns:minmax(0,360px) 1fr;gap:56px}
   .foot{grid-template-columns:repeat(3,1fr)}
 }
 @media (max-width:980px){
@@ -662,6 +664,7 @@ html.lb-bloque{overflow:hidden}
       <div class="eyebrow" data-num="T27">Les cours</div>
       <h2 class="h2" data-num="T28">Le Pilates Reformer, en petit groupe.</h2>
       <p class="cours-infos" data-num="T30">Durée : 1 heure.<br>Tous niveaux.<br>Six personnes maximum, pour un suivi attentif et personnalisé.</p>
+      <a href="cours/" class="btn btn-olive cours-btn" data-num="B16">En savoir plus</a>
     </div>
   </div>
 </section>
@@ -673,10 +676,10 @@ html.lb-bloque{overflow:hidden}
       <div class="ph" data-num="P09"><span class="ph-label">Photo à venir</span></div>
       <div>
         <div class="eyebrow" data-num="T41">Votre professeure</div>
-        <h3 data-num="T42">Olivia Alphonse</h3>
+        <h3 data-num="T42">Olivia</h3>
+        <p class="prof-formations" data-num="T119">Formée chez Polestar Pilates · diplômée d'un CQP ALS AGEE</p>
         <div class="prof-bio" data-num="T43">
-          <p>J'ai grandi en dansant, sur scène comme sur la glace. Après vingt ans de danse et de patinage, c'est le Pilates qui m'a ramenée au mouvement. Formée chez Polestar Pilates, j'ai fondé Le Patio pour vous offrir un lieu où prendre soin de vous, progresser en douceur et retrouver le plaisir de bouger.</p>
-          <p class="prof-bienvenue">Bienvenue au Patio !</p>
+          <p>Danseuse et patineuse pendant plus de vingt ans, j'ai fait du mouvement ma passion avant d'en faire mon métier. En cours, je vous guide avec précision et contrôle. Mon objectif ? Allier souplesse et renforcement pour favoriser la mobilité, avec un travail en profondeur et des exercices adaptés à votre corps, que vous soyez débutants ou plus avancés.</p>
           <a class="prof-lien" href="histoire/" data-num="L25">Découvrir l'histoire du Patio →</a>
         </div>
       </div>
