@@ -13,8 +13,8 @@
 */
 (function(){
   const CLE='numeros-visibles';
-  const PAGES={'':1,'premiere-seance':2,'planning':3,'tarifs':4,'contact':5,'mentions-legales':7,'conditions-generales-de-vente':8,'politique-de-confidentialite':9,'histoire':10};
-  const NOMS_PAGES={1:'Accueil',2:'Première séance',3:'Planning',4:'Tarifs',5:'Contact',7:'Mentions légales',8:'CGV',9:'Confidentialité',10:'Histoire'};
+  const PAGES={'':1,'premiere-seance':2,'planning':3,'tarifs':4,'contact':5,'mentions-legales':7,'conditions-generales-de-vente':8,'politique-de-confidentialite':9,'histoire':10,'cours':11};
+  const NOMS_PAGES={1:'Accueil',2:'Première séance',3:'Planning',4:'Tarifs',5:'Contact',7:'Mentions légales',8:'CGV',9:'Confidentialité',10:'Histoire',11:'Les cours'};
   // Pages anglaises (/en/…) : même numéro de page, précédé de EN (ex. « EN4-S06 » = S06 de Pricing)
   const PAGES_EN={'':1,'first-class':2,'schedule':3,'pricing':4,'contact':5,'book-first-class':6};
   const segments=location.pathname.replace(/index\.html$/,'').split('/').filter(Boolean);
