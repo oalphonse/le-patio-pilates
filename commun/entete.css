@@ -89,9 +89,7 @@ body > div:has(> button[title="Mon panier"], > button[title="My basket"]):not(.f
 .menu-panel a:hover,.menu-panel a[aria-current="page"]{color:var(--olive);text-decoration:underline;text-underline-offset:6px}
 .menu-panel a:focus-visible{outline:2px solid var(--olive);outline-offset:2px}
 .site-header.open .menu-panel{display:flex}
-@media (hover:hover) and (pointer:fine){
-  .menu-zone:hover .menu-panel,.menu-zone:focus-within .menu-panel{display:flex}
-}
+/* Le menu s'ouvre au CLIC seulement (plus au survol, demandé le 14/11) : voir commun/entete.js */
 
 /* Liens visibles hors menu */
 .nav-rapide{display:flex;align-items:center;gap:28px;font-size:15px;min-width:0}

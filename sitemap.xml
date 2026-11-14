@@ -12,6 +12,7 @@
   <url><loc>https://__DOMAINE__/en/first-class/</loc><priority>0.6</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/premiere-seance/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/first-class/"/></url>
   <url><loc>https://__DOMAINE__/contact/</loc><priority>0.5</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/contact/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/contact/"/></url>
   <url><loc>https://__DOMAINE__/en/contact/</loc><priority>0.3</priority><xhtml:link rel="alternate" hreflang="fr" href="https://__DOMAINE__/contact/"/><xhtml:link rel="alternate" hreflang="en" href="https://__DOMAINE__/en/contact/"/></url>
+  <url><loc>https://__DOMAINE__/cours/</loc><priority>0.7</priority></url>
   <url><loc>https://__DOMAINE__/histoire/</loc><priority>0.5</priority></url>
   <url><loc>https://__DOMAINE__/mentions-legales/</loc><priority>0.2</priority></url>
   <url><loc>https://__DOMAINE__/conditions-generales-de-vente/</loc><priority>0.2</priority></url>
