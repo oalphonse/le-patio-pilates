@@ -172,6 +172,13 @@ Visiteur ─► site statique (GitHub Pages)
 - **Inscriptions avant l'ouverture** : le widget leads n'est disponible qu'une fois bsport ouvert. Soit on attend les accès bsport pour activer « Me prévenir », soit on collecte temporairement sur le VPS puis on importe la liste dans bsport (import à confirmer auprès de bsport).
 - Questions pour bsport : personnalisation des couleurs et de la police des widgets ; possibilité de ne pas forcer le tag « Newsletter » sur le widget leads ; import de contacts ; accès API si besoin un jour.
 
+## Autorisation parentale (PDF, 15/11)
+
+- Âge minimum 16 ans ; pour les 16-17 ans, autorisation du représentant légal à remettre à la première séance (FAQ, question 29, bouton « Télécharger l'autorisation parentale (PDF) »).
+- Fichier téléchargé : `documents/autorisation-parentale-le-patio.pdf` (une page A4). Source : `outils/autorisation-parentale.html` (logo, adresse, champs à remplir, signatures).
+- Pour le modifier : éditer la source, puis la régénérer en PDF A4 avec Chromium (Playwright : `page.pdf({format:'A4', printBackground:true, preferCSSPageSize:true})` sur `http://localhost:8790/outils/autorisation-parentale.html`), en vérifiant qu'il tient sur une page.
+- Pas d'e-mail ni de téléphone du studio dans le document (pas encore connus) : à ajouter dans l'en-tête quand on les aura.
+
 ## Pages
 
 | URL | Rôle |
@@ -291,6 +298,23 @@ Chaque élément visible porte un attribut `data-num` (S section, C carte, T tex
 - **Remplacer le logo du popup « Coming soon »** (accueil, `<dialog id="popup-ouverture">`) par un nouveau logo, que le studio fournira. Le popup utilise aujourd'hui `logo/logo-le-patio-pilates-club.png` (balise `<img class="popup-logo">`, taille réglée par `.popup-logo` : 180 × 180 px), qui sert aussi dans le pied de page : ne remplacer que celui du popup, sauf avis contraire. Nommer le nouveau fichier en français avec des tirets (ex. `logo/logo-le-patio-popup.png`).
 
 ## Demandes notées (pas encore faites)
+
+- **Abonnements à l'année** (demandé le 15/11, **modifié le 15/11 : 1 mois offert, et non plus 2**) : ajouter un sélecteur **Mois / Année** au-dessus des 2 abonnements de Tarifs. À l'année = **1 mois offert** (on paie 11 mois sur 12), soit **8,3 % de réduction**, la même pour les deux formules.
+  - Note de Fabian, telle quelle : « 1 mois offert (et non plus 2), soit 40 séances ou 20 séances selon le truc ». **À éclaircir** : sur 12 mois, l'abonnement 5 séances donne 60 séances (dont 5 offertes) et le 10 séances 120 séances (dont 10 offertes) ; les chiffres 40 et 20 ne correspondent pas à ce calcul.
+
+  | | Au mois | À l'année (1 mois offert) | Équivalent / mois | Séances sur l'année | Prix d'une séance (mois → année) | Économie / an |
+  |---|---|---|---|---|---|---|
+  | 5 séances / mois | 150 € | **1 650 €** | 137,50 € | 60 (dont 5 offertes) | 30 € → **27,50 €** | 150 € |
+  | 10 séances / mois | 280 € | **3 080 €** | 256,67 € | 120 (dont 10 offertes) | 28 € → **25,67 €** | 280 € |
+
+  Pour mémoire, l'ancienne hypothèse « 2 mois offerts » donnait 1 500 € et 2 800 € par an (16,7 % de réduction).
+
+  Côté site : sélecteur (style des pilules), mise en avant « 1 mois offert », prix par séance comme pour les forfaits. Côté bsport : créer les 2 abonnements annuels dans le back-office (nouveaux identifiants, à afficher dans le widget Abonnement ou en liens directs `checkout/7023/subscription/<id>`). L'abonnement mensuel actuel est « engagement 6 mois » : décider si l'annuel est payé en une fois ou mensualisé sur 12 mois.
+
+- **Planning : afficher les places restantes** (signalé le 15/11 : le planning ne montre pas combien de places il reste dans un cours). Piste étudiée le 15/11 :
+  - bsport ne propose aucune option pour ça dans le code du widget Calendrier ; **à vérifier dans le back-office** (Mon widget / paramètres de la marketplace) qu'il n'existe pas une case « afficher les places restantes », ce serait la solution la plus simple ;
+  - sinon, faisable par nous : l'API publique que le widget appelle déjà, `https://api.production.bsport.io/book/v1/offer/?company=7023&coaches=155027&establishments=23608&available=true&min_date=…&max_date=…`, renvoie pour chaque cours `effectif` (6) et `validated_booking_count` (réservations confirmées), ainsi que `full` et la liste d'attente. Places restantes = `effectif − validated_booking_count`. Un script (comme `bsport-periodes.js`) interrogerait cette API pour la semaine affichée et ajouterait « 2 places restantes » / « Complet » sur chaque carte, retrouvée par sa date et son heure (les cartes n'ont pas d'identifiant de cours). Pas de clé nécessaire. Non testé avec des cours réservés (pas encore de séance avant l'ouverture).
+
 
 - **Page Tarifs : photo de fond dès l'arrivée.** Remplacer le gros bloc de couleur unie du haut de page (`<section class="intro">`, fond `var(--sand)`, titre « Séance, forfait ou abonnement : à vous de choisir. ») par une photo de fond, comme le hero de l'accueil. Prévoir un voile sombre pour que le texte reste lisible, et passer le texte en clair. Photo à choisir dans `photos-le-patio/` ou à fournir par le studio.
 

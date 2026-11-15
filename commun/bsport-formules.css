@@ -385,3 +385,11 @@
   .fo .bsport-widget.bsport-widget[id] .bs-price__container > span{font-size:24px!important}
   .fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__right-button{min-height:44px!important;padding:0 18px!important}
 }
+
+/* prix d'une séance avant la validité, sur la même ligne (commun/bsport-prix-seance.js) : « 33 € la séance · Valide 3 mois » */
+.fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity__content[data-prix-seance]::before{content:attr(data-prix-seance) " · "}
+/* téléphone : pas la place sur une ligne à côté du bouton, le prix par séance passe au-dessus de la validité */
+@media (max-width:640px){
+  .fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity__content[data-prix-seance]{text-align:left!important}
+  .fo .bsport-widget.bsport-widget[id] .bs-paymentpack-card__validity__content[data-prix-seance]::before{content:attr(data-prix-seance);display:block}
+}
