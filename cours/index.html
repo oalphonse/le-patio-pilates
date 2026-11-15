@@ -197,6 +197,8 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
 <link rel="stylesheet" href="../commun/entete.css">
 <link rel="stylesheet" href="../commun/adresse.css">
 <link rel="stylesheet" href="../commun/pied.css">
+<link rel="stylesheet" href="../commun/reformer-anime.css">
+<link rel="stylesheet" href="../commun/cours-dispositions.css">
 <!-- Langue des widgets et fenêtres bsport = langue de la page (avant tout chargement de bsport) -->
 <script src="../commun/bsport-langue.js"></script>
 <link rel="canonical" href="https://www.lepatio-pilates.fr/cours/">
@@ -311,18 +313,56 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
   </div>
 </section>
 
-<section class="cours-sec cours-alt" data-num="S02" aria-label="Le Reformer">
-  <div class="wrap reformer">
-    <div class="ph" data-num="P02"><img src="../photos-le-patio/pilates-reformer-senlis-le-patio.jpg" alt="Les Reformers du studio Le Patio" loading="lazy"></div>
-    <div style="display:grid;gap:22px">
-      <div class="eyebrow" data-num="T04">La machine</div>
-      <h2 data-num="T05">Le Reformer, comment ça marche ?</h2>
-      <p class="lead" data-num="T06">Le Reformer est un lit de Pilates : un chariot qui coulisse sur des rails, retenu par des ressorts. Chaque mouvement se fait contre leur résistance, qui aide autant qu'elle travaille.</p>
-      <ul class="pieces" data-num="C02">
-        <li><i>1</i><div><b>Le chariot</b><span>Il glisse sous vous : chaque mouvement demande contrôle et précision, sans à-coups.</span></div></li>
-        <li><i>2</i><div><b>Les ressorts</b><span>Ils règlent la résistance. La professeure les ajuste pour chacune et chacun, selon le niveau et l'exercice.</span></div></li>
-        <li><i>3</i><div><b>La barre et les sangles</b><span>Pour pousser avec les pieds ou tirer avec les bras : le même appareil fait travailler tout le corps.</span></div></li>
+<!-- Le Reformer, comment ça marche ? : dessin animé au défilement (commun/reformer-anime.css/.js), indications à droite -->
+<section class="rf rf--fusion" aria-label="Le Reformer, comment ça marche ?">
+  <div class="rf-colle rf-fusion">
+    <div class="rf-scene">
+      <svg viewBox="70 96 860 232" role="img" aria-label="Dessin d'un Reformer de Pilates : chariot sur rails, ressorts, barre de pieds et sangles">
+        <ellipse class="ombre" cx="500" cy="318" rx="430" ry="9"/>
+        <path class="t sol" d="M30 318 H970"/>
+        <!-- cadre et pieds -->
+        <path class="t" pathLength="1" d="M90 244 H910 Q920 244 920 254 V274 Q920 284 910 284 H90 Q80 284 80 274 V254 Q80 244 90 244 Z"/>
+        <path class="t" pathLength="1" d="M112 284 V312 M138 284 V312 M98 314 H152 M862 284 V312 M888 284 V312 M848 314 H902"/>
+        <!-- barre de pieds -->
+        <path class="t p-barre" pathLength="1" d="M200 234 h14 q4 0 4 4 v10 q0 4 -4 4 h-14 q-4 0 -4 -4 v-10 q0 -4 4 -4 Z"/>
+        <path class="t p-barre" pathLength="1" d="M186 226 l-4 -4 M196 218 l-2 -6 M208 216 v-6 M220 219 l3 -5"/>
+        <g data-rf="barre">
+          <path class="t p-barre" pathLength="1" d="M206 240 L158 151"/>
+          <path class="t p-barre" pathLength="1" d="M141 140 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0"/>
+        </g>
+        <!-- montants et poulie -->
+        <path class="t p-sangles" pathLength="1" d="M884 244 V128 M884 150 h-10"/>
+        <path class="t p-sangles" pathLength="1" d="M875 118 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0"/>
+        <!-- barre d'accroche et ressorts -->
+        <path class="t p-ressorts" pathLength="1" d="M192 250 V278"/>
+        <path class="t p-ressorts" data-rf="ressort" pathLength="1" d=""/>
+        <path class="t p-ressorts" data-rf="ressort" pathLength="1" d=""/>
+        <!-- chariot : plateau, épaulières, appui-tête -->
+        <g data-rf="chariot">
+          <path class="t remplir p-chariot" pathLength="1" d="M236 212 H524 Q530 212 530 218 V236 Q530 242 524 242 H236 Q230 242 230 236 V218 Q230 212 236 212 Z"/>
+          <path class="t p-chariot" pathLength="1" d="M462 212 V186 Q462 178 470 178 H476 Q484 178 484 186 V212"/>
+          <path class="t p-chariot" pathLength="1" d="M494 212 V200 Q494 196 498 196 H522 Q526 196 526 200 V212"/>
+          <path class="t p-chariot" pathLength="1" d="M240 242 v4 M520 242 v4"/>
+        </g>
+        <!-- sangle et poignée -->
+        <path class="t p-sangles" data-rf="corde" pathLength="1" d="M884 118 L884 150"/>
+        <g data-rf="poignee"><path class="t p-sangles" pathLength="1" d="M876 150 a8 10 0 1 0 16 0 a8 10 0 1 0 -16 0"/></g>
+      </svg>
+      <span class="rf-bulle" aria-hidden="true"></span>
+    </div>
+    <div class="rf-texte">
+      <div class="rf-tete2">
+        <div class="eyebrow">La machine</div>
+        <h2>Le Reformer, comment ça marche ?</h2>
+        <p class="lead">Le Reformer est un lit de Pilates : un chariot qui coulisse sur des rails, retenu par des ressorts. Chaque mouvement se fait contre leur résistance, qui aide autant qu'elle fait travailler.</p>
+      </div>
+      <ul class="pieces rf-pieces">
+        <li class="rf-piece"><i>1</i><div><b>Le chariot</b><span>Il glisse sous vous : chaque mouvement demande contrôle et précision, sans à-coups.</span></div></li>
+        <li class="rf-piece"><i>2</i><div><b>Les ressorts</b><span>Ils règlent la résistance. La professeure les ajuste pour chacune et chacun, selon le niveau et l'exercice.</span></div></li>
+        <li class="rf-piece"><i>3</i><div><b>La barre</b><span>On y pose les pieds ou les mains. Son inclinaison se règle selon l'exercice et la taille de chacun.</span></div></li>
+        <li class="rf-piece"><i>4</i><div><b>Les sangles</b><span>Mains ou pieds dans les sangles, on tire en douceur et avec contrôle.</span></div></li>
       </ul>
+      <div class="rf-barre" aria-hidden="true"><div></div></div>
     </div>
   </div>
 </section>
@@ -344,9 +384,10 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
   </div>
 </section>
 
-<section class="cours-sec cours-alt" data-num="S04" aria-label="Un suivi attentif">
+<!-- Un cours collectif, un suivi personnel : disposition A retenue (styles commun/cours-dispositions.css) -->
+<section class="cours-sec cours-alt suivi" data-num="S04" aria-label="Un suivi attentif">
   <div class="wrap">
-    <div style="display:grid;gap:14px">
+    <div class="suivi-tete">
       <div class="eyebrow" data-num="T10">À six au plus</div>
       <h2 data-num="T11">Un cours collectif, un suivi personnel</h2>
       <p class="lead" data-num="T12">Six Reformers seulement : la professeure voit chacun et chacune, corrige les placements et adapte les exercices à votre corps, tout au long du cours.</p>
@@ -359,16 +400,17 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
   </div>
 </section>
 
-<section class="cours-sec" data-num="S05" aria-label="À savoir">
+<!-- Avant de venir : disposition B retenue, pictogrammes (styles commun/cours-dispositions.css) -->
+<section class="cours-sec avant" data-num="S05" aria-label="À savoir">
   <div class="wrap">
-    <div style="display:grid;gap:14px">
+    <div class="avant-tete">
       <div class="eyebrow" data-num="T13">À savoir</div>
       <h2 data-num="T14">Avant de venir</h2>
     </div>
     <div class="cartes" data-num="C05">
-      <div class="carte"><h3>Chaussettes antidérapantes</h3><p>Obligatoires sur le Reformer, avec une tenue souple et près du corps. Oubliées ? Elles sont vendues sur place.</p></div>
-      <div class="carte"><h3>Vestiaires et douches</h3><p>À votre disposition avant et après le cours.</p></div>
-      <div class="carte"><h3>Réservation et annulation</h3><p>Réservez sur le <a href="../planning/">planning</a> ou dans l'application. Annulation jusqu'à 24 h avant le début de la séance ; passé ce délai, le cours est dû.</p></div>
+      <div class="carte"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6v8l3.5 4.5a3 3 0 0 1-4.7 3.7L9 14z"/><path d="M9 7h6"/></svg></span><h3>Chaussettes antidérapantes</h3><p>Obligatoires sur le Reformer, avec une tenue souple et près du corps. Oubliées ? Elles sont vendues sur place.</p></div>
+      <div class="carte"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 21V9a4 4 0 0 1 8 0"/><path d="M11 9h7"/><path d="M12 13v1M15 13v1M18 13v1M13.5 17v1M16.5 17v1"/></svg></span><h3>Vestiaires et douches</h3><p>À votre disposition avant et après le cours.</p></div>
+      <div class="carte"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M9.5 15l2 2 3.5-4"/></svg></span><h3>Réservation et annulation</h3><p>Réservez sur le <a href="../planning/">planning</a> ou dans l'application. Annulation jusqu'à 24 h avant le début de la séance ; passé ce délai, le cours est dû.</p></div>
     </div>
   </div>
 </section>
@@ -397,6 +439,7 @@ form.cform .btn{grid-column:1/-1;justify-self:start}
   <div class="wrap copy"><span data-num="T117">© Le Patio Pilates Club · Senlis</span><span class="signature">Site réalisé par Fabian Le Maux - LEMAUX&amp;SCHODER</span></div>
 </footer>
 <script src="../commun/entete.js"></script>
+<script src="../commun/reformer-anime.js"></script>
 <!-- Outil interne : numéros des éléments, à retirer à la mise en ligne -->
 </body>
 </html>

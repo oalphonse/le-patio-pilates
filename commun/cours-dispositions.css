@@ -1,0 +1,32 @@
+/* Page Les cours : mise en page des blocs « Un cours collectif, un suivi personnel » (.suivi, disposition A)
+   et « Avant de venir » (.avant, disposition B), choisies le 15/11 parmi 3 propositions. */
+
+.suivi-tete,.avant-tete{display:grid;gap:14px;align-content:start}
+.ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============ SUIVI : disposition A retenue ============
+   Deux colonnes : titre collant à gauche, profils en liste à droite */
+.suivi .wrap{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+.suivi .suivi-tete{position:sticky;top:130px}
+.suivi .cartes{grid-template-columns:1fr;gap:0}
+.suivi .cartes .carte{background:none;border:0;border-top:1px solid var(--tan-2);border-radius:0;padding:24px 0;
+  grid-template-columns:minmax(0,200px) minmax(0,1fr);column-gap:28px}
+.suivi .carte:last-child{border-bottom:1px solid var(--tan-2)}
+.suivi .carte h3{font-size:20px}
+
+/* ============ AVANT DE VENIR : disposition B retenue ============
+   Pictogrammes : 3 colonnes centrées, sans cadre */
+.avant .avant-tete{text-align:center;justify-items:center}
+.avant .cartes{gap:40px}
+.avant .cartes .carte{background:none;border:0;padding:0;text-align:center;justify-items:center;gap:10px}
+.avant .carte p{max-width:300px}
+.avant .ico{display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:var(--sand);color:var(--olive);margin-bottom:6px}
+.avant .ico svg{width:32px;height:32px}
+
+/* ============ Mobile et tablette ============ */
+@media (max-width:820px){
+  .suivi .wrap{grid-template-columns:1fr;gap:24px}
+  .suivi .suivi-tete{position:static}
+  .suivi .cartes .carte{grid-template-columns:1fr;row-gap:6px}
+  .avant .cartes{gap:32px}
+}

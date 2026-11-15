@@ -1,0 +1,104 @@
+/* Reformer animé au défilement (voir commun/reformer-anime.js).
+   La section est haute (plusieurs écrans) ; son contenu reste collé sous l'en-tête pendant qu'on défile :
+   le Reformer, dessiné au trait, montre ses pièces l'une après l'autre (chariot, ressorts, barre, sangles). */
+.rf{--rf-trait:rgba(253,252,249,.82);--rf-vif:#DBD1A8;background:#453D0A;color:#FDFCF9;height:375vh;position:relative}
+.rf-colle{position:sticky;top:var(--rf-haut,87px);height:calc(100vh - var(--rf-haut,87px));height:calc(100svh - var(--rf-haut,87px));
+  display:grid;grid-template-rows:auto 1fr auto;align-items:center;overflow:hidden;
+  max-width:1248px;margin:0 auto;padding:clamp(20px,4vh,44px) max(24px,env(safe-area-inset-left,0px)) clamp(20px,4vh,40px)}
+.rf-tete{display:grid;gap:10px;text-align:center;justify-items:center}
+.rf-tete .eyebrow{color:#DBD1A8}
+.rf-tete h2{font-size:clamp(28px,3.6vw,46px);line-height:1.1}
+
+.rf-scene{position:relative;width:100%;height:100%;min-height:0;display:grid;place-items:center}
+.rf-scene svg{width:min(100%,1100px);height:auto;max-height:100%;overflow:visible}
+.rf svg .t{fill:none;stroke:var(--rf-trait);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
+  transition:stroke .5s,stroke-width .5s,filter .5s}
+.rf svg .sol{stroke:var(--rf-sol,rgba(253,252,249,.18));stroke-width:1.5}
+.rf svg .ombre{fill:var(--rf-ombre,rgba(0,0,0,.22));stroke:none}
+.rf svg .remplir{fill:rgba(219,209,168,0);transition:fill .5s}
+/* pièce mise en avant */
+.rf[data-etape="1"] .p-chariot,
+.rf[data-etape="2"] .p-ressorts,
+.rf[data-etape="3"] .p-barre,
+.rf[data-etape="4"] .p-sangles{stroke:var(--rf-vif);stroke-width:3;filter:drop-shadow(0 0 6px var(--rf-lueur,rgba(219,209,168,.55)))}
+.rf[data-etape="1"] .remplir.p-chariot{fill:var(--rf-remplir,rgba(219,209,168,.16))}
+.rf[data-etape="1"] .t:not(.p-chariot):not(.sol),
+.rf[data-etape="2"] .t:not(.p-ressorts):not(.sol),
+.rf[data-etape="3"] .t:not(.p-barre):not(.sol),
+.rf[data-etape="4"] .t:not(.p-sangles):not(.sol){stroke:var(--rf-pale,rgba(253,252,249,.38))}
+
+/* étiquette qui suit la pièce */
+.rf-bulle{position:absolute;left:0;top:0;transform:translate(-50%,-100%);font-size:12px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:#453D0A;background:#DBD1A8;border-radius:999px;padding:6px 12px;white-space:nowrap;
+  opacity:0;transition:opacity .4s;pointer-events:none}
+.rf-bulle.on{opacity:1}
+
+/* légendes */
+.rf-legendes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;width:100%;max-width:980px;margin:0 auto}
+.rf-legende{display:grid;grid-template-columns:auto 1fr;align-content:start;gap:4px 14px;opacity:.35;transition:opacity .5s}
+.rf-legende.on{opacity:1}
+.rf-legende i{grid-row:span 2;width:30px;height:30px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;
+  font-style:normal;font-size:13px;font-weight:600}
+.rf-legende.on i{background:#DBD1A8;border-color:#DBD1A8;color:#453D0A}
+.rf-legende b{font-weight:500;font-size:17px}
+.rf-legende span{font-size:14.5px;line-height:1.5;color:rgba(253,252,249,.78)}
+.rf-barre{grid-column:1/-1;height:2px;background:rgba(253,252,249,.14);border-radius:2px;overflow:hidden;margin-top:4px}
+.rf-barre div{height:100%;width:calc(var(--p,0) * 100%);background:#DBD1A8}
+
+@media (max-width:860px){
+  .rf{height:360vh}
+  .rf-colle{padding-inline:16px}
+  .rf-legendes{grid-template-columns:1fr;gap:0;max-width:520px}
+  /* sur mobile, une seule légende à la fois, à la même place */
+  .rf-legende{grid-area:1/1;opacity:0}
+  .rf-legende.on{opacity:1}
+  .rf-barre{grid-area:2/1;margin-top:16px}
+  .rf-bulle{font-size:11px;padding:5px 10px}
+}
+@media (max-width:860px) and (max-height:700px){ .rf-legende span{font-size:13.5px} }
+
+/* animations réduites : Reformer dessiné, immobile, les 3 légendes visibles */
+@media (prefers-reduced-motion:reduce){
+  .rf{height:auto}
+  .rf-colle{position:static;height:auto;gap:28px}
+  .rf-legende,.rf-legende.on{opacity:1;transform:none;grid-area:auto}
+  .rf-legendes{gap:22px}
+  .rf-barre,.rf-bulle{display:none}
+}
+
+/* ---------- Variante « fusion » (page Les cours, test) : le dessin à la place de la photo, indications à droite ---------- */
+/* 4 étapes : ~75 % d'un écran de défilement chacune */
+.rf--fusion{--rf-trait:rgba(69,61,10,.78);--rf-vif:#5E530E;--rf-pale:rgba(69,61,10,.28);--rf-sol:rgba(69,61,10,.16);--rf-ombre:rgba(69,61,10,.08);
+  --rf-lueur:rgba(94,83,14,.35);--rf-remplir:rgba(94,83,14,.10);background:#FDFCF9;color:#222;height:400vh}
+.rf-fusion{max-width:1248px;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);grid-template-rows:1fr;gap:48px;align-items:center}
+.rf-fusion .rf-scene{height:auto}
+.rf--fusion .rf-bulle{background:#5E530E;color:#FDFCF9}
+.rf-texte{display:grid;gap:22px;align-content:center}
+.rf-tete2{display:grid;gap:14px}
+.rf-tete2 h2{font-size:clamp(28px,3.2vw,40px);line-height:1.12}
+.rf-tete2 .lead{font-size:17.5px;line-height:1.65;color:#574325}
+.rf-pieces .rf-piece{opacity:.45;transition:opacity .5s}
+.rf-pieces .rf-piece.on{opacity:1}
+.rf-pieces .rf-piece i{transition:background .5s,color .5s}
+.rf-pieces .rf-piece.on i{background:#5E530E;color:#FDFCF9}
+.rf--fusion .rf-barre{background:rgba(94,83,14,.15);margin-top:0}
+.rf--fusion .rf-barre div{background:#5E530E}
+@media (max-width:860px){
+  .rf--fusion{height:372vh}
+  /* sur mobile : titre en haut, dessin au milieu, une seule indication à la fois en dessous */
+  .rf-fusion{grid-template-columns:1fr;grid-template-rows:auto 1fr auto auto;gap:14px;align-items:stretch}
+  .rf-fusion .rf-texte{display:contents}
+  .rf-tete2{order:0;text-align:center;justify-items:center;gap:8px}
+  .rf-tete2 .lead{display:none}
+  .rf-fusion .rf-scene{order:1;height:100%}
+  .rf-pieces{order:2;grid-template-columns:1fr}
+  .rf-pieces .rf-piece{grid-area:1/1;opacity:0}
+  .rf-pieces .rf-piece.on{opacity:1}
+  .rf--fusion .rf-barre{order:3;grid-area:auto;margin-top:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .rf--fusion{height:auto}
+  .rf-pieces .rf-piece{opacity:1;grid-area:auto}
+  .rf-fusion .rf-texte{display:grid}
+  .rf-tete2 .lead{display:block}
+}
