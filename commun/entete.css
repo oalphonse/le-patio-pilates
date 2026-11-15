@@ -8,6 +8,7 @@
 .entete .head-droite{grid-area:droite;display:flex;align-items:center;justify-content:flex-end;gap:16px}
 
 /* Changement de langue (FR / EN) */
+button.langue{background:none;border:0;font-family:inherit;cursor:pointer}
 .langue{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 6px;font-size:13px;font-weight:600;letter-spacing:.06em;text-decoration:none;color:var(--paper);opacity:.85}
 .langue:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
 .langue:focus-visible{outline:2px solid var(--tan-2);outline-offset:2px;border-radius:6px}
@@ -160,3 +161,8 @@ body > div:has(> button[title="Mon panier"], > button[title="My basket"]):not(.f
 .reseaux-entete svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .reseaux-entete svg .plein{fill:currentColor;stroke:none}
 @media (max-width:860px){.reseaux-entete{display:none}}
+
+/* message « English version coming soon » sous le bouton EN (commun/entete.js) */
+.langue-bientot{position:fixed;z-index:10001;transform:translate(-50%,-4px);background:#222;color:#fff;font:500 13.5px/1 "Inter",system-ui,sans-serif;
+  padding:11px 16px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.2);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.langue-bientot.on{opacity:1;transform:translate(-50%,0)}

@@ -103,3 +103,22 @@
     .observe(document.body,{attributes:true,attributeFilter:['style']});
   if(document.readyState==='complete') installer(); else window.addEventListener('load',installer);
 })();
+
+/* Bouton EN : la version anglaise n'existe pas encore (traduction sur place prévue une fois les textes français
+   définitifs, voir PASSATION.md). En attendant, un clic affiche « English version coming soon » quelques secondes. */
+(function(){
+  var bulle = null, minuteur = 0;
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('button.langue'); if(!b) return;
+    if(!bulle){
+      bulle = document.createElement('div'); bulle.className = 'langue-bientot'; bulle.setAttribute('role', 'status'); bulle.lang = 'en';
+      document.body.appendChild(bulle);
+    }
+    bulle.textContent = 'English version coming soon.';
+    var r = b.getBoundingClientRect();
+    bulle.style.top = Math.round(r.bottom + 10) + 'px';
+    bulle.style.left = Math.round(Math.min(Math.max(r.left + r.width / 2, 110), innerWidth - 110)) + 'px';
+    bulle.classList.add('on');
+    clearTimeout(minuteur); minuteur = setTimeout(function(){ bulle.classList.remove('on'); }, 2600);
+  });
+})();

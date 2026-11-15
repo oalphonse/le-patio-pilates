@@ -31,7 +31,7 @@ Fait les 13 et 14/11 (détails dans « Widgets bsport sur le site ») :
 1. **Bonhomme absent sur l'accueil** (signalé le 14/11, pas reproduit) : savoir comment on revient sur l'accueil et si on est connecté à bsport.
 2. **Tester le bouton espace client connecté** avec un vrai compte client : menu qui se déplie, panier, réservations (vu seulement en aperçu forcé).
 3. **Réserver ma première séance** : choisir entre A Étapes, B Côte à côte, C Créneau d'abord (sélecteur sur la page), puis finaliser comme Tarifs.
-4. **Reporter sur les pages anglaises** (`en/`) : calendrier du Planning, choix de Tarifs, bouton espace client, ancre de l'offre (les scripts gèrent déjà l'anglais).
+4. ~~**Reporter sur les pages anglaises**~~ (pages `en/` supprimées le 15/11, voir « Version anglaise ») — (les scripts gèrent déjà l'anglais).
 5. **Formulaire « Me prévenir »** (samedi / dimanche, popup) : décider widget leads bsport ou collecte sur le VPS (question RGPD).
 6. Nettoyage : supprimer l'ancienne grille masquée du Planning, décider du sort de la page de test `/espace-client/` (inconnue de `outils/numeros.js`, badges « ? »), retirer `commun/propositions.*` quand plus aucune page ne s'en sert.
 7. **Back-office bsport** (studio) : renommer « Séance d'essai » en « Première séance », créer une catégorie avec seulement le pack 817521.
@@ -224,27 +224,17 @@ Le bouton « Afficher le détourage » en bas de l'accueil encadre chaque élém
 
 Les 10 studios de référence (approche « offre de découverte ») sont : Club Pilates, Speir, Studio Pilates, KX Pilates, Culte, Ten Health & Fitness, LevelOut, BODYBAR, Pilates Circuit et Maison Amat.
 
-## Version anglaise (créée le 13/11)
+## Version anglaise (pages /en/ supprimées le 15/11)
 
-Le site existe en français (racine) et en anglais (`en/`), anglais britannique.
+**Les pages anglaises `en/` ont été supprimées le 15/11** (elles n'étaient plus à jour). Elles restent dans l'historique git (dernier commit qui les contient : « Les cours : Reformer animé… », 3301b45) : on peut y reprendre les traductions et le vocabulaire.
 
-| Français | Anglais | N° de page |
-|---|---|---|
-| `/` | `/en/` | 1 / EN1 |
-| `/premiere-seance/` | `/en/first-class/` | 2 / EN2 |
-| `/planning/` | `/en/schedule/` | 3 / EN3 |
-| `/tarifs/` | `/en/pricing/` | 4 / EN4 |
-| `/contact/` | `/en/contact/` | 5 / EN5 |
-| `/reserver-premiere-seance/` | `/en/book-first-class/` | 6 / EN6 |
+**Décidé le 15/11 :** la future version anglaise sera une **traduction sur place** (une seule série de pages ; le bouton EN remplace les textes par leur traduction, choix mémorisé), **faite une fois les textes français définitifs**. Ne pas écrire les traductions avant.
 
-- Les slugs anglais sont en anglais (référencement en anglais) ; la règle « slugs en français » vaut pour les pages françaises.
-- Lien de langue **FR / EN** dans l'en-tête (`<a class="langue" data-num="L00">`, à gauche de « Réserver »), vers la page équivalente. Style dans `commun/entete.css`.
-- Balises `hreflang` (fr, en, x-default = fr) sur les pages indexées des deux langues, `og:locale` en_GB, `sitemap.xml` bilingue.
-- **Les pages anglaises sont des copies traduites, pas générées** : toute modification d'une page française doit être reportée sur sa page anglaise (mêmes `data-num`, donc « 4-T12 » et « EN4-T12 » sont le même élément).
-- Vocabulaire retenu : première séance → first class ; forfait → class pack ; abonnement → membership ; à la séance → drop-in ; sans engagement → no commitment ; gel → membership freeze ; parrainage → referrals ; Réserver → Book ; Infos pratiques → Getting here ; prix « €35 », heures « 8:30am ».
-- L'outil de détourage reste en français sur `/en/` (outil interne).
-- À faire relire par quelqu'un d'anglophone si possible (titre « Take the time to move well. », qualification « CQP ALS » expliquée en anglais).
-- Incohérences relevées dans les textes français, reprises telles quelles en anglais, à trancher par le studio : fin des cours « 19h » (début du dernier cours) ou « 20h » (fin) selon les pages ; validité de l'offre première séance 3 semaines vs séance à l'unité 2 semaines (normal si voulu).
+En attendant :
+- le bouton **EN** reste dans l'en-tête de toutes les pages (`<button class="langue" data-num="L00">`) ; un clic affiche « English version coming soon. » quelques secondes (`commun/entete.js`, style `.langue-bientot` dans `commun/entete.css`) ;
+- plus de balises `hreflang` ni d'URL anglaises dans `sitemap.xml` ;
+- les scripts bsport savent déjà afficher l'anglais (`commun/bsport-langue.js`, `-periodes`, `-semaine`, `-textes`, `-jour-ferme` lisent `<html lang>`) : ils serviront tels quels ;
+- vocabulaire retenu pour l'anglais britannique (à reprendre) : première séance → first class ; forfait → class pack ; abonnement → membership ; à la séance → drop-in ; sans engagement → no commitment ; gel → membership freeze ; parrainage → referrals ; Réserver → Book ; Infos pratiques → Getting here ; prix « €35 », heures « 8:30am ».
 
 ## Référencement (préparé le 13/11)
 
@@ -253,7 +243,7 @@ Le site existe en français (racine) et en anglais (`en/`), anglais britannique.
 > pour que Google ne l'affiche pas pendant que des proches relisent le site. **À retirer au lancement**, sinon
 > le site reste invisible sur Google :
 > `grep -rl 'RELECTURE : à retirer' --include=*.html . | xargs sed -i '/RELECTURE : à retirer/d'`
-> (les `noindex` sans ce commentaire, sur `/espace-client/` et `/en/book-first-class/`, restent).
+> (le `noindex` sans ce commentaire, sur `/espace-client/`, reste).
 > Ne pas bloquer `robots.txt` à la place : Google ne verrait plus le `noindex`. Pas de Search Console ni de lien
 > public (Instagram…) vers le site avant le lancement.
 
